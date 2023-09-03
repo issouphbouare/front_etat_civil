@@ -1,0 +1,98 @@
+<div class="container" *ngIf="av==1">
+    <div class="row">
+        <div class="col-md-12 mt-6">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <a routerLink="/addAvancement" class="btn btn-success"><i class="bi bi-plus"></i> Ajouter</a>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="row justify-content-end">
+                                <div class="col-auto">
+                                    
+                                    <input style="height: 35px; width: 250px;" type="text" [(ngModel)]="keyword" placeholder="Entrez votre mot-clé">
+                                    
+                                    <button class="btn btn-secondary rounded ms-2" (click)="search()"><i class="bi bi-search"></i></button>
+                                    <!-- Bouton que vous voulez aligner à droite -->
+                                    
+                                        
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+                
+                
+                <div class="row"*ngIf="avancements">
+                    <div class="col-md-12 mt-6">
+                        <div class="card" *ngFor="let c of avancements">
+                            <div class="card-header">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <button (click)="onGetFile(c.id)"
+                                        class="btn btn-light"><i class="bi bi-upload"></i></button>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <h5 style="text-align: center;">
+                                            {{c.titre}}
+                                        </h5>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button 
+                                        class="btn btn-light"><i class="bi bi-pencil"></i></button>
+                                    <button (click)="onDelete(c.id)" class="btn btn-light"
+                                    *ngIf="c.id!=idAv"><i class="bi bi-trash"></i></button>
+                                
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            <div class="card-body">
+                                <div class="row">
+                                     <div class="col-md-12 mt-3">
+                                       <p style="text-align: justify;">{{c.description}}</p> 
+                                       <p style="text-align: right;">Publiée le {{c.date}}</p>
+                                    </div>
+                                </div> 
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+
+
+
+               
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container" *ngIf="av==0">
+    <div class="row">
+        <div class="col-md-12 mt-6">
+            <div class="card">
+                <div class="card-header">
+                    <a (click)="onRetour()" class="btn btn-success"><i class="bi bi-arrow-left"></i> Retour</a>
+                </div>
+                
+                
+                <div class="row"*ngIf="files">
+                    <div class="col-md-12 mt-6">
+                        <div class="card" *ngFor="let c of files._embedded.fileDBs">
+                            <div class="card-header">
+                                <a [href]="urlDownload+c.id" title="Cliquer pour telecharger"
+                                       class="btn btn-primary"><i class="bi bi-upload"></i>{{c.name}} </a>   
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+

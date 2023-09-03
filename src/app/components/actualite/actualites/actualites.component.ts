@@ -6,30 +6,32 @@ import { Actualite } from 'src/app/models/actualite';
 import { ActualiteService } from 'src/app/services/actualite.service';
 
 @Component({
-  selector: 'app-accueil',
-  templateUrl: './accueil.component.html',
-  styleUrls: ['./accueil.component.css']
+  selector: 'app-actualites',
+  templateUrl: './actualites.component.html',
+  styleUrls: ['./actualites.component.css']
 })
-export class AccueilComponent {
-  public actualites:any;
+export class ActualitesComponent {
+  
   public urlImageTitre : string ='';
+  public urlNoImage : string='';
+  public actualites: any;
   public currentPage: number=0;
   public size : number=5;
   public nbPage : number=0;
   public pages : Array<number>=[];
-  contentVisible = false;
+
+  showFullText = false;
+  longText = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. ..."; // Votre long paragraphe
+
+
 
   constructor(private http: HttpClient,
     private apiService: ActualiteService,
     private router : Router) { }
-  
-    ngOnInit(): void {
-      this.urlImageTitre=this.apiService.urlImageTitre
-      this.onGetAllActualite();
-    }
 
-  toggleContent() {
-    this.contentVisible = !this.contentVisible;
+  ngOnInit(): void {
+    this.urlImageTitre=this.apiService.urlImageTitre
+    this.onGetAllActualite();
   }
 
   onGetAllActualite() {
@@ -43,6 +45,31 @@ export class AccueilComponent {
       }, err => {
         console.log(err);
       });
+  }
+  onGetImg(a:any){
+    console.log("abibi");
+  }
+
+  goToPage(i:any){
+    this.currentPage=i;
+    this.onGetAllActualite();
+  }
+
+  onDelete(a: any){
+    if(confirm("Voulez-vous vraiment supprimer l'actualite  "+a.titre+ " ?")){
+      console.log();
+      this.apiService.deleteActualite(a._links.self.href)
+      .subscribe( data=>{
+        this.onGetAllActualite();
+    
+        }, err=>{
+          console.log(err);
+        }
+      );
+
+    alert("Actualite "+a.titre+  " supprimé avec succes");
+  }
+    
   }
 
 }
