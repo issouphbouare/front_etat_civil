@@ -5,13 +5,12 @@ import { DocumentService } from 'src/app/services/document.service';
 import { FileUploadService } from 'src/app/services/file-upload-service';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
 @Component({
-  selector: 'app-add-avancement',
-  templateUrl: './add-avancement.component.html',
-  styleUrls: ['./add-avancement.component.css']
+  selector: 'app-add-autre',
+  templateUrl: './add-autre.component.html',
+  styleUrls: ['./add-autre.component.css']
 })
-export class AddAvancementComponent implements OnInit {
+export class AddAutreComponent {
 
   constructor(private formBuilder:FormBuilder,
     private apiService: DocumentService,private uploadService: FileUploadService,
@@ -27,7 +26,7 @@ export class AddAvancementComponent implements OnInit {
   currentFile?: File;
   progress = 0;
   message = '';
-  default: string="Avancement";
+  default: string="Autre";
   stringArray: string[] = [];
 
 
@@ -113,3 +112,4 @@ upload(): void {
 
 
 }
+

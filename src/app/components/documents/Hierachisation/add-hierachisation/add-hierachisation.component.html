@@ -3,10 +3,10 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-md-2">
-                    <a routerLink="/avancements" class="btn btn-light float-right"><i class="bi bi-arrow-left"></i></a>
+                    <a routerLink="/hierachisations" class="btn btn-light float-right"><i class="bi bi-arrow-left"></i></a>
                 </div>
                 <div class="col-md-8" style="text-align: center;">
-                    <h4>AJOUT  AVANCEMENT</h4>
+                    <h4>AJOUT  HIERACHISATION</h4>
                 </div>
                 <div class="col-md-2"></div>
             </div>
@@ -29,7 +29,12 @@
                                             <p style="color: brown;" *ngIf="!formAdd.controls['titre'].valid"> (Le premier
                                                 caractere doit etre une lettre majuscule ) </p>
                                             <input type="hidden" formControlName="categorie" class="form-control" [(ngModel)]="default" >
-                                            <input type="hidden" formControlName="type" class="form-control" [(ngModel)]="default" >
+                                            <label>Type</label>
+                                            <select [(ngModel)]="selectedValue" formControlName="type" class="form-control"
+                                             (change)="onSelectionChange()">
+                                                <option *ngFor="let option of options" [value]="option.value">{{ option.label }}</option>
+                                              </select>
+                                              <p style="color: brown;" *ngIf="!formAdd.controls['type'].valid"> (Champ obligatoire * ) </p>
                                             <label>Description</label>
                                             <textarea type="" formControlName="description" class="form-control"
                                                 placeholder="au moins 3 letttres "></textarea>
@@ -91,7 +96,7 @@
                         </div>
                         <div class="card mt-2">
                             <button class="btn btn-secondary px-4"
-                               routerLink="/avancements">Terminer
+                               routerLink="/hierachisations">Terminer
                             </button>
                         </div>
                     </div>

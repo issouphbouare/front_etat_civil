@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AvancementService } from 'src/app/services/avancement.service';
 import { FileUploadService } from 'src/app/services/file-upload-service';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -56,8 +55,8 @@ export class AddActualiteComponent {
         console.log(err);
         //alert("Cette matiere existe deja !");
       });
-      this.titre=true; //this.getId()
-      this.etape1=false;
+      this.titre=true; this.img=false; //this.getId()
+      //this.etape1=false;
       this.idAv+=1;
 
 }
@@ -99,7 +98,7 @@ selectedFile: File | null = null;
           // Traitez les erreurs d'upload ici
         }
       ); this.selectedFile = null;
-    } this.img=true; 
+    } this.img=true; this.titre=false;
   }
 
   uploadIm(): void {

@@ -5,7 +5,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-6">
-                            <a routerLink="/addAvancement" class="btn btn-secondary"><i class="bi bi-plus"></i> Ajouter</a>
+                            <a routerLink="/addFormation" class="btn btn-secondary"><i class="bi bi-plus"></i> Ajouter</a>
                         </div>
                         <div class="col-md-6">
                             <div class="row justify-content-end">
@@ -25,9 +25,9 @@
                 </div>
                 
                 
-                <div class="row"*ngIf="avancements">
+                <div class="row"*ngIf="formations">
                     <div class="col-md-12 mt-6">
-                        <div class="card" *ngFor="let c of avancements">
+                        <div class="card" *ngFor="let c of formations">
                             <div class="card-header">
                                 <div class="row">
                                     <div class="col-md-2">
@@ -40,7 +40,7 @@
                                         </h5>
                                     </div>
                                     <div class="col-md-2">
-                                        <button [routerLink]="['/editAvancement',c.id]"
+                                        <button [routerLink]="['/editFormation',c.id]"
                                         class="btn btn-light"><i class="bi bi-pencil"></i></button>
                                     <button (click)="onDelete(c.id)" class="btn btn-light"
                                     *ngIf="c.id!=idAv"><i class="bi bi-trash"></i></button>
@@ -53,7 +53,7 @@
                                 <div class="row">
                                      <div class="col-md-12 mt-3">
                                        <p style="text-align: justify;">{{c.description}}</p> 
-                                       <p style="text-align: right;">Publiée le {{c.date}}</p>
+                                       <p style="text-align: right;">{{c.type}} publiée le {{c.date}}</p>
                                     </div>
                                 </div> 
                             </div>
@@ -63,9 +63,9 @@
             </div>
         </div>
     </div>
-</div>
-
-<div class="container" *ngIf="av==0">
+  </div>
+  
+  <div class="container" *ngIf="av==0">
     <div class="row">
         <div class="col-md-12 mt-6">
             <div class="card">
@@ -84,9 +84,10 @@
                         </div> 
                     </div>
                 </div>
-
+  
             </div>
         </div>
     </div>
-</div>
-
+  </div>
+  
+  

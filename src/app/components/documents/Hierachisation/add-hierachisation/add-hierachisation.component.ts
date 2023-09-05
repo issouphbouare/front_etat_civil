@@ -5,14 +5,12 @@ import { DocumentService } from 'src/app/services/document.service';
 import { FileUploadService } from 'src/app/services/file-upload-service';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
 @Component({
-  selector: 'app-add-avancement',
-  templateUrl: './add-avancement.component.html',
-  styleUrls: ['./add-avancement.component.css']
+  selector: 'app-add-hierachisation',
+  templateUrl: './add-hierachisation.component.html',
+  styleUrls: ['./add-hierachisation.component.css']
 })
-export class AddAvancementComponent implements OnInit {
-
+export class AddHierachisationComponent {
   constructor(private formBuilder:FormBuilder,
     private apiService: DocumentService,private uploadService: FileUploadService,
     private  router:Router) { }
@@ -27,16 +25,28 @@ export class AddAvancementComponent implements OnInit {
   currentFile?: File;
   progress = 0;
   message = '';
-  default: string="Avancement";
+  default: string="Hierachisation";
   stringArray: string[] = [];
+
+  selectedValue: string='';
+  options: { value: string, label: string }[] = [
+    { value: '', label: '' },
+    { value: 'Titularisation', label: 'Titularisation' },
+    { value: 'Principalité', label: 'Principalité' }
+    
+  ];
+  onSelectionChange() {
+    // Cette fonction sera appelée lorsque la sélection change.
+    console.log('Option sélectionnée :', this.selectedValue);
+  }
 
 
   ngOnInit(): void {
     this.formAdd=this.formBuilder.group({
       titre : ['',[Validators.required, Validators.pattern("([A-Z]).{2,}")]],
-      description : ['',[Validators.required, Validators.pattern("([a-zA-Z]).{2,}")]],
+      description : ['',[Validators.required]],
       categorie : ['',[Validators.required, Validators.pattern("([a-zA-Z]).{2,}")]],
-      type : ['',[Validators.required, Validators.pattern("([a-zA-Z]).{2,}")]],
+      type : ['',[Validators.required]],
     });
     this.fich=false; 
     this.getId();
@@ -113,3 +123,4 @@ upload(): void {
 
 
 }
+

@@ -5,12 +5,12 @@ import { Observable } from 'rxjs';
 import { DocumentService } from 'src/app/services/document.service';
 
 @Component({
-  selector: 'app-avancements',
-  templateUrl: './avancements.component.html',
-  styleUrls: ['./avancements.component.css']
+  selector: 'app-hierachisations',
+  templateUrl: './hierachisations.component.html',
+  styleUrls: ['./hierachisations.component.css']
 })
-export class AvancementsComponent {
-  public avancements: any;
+export class HierachisationsComponent {
+  public hierachisations: any;
   public files : any;
   public av=1;
   keyword: string = '';
@@ -31,9 +31,9 @@ export class AvancementsComponent {
   }
 
   search() {
-    this.apiService.searchAvancement(this.keyword).subscribe(
+    this.apiService.searchHierachisation(this.keyword).subscribe(
       (data :any) => {
-        this.avancements = data.content;
+        this.hierachisations = data.content;
       },
       (error) => {
         console.error('Une erreur est survenue:', error);
@@ -87,7 +87,7 @@ export class AvancementsComponent {
         }
       );
 
-    alert("Document  supprimé avec succes");
+    alert("Hierachisation  supprimé avec succes");
   }
     
   }

@@ -5,14 +5,12 @@ import { DocumentService } from 'src/app/services/document.service';
 import { FileUploadService } from 'src/app/services/file-upload-service';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
 @Component({
-  selector: 'app-add-avancement',
-  templateUrl: './add-avancement.component.html',
-  styleUrls: ['./add-avancement.component.css']
+  selector: 'app-add-formation',
+  templateUrl: './add-formation.component.html',
+  styleUrls: ['./add-formation.component.css']
 })
-export class AddAvancementComponent implements OnInit {
-
+export class AddFormationComponent {
   constructor(private formBuilder:FormBuilder,
     private apiService: DocumentService,private uploadService: FileUploadService,
     private  router:Router) { }
@@ -27,16 +25,29 @@ export class AddAvancementComponent implements OnInit {
   currentFile?: File;
   progress = 0;
   message = '';
-  default: string="Avancement";
+  default: string="Formation";
   stringArray: string[] = [];
+
+  selectedValue: string='';
+  options: { value: string, label: string }[] = [
+    { value: '', label: '' },
+    { value: 'Autorisation', label: 'Autorisation' },
+    { value: 'Conge_de_formation', label: 'Conge_de_formation' },
+    { value: 'Reaffectation_apres_formation', label: 'Reaffectation_apres_formation_apres_formation' },
+    { value: 'Regularisation_apres_formation', label: 'Regularisation_apres_formation' },    
+  ];
+  onSelectionChange() {
+    // Cette fonction sera appelée lorsque la sélection change.
+    console.log('Option sélectionnée :', this.selectedValue);
+  }
 
 
   ngOnInit(): void {
     this.formAdd=this.formBuilder.group({
       titre : ['',[Validators.required, Validators.pattern("([A-Z]).{2,}")]],
-      description : ['',[Validators.required, Validators.pattern("([a-zA-Z]).{2,}")]],
+      description : ['',[Validators.required]],
       categorie : ['',[Validators.required, Validators.pattern("([a-zA-Z]).{2,}")]],
-      type : ['',[Validators.required, Validators.pattern("([a-zA-Z]).{2,}")]],
+      type : ['',[Validators.required]],
     });
     this.fich=false; 
     this.getId();
@@ -113,3 +124,5 @@ upload(): void {
 
 
 }
+
+
