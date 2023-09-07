@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GestionMilitantComponent } from './gestion-militant.component';
+import { GestionMilitantComponent } from './militants';
 
 describe('GestionMilitantComponent', () => {
   let component: GestionMilitantComponent;

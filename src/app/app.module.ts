@@ -15,8 +15,6 @@ import { AproposComponent } from './components/apropos/apropos.component';
 import { AvancementsComponent } from './components/documents/avancement/avancements/avancements.component';
 import { HierachisationsComponent } from './components/documents/Hierachisation/hierachisations/hierachisations.component';
 import { FormationsComponent } from './components/documents/formation/formations/formations.component';
-import { GestionMilitantComponent } from './components/coordinations/gestion-militant/gestion-militant.component';
-import { GestionFinanceComponent } from './components/coordinations/gestion-finance/gestion-finance.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { AddActualiteComponent } from './components/actualite/add-actualite/add-actualite.component';
@@ -31,6 +29,8 @@ import { EditFormationComponent } from './components/documents/formation/edit-fo
 import { AutresComponent } from './components/documents/autre/autres/autres.component';
 import { AddAutreComponent } from './components/documents/autre/add-autre/add-autre.component';
 import { EditAutreComponent } from './components/documents/autre/edit-autre/edit-autre.component';
+import { MilitantsComponent } from './components/militant/militants/militants.component';
+import { AddMilitantComponent } from './components/militant/add-militant/add-militant.component';
 
 @NgModule({
   declarations: [
@@ -43,9 +43,7 @@ import { EditAutreComponent } from './components/documents/autre/edit-autre/edit
     AvancementsComponent,
     HierachisationsComponent,
     FormationsComponent,
-    GestionMilitantComponent,
-    GestionFinanceComponent,
-    FooterComponent,
+   FooterComponent,
     MenuComponent,
     AddActualiteComponent,
     UpdateActualiteComponent,
@@ -59,6 +57,8 @@ import { EditAutreComponent } from './components/documents/autre/edit-autre/edit
     AutresComponent,
     AddAutreComponent,
     EditAutreComponent,
+    MilitantsComponent,
+    AddMilitantComponent,
   ],
   imports: [
     BrowserModule,

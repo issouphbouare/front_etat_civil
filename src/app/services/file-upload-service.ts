@@ -7,7 +7,7 @@ import { Apiresponse } from '../models/Apiresponse';
   providedIn: 'root'
 })
 export class FileUploadService {
-  private baseUrl = 'http://localhost:8080';
+  private baseUrl = 'http://localhost:8082';
 
   constructor(private http: HttpClient) { }
 

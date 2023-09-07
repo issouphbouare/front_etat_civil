@@ -6,8 +6,6 @@ import { ActualitesComponent } from './components/actualite/actualites/actualite
 import { AvancementsComponent } from './components/documents/avancement/avancements/avancements.component';
 import { FormationsComponent } from './components/documents/formation/formations/formations.component';
 import { HierachisationsComponent } from './components/documents/Hierachisation/hierachisations/hierachisations.component';
-import { GestionMilitantComponent } from './components/coordinations/gestion-militant/gestion-militant.component';
-import { GestionFinanceComponent } from './components/coordinations/gestion-finance/gestion-finance.component';
 import { FileDBComponent } from './components/documents/avancement/file-db/file-db.component';
 import { AddActualiteComponent } from './components/actualite/add-actualite/add-actualite.component';
 import { AddAvancementComponent } from './components/documents/avancement/add-avancement/add-avancement.component';
@@ -20,11 +18,15 @@ import { EditAutreComponent } from './components/documents/autre/edit-autre/edit
 import { AddAutreComponent } from './components/documents/autre/add-autre/add-autre.component';
 import { AutresComponent } from './components/documents/autre/autres/autres.component';
 import { EditFormationComponent } from './components/documents/formation/edit-formation/edit-formation.component';
+import { MilitantsComponent } from './components/militant/militants/militants.component';
+import { AddMilitantComponent } from './components/militant/add-militant/add-militant.component';
 
 const routes: Routes = [
   {path : "" , component : AccueilComponent },
  {path : "apropos" , component : AproposComponent },
  {path : "actualites" , component : ActualitesComponent },
+ {path : "militants" , component : MilitantsComponent },
+ {path :"addMilitant" , component : AddMilitantComponent},
  {path : "detailsActualite/:id" , component : DetailsActualiteComponent },
  {path : "addActualite" , component : AddActualiteComponent},
  {path : "avancements" , component : AvancementsComponent },
@@ -39,8 +41,6 @@ const routes: Routes = [
  {path : "autres" , component : AutresComponent },
  {path : "addAutre" , component : AddAutreComponent},
  {path : "editAutre/:id" , component : EditAutreComponent },
- {path : "gestionMilitants" , component : GestionMilitantComponent },
- {path : "gestionFinances" , component : GestionFinanceComponent },
  {path : "fileByAv/:id" , component : FileDBComponent },
 ];
 

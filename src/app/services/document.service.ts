@@ -9,7 +9,7 @@ import { Document } from '../models/document';
   providedIn: 'root'
 })
 export class DocumentService { 
-  base="http://localhost:8080"
+  base="http://localhost:8082"
   baseUrl=this.base+"/documents";
   urlDownload=this.base+"/files/";
   urlSearch=this.base+"/searchDocumentParCategorie?";

@@ -1,0 +1,170 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mt-8">
+            <div class="card">
+                
+                <div class="card-body">
+                    <form [formGroup]="formAdd" (ngSubmit)="onSubmit()">
+                        <div class="container">
+                            <div class="row">
+                                <div class="card" *ngIf="!etape2">
+                                    <div class="card-header">
+                                        <h5>Etape 1 : informations personnelles</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-10">
+                                                <div class="form-group">
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <label>Matricule</label>
+                                                            <input type="text" formControlName="matricule" class="form-control"
+                                                                placeholder="au moins 3 letttres ">
+                                                            <p style="color: brown;"
+                                                                *ngIf="!formAdd.controls['matricule'].valid"> (Le premier
+                                                                caractere doit etre une lettre majuscule ) </p>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label>Telephone</label>
+                                                    <input type="number" formControlName="telephone"
+                                                        class="form-control" placeholder="au moins 3 letttres ">
+                                                    <p style="color: brown;"
+                                                        *ngIf="!formAdd.controls['telephone'].valid"> (Le premier
+                                                        caractere doit etre une lettre majuscule ) </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <label>Prénom</label>
+                                                    <input type="text" formControlName="prenom" class="form-control"
+                                                        placeholder="au moins 3 letttres ">
+                                                    <p style="color: brown;" *ngIf="!formAdd.controls['prenom'].valid">
+                                                        (Le premier
+                                                        caractere doit etre une lettre majuscule ) </p>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label>Nom</label>
+                                                            <input type="text" formControlName="nom" class="form-control"
+                                                                placeholder="au moins 3 letttres ">
+                                                            <p style="color: brown;" *ngIf="!formAdd.controls['nom'].valid"> (Le
+                                                                premier
+                                                                caractere doit etre une lettre majuscule ) </p>
+                                                        </div>
+                                                    </div>
+                                                    <label>Genre</label>
+                                                    <select [(ngModel)]="selectedGenre" formControlName="genre"
+                                                        class="form-control" (change)="onSelectionGenre()">
+                                                        <option *ngFor="let option of optionsG" [value]="option.value">{{
+                                                            option.label }}</option>
+                                                    </select>
+                                                    <p style="color: brown;" *ngIf="!formAdd.controls['genre'].valid">
+                                                        (Champ obligatoire * ) </p>
+                                                   
+                                                    
+                                                    
+                                                   
+                                                    <input type="hidden" formControlName="poste" class="form-control"
+                                                        [(ngModel)]="defaultPoste">
+                                                    <input type="hidden" formControlName="motDePasse"
+                                                        class="form-control" [(ngModel)]="defaultPassword">
+                                                </div>
+                                                <div class="form-group card mt-3">
+                                                    <button (click)="OnSuivant()"
+                                                        class="btn btn-secondary px-4">Suivant <i
+                                                            class="bi bi-arrow-right"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card" *ngIf="etape2">
+                                    <div class="card-header">
+                                        <h5>Etape 2 : informations sur le comité</h5>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-10">
+                                                <div class="form-group">
+                                                    <label>Section</label>
+                                                    <select [(ngModel)]="selectedValue" formControlName="section"
+                                                        class="form-control" (change)="onSelectionChange()">
+                                                        <option *ngFor="let option of options" [value]="option.value">{{
+                                                            option.label }}</option>
+                                                    </select>
+                                                    <p style="color: brown;" *ngIf="!formAdd.controls['section'].valid">
+                                                        (Champ obligatoire * ) </p>
+
+                                                    <div class="row">
+                                                        <div class="col-md-6" *ngIf="coordinations">
+                                                            <label>Coordination</label>
+                                                            <select class="form-control" (change)="onGetDivByCoor()"
+                                                                [(ngModel)]="selectedCoordination"
+                                                                formControlName="coordination">
+                                                                <option
+                                                                    *ngFor="let coordination of coordinations._embedded.coordinations"
+                                                                    [value]="coordination._links.self.href">{{
+                                                                    coordination.nom }}</option>
+                                                            </select>
+                                                            <p style="color: brown;"
+                                                                *ngIf="!formAdd.controls['coordination'].valid"> (Champ
+                                                                obligatoire * ) </p>
+
+
+                                                        </div>
+                                                        <div class="col-md-6" *ngIf="coordinations divisions">
+                                                            <label>Division</label>
+                                                            <select [(ngModel)]="selectedDivision"
+                                                                formControlName="division" class="form-control">
+                                                                <option
+                                                                    *ngFor="let division of divisions._embedded.divisions"
+                                                                    [value]="division._links.self.href">{{ division.nom
+                                                                    }}</option>
+                                                            </select>
+                                                            <p style="color: brown;"
+                                                                *ngIf="!formAdd.controls['division'].valid"> (Champ
+                                                                obligatoire * ) </p>
+                                                        </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <label>Comite</label>
+                                                            <input type="text" formControlName="comite"
+                                                                class="form-control" placeholder="au moins 3 letttres ">
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <label *ngIf="sub=='text'">Subdivision</label>
+                                                            <input [type]="sub" formControlName="subdivision"
+                                                                class="form-control" placeholder="au moins 3 letttres ">
+                                                        </div>
+                                                    </div>
+
+
+
+
+                                                </div><br>
+                                                    <div class="row">
+                                                        <div class="col-md-6">
+                                                            <button (click)="onPre()"
+                                                        class="btn btn-secondary px-4"><i class="bi bi-arrow-left"></i>
+                                                        Précédent</button>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                            <button [disabled]="!formAdd.valid" type="submit"
+                                                        class="btn btn-secondary px-4">Creer le Compte   <i
+                                                            class="bi bi-save"></i></button>
+                                                        </div>
+                                                    </div>
+                                                    
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
