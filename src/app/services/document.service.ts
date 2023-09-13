@@ -9,6 +9,7 @@ import { Document } from '../models/document';
   providedIn: 'root'
 })
 export class DocumentService { 
+  //base="http://62.171.169.168:8080/Synefct_documents-0.0.1-SNAPSHOT"
   base="http://localhost:8082"
   baseUrl=this.base+"/documents";
   urlDownload=this.base+"/files/";
@@ -37,6 +38,9 @@ export class DocumentService {
 
   searchAvancement(url: string):Observable<any>{
     return this.http.get<Apiresponse>(this.urlSearch+"categorie=Avancement&keyword="+url);
+  }
+  searchIntegration(url: string):Observable<any>{
+    return this.http.get<Apiresponse>(this.urlSearch+"categorie=Integration&keyword="+url);
   }
   searchFormation(url: string):Observable<any>{
     return this.http.get<Apiresponse>(this.urlSearch+"categorie=Formation&keyword="+url);

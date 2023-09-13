@@ -37,20 +37,24 @@
                               <li class="nav-item">
                                 <a class="navbar-brand" routerLink="/actualites">Actualités</a>
                             </li>
-                              <li class="nav-item">
+                              <li class="nav-item" *ngIf="authService.isloggedIn">
                                 <a class="navbar-brand" routerLink="/apropos">A propos</a>
                             </li>
-                            <li class="nav-item">
+                            <li class="nav-item" *ngIf="authService.isloggedIn">
                                 <a class="navbar-brand" routerLink="/militants">Militants</a>
                             </li>
                             
-                            <li class="nav-item dropdown">
+                            <li class="nav-item dropdown" *ngIf="authService.isloggedIn">
                                 <a class="navbar-brand" href="#" id="navbarScrollingDropdown" role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                     Documents
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                                     <li><a class="dropdown-item" routerLink="/avancements">Avancements</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" routerLink="/integrations">Integrations</a></li>
                                     <li>
                                         <hr class="dropdown-divider">
                                     </li>
@@ -66,7 +70,7 @@
                                     <li><a class="dropdown-item" routerLink="/autres">Autres</a></li>
                                 </ul>
                             </li>
-                            <li class="nav-item dropdown">
+                            <!-- <li class="nav-item dropdown">
                                 <a class="navbar-brand" href="#" id="navbarScrollingDropdown" role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                     Coordinations
@@ -80,7 +84,7 @@
                                     <li><a class="dropdown-item" routerLink="/gestionFinances">Gestion
                                             Finances</a></li>
                                 </ul>
-                            </li>
+                            </li> -->
                             </ul>
                             <form class="d-flex"><ul class="navbar-nav">
                                 <li class="nav-item dropdown">
@@ -89,16 +93,26 @@
                                         Compte
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                                        <li><a class="dropdown-item" routerLink="/addMilitant">S'inscrire</a></li>
+                                        <li *ngIf="authService.isloggedIn==false">
+                                            <a class="dropdown-item" routerLink="/addMilitant">S'inscrire</a></li>
                                         <li>
                                            
                                         </li>
-                                        <li><a class="dropdown-item" routerLink="/gestionFinances">Se connecter</a></li>
-                                                <li><a class="dropdown-item" routerLink="/gestionMilitants">Se deconnecter</a></li>
-                                            <li>
+                                        <li *ngIf="authService.isloggedIn==false">
+                                            <a class="dropdown-item" routerLink="/login">Se connecter</a>
+                                        </li>
                                                 
-                                            </li>
-                                            <li><a class="dropdown-item" routerLink="/gestionFinances">Profil</a></li>
+                                            
+                                        <li *ngIf="authService.isloggedIn">
+                                            <a class="dropdown-item" routerLink="/profil">Profil</a>
+                                        </li>
+                                        <li *ngIf="authService.isloggedIn">
+                                            <a class="dropdown-item" routerLink="/password">Mot de passe</a>
+                                        </li>
+                                        <li *ngIf="authService.isloggedIn">
+                                            <a class="dropdown-item" style="cursor: pointer;"
+                                            (click)="onDeconnecter()">Se deconnecter</a>
+                                        </li>
                                     </ul>
                                 </li></ul>
                               </form>

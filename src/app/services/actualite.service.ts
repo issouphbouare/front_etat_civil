@@ -8,15 +8,17 @@ import { Actualite } from '../models/actualite';
   providedIn: 'root'
 })
 export class ActualiteService {
-  base="http://localhost:8081"
+
+  //base="http://62.171.169.168:8080/Synefct_documents-0.0.1-SNAPSHOT"; /*connexion au serveur distant*/
+
+  base="http://localhost:8082"
   baseUrl=this.base+"/actualites";
 
   urlImageTitre=this.base+"/get/imageTitre/";
   urlImage=this.base+"/get/image/";
   
   
-  //baseUrl="https://gestiseance.herokuapp.com/matieres"; /*connexion au serveur distant*/
-
+  
 
   constructor(private http: HttpClient) { }
 

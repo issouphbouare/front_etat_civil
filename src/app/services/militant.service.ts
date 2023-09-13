@@ -8,8 +8,8 @@ import { Militant } from '../models/militant';
   providedIn: 'root'
 })
 export class MilitantService {
-
-  base="http://localhost:8080"
+  //base="http://62.171.169.168:8080/Synefct_documents-0.0.1-SNAPSHOT"
+  base="http://localhost:8082"
   baseUrl=this.base+"/militants";
   urlSearch=this.base+"/searchMilitant?keyword=";
 
@@ -36,21 +36,10 @@ getById(url: string):Observable<any>{
   return this.http.get<Apiresponse>(this.baseUrl+"/"+url);
 }
 
-getFileByAvancement(url: string):Observable<any>{
-  return this.http.get<Apiresponse>(url);
-}
+
 
 search(url: string):Observable<any>{
   return this.http.get<Apiresponse>(this.urlSearch+url);
-}
-searchFormation(url: string):Observable<any>{
-  return this.http.get<Apiresponse>(this.urlSearch+"categorie=Formation&keyword="+url);
-}
-searchHierachisation(url: string):Observable<any>{
-  return this.http.get<Apiresponse>(this.urlSearch+"categorie=Hierachisation&keyword="+url);
-}
-searchAutre(url: string):Observable<any>{
-  return this.http.get<Apiresponse>(this.urlSearch+"categorie=Autre&keyword="+url);
 }
 
 
@@ -73,6 +62,13 @@ delete(url: string){
 
 getMaxId(){
   return this.http.get<Apiresponse>(this.base+"/maxIdDoc")
+}
+
+getDivCur(url: string):Observable<any>{
+  return this.http.get<Apiresponse>(url);
+}
+getCoorCur(url: string):Observable<any>{
+  return this.http.get<Apiresponse>(url);
 }
 
 

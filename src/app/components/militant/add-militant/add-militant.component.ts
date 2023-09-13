@@ -19,6 +19,7 @@ export class AddMilitantComponent implements OnInit {
   public militant : any;
   public defaultPassword: string ="0000";
   public defaultPoste: string = "militant";
+  public defaultStatut: string = "inactif";
   //coordinations: any[] = [];
 selectedCoordination: any;
 //divisions: any[] = [];
@@ -49,7 +50,8 @@ etape2: boolean = false;
       motDePasse : ['',Validators.required],
       poste : ['',Validators.required],
       coordination : ['',Validators.required],
-      genre : ['',Validators.required]
+      genre : ['',Validators.required],
+      statut : ['',Validators.required]
     });
     this.sub="text"; this.etape2=false;
     this.onGetCoordinations()

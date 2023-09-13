@@ -34,6 +34,8 @@
                                 <th>Comite</th>
                                 <th>Division</th>
                                 <th>Coordination</th>
+                                <th>Poste</th>
+                                <th>Compte</th>
                           </tr>
                         </thead>
                             <tbody>                           
@@ -44,9 +46,12 @@
                                     <td>{{p.comite}}</td>
                                     <td > {{p.division.nom}}</td>
                                     <td >{{p.division.coordination.nom}}</td>
+                                    <td >{{p.poste}}</td>
+                                    <td >{{p.statut}}</td>
                                     <td>
-                                        <button [routerLink]="['/role',p.id]" class="btn btn-success sp">Role</button>
-                                        <button (click)="onDelete(p)" class="btn btn-danger sp">Supprimer</button>
+                                        <button [routerLink]="['/editMilitant',p.id]"
+                                        class="btn btn-light"><i class="bi bi-pencil"></i></button>
+                                        <button (click)="onDelete(p)" class="btn btn-light sp"><i class="bi bi-trash"></i></button>
                                     </td>
                                 </tr>
                             </tbody>    

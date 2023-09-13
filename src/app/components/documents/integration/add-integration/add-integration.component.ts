@@ -6,11 +6,11 @@ import { FileUploadService } from 'src/app/services/file-upload-service';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 @Component({
-  selector: 'app-add-formation',
-  templateUrl: './add-formation.component.html',
-  styleUrls: ['./add-formation.component.css']
+  selector: 'app-add-integration',
+  templateUrl: './add-integration.component.html',
+  styleUrls: ['./add-integration.component.css']
 })
-export class AddFormationComponent {
+export class AddIntegrationComponent {
   constructor(private formBuilder:FormBuilder,
     private apiService: DocumentService,private uploadService: FileUploadService,
     private  router:Router) { }
@@ -25,30 +25,16 @@ export class AddFormationComponent {
   currentFile?: File;
   progress = 0;
   message = '';
-  default: string="Formation";
+  default: string="Integration";
   stringArray: string[] = [];
-
-  selectedValue: string='';
-  options: { value: string, label: string }[] = [
-    { value: '', label: '' },
-    { value: 'Autorisation', label: 'Autorisation' },
-    { value: 'Congé de formation', label: 'Congé de formation' },
-    { value: "Rappel à l'activité", label: "Rappel à l'activité" },
-    { value: 'Affectation', label: 'Affectation' },
-    { value: 'Régularisation', label: 'Régularisation' },    
-  ];
-  onSelectionChange() {
-    // Cette fonction sera appelée lorsque la sélection change.
-    console.log('Option sélectionnée :', this.selectedValue);
-  }
 
 
   ngOnInit(): void {
     this.formAdd=this.formBuilder.group({
       titre : ['',[Validators.required, Validators.pattern("([A-Z]).{2,}")]],
-      description : ['',[Validators.required]],
+      description : ['',[Validators.required, Validators.pattern("([a-zA-Z]).{2,}")]],
       categorie : ['',[Validators.required, Validators.pattern("([a-zA-Z]).{2,}")]],
-      type : ['',[Validators.required]],
+      type : ['',[Validators.required, Validators.pattern("([a-zA-Z]).{2,}")]],
     });
     this.fich=false; 
     this.getId();
@@ -125,5 +111,3 @@ upload(): void {
 
 
 }
-
-

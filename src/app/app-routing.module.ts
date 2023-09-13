@@ -20,6 +20,13 @@ import { AutresComponent } from './components/documents/autre/autres/autres.comp
 import { EditFormationComponent } from './components/documents/formation/edit-formation/edit-formation.component';
 import { MilitantsComponent } from './components/militant/militants/militants.component';
 import { AddMilitantComponent } from './components/militant/add-militant/add-militant.component';
+import { LoginComponent } from './components/login/login.component';
+import { IntegrationsComponent } from './components/documents/integration/integrations/integrations.component';
+import { AddIntegrationComponent } from './components/documents/integration/add-integration/add-integration.component';
+import { EditIntegrationComponent } from './components/documents/integration/edit-integration/edit-integration.component';
+import { EditMilitantComponent } from './components/militant/edit-militant/edit-militant.component';
+import { ProfilComponent } from './components/militant/profil/profil.component';
+import { PasswordComponent } from './components/militant/password/password.component';
 
 const routes: Routes = [
   {path : "" , component : AccueilComponent },
@@ -27,11 +34,15 @@ const routes: Routes = [
  {path : "actualites" , component : ActualitesComponent },
  {path : "militants" , component : MilitantsComponent },
  {path :"addMilitant" , component : AddMilitantComponent},
+ {path : "editMilitant/:id" , component : EditMilitantComponent },
  {path : "detailsActualite/:id" , component : DetailsActualiteComponent },
  {path : "addActualite" , component : AddActualiteComponent},
  {path : "avancements" , component : AvancementsComponent },
  {path : "addAvancement" , component : AddAvancementComponent},
  {path : "editAvancement/:id" , component : EditAvancementComponent },
+ {path : "integrations" , component : IntegrationsComponent },
+ {path : "addIntegration" , component : AddIntegrationComponent},
+ {path : "editIntegration/:id" , component : EditIntegrationComponent },
  {path : "formations" , component : FormationsComponent },
  {path : "addFormation" , component : AddFormationComponent},
  {path : "editFormation/:id" , component : EditFormationComponent },
@@ -42,6 +53,9 @@ const routes: Routes = [
  {path : "addAutre" , component : AddAutreComponent},
  {path : "editAutre/:id" , component : EditAutreComponent },
  {path : "fileByAv/:id" , component : FileDBComponent },
+ {path : "login" , component : LoginComponent },
+ {path : "profil" , component : ProfilComponent },
+ {path : "password" , component : PasswordComponent }
 ];
 
 @NgModule({

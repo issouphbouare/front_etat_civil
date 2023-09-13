@@ -1,0 +1,90 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mt-8">
+            <div class="card">
+                
+                <div class="card-body">
+                    <form [formGroup]="formEdit" (ngSubmit)="onSubmit()">
+                        <div class="container">
+                            <div class="row">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <div class="row">
+                                            <div class="col-md-2">
+                                                <button [routerLink]="['/militants']" class="btn btn-light"><i class="bi bi-arrow-left"></i></button>
+                                            </div>
+                                        <div class="col-md-8">
+                                            <h5>Modification sur le Compte de Mr/Mme {{militant.nom}}  {{militant.prenom}}</h5>
+                                        </div>
+                                        <div class="col-md-2"></div>
+                                    </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-10">
+                                                <div class="form-group">
+                                                    
+                                                    
+                                                    <input type="hidden" formControlName="section" class="form-control"
+                                                    [(ngModel)]="militant.section"   >
+                                                         
+                                                        
+                                                    <input type="hidden" formControlName="comite"
+                                                    class="form-control" [(ngModel)]="militant.comite" >
+                                                        
+                                                   
+                                                    <input type="hidden" formControlName="prenom" class="form-control"
+                                                    [(ngModel)]="militant.prenom">
+                                            
+                                                    <input type="hidden" formControlName="subdivision" class="form-control"
+                                                    [(ngModel)]="militant.subdivision" > 
+                                                    
+                                                    <input type="hidden" formControlName="division" class="form-control"
+                                                    [(ngModel)]="militant.division"   >
+                                                        
+                                                    <input type="hidden" formControlName="nom" class="form-control"
+                                                    [(ngModel)]="militant.nom">
+                                                    
+                                                <label>Poste</label>
+                                                <select [(ngModel)]="militant.poste" formControlName="poste"
+                                                    class="form-control" (change)="onSelectionPoste()">
+                                                    <option *ngFor="let option of optionPoste" [value]="option.value">
+                                                    {{option.label }}</option>
+                                                </select>
+                                                <p style="color: brown;" *ngIf="!formEdit.controls['poste'].valid">
+                                                    (Champ obligatoire * ) </p>
+                                                <label>Etat Compte</label>
+                                                <select [(ngModel)]="militant.statut" formControlName="statut"
+                                                            class="form-control" (change)="onSelectionStatut()">
+                                                            <option *ngFor="let option of optionStatut" [value]="option.value">{{
+                                                                option.label }}</option>
+                                                </select>
+                                                <p style="color: brown;" *ngIf="!formEdit.controls['statut'].valid">
+                                                    (Champ obligatoire * ) </p>
+                                                <input type="hidden" formControlName="matricule" class="form-control"
+                                                    [(ngModel)]="militant.matricule">
+                                                    <input type="hidden" formControlName="telephone" class="form-control"
+                                                    [(ngModel)]="militant.telephone">
+                                                <input type="hidden" formControlName="motDePasse"
+                                                    class="form-control" [(ngModel)]="militant.motDePasse">
+                                                <input type="hidden" formControlName="genre"
+                                                    class="form-control" [(ngModel)]="militant.genre">
+                                                </div>
+                                                <div class="form-group card mt-3">
+                                                    <button (click)="onSubmit()"
+                                                        class="btn btn-secondary px-4">Enregistrer </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

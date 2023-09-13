@@ -14,7 +14,7 @@
         </div>
         <div class="card-body">
             <div class="row">
-                <div class="col-md-10" *ngIf="!titre && !img">
+                <div class="col-md-10" *ngIf="etape1">
                     <div class="container">
                         <div class="row">
                             <div class="col-md-12 mt-8">
@@ -56,7 +56,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-10" *ngIf="titre && !img">
+                <div class="col-md-10" *ngIf="!etape1 && !img">
                     <div class="row">
                         <div class="container">
                             <div class="row">
@@ -67,7 +67,7 @@
                                             </h4>
                                         </div>
                                         <div class="card-body">
-                                            <div class="row" *ngIf="!img">
+                                            <div class="row" *ngIf="!img && titre">
                                                <div class="col-10">
                                                 <label class="btn btn-default p-0">
                                                     <input type="file" (change)="onFileSelected($event)" />
@@ -81,14 +81,14 @@
                                                 </button>
                                                </div>
                                             </div>
-                                            <div class="card mt-2">
+                                            <div class="card mt-2" *ngIf="!img && !titre">
                                                 <div *ngIf="message" class="alert alert-secondary" role="alert">
                                                     <p>{{message}}</p>
                                                 </div> 
                                             </div>
-                                            <div class="card mt-2">
-                                                <button class="btn btn-secondary px-4" *ngIf="img"
-                                                    (click)="goToEtape3()">Suivant
+                                            <div class="card mt-2" *ngIf="!img && !titre">
+                                                <button class="btn btn-secondary px-4" 
+                                                    (click)="goToEtape3()">Suivant 
                                                     <i class="bi bi-arrow-right"></i>
                                                 </button>
                                             </div>

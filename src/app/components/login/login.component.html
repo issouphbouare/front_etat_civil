@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="card">
+        <div class="container mt-3">
+            <div class="row justify-content-md-center">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <button [routerLink]="['/']" class="btn btn-light"><i class="bi bi-arrow-left"></i></button>
+                                </div>
+                                <div class="col-md-7">
+                                    <h4>Login</h4>
+                                </div>
+                                <div class="col-md-3">
+                                    <a routerLink="/addMilitant" class="btn btn-secondary">S'inscrire</a>
+                                </div>
+                            </div>
+                            
+                        </div>
+                        <div class="card-body">
+                            <div class="alert alert-danger" *ngIf="erreur==1 && erreur1==0">
+                                <strong>login ou mot de passe erronés..</strong>
+                            </div>
+                            <div class="alert alert-danger" *ngIf="erreur==1 && erreur1==1">
+                                <strong> Compte inactif et login ou mot de passe erronés</strong>
+                            </div>
+                            <div class="alert alert-danger" *ngIf="erreur==0 && erreur1==1">
+                                <strong>Compte est inactif</strong>
+                            </div>
+                            <form [formGroup]="login" (ngSubmit)="onSubmit()">
+                                <div class="form-group">
+                                    <label>Numero Telephone :</label>
+                                    <input type="number" formControlName="telephone" class="form-control">
+                                    <p style="color: brown;" *ngIf="!login.controls['telephone'].valid"> (Le numero doit
+                                        contenir uniquement des chiffres ) </p>
+
+                                </div>
+                                <div class="form-group">
+                                    <label>Mot de passe :</label>
+                                    <input type="password" formControlName="motDePasse" class="form-control">
+                                    <p style="color: brown;" *ngIf="!login.controls['motDePasse'].valid"> 
+                                        (Champ obligatoire *) </p>
+
+                                </div>
+                                <div class="form-group card mt-2">
+                                    <button [disabled]="!login.valid" type="submit" class="btn btn-secondary ">Se
+                                        connecter</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

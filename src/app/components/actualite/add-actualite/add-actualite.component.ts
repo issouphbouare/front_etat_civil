@@ -56,7 +56,7 @@ export class AddActualiteComponent {
         //alert("Cette matiere existe deja !");
       });
       this.titre=true; this.img=false; //this.getId()
-      //this.etape1=false;
+      this.etape1=false;
       this.idAv+=1;
 
 }
@@ -98,7 +98,7 @@ selectedFile: File | null = null;
           // Traitez les erreurs d'upload ici
         }
       ); this.selectedFile = null;
-    } this.img=true; this.titre=false;
+    } this.img=false; this.titre=false;
   }
 
   uploadIm(): void {

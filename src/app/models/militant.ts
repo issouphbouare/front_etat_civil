@@ -11,6 +11,7 @@ export class Militant {
     division: string;
     motDePasse: string;
     genre: string;
+    statut: string;
 
 
     constructor(id: number,
@@ -25,6 +26,7 @@ export class Militant {
         division: string, 
         motDePasse: string,
         genre: string,
+        statut: string
         ) {
         this.id = id;
         this.telephone = telephone;
@@ -38,6 +40,7 @@ export class Militant {
         this.division = division;
         this.motDePasse = motDePasse;
         this.genre = genre;
+        this.statut = statut;
         
     }
 }

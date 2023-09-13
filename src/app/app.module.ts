@@ -31,6 +31,13 @@ import { AddAutreComponent } from './components/documents/autre/add-autre/add-au
 import { EditAutreComponent } from './components/documents/autre/edit-autre/edit-autre.component';
 import { MilitantsComponent } from './components/militant/militants/militants.component';
 import { AddMilitantComponent } from './components/militant/add-militant/add-militant.component';
+import { LoginComponent } from './components/login/login.component';
+import { IntegrationsComponent } from './components/documents/integration/integrations/integrations.component';
+import { AddIntegrationComponent } from './components/documents/integration/add-integration/add-integration.component';
+import { EditIntegrationComponent } from './components/documents/integration/edit-integration/edit-integration.component';
+import { ProfilComponent } from './components/militant/profil/profil.component';
+import { EditMilitantComponent } from './components/militant/edit-militant/edit-militant.component';
+import { PasswordComponent } from './components/militant/password/password.component';
 
 @NgModule({
   declarations: [
@@ -59,6 +66,13 @@ import { AddMilitantComponent } from './components/militant/add-militant/add-mil
     EditAutreComponent,
     MilitantsComponent,
     AddMilitantComponent,
+    LoginComponent,
+    IntegrationsComponent,
+    AddIntegrationComponent,
+    EditIntegrationComponent,
+    ProfilComponent,
+    EditMilitantComponent,
+    PasswordComponent,
   ],
   imports: [
     BrowserModule,

@@ -5,13 +5,13 @@ import { DocumentService } from 'src/app/services/document.service';
 import { FileUploadService } from 'src/app/services/file-upload-service';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 @Component({
-  selector: 'app-edit-formation',
-  templateUrl: './edit-formation.component.html',
-  styleUrls: ['./edit-formation.component.css']
+  selector: 'app-edit-integration',
+  templateUrl: './edit-integration.component.html',
+  styleUrls: ['./edit-integration.component.css']
 })
-export class EditFormationComponent {
+export class EditIntegrationComponent {
   formEdit : FormGroup= new FormGroup({});
-  public formation : any;
+  public integration : any;
   public fileCur:any;
   public files:any;
   public url: string='';
@@ -24,39 +24,24 @@ export class EditFormationComponent {
     private router:ActivatedRoute,private uploadService: FileUploadService,
     private  route: Router) { }
 
-    selectedValue: string='';
-  options: { value: string, label: string }[] = [
-    { value: '', label: '' },
-    { value: 'Autorisation', label: 'Autorisation' },
-    { value: 'Congé de formation', label: 'Congé de formation' },
-    { value: "Rappel à l'activité", label: "Rappel à l'activité" },
-    { value: 'Affectation', label: 'Affectation' },
-    { value: 'Régularisation', label: 'Régularisation' },    
-  ];
-  onSelectionChange() {
-    // Cette fonction sera appelée lorsque la sélection change.
-    console.log('Option sélectionnée :', this.selectedValue);
-  }
-
   ngOnInit(): void {
     
     this.formEdit=this.formBuilder.group({
       titre : ['',[Validators.required, Validators.pattern("([A-Z]).{2,}")]],
-      description : ['',[Validators.required]],
       categorie : ['',[Validators.required, Validators.pattern("([a-zA-Z]).{2,}")]],
-      type : ['',[Validators.required]],
-    });
+      type : ['',[Validators.required, Validators.pattern("([a-zA-Z]).{2,}")]],
+      description : ['',[Validators.required]],      });
 
      this.url=this.router.snapshot.params['id']
-     this.getFormation();
+     this.getAvancement();
      this.fich=true;
     }
 
-    getFormation(){
+    getAvancement(){
       this.apiService.getById(this.url).
             subscribe((data: any)=>{
-                          this.formation=data;
-                          console.log(this.formation);
+                          this.integration=data;
+                          console.log(this.integration);
                           this.onGetFiles(data.id);
             }, err=>{
                 console.log(err);
@@ -78,17 +63,17 @@ export class EditFormationComponent {
      onSubmit(){
       console.log(this.formEdit.value);
       console.log(this.url);
-      this.apiService.Update(this.formation._links.self.href, this.formEdit.value).
+      this.apiService.Update(this.integration._links.self.href, this.formEdit.value).
       subscribe( data => {
         console.log(data);
-        alert("   "+this.formEdit.value.titre+"  modifiée avec succès ");
-        this.getFormation();
+        alert(" Integration  "+this.formEdit.value.titre+"  modifiée avec succès ");
+        this.getAvancement();
        // this.route.navigate(['avancements']);
         //window.location.reload();
         
         }, err=>{
           console.log(err);
-          alert("Cette formation existe deja !");
+          alert("Cette Integration existe deja !");
         });  
     }
 
@@ -105,7 +90,7 @@ export class EditFormationComponent {
         if (file) {
           this.currentFile = file;
     
-          this.uploadService.upload(this.currentFile, (this.formation.id).toString()).subscribe(
+          this.uploadService.upload(this.currentFile, (this.integration.id).toString()).subscribe(
             (event: any) => {
               
               if (event.type === HttpEventType.UploadProgress) {
@@ -114,7 +99,7 @@ export class EditFormationComponent {
                 //this.route.navigate(['actualites']);
                 //this.onGetFiles(this.avancement.id);
                // window.location.reload();
-               this.getFormation();
+               this.getAvancement();
               } else if (event instanceof HttpResponse) {
                 //this.message = event.body.message;
                 //this.stringArray.push(this.message);
@@ -144,7 +129,7 @@ export class EditFormationComponent {
         console.log();
         this.apiService.deleteFile(f._links.self.href)
         .subscribe( data=>{
-            this.onGetFiles(this.formation.id);          
+            this.onGetFiles(this.integration.id);          
             //this.route.navigate(['actualites']);
       
           }, err=>{
@@ -153,7 +138,7 @@ export class EditFormationComponent {
         );
   
         alert("Fichier "+f.name+" supprimé avec succès");
-        this.onGetFiles(this.formation.id);
+        this.onGetFiles(this.integration.id);
         //window.location.reload();
       }
     }
@@ -164,7 +149,7 @@ export class EditFormationComponent {
 
     OnOut(){
       this.fich=true;
-      this.getFormation()
+      this.getAvancement()
     }
 
 }
