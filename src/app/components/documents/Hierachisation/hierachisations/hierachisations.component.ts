@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { DocumentService } from 'src/app/services/document.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-hierachisations',
@@ -10,6 +11,8 @@ import { DocumentService } from 'src/app/services/document.service';
   styleUrls: ['./hierachisations.component.css']
 })
 export class HierachisationsComponent {
+  public url: string= "http://localhost:8082/login/";
+  public user:any;
   public hierachisations: any;
   public files : any;
   public av=1;
@@ -17,7 +20,7 @@ export class HierachisationsComponent {
   urlDownload: string='';
   idAv: number =0;
 
-  constructor(private http: HttpClient,
+  constructor(private http: HttpClient, private authService: AuthService,
     private apiService: DocumentService,
     private router : Router) { }
 
@@ -27,6 +30,11 @@ export class HierachisationsComponent {
     this.search();
     this.urlDownload=this.apiService.urlDownload;
     this.getMaxId();
+
+    this.authService.getCon(this.url+this.authService.loggedMilitant).
+  subscribe( data => {
+    this.user=data; 
+  },err=>{console.log(err);});
     
   }
 

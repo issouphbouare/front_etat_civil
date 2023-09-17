@@ -28,6 +28,9 @@ public url3: string="http://localhost:8082/divisions/";
   selectedCoordination: any;
   selectedDivision: string='';
   sub :string ="";
+  phone:number=0;
+  mat:string='';
+  editable:boolean=true;
 
   constructor(private formBuilder:FormBuilder,
     private apiService: MilitantService, private authService : AuthService,
@@ -40,6 +43,8 @@ public url3: string="http://localhost:8082/divisions/";
     this.authService.getCon(this.url+this.telephone).
   subscribe( data => {
     this.militant=data; 
+    this.phone=this.militant.telephone;
+    this.mat=this.militant.matricule;
     if(this.militant.section=="Secondaire"){
       this.sub="hidden";
     }
@@ -50,9 +55,9 @@ public url3: string="http://localhost:8082/divisions/";
 
   this.formEdit=this.formBuilder.group({
     matricule : ['',Validators.required],
-      telephone : ['',Validators.required],
-      prenom : ['',Validators.required],
-      nom : ['',Validators.required],
+    telephone : ['',[Validators.required, Validators.min(50000000), Validators.max(100000000)]],
+    prenom : ['',[Validators.required, Validators.pattern("([a-zA-Z]).{1,}")]],
+    nom : ['',[Validators.required, Validators.pattern("([a-zA-Z]).{1,}")]],
       section : [''],
       comite : [''],
       subdivision : [''],
@@ -67,24 +72,15 @@ public url3: string="http://localhost:8082/divisions/";
 
   }
   onSubmit(){
-    console.log(this.formEdit.value);
-    console.log(this.url1+this.militant.id);
-    this.url2=this.url1+this.militant.id;
-
-    console.log(this.url);
-    if(this.formEdit.value.section=="Secondaire") {
-      this.formEdit.value.subdivision="";
-    }
-    this.apiService.Update(this.url2, this.formEdit.value).
-    subscribe( data => {
-      console.log(data);
-      alert(" Profil modifiée avec succes !");
-      this.authService.logout();
-      }, err=>{
-        console.log(err);
-        alert("Il  existe deja un Professeur avec le meme numero de telephone "+this.formEdit.value.tel);
- 
-      });  
+    this.apiService.existByTelephone(this.formEdit.value.telephone).
+    subscribe( (data:any) => { 
+      if(data==false || this.formEdit.value.telephone==this.phone)
+      this.existByMatrcule();
+    else alert("Il  existe deja un militant avec le meme numéro de telephone : "+this.formEdit.value.telephone);
+      console.log(data)
+    },err=>{
+      
+    });
  
   }
 
@@ -159,7 +155,44 @@ selectedValue: string='';
         console.log(err);
       });
     }
+
+    existByMatrcule(){
+      this.apiService.existByMatricule(this.formEdit.value.matricule).
+      subscribe( (data:any) => { 
+        if(data==false || this.formEdit.value.matricule==this.mat)
+        this.editMilitant();
+      else alert("Il  existe deja un militant avec le meme numéro matricule : "+this.formEdit.value.matricule);
+        console.log(data)
+      },err=>{
+        
+      });
+    }
     
+    editMilitant(){
+      
+    console.log(this.formEdit.value);
+    console.log(this.url1+this.militant.id);
+    this.url2=this.url1+this.militant.id;
+
+    console.log(this.url);
+    if(this.formEdit.value.section=="Secondaire") {
+      this.formEdit.value.subdivision="";
+    }
+
+    this.formEdit.value.nom=this.formEdit.value.nom.toUpperCase()
+      this.formEdit.value.prenom=this.formEdit.value.prenom.charAt(0).toUpperCase()+ this.formEdit.value.prenom.slice(1);
+      this.formEdit.value.subdivision=this.formEdit.value.subdivision.charAt(0).toUpperCase()+ this.formEdit.value.subdivision.slice(1);
+      this.formEdit.value.comite=this.formEdit.value.comite.charAt(0).toUpperCase()+ this.formEdit.value.comite.slice(1);
+   
+    this.apiService.Update(this.url2, this.formEdit.value).
+    subscribe( data => {
+      console.log(data);
+      alert(" Profil modifiée avec succes !");
+      this.authService.logout();
+      }, err=>{
+        console.log(err);
+      });  
+    }
 
   }
 

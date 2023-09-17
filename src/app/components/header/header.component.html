@@ -13,10 +13,13 @@
                             <div class="scrolling-text">
                             <h6><i>
                                 BIENVENUE A L'UNIVERS DU SYNEFCT
-                            </i></h6></div>
+                            </i></h6>
+                            <h6><i>Actuallement {{total}} militants à son actif</i></h6>
+                        </div>
                         </div>
                         <div class="col-md-4" style="text-align: right;">
                                 <p>Liberté-Action-Solidarité</p>
+                                
                               
                             
                         </div>
@@ -34,10 +37,10 @@
                               <li class="nav-item">
                                 <a class="navbar-brand" aria-current="page" routerLink="/">Accueil</a>
                             </li>
-                              <li class="nav-item">
+                              <li class="nav-item" *ngIf="authService.isloggedIn">
                                 <a class="navbar-brand" routerLink="/actualites">Actualités</a>
                             </li>
-                              <li class="nav-item" *ngIf="authService.isloggedIn">
+                              <li class="nav-item">
                                 <a class="navbar-brand" routerLink="/apropos">A propos</a>
                             </li>
                             <li class="nav-item" *ngIf="authService.isloggedIn">
@@ -86,11 +89,16 @@
                                 </ul>
                             </li> -->
                             </ul>
-                            <form class="d-flex"><ul class="navbar-nav">
-                                <li class="nav-item dropdown">
+                            <form class="d-flex"><ul class="navbar-nav"
+                                *ngIf="authService.username!=''">
+                                <li class="button" style="background-color: rgb(183, 195, 190);">
+                                    <a class="navbar-brand"></a>
+                                </li>
+                                <li class="nav-item dropdown" style="background-color: rgb(183, 195, 190);">
                                     <a class="navbar-brand" href="#" id="navbarScrollingDropdown" role="button"
                                         data-bs-toggle="dropdown" aria-expanded="false">
-                                        Compte
+                                        {{authService.username}}
+                                        <i class="bi bi-person"></i> 
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                                         <li *ngIf="authService.isloggedIn==false">
@@ -99,7 +107,43 @@
                                            
                                         </li>
                                         <li *ngIf="authService.isloggedIn==false">
-                                            <a class="dropdown-item" routerLink="/login">Se connecter</a>
+                                            <a class="dropdown-item" routerLink="/connect">Se connecter</a>
+                                        </li>
+                                                
+                                            
+                                        <li *ngIf="authService.isloggedIn">
+                                            <a class="dropdown-item" routerLink="/profil">Profil</a>
+                                        </li>
+                                        <li *ngIf="authService.isloggedIn">
+                                            <a class="dropdown-item" routerLink="/password">Mot de passe</a>
+                                        </li>
+                                        <li *ngIf="authService.isloggedIn">
+                                            <a class="dropdown-item" style="cursor: pointer;"
+                                            (click)="onDeconnecter()">Se deconnecter</a>
+                                        </li>
+                                    </ul>
+                                </li></ul>
+                              </form>
+
+                              <form class="d-flex"><ul class="navbar-nav"
+                                *ngIf="authService.username==''">
+                                <li class="button" style="background-color: rgb(183, 195, 190);">
+                                    <a class="navbar-brand"></a>
+                                </li>
+                                <li class="nav-item dropdown" style="background-color: rgb(183, 195, 190);">
+                                    <a class="navbar-brand" href="#" id="navbarScrollingDropdown" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        {{user}}
+                                        <i class="bi bi-person"></i> 
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                                        <li *ngIf="authService.isloggedIn==false">
+                                            <a class="dropdown-item" routerLink="/addMilitant">S'inscrire</a></li>
+                                        <li>
+                                           
+                                        </li>
+                                        <li *ngIf="authService.isloggedIn==false">
+                                            <a class="dropdown-item" routerLink="/connect">Se connecter</a>
                                         </li>
                                                 
                                             

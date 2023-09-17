@@ -12,6 +12,7 @@ export class AuthService {
  
   public loggedMilitant:number=0;
   public poste: String='';
+  public username: String='';
   public isloggedIn: Boolean = false;
 
   constructor(private http : HttpClient,private router : Router) { }
@@ -37,22 +38,29 @@ signIn(militant :Militant){
   this.loggedMilitant = militant.telephone;
   this.isloggedIn = true;
   this.poste = militant.poste;
-  localStorage.setItem('loggedProf',this.loggedMilitant.toString());
+  this.username="Mr/Mme "+militant.nom;
+  localStorage.setItem('loggedMilitant',this.loggedMilitant.toString());
   localStorage.setItem('isloggedIn',String(this.isloggedIn));
+  localStorage.setItem('username',String(this.username));
+  localStorage.setItem('poste',String(this.poste));
+  this.getMilitantPoste(militant.telephone);
+  this
   }
 
   isAdmin():Boolean{
     let admin: Boolean = false;
     if (!this.poste) //this.roles== undefiened
     return false;
-    if(this.poste == 'Admin') {
+    if(this.poste == 'Militant') {
     admin = true;
     }
     return admin;
     }
+
+  
     
-    getMilitantPoste(tel :number){
-      this.getUser(tel).subscribe((militant: Militant)=>{
+    getMilitantPoste(telephone :number){
+      this.getUser(telephone).subscribe((militant: Militant)=>{
       this.poste = militant.poste;
       });
       }
@@ -63,9 +71,12 @@ logout() {
   this.isloggedIn= false;
   this.loggedMilitant = 0;
   this.poste = '';
-  localStorage.removeItem('loggedProf');
-  localStorage.setItem('isloggedIn',String(this.isloggedIn));
-  this.router.navigate(['/login']);
+  this.username='';
+  localStorage.removeItem('loggedMilitant');
+  localStorage.removeItem('isloggedIn');
+  localStorage.removeItem('username');
+  localStorage.removeItem('poste');
+  this.router.navigate(['/connect']);
 }
 
 setLoggedProfFromLocalStorage(tel: number) {

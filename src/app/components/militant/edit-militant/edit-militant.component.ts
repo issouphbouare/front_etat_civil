@@ -5,12 +5,15 @@ import { DocumentService } from 'src/app/services/document.service';
 import { FileUploadService } from 'src/app/services/file-upload-service';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
 import { MilitantService } from 'src/app/services/militant.service';
+import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-edit-militant',
   templateUrl: './edit-militant.component.html',
   styleUrls: ['./edit-militant.component.css']
 })
 export class EditMilitantComponent {
+  public urlCurUser: string= "http://localhost:8082/login/";
+  public user:any;
   formEdit : FormGroup= new FormGroup({});
   public militant : any;
   public url: string='';
@@ -18,17 +21,18 @@ export class EditMilitantComponent {
 
   constructor(private apiService: MilitantService,private formBuilder:FormBuilder,
     private router:ActivatedRoute,private uploadService: FileUploadService,
-    private  route: Router) { }
+    private  route: Router, private authService: AuthService) { }
 
     selectedPoste: string='';
   optionPoste: { value: string, label: string }[] = [
-    { value: '', label: '' },
     { value: 'Militant', label: 'Militant' },
     { value: 'Sécretaire Général', label: 'Sécretaire Général' },
     { value: "Sécretaire de Coordination", label: "Sécretaire de Coordination" },
     { value: 'Sécretaire de Division', label: 'Sécretaire de Division' },
     { value: 'Sécretaire de Subdivision', label: 'Sécretaire de Subdivision' },
-    { value: 'Sécretaire de Comité', label: 'Sécretaire de Comité' },    
+    { value: 'Sécretaire de Comité', label: 'Sécretaire de Comité' }, 
+    { value: 'Sécretaire à la communication et aux TICS', label: 'Sécretaire à la communication et aux TICS' },
+    { value: 'Sécretaire Administratif', label: 'Sécretaire Administratif' },   
   ];
   onSelectionPoste() {
     // Cette fonction sera appelée lorsque la sélection change.
@@ -37,7 +41,6 @@ export class EditMilitantComponent {
 
   selectedStatut: string='';
   optionStatut: { value: string, label: string }[] = [
-    { value: '', label: '' },
     { value: 'Actif', label: 'Actif' },
     { value: 'Inactif', label: 'Inactif' }, 
   ];
@@ -54,8 +57,8 @@ export class EditMilitantComponent {
       prenom : ['',Validators.required],
       nom : ['',Validators.required],
       section : ['',Validators.required],
-      comite : ['',Validators.required],
-      subdivision : ['',Validators.required],
+      comite : [''],
+      subdivision : [''],
       division : ['',Validators.required],
       motDePasse : ['',Validators.required],
       poste : ['',Validators.required],
@@ -66,6 +69,11 @@ export class EditMilitantComponent {
 
      this.url=this.router.snapshot.params['id']
      this.getMilitant();
+
+     this.authService.getCon(this.urlCurUser+this.authService.loggedMilitant).
+    subscribe( data => {
+      this.user=data; 
+    },err=>{console.log(err);});
     
     }
 
@@ -79,11 +87,15 @@ export class EditMilitantComponent {
                } );
     }
 
-    
+    //inputString.charAt(0).toUpperCase() + inputString.slice(1);
 
      onSubmit(){
       console.log(this.formEdit.value);
       console.log(this.url);
+      this.formEdit.value.nom=this.formEdit.value.nom.toUpperCase()
+      this.formEdit.value.prenom=this.formEdit.value.prenom.charAt(0).toUpperCase()+ this.formEdit.value.prenom.slice(1);
+      this.formEdit.value.subdivision=this.formEdit.value.subdivision.charAt(0).toUpperCase()+ this.formEdit.value.subdivision.slice(1);
+      this.formEdit.value.comite=this.formEdit.value.comite.charAt(0).toUpperCase()+ this.formEdit.value.comite.slice(1);
       this.apiService.Update(this.militant._links.self.href, this.formEdit.value).
       subscribe( data => {
         console.log(data);
@@ -91,10 +103,11 @@ export class EditMilitantComponent {
         //alert("Compte de Mr/Mme  "+this.formEdit.value.nom+"  modifiée avec succès ");
 
        this.route.navigate(['militants']);
-        
+       window.location.reload();
         }, err=>{
           console.log(err);
-          alert("Cette formation existe deja !");
+          alert("Il  existe deja un militant avec le meme numero de telephone : "+this.formEdit.value.telephone+
+        "ou le meme numéro matricule : "+this.formEdit.value.matricule);
         });  
     }
 

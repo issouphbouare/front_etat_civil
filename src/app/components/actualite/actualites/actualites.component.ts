@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Actualite } from 'src/app/models/actualite';
 import { ActualiteService } from 'src/app/services/actualite.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-actualites',
@@ -11,6 +12,8 @@ import { ActualiteService } from 'src/app/services/actualite.service';
   styleUrls: ['./actualites.component.css']
 })
 export class ActualitesComponent {
+  public url: string= "http://localhost:8082/login/";
+  public user:any;
   
   public urlImageTitre : string ='';
   public urlNoImage : string='';
@@ -25,13 +28,19 @@ export class ActualitesComponent {
 
 
 
-  constructor(private http: HttpClient,
+  constructor(private http: HttpClient, private authService: AuthService,
     private apiService: ActualiteService,
     private router : Router) { }
 
   ngOnInit(): void {
     this.urlImageTitre=this.apiService.urlImageTitre
     this.onGetAllActualite();
+
+    this.authService.getCon(this.url+this.authService.loggedMilitant).
+    subscribe( data => {
+      this.user=data; 
+    },err=>{console.log(err);});
+    
   }
 
   onGetAllActualite() {

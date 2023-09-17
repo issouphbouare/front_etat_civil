@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActualiteService } from 'src/app/services/actualite.service';
 import { UploadImageService } from 'src/app/services/upload-image.service';
 import { HttpEventType, HttpResponse } from '@angular/common/http';
+import { AuthService } from 'src/app/services/auth.service';
 
 
 @Component({
@@ -13,6 +14,8 @@ import { HttpEventType, HttpResponse } from '@angular/common/http';
   styleUrls: ['./details-actualite.component.css']
 })
 export class DetailsActualiteComponent {
+  public urlUser: string= "http://localhost:8082/login/";
+  public user:any;
   formEdit : FormGroup= new FormGroup({});
   public actualite : any;
   public imgCur:any;
@@ -28,7 +31,7 @@ export class DetailsActualiteComponent {
 
   constructor(private apiService: ActualiteService,private formBuilder:FormBuilder,
     private router:ActivatedRoute,private uploadImageService: UploadImageService,
-    private  route: Router) { }
+    private  route: Router, private authService: AuthService) { }
     ngOnInit(): void {
     
       this.formEdit=this.formBuilder.group({
@@ -42,6 +45,12 @@ export class DetailsActualiteComponent {
     this.urlImage=this.apiService.urlImage;
     this.urlImageTitre=this.apiService.urlImageTitre
     this.edit=false; this.img=true; this.titre=true;
+
+    this.authService.getCon(this.urlUser+this.authService.loggedMilitant).
+    subscribe( data => {
+      this.user=data; 
+    },err=>{console.log(err);});
+    
     
      }  
    

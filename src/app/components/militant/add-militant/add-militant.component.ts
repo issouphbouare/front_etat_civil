@@ -18,8 +18,8 @@ export class AddMilitantComponent implements OnInit {
   public coordinations :any;
   public militant : any;
   public defaultPassword: string ="0000";
-  public defaultPoste: string = "militant";
-  public defaultStatut: string = "inactif";
+  public defaultPoste: string = "Militant";
+  public defaultStatut: string = "Inactif";
   //coordinations: any[] = [];
 selectedCoordination: any;
 //divisions: any[] = [];
@@ -40,12 +40,12 @@ etape2: boolean = false;
   ngOnInit() {
     this.formAdd=this.formBuilder.group({
       matricule : ['',Validators.required],
-      telephone : ['',Validators.required],
-      prenom : ['',Validators.required],
-      nom : ['',Validators.required],
+      telephone : ['',[Validators.required, Validators.min(50000000), Validators.max(100000000)]],
+      prenom : ['',[Validators.required, Validators.pattern("([a-zA-Z]).{1,}")]],
+      nom : ['',[Validators.required, Validators.pattern("([a-zA-Z]).{1,}")]],
       section : ['',Validators.required],
-      comite : ['',Validators.required],
-      subdivision : ['',Validators.required],
+      comite : [''],
+      subdivision : [''],
       division : ['',Validators.required],
       motDePasse : ['',Validators.required],
       poste : ['',Validators.required],
@@ -59,18 +59,16 @@ etape2: boolean = false;
 
    
 
-  onSubmit(){ 
-    console.log(this.formAdd.value);
-    this.apiService.Create(this.formAdd.value).
-    subscribe( data => {
-        alert("Le Compte du Militant(e) Mr/Mme : "+this.formAdd.value.nom+
-        "  de login : "+this.formAdd.value.telephone+
-        "  et de mot de passe : 0000 est crée avec succès !"); 
-        this.router.navigate(['login']);
-      },err=>{
-        console.log(err);
-        alert("Il  existe deja un militant avec le meme numero de telephone : "+this.formAdd.value.telephone);
-      });  
+  onSubmit(){ this.apiService.existByTelephone(this.formAdd.value.telephone).
+    subscribe( (data:any) => { 
+      if(data==false)
+      this.existByMatrcule();
+    else alert("Il  existe deja un militant avec le meme numero de telephone : "+this.formAdd.value.telephone);
+      console.log(data)
+    },err=>{
+      
+    });
+    
 }
 
 onGetCoordinations(){
@@ -122,6 +120,38 @@ selectedValue: string='';
 
   OnSuivant(){this.etape2=true;}
   onPre(){this.etape2=false;}
+
+  existByMatrcule(){
+    this.apiService.existByMatricule(this.formAdd.value.matricule).
+    subscribe( (data:any) => { 
+      if(data==false)
+      this.addMilitant();
+    else alert("Il  existe deja un militant avec le meme numero de telephone : "+this.formAdd.value.matricule);
+      console.log(data)
+    },err=>{
+      
+    });
+  }
+
+  addMilitant(){
+    console.log(this.formAdd.value);
+    this.formAdd.value.nom=this.formAdd.value.nom.toUpperCase()
+      this.formAdd.value.prenom=this.formAdd.value.prenom.charAt(0).toUpperCase()+ this.formAdd.value.prenom.slice(1);
+      this.formAdd.value.subdivision=this.formAdd.value.subdivision.charAt(0).toUpperCase()+ this.formAdd.value.subdivision.slice(1);
+      this.formAdd.value.comite=this.formAdd.value.comite.charAt(0).toUpperCase()+ this.formAdd.value.comite.slice(1);
+   
+    this.apiService.Create(this.formAdd.value).
+    subscribe( data => {
+        alert("Le Compte du Militant(e) Mr/Mme : "+this.formAdd.value.nom+
+        "  de login : "+this.formAdd.value.telephone+
+        "  et de mot de passe : 0000 est crée avec succès !"); 
+        this.router.navigate(['login']);
+      },err=>{
+        console.log(err);
+        alert("Il  existe deja un militant avec le meme numero de telephone : "+this.formAdd.value.telephone+
+        "ou le meme numéro matricule : "+this.formAdd.value.matricule);
+      });  
+  }
 
 }
 

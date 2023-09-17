@@ -53,7 +53,8 @@ const routes: Routes = [
  {path : "addAutre" , component : AddAutreComponent},
  {path : "editAutre/:id" , component : EditAutreComponent },
  {path : "fileByAv/:id" , component : FileDBComponent },
- {path : "login" , component : LoginComponent },
+ {path : "login" , component : AccueilComponent },
+ {path : "connect" , component : LoginComponent },
  {path : "profil" , component : ProfilComponent },
  {path : "password" , component : PasswordComponent }
 ];

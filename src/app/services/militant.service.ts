@@ -12,6 +12,8 @@ export class MilitantService {
   base="http://localhost:8082"
   baseUrl=this.base+"/militants";
   urlSearch=this.base+"/searchMilitant?keyword=";
+  urlSearchTotal=this.base+"/totalSearch?keyword=";
+
 
 
 constructor(private http: HttpClient) { }
@@ -42,11 +44,6 @@ search(url: string):Observable<any>{
   return this.http.get<Apiresponse>(this.urlSearch+url);
 }
 
-
-
-
-
-
 Create(militant : Militant):Observable<Apiresponse>{
   return this.http.post<Apiresponse>(this.baseUrl , militant);
 }
@@ -58,10 +55,15 @@ Update(url: string, militant : Militant):Observable<Apiresponse>{
 delete(url: string){
   return this.http.delete<Apiresponse>(this.baseUrl+"/"+url);
 }
-
+getMilitantActif(){
+  return this.http.get<Apiresponse>(this.base+"/totalActif")
+}
 
 getMaxId(){
   return this.http.get<Apiresponse>(this.base+"/maxIdDoc")
+}
+getTotalSearch(url : string){
+  return this.http.get<Apiresponse>(this.urlSearchTotal+url);
 }
 
 getDivCur(url: string):Observable<any>{
@@ -71,6 +73,11 @@ getCoorCur(url: string):Observable<any>{
   return this.http.get<Apiresponse>(url);
 }
 
-
+existByTelephone(tel: number){
+  return this.http.get<Apiresponse>(this.base+"/existsByTelephone/"+tel)
+}
+existByMatricule(matricule: string){
+  return this.http.get<Apiresponse>(this.base+"/existsByMatricule/"+matricule)
+}
 
 }

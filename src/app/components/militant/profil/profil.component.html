@@ -32,10 +32,10 @@
                                         <div class="col-md-6">
                                             <label>Telephone</label>
                                             <input type="number" formControlName="telephone" [(ngModel)]="militant.telephone"
-                                            class="form-control" placeholder="au moins 3 letttres ">
+                                            class="form-control">
                                             <p style="color: brown;"
-                                            *ngIf="!formEdit.controls['telephone'].valid"> (Le premier
-                                             caractere doit etre une lettre majuscule ) </p>
+                                            *ngIf="!formEdit.controls['telephone'].valid"> 
+                                            (Le numéro de  telephone doit contenir 8 chiffres) </p>
                                         </div>
                                     </div>
                                     <div class="row">

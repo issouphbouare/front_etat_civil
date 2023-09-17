@@ -4,20 +4,24 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { DocumentService } from 'src/app/services/document.service';
 import { MilitantService } from 'src/app/services/militant.service';
+import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-militants',
   templateUrl: './militants.component.html',
   styleUrls: ['./militants.component.css']
 })
 export class MilitantsComponent {
+  public url: string= "http://localhost:8082/login/";
+  public user:any;
   public militants: any;
   public files : any;
   public av=1;
   keyword: string = '';
   urlDownload: string='';
   idAv: number =0;
+  totalSearch:number=0;
 
-  constructor(private http: HttpClient,
+  constructor(private http: HttpClient,private authService: AuthService,
     private apiService: MilitantService,
     private router : Router) { }
 
@@ -25,7 +29,13 @@ export class MilitantsComponent {
   ngOnInit(): void {
     this.av=1;
     this.search();
+    this.getTotalSearch();
     this.getMaxId();
+
+    this.authService.getCon(this.url+this.authService.loggedMilitant).
+    subscribe( data => {
+      this.user=data; 
+    },err=>{console.log(err);});
     
   }
 
@@ -33,6 +43,7 @@ export class MilitantsComponent {
     this.apiService.search(this.keyword).subscribe(
       (data :any) => {
         this.militants = data.content;
+        this.getTotalSearch();
       },
       (error) => {
         console.error('Une erreur est survenue:', error);
@@ -49,7 +60,16 @@ export class MilitantsComponent {
     });
   }
 
-
+  getTotalSearch(){
+    this.apiService.getTotalSearch(this.keyword).subscribe(
+      (data :any) => {
+        this.totalSearch = data;
+      },
+      (error) => {
+        console.error('Une erreur est survenue:', error);
+      }
+    );
+  }
   
 
   

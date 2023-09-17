@@ -45,13 +45,15 @@
                                                     <input type="hidden" formControlName="nom" class="form-control"
                                                     [(ngModel)]="militant.nom">
                                                     
-                                                <label>Poste</label>
+                                                <label *ngIf="user.poste =='Sécretaire Général'">Poste</label>
                                                 <select [(ngModel)]="militant.poste" formControlName="poste"
-                                                    class="form-control" (change)="onSelectionPoste()">
+                                                    class="form-control" (change)="onSelectionPoste()"
+                                                    *ngIf="user.poste =='Sécretaire Général'">
                                                     <option *ngFor="let option of optionPoste" [value]="option.value">
                                                     {{option.label }}</option>
                                                 </select>
-                                                <p style="color: brown;" *ngIf="!formEdit.controls['poste'].valid">
+                                                <p *ngIf="user.poste =='Sécretaire Général' && !formEdit.controls['poste'].valid"
+                                                style="color: brown;" >
                                                     (Champ obligatoire * ) </p>
                                                 <label>Etat Compte</label>
                                                 <select [(ngModel)]="militant.statut" formControlName="statut"

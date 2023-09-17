@@ -17,7 +17,7 @@
                                             <h5>Etape 1 : informations personnelles</h5>
                                         </div>
                                         <div class="col-md-2">
-                                            <a routerLink="/login" class="btn btn-secondary">Se connecter</a>
+                                            <a routerLink="/connect" class="btn btn-secondary">Se connecter</a>
                                         </div></div>
                                     </div>
                                     <div class="card-body">
@@ -36,10 +36,9 @@
                                                         <div class="col-md-6">
                                                             <label>Telephone</label>
                                                     <input type="number" formControlName="telephone"
-                                                        class="form-control" placeholder="au moins 3 letttres ">
+                                                        class="form-control" >
                                                     <p style="color: brown;"
-                                                        *ngIf="!formAdd.controls['telephone'].valid"> (Le premier
-                                                        caractere doit etre une lettre majuscule ) </p>
+                                                        *ngIf="!formAdd.controls['telephone'].valid"> (Le numéro de  telephone doit contenir 8 chiffres) </p>
                                                         </div>
                                                     </div>
                                                     <div class="row">

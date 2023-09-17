@@ -3,20 +3,23 @@ import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { DocumentService } from 'src/app/services/document.service';
+import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-autres',
   templateUrl: './autres.component.html',
   styleUrls: ['./autres.component.css']
 })
 export class AutresComponent {
+  public url: string= "http://localhost:8082/login/";
   public autres: any;
   public files : any;
   public av=1;
   keyword: string = '';
   urlDownload: string='';
   idAv: number =0;
+  user:any ;
 
-  constructor(private http: HttpClient,
+  constructor(private http: HttpClient, private authService: AuthService,
     private apiService: DocumentService,
     private router : Router) { }
 
@@ -26,8 +29,15 @@ export class AutresComponent {
     this.search();
     this.urlDownload=this.apiService.urlDownload;
     this.getMaxId();
+
+    this.authService.getCon(this.url+this.authService.loggedMilitant).
+  subscribe( data => {
+    this.user=data; 
+  },err=>{console.log(err);});
     
   }
+    
+  
 
   search() {
     this.apiService.searchAutre(this.keyword).subscribe(

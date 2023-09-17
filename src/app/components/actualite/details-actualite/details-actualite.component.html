@@ -8,7 +8,8 @@
                             <button (click)="OnReturn1()" class="btn btn-light"><i class="bi bi-arrow-left"></i></button>
                         </div>
                         <div class="col-md-8"><h4>{{actualite.titre}}</h4></div>
-                        <div class="col-md-2">
+                        <div class="col-md-2"
+                         *ngIf="user.poste =='Sécretaire Général' || user.poste == 'Sécretaire à la communication et aux TICS'">
                             <button (click)="OnEdit()" class="btn btn-light"><i class="bi bi-pencil"></i></button>
                             <button *ngIf="idAc!=actualite.id" (click)="onDelete(actualite)" class="btn btn-light"
                              ><i class="bi bi-trash"></i></button>
