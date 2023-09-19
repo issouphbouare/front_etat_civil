@@ -76,7 +76,7 @@ logout() {
   localStorage.removeItem('isloggedIn');
   localStorage.removeItem('username');
   localStorage.removeItem('poste');
-  this.router.navigate(['/connect']);
+  this.router.navigate(['/']);
 }
 
 setLoggedProfFromLocalStorage(tel: number) {

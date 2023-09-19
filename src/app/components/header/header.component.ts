@@ -19,6 +19,7 @@ export class HeaderComponent {
   constructor (private router : Router,private militantService: MilitantService,
      public authService : AuthService, private userService: UserService){}
      @Input() user: any=localStorage.getItem('username');
+     @Input() poste: any=localStorage.getItem('poste');
   ngOnInit(): void{
     let us=localStorage.getItem('username');
     let poste;

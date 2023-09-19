@@ -11,11 +11,11 @@
                             <div class="col-md-12">
                                 <div class="container">
                                     <div class="row">
-                                        <div class="col-md-7">
+                                        <div class="col-md-7" *ngIf="actualites">
                                             <carousel >
                                                 <slide *ngFor="let c of actualites._embedded.actualites">
-                                                    <img [src]="urlImageTitre+c.imageTitre.id" class="img-thumbnail">
-                                                    <div class="carousel-caption clickable-div"
+                                                    <img [src]="urlImageTitre+c.imageTitre.id" class="img-thumbnail" *ngIf="c.imageTitre">
+                                                    <div class="carousel-caption clickable-div" *ngIf="authService.isloggedIn"
                                                     [routerLink]="['/detailsActualite',c._links.self.href]">
                                                       <h4>{{ c.titre }}</h4>  
                                                       </div>
@@ -99,7 +99,7 @@
                                                     des militants à l’amélioration des conditions de vie et de travail
                                                     des enseignantes
                                                     et enseignants du Mali en général et ceux des collectivités en
-                                                    particulier. <a *ngIf="!contentVisible" href="#" (click)="toggleContent()">
+                                                    particulier. <a *ngIf="!contentVisible && authService.isloggedIn" href="#" (click)="toggleContent()">
                                                         lire la suite</a> </p>
                                                 
                                             </div>
@@ -212,7 +212,7 @@
                                         </div>
                                         <div class="col-md-3">
                                             <img class="img-thumbnail" src="../assets/images/sg/4.jpeg">
-                                            <p>M,Mami NIARE, 1er Adjoint du secrétaire aux revendications</p>
+                                            <p>M.Mami NIARE, 1er Adjoint du secrétaire aux revendications</p>
                                         </div>
                                     </div>
                                 </div>
@@ -236,16 +236,20 @@
                                                 <div class="col-md-3">
                                                     <img class="img-thumbnail"
                                                         src="../assets/images/sg/5.jpeg">
+                                                        <p>M.Almamy maouloud</p>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <img class="img-thumbnail" src="../assets/images/sg/6.jpeg">
+                                                    <p>M.Abdoul Karim COULIBALY 3e commissaire aux comptes</p>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <img class="img-thumbnail"
                                                         src="../assets/images/sg/7.jpeg">
+                                                        <p>M.Aboubacar MAIGA secrétaire aux relations extérieures</p>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <img class="img-thumbnail" src="../assets/images/sg/8.jpeg">
+                                                    <p>2e Adjoint au secrétaire charge des activités sportives et culturelles</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -269,16 +273,20 @@
                                                 <div class="col-md-3">
                                                     <img class="img-thumbnail"
                                                         src="../assets/images/sg/9.jpeg">
+                                                        <p>Membre de la commission de control</p>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <img class="img-thumbnail" src="../assets/images/sg/10.jpeg">
+                                                    <p>M.Hamidou GOITA, Adjoint au secrétaire à l’organisation</p>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <img class="img-thumbnail"
                                                         src="../assets/images/sg/11.jpeg">
+                                                        <p>M.Moussa TRAORE secrétaire aux finances</p>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <img class="img-thumbnail" src="../assets/images/sg/12.jpeg">
+                                                    <p>M.Mamadi DIAKITE , secrétaire  à la communication et aux TICS</p>
                                                 </div>
                                             </div>
                                         </div>

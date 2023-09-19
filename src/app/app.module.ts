@@ -38,6 +38,14 @@ import { EditIntegrationComponent } from './components/documents/integration/edi
 import { ProfilComponent } from './components/militant/profil/profil.component';
 import { EditMilitantComponent } from './components/militant/edit-militant/edit-militant.component';
 import { PasswordComponent } from './components/militant/password/password.component';
+import { CoordinationsComponent } from './components/Admin/coordination/coordinations/coordinations.component';
+import { AddCoordinationComponent } from './components/Admin/coordination/add-coordination/add-coordination.component';
+import { EditCoordinationComponent } from './components/Admin/coordination/edit-coordination/edit-coordination.component';
+import { DivisionsComponent } from './components/Admin/division/divisions/divisions.component';
+import { AddDivisionComponent } from './components/Admin/division/add-division/add-division.component';
+import { EditDivisionComponent } from './components/Admin/division/edit-division/edit-division.component';
+import { UsersComponent } from './components/Admin/user/users/users.component';
+import { EditUserComponent } from './components/Admin/user/edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +81,15 @@ import { PasswordComponent } from './components/militant/password/password.compo
     ProfilComponent,
     EditMilitantComponent,
     PasswordComponent,
+    CoordinationsComponent,
+    AddCoordinationComponent,
+    EditCoordinationComponent,
+    DivisionsComponent,
+    AddDivisionComponent,
+    EditDivisionComponent,
+    UsersComponent,
+    EditUserComponent,
+
   ],
   imports: [
     BrowserModule,

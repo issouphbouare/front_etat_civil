@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { Actualite } from 'src/app/models/actualite';
+import { AuthService } from 'src/app/services/auth.service'; 
+import { Location } from '@angular/common'; 
 import { ActualiteService } from 'src/app/services/actualite.service';
 
 @Component({
@@ -19,17 +19,19 @@ export class AccueilComponent {
   public pages : Array<number>=[];
   contentVisible = false;
 
-  constructor(private http: HttpClient,
-    private apiService: ActualiteService,
+  constructor(private http: HttpClient, private location: Location,
+    private apiService: ActualiteService,public authService : AuthService,
     private router : Router) { }
   
     ngOnInit(): void {
       this.urlImageTitre=this.apiService.urlImageTitre
       this.onGetAllActualite();
+      this.contentVisible = false;
     }
 
   toggleContent() {
     this.contentVisible = !this.contentVisible;
+    this.location.go(this.location.path());
   }
 
   onGetAllActualite() {

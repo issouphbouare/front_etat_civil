@@ -27,6 +27,14 @@ import { EditIntegrationComponent } from './components/documents/integration/edi
 import { EditMilitantComponent } from './components/militant/edit-militant/edit-militant.component';
 import { ProfilComponent } from './components/militant/profil/profil.component';
 import { PasswordComponent } from './components/militant/password/password.component';
+import { CoordinationsComponent } from './components/Admin/coordination/coordinations/coordinations.component';
+import { AddCoordinationComponent } from './components/Admin/coordination/add-coordination/add-coordination.component';
+import { EditCoordinationComponent } from './components/Admin/coordination/edit-coordination/edit-coordination.component';
+import { DivisionsComponent } from './components/Admin/division/divisions/divisions.component';
+import { AddDivisionComponent } from './components/Admin/division/add-division/add-division.component';
+import { EditDivisionComponent } from './components/Admin/division/edit-division/edit-division.component';
+import { UsersComponent } from './components/Admin/user/users/users.component';
+import { EditUserComponent } from './components/Admin/user/edit-user/edit-user.component';
 
 const routes: Routes = [
   {path : "" , component : AccueilComponent },
@@ -56,7 +64,15 @@ const routes: Routes = [
  {path : "login" , component : AccueilComponent },
  {path : "connect" , component : LoginComponent },
  {path : "profil" , component : ProfilComponent },
- {path : "password" , component : PasswordComponent }
+ {path : "password" , component : PasswordComponent },
+ {path : "coordinations" , component : CoordinationsComponent },
+ {path :"addCoordination" , component : AddCoordinationComponent},
+ {path : "editCoordination/:id" , component : EditCoordinationComponent },
+ {path : "divisions/:id" , component : DivisionsComponent },
+ {path :"addDivision/:id" , component : AddDivisionComponent},
+ {path : "editDivision/:id" , component : EditDivisionComponent },
+ {path : "users" , component : UsersComponent },
+ {path : "editUser/:id" , component : EditUserComponent },
 ];
 
 @NgModule({

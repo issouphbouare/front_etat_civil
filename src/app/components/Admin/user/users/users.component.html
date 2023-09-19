@@ -5,7 +5,6 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-1" >
-                            <button type="button" class="btn btn-secondary" (click)="exportDataToPDF()">PDF</button>
                         </div>
                         <div class="col-md-7" >
                             <h4>Espace de Gestion des Militants</h4>
@@ -34,10 +33,8 @@
                                 <th>Telephone</th>
                                 <th>Nom</th>
                                 <th>Prenom</th>
-                                <th>Comite</th>
-                                <th>Subdivision</th>
-                                <th>Division</th>
-                                <th>Coordination</th>
+                                <th>Matricule</th>
+                                <th>Mot de passe</th>
                                 <th>Poste</th>
                                 <th>Etat</th>
                           </tr>
@@ -47,20 +44,15 @@
                                     <td >{{p.telephone}}</td>
                                     <td >{{p.nom}}</td>
                                     <td >{{p.prenom}}</td>
-                                    <td>{{p.comite}}</td>
-                                    <td>{{p.subdivision}}</td>
-                                    <td > {{p.division.nom}}</td>
-                                    <td >{{p.division.coordination.nom}}</td>
+                                    <td>{{p.matricule}}</td>
+                                    <td>{{p.motDePasse}}</td>
                                     <td >{{p.poste}}</td>
                                     <td >{{p.statut}}</td>
-                                    <td *ngIf="user.telephone !=p.telephone && user.poste=='Sécretaire Général'
-                                    || (user.division.nom==p.division.nom && p.poste!='Sécretaire Général' && user.telephone !=p.telephone &&
-                                    p.poste!='Sécretaire Coordination' && user.poste=='Sécretaire de Division')
-                                     " >
-                                        <button [routerLink]="['/editMilitant',p.id]" 
+                                    <td  >
+                                        <button [routerLink]="['/editUser',p.id]" 
                                         class="btn btn-light"><i class="bi bi-pencil"></i></button>
                                         <button (click)="onDelete(p.id)" class="btn btn-light sp"
-                                        *ngIf="user.telephone !=p.telephone && user.poste=='Sécretaire Général'"><i class="bi bi-trash"></i></button>
+                                        ><i class="bi bi-trash"></i></button>
                                     </td>
                                 </tr>
                             </tbody>    

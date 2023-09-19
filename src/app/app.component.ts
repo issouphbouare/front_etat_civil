@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AutoLogoutService } from './services/auto-logout.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'site synefct';
+
+  constructor(private autoLogoutService: AutoLogoutService,
+    ) { }
 }

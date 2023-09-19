@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mt-8">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <a routerLink="/coordinations" class="btn btn-light float-light"><i class="bi bi-arrow-left"></i></a>
+                        </div>
+                        <div class="col-md-10">
+                            <h4>
+                                Modification de Coordination
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+                   <div class="card-body"  *ngIf="donnee">
+                    <form [formGroup]="formEdit" (ngSubmit)="onSubmit()">
+                        <div class="row">
+                           <div class="col-md-8">
+                            <div class="form-group">
+                                <label>Nom Coordination</label>
+                                <input type="text" formControlName="nom" class="form-control"  [(ngModel)]="donnee.nom">
+                                <p style="color: brown;" *ngIf="!formEdit.controls['nom'].valid"> (Le remier caractere doit etre une lettres majuscule ) </p> 
+                            </div><br>
+                               <div class="form-group sm-2">
+                                <button  [disabled]="!formEdit.valid" type="submit" class="btn btn-secondary px-4">Enregistrer</button>
+                            </div>
+                           </div>
+                       </div>
+                    </form>
+                   </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
