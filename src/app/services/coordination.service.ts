@@ -6,9 +6,9 @@ import { Apiresponse } from '../models/Apiresponse';
   providedIn: 'root'
 })
 export class CoordinationService {
-baseUrl="http://localhost:8082/coordinations";
+  base="http://62.171.169.168:8082"; /*connexion au serveur distant*/
+baseUrl=this.base+"/coordinations";
   
-//baseUrl="https://gestiseance.herokuapp.com/coordinations"; /*connexion au serveur distant*/
 
 
 constructor(private http: HttpClient) { }

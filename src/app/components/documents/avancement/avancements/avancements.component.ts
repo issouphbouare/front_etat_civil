@@ -11,7 +11,6 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./avancements.component.css']
 })
 export class AvancementsComponent {
-  public url: string= "http://localhost:8082/login/";
   public avancements: any;
   public files : any;
   public av=1;
@@ -32,7 +31,7 @@ export class AvancementsComponent {
     this.getMaxId();
     
     //this.telephone=this.authService.loggedMilitant;
-    this.authService.getCon(this.url+this.authService.loggedMilitant).
+    this.authService.getCon(this.authService.loggedMilitant.toString()).
   subscribe( data => {
     this.user=data; 
   },err=>{console.log(err);});

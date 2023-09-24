@@ -3,13 +3,14 @@ import {  HttpClient, HttpRequest, HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Apiresponse } from '../models/Apiresponse';
 import { Militant } from '../models/militant'; 
+import { VariableGlobalService } from './variable-global.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MilitantService {
-  //base="http://62.171.169.168:8080/Synefct_documents-0.0.1-SNAPSHOT"
-  base="http://localhost:8082"
+  base="http://62.171.169.168:8082"; /*connexion au serveur distant*/
+  //base="http://localhost:8082"
   baseUrl=this.base+"/militants";
   urlSearch=this.base+"/searchMilitant?keyword=";
   urlSearchTotal=this.base+"/totalSearch?keyword=";

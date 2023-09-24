@@ -12,7 +12,6 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./edit-user.component.css']
 })
 export class EditUserComponent {
-  public urlCurUser: string= "http://localhost:8082/login/";
   public user:any;
   formEdit : FormGroup= new FormGroup({});
   public militant : any;
@@ -66,7 +65,7 @@ export class EditUserComponent {
      this.url=this.router.snapshot.params['id']
      this.getMilitant();
 
-     this.authService.getCon(this.urlCurUser+this.authService.loggedMilitant).
+     this.authService.getCon(this.authService.loggedMilitant.toString()).
     subscribe( data => {
       this.user=data; 
     },err=>{console.log(err);});

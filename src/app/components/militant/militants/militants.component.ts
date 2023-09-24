@@ -12,7 +12,6 @@ import { CellConfig, jsPDF } from 'jspdf';
   styleUrls: ['./militants.component.css']
 })
 export class MilitantsComponent {
-  public url: string= "http://localhost:8082/login/";
   public user:any;
   public militants: any;
   public files : any;
@@ -33,7 +32,7 @@ export class MilitantsComponent {
     this.getTotalSearch();
     this.getMaxId();
 
-    this.authService.getCon(this.url+this.authService.loggedMilitant).
+    this.authService.getCon(this.authService.loggedMilitant.toString()).
     subscribe( data => {
       this.user=data; 
     },err=>{console.log(err);});

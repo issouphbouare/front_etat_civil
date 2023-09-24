@@ -9,9 +9,9 @@ import { Actualite } from '../models/actualite';
 })
 export class ActualiteService {
 
-  //base="http://62.171.169.168:8080/Synefct_documents-0.0.1-SNAPSHOT"; /*connexion au serveur distant*/
+  base="http://62.171.169.168:8082"; /*connexion au serveur distant*/
 
-  base="http://localhost:8082"
+  //base="http://localhost:8082"
   baseUrl=this.base+"/actualites";
 
   urlImageTitre=this.base+"/get/imageTitre/";

@@ -10,7 +10,6 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./autres.component.css']
 })
 export class AutresComponent {
-  public url: string= "http://localhost:8082/login/";
   public autres: any;
   public files : any;
   public av=1;
@@ -30,7 +29,7 @@ export class AutresComponent {
     this.urlDownload=this.apiService.urlDownload;
     this.getMaxId();
 
-    this.authService.getCon(this.url+this.authService.loggedMilitant).
+    this.authService.getCon(this.authService.loggedMilitant.toString()).
   subscribe( data => {
     this.user=data; 
   },err=>{console.log(err);});

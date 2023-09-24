@@ -12,7 +12,8 @@ export class DivisionsComponent implements OnInit {
 
   public donnees:any;
   public coordination: any;
-  public base : string="http://localhost:8082/coordinations/";
+  //public base : string="http://localhost:8082/coordinations/";
+  public base="http://62.171.169.168:8082/coordinations/"; /*connexion au serveur distant*/
   public nbPage : number=0;
   public pages : Array<number>=[];
   public url: string='';

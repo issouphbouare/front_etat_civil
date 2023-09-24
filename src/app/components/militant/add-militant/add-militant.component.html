@@ -122,7 +122,7 @@
 
 
                                                         </div>
-                                                        <div class="col-md-6" *ngIf="coordinations divisions">
+                                                        <div class="col-md-6" *ngIf="coordinations divisions" [hidden]="!affiche">
                                                             <label>Division</label>
                                                             <select [(ngModel)]="selectedDivision"
                                                                 formControlName="division" class="form-control">

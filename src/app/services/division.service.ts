@@ -6,10 +6,9 @@ import { Apiresponse } from '../models/Apiresponse';
   providedIn: 'root'
 })
 export class DivisionService {
-  baseUrl="http://localhost:8082/divisions";
-  
-  //baseUrl="https://gestiseance.herokuapp.com/divisions"; /*connexion au serveur distant*/
-  
+  base="http://62.171.169.168:8082"; /*connexion au serveur distant*/
+  baseUrl=this.base+"/divisions";
+    
   
   constructor(private http: HttpClient) { }
   

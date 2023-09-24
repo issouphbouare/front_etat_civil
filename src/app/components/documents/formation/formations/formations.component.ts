@@ -10,7 +10,6 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./formations.component.css']
 })
 export class FormationsComponent {
-  public url: string= "http://localhost:8082/login/";
   public user:any;
   public formations: any;
   public files : any;
@@ -30,7 +29,7 @@ export class FormationsComponent {
     this.urlDownload=this.apiService.urlDownload;
     this.getMaxId();
     
-    this.authService.getCon(this.url+this.authService.loggedMilitant).
+    this.authService.getCon(this.authService.loggedMilitant.toString()).
   subscribe( data => {
     this.user=data; 
   },err=>{console.log(err);});

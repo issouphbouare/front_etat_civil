@@ -17,15 +17,14 @@ export class AuthService {
 
   constructor(private http : HttpClient,private router : Router) { }
   
-     
+    //base="http://localhost:8082/" 
+    base="http://62.171.169.168:8082/"; /*connexion au serveur distant*/
  
- baseUrl: string = "http://localhost:8082/login/";  
-
- //baseUrl="https://gestiseance.herokuapp.com/login/"; /*connexion au serveur distant*/
+ baseUrl: string = this.base+"login/";  
 
  
  getCon(c : string):Observable<any>{
-   return this.http.get<any>(c);
+   return this.http.get<any>(this.baseUrl+c);
  }
 
  getUser(tel:number):Observable<Militant>

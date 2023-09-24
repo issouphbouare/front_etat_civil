@@ -14,7 +14,6 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./details-actualite.component.css']
 })
 export class DetailsActualiteComponent {
-  public urlUser: string= "http://localhost:8082/login/";
   public user:any;
   formEdit : FormGroup= new FormGroup({});
   public actualite : any;
@@ -46,7 +45,7 @@ export class DetailsActualiteComponent {
     this.urlImageTitre=this.apiService.urlImageTitre
     this.edit=false; this.img=true; this.titre=true;
 
-    this.authService.getCon(this.urlUser+this.authService.loggedMilitant).
+    this.authService.getCon(this.authService.loggedMilitant.toString()).
     subscribe( data => {
       this.user=data; 
     },err=>{console.log(err);});
@@ -133,24 +132,8 @@ export class DetailsActualiteComponent {
 
   uploadTitre(): void {
     //this.progress = 0;
-    if (this.selectedFile) {
-      this.uploadImageService.editTitre(this.selectedFile, this.actualite.imageTitre.id).subscribe(
-        (response: any) => {
-          console.log('Upload successful:', response);
-          alert("Image de titre Changé avec succès");
-          this.getActualite();
-          window.location.reload();
-          if (response.type === HttpEventType.UploadProgress) {
-            
-          } else if (response instanceof HttpResponse) {
-          }
-        },
-        error => {
-          console.error('Upload error:', error);
-          // Traitez les erreurs d'upload ici
-        }
-      ); this.selectedFile = null;
-    }  
+   if(this.actualite.imageTitre) this.updateTitre() 
+   else this.addTitre() 
   }
 
   uploadIm(): void {
@@ -185,8 +168,8 @@ export class DetailsActualiteComponent {
       );
 
       alert("Actualité "+i.name+" supprimé avec succes");
-      this.getActualite();
-      window.location.reload();
+      //this.getActualite();
+      //window.location.reload();
     }
   }
 
@@ -211,4 +194,48 @@ export class DetailsActualiteComponent {
       
     });
   }
+
+  updateTitre(){
+    if (this.selectedFile) {
+      this.uploadImageService.editTitre(this.selectedFile, this.actualite.imageTitre.id).subscribe(
+        (response: any) => {
+          console.log('Upload successful:', response);
+          alert("Image de titre Changée avec succès");
+          this.getActualite();
+          window.location.reload();
+          if (response.type === HttpEventType.UploadProgress) {
+            
+          } else if (response instanceof HttpResponse) {
+          }
+        },
+        error => {
+          console.error('Upload error:', error);
+          // Traitez les erreurs d'upload ici
+        }
+      ); this.selectedFile = null;
+    }
+  }
+
+  addTitre(){
+    if (this.selectedFile) {
+      this.uploadImageService.uploadTitre(this.selectedFile, this.actualite.id).subscribe(
+        (response: any) => {
+          console.log('Upload successful:', response);
+          alert("Image de titre ajoutée avec succès");
+          this.getActualite();
+          window.location.reload();
+          if (response.type === HttpEventType.UploadProgress) {
+            
+          } else if (response instanceof HttpResponse) {
+          }
+        },
+        error => {
+          console.error('Upload error:', error);
+          // Traitez les erreurs d'upload ici
+        }
+      ); this.selectedFile = null;
+    }
+  }
+
+
 }

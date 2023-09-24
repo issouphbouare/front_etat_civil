@@ -73,6 +73,9 @@ const routes: Routes = [
  {path : "editDivision/:id" , component : EditDivisionComponent },
  {path : "users" , component : UsersComponent },
  {path : "editUser/:id" , component : EditUserComponent },
+ // Ajoutez vos autres routes ici
+ { path: '', redirectTo: '/login', pathMatch: 'full' }, // Redirection par défaut
+ { path: '**', redirectTo: '/login' }, // Redirection pour les routes inconnues
 ];
 
 @NgModule({

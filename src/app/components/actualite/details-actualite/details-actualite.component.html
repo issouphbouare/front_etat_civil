@@ -102,8 +102,12 @@
                                             <button class="btn btn-secondary" *ngIf="!titre"
                                             (click)="OnOut1()"><i class="bi bi-arrow-left"></i></button>                                   
                                         </div>
-                                        <div class="col-md-10">
+                                        <div class="col-md-8">
                                             <h4>Image de titre</h4>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <button (click)="OnUp1()" *ngIf="titre && !actualite.imageTitre"
+                                                     class="btn btn-secondary"><i class="bi bi-plus"></i></button>
                                         </div>
                                     </div>
                                     

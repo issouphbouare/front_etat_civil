@@ -10,11 +10,10 @@ import { MilitantService } from 'src/app/services/militant.service';
   styleUrls: ['./password.component.css']
 })
 export class PasswordComponent {
-public url: string= "http://localhost:8082/login/";
-  public url1: string="http://localhost:8082/militants/";
+  base="http://62.171.169.168:8082"; /*connexion au serveur distant*/
+  public url1: string=this.base+"/militants/";
+ 
 
-  //public url: string="https://gestiseance.herokuapp.com/login/"; /*connexion au serveur distant*/
-  //public url1: string="https://gestiseance.herokuapp.com/professeurs/"; /*connexion au serveur distant*/
 
   public url2 : string='';
   public telephone : number=0;
@@ -36,7 +35,7 @@ public url: string= "http://localhost:8082/login/";
   ngOnInit() {
     console.log(this.authService.loggedMilitant);
     this.telephone=this.authService.loggedMilitant;
-    this.authService.getCon(this.url+this.telephone).
+    this.authService.getCon(this.telephone.toString()).
   subscribe( data => {
     this.militant=data;
      console.log(this.militant);

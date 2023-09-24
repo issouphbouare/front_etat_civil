@@ -10,12 +10,10 @@ import { MilitantService } from 'src/app/services/militant.service';
   styleUrls: ['./profil.component.css']
 })
 export class ProfilComponent {
-public url: string= "http://localhost:8082/login/";
-public url1: string="http://localhost:8082/militants/";
-public url3: string="http://localhost:8082/divisions/";
+public  base="http://62.171.169.168:8082"; /*connexion au serveur distant*/
+public url1: string=this.base+"/militants/";
+public url3: string=this.base+"/divisions/";
 
-  //public url: string="https://gestiseance.herokuapp.com/login/"; /*connexion au serveur distant*/
-  //public url1: string="https://gestiseance.herokuapp.com/professeurs/"; /*connexion au serveur distant*/
 
   public division: any;
   public divisions :any;
@@ -40,7 +38,7 @@ public url3: string="http://localhost:8082/divisions/";
   ngOnInit() {
     console.log(this.authService.loggedMilitant);
     this.telephone=this.authService.loggedMilitant;
-    this.authService.getCon(this.url+this.telephone).
+    this.authService.getCon(this.telephone.toString()).
   subscribe( data => {
     this.militant=data; 
     this.phone=this.militant.telephone;
@@ -174,7 +172,6 @@ selectedValue: string='';
     console.log(this.url1+this.militant.id);
     this.url2=this.url1+this.militant.id;
 
-    console.log(this.url);
     if(this.formEdit.value.section=="Secondaire") {
       this.formEdit.value.subdivision="";
     }

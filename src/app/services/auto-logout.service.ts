@@ -4,7 +4,7 @@ import { Injectable, HostListener } from '@angular/core';
   providedIn: 'root',
 })
 export class AutoLogoutService {
-  private inactivityTimeout: number = 15 * 60 * 1000; // 5 minutes en millisecondes
+  private inactivityTimeout: number = 15 * 60 * 1000; // 15 minutes en millisecondes
   private logoutTimer: any;
 
   constructor() {

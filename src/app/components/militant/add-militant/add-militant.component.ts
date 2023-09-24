@@ -24,9 +24,10 @@ export class AddMilitantComponent implements OnInit {
 selectedCoordination: any;
 //divisions: any[] = [];
 selectedDivision: string='';
-sub :string ="text";
+sub :string ="hidden";
 etape2: boolean = false;
   isFemale: boolean = false;
+  affiche:boolean=false;
 
 
 
@@ -53,7 +54,7 @@ etape2: boolean = false;
       genre : ['',Validators.required],
       statut : ['',Validators.required]
     });
-    this.sub="text"; this.etape2=false;
+    this.sub="hidden"; this.etape2=false; this.affiche=false;
     this.onGetCoordinations()
   }
 
@@ -85,6 +86,7 @@ onGetCoordinations(){
      console.log(this.selectedCoordination);
     this.apiService.getDivisionsByCoordination(this.selectedCoordination).subscribe((data: any)=>{
       this.divisions=data;
+      if(data!=null) this.affiche=true;
         
         }, err=>{
             console.log(err);
@@ -144,7 +146,7 @@ selectedValue: string='';
     subscribe( data => {
         alert("Le Compte du Militant(e) Mr/Mme : "+this.formAdd.value.nom+
         "  de login : "+this.formAdd.value.telephone+
-        "  et de mot de passe : 0000 est crée avec succès !"); 
+        "  et de mot de passe : 0000 est crée avec succès  mais pour pouvoir se connecter veuillez activer votre compte auprès de votre Secrétaire de Division"); 
         this.router.navigate(['login']);
       },err=>{
         console.log(err);

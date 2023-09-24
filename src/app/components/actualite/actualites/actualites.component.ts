@@ -12,7 +12,6 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./actualites.component.css']
 })
 export class ActualitesComponent {
-  public url: string= "http://localhost:8082/login/";
   public user:any;
   
   public urlImageTitre : string ='';
@@ -36,7 +35,7 @@ export class ActualitesComponent {
     this.urlImageTitre=this.apiService.urlImageTitre
     this.onGetAllActualite();
 
-    this.authService.getCon(this.url+this.authService.loggedMilitant).
+    this.authService.getCon(this.authService.loggedMilitant.toString()).
     subscribe( data => {
       this.user=data; 
     },err=>{console.log(err);});

@@ -9,14 +9,11 @@ import { Document } from '../models/document';
   providedIn: 'root'
 })
 export class DocumentService { 
-  //base="http://62.171.169.168:8080/Synefct_documents-0.0.1-SNAPSHOT"
-  base="http://localhost:8082"
+  base="http://62.171.169.168:8082"; /*connexion au serveur distant*/
+  //base="http://localhost:8082"
   baseUrl=this.base+"/documents";
   urlDownload=this.base+"/files/";
   urlSearch=this.base+"/searchDocumentParCategorie?";
-  
-  //baseUrl="https://gestiseance.herokuapp.com/matieres"; /*connexion au serveur distant*/
-
 
   constructor(private http: HttpClient) { }
 

@@ -15,7 +15,8 @@ export class EditDivisionComponent implements OnInit {
   public donnee:any;
   public coordination: any;
   public coordinations: any;
-  public base : string="http://localhost:8082/divisions/";
+  //public base : string="http://localhost:8082/divisions/";
+  public base="http://62.171.169.168:8082/divisions/"; /*connexion au serveur distant*/
   public nbPage : number=0;
   public pages : Array<number>=[];
   public url: string='';

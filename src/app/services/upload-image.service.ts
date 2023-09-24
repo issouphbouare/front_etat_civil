@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UploadImageService {
-  //private baseUrl="http://62.171.169.168:8080/Synefct_documents-0.0.1-SNAPSHOT"
-  private baseUrl = 'http://localhost:8082';
+  private baseUrl="http://62.171.169.168:8082"; /*connexion au serveur distant*/
+  //private baseUrl = 'http://localhost:8082';
 
   constructor(private http: HttpClient) {}
    

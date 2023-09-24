@@ -16,9 +16,6 @@ export class LoginComponent implements OnInit {
   public erreur: number = 0;
   public erreur1: number = 0;
   login: FormGroup = new FormGroup({});
-  baseUrl: string = "http://localhost:8082/login/";
-
-  //baseUrl: string="http://62.171.169.168:8080/Synefct_documents-0.0.1-SNAPSHOT/login/"; /*connexion au serveur distant*/
 
   constructor(private formBuilder: FormBuilder, private userService: UserService,
     private apiResponse: AuthService, private location: Location,
@@ -40,8 +37,7 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
     console.log(this.login.value);
-    console.log(this.baseUrl + this.login.value.telephone)
-    const a = this.apiResponse.getCon(this.baseUrl + this.login.value.telephone).
+    const a = this.apiResponse.getCon(this.login.value.telephone).
       subscribe((data: any) => {
         this.user = data;
         console.log(this.user);
