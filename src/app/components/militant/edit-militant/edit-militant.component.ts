@@ -95,18 +95,14 @@ export class EditMilitantComponent {
       this.formEdit.value.prenom=this.formEdit.value.prenom.charAt(0).toUpperCase()+ this.formEdit.value.prenom.slice(1);
       this.formEdit.value.subdivision=this.formEdit.value.subdivision.charAt(0).toUpperCase()+ this.formEdit.value.subdivision.slice(1);
       this.formEdit.value.comite=this.formEdit.value.comite.charAt(0).toUpperCase()+ this.formEdit.value.comite.slice(1);
-      this.apiService.Update(this.militant._links.self.href, this.formEdit.value).
+      this.apiService.Update(this.militant.id.toString(), this.formEdit.value).
       subscribe( data => {
         console.log(data);
-        //this.getMilitant();
-        //alert("Compte de Mr/Mme  "+this.formEdit.value.nom+"  modifiée avec succès ");
+        this.getMilitant();
 
        this.route.navigate(['militants']);
-       window.location.reload();
         }, err=>{
           console.log(err);
-          alert("Il  existe deja un militant avec le meme numero de telephone : "+this.formEdit.value.telephone+
-        "ou le meme numéro matricule : "+this.formEdit.value.matricule);
         });  
     }
 

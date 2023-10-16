@@ -3,101 +3,58 @@
         <div class="card-header">
             <div class="row">
                 <div class="col-md-2">
-                    <a routerLink="/avancements" class="btn btn-light float-right"><i class="bi bi-arrow-left"></i></a>
+                    <a routerLink="/integrations" class="btn btn-light float-right"><i class="bi bi-arrow-left"></i></a>
                 </div>
                 <div class="col-md-8" style="text-align: center;">
-                    <h4>AJOUT  INTEGRATION </h4>
+                    <h4>AJOUT  INTEGRATION</h4>
                 </div>
                 <div class="col-md-2"></div>
             </div>
         </div>
         <div class="card-body">
-             <div class="row">
-            <div class="col-md-10" *ngIf="!fich">
-                <div class="card">
-                    <div class="card-header" style="text-align: center;">
-                        <h4>Etape 1</h4>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-10" *ngIf="!currentFile">
+                      <label class="btn btn-default p-0">
+                        <input type="file" (change)="selectFile($event)" />
+                      </label>
                     </div>
-                    <div class="card-body">
-                            <form [formGroup]="formAdd" (ngSubmit)="onSubmit()">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <label>Titre</label>
-                                            <input type="text" formControlName="titre" class="form-control"
-                                                placeholder="au moins 3 letttres " [disabled]="active">
-                                            <p style="color: brown;" *ngIf="!formAdd.controls['titre'].valid"> (Le premier
-                                                caractere doit etre une lettre majuscule ) </p>
-                                            <input type="hidden" formControlName="categorie" class="form-control" [(ngModel)]="default" >
-                                            <input type="hidden" formControlName="type" class="form-control" [(ngModel)]="default" >
-                                            <label>Description</label>
-                                            <textarea type="" formControlName="description" class="form-control"
-                                                placeholder="au moins 3 letttres "></textarea>
-                                            <p style="color: brown;" *ngIf="!formAdd.controls['description'].valid"> (Le
-                                                premier caractere doit etre une lettre ) </p>
-    
-                                        </div>
-                                        <div class="form-group card mt-2">
-                                            <button [disabled]="!formAdd.valid" type="submit" *ngIf="active"
-                                                class="btn btn-secondary px-4">Suivant<i class="bi bi-arrow-right"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
+                  
+                    <div class="col-2">
+                      <button *ngIf="!currentFile"
+                      class="btn btn-secondary btn-sm" [disabled]="!selectedFiles" (click)="upload()">
+                        Ajouter
+                      </button>
                     </div>
                 </div>
-            </div>
-
-            <div class="col-md-10" *ngIf="fich">
-                <div class="card">
-                    <div class="card-header" style="text-align: center;">
-                        <h4>Etape 2  Ajout des Fichiers</h4>
+                  
+                <div *ngIf="currentFile" class="progress my-3">
+                    <div
+                      class="progress-bar progress-bar-info progress-bar-striped"
+                      role="progressbar"
+                      attr.aria-valuenow="{{ progress }}"
+                      aria-valuemin="0"
+                      aria-valuemax="100"
+                      [ngStyle]="{ width: progress + '%' }"
+                    >
+                      {{ progress }}%
                     </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-10">
-                              <label class="btn btn-default p-0">
-                                <input type="file" (change)="selectFile($event)" />
-                              </label>
-                            </div>
+                </div>
                           
-                            <div class="col-2">
-                              <button class="btn btn-secondary btn-sm" [disabled]="!selectedFiles" (click)="upload()">
-                                Ajouter
-                              </button>
-                            </div>
-                        </div>
-                          
-                        <div *ngIf="currentFile" class="progress my-3">
-                            <div
-                              class="progress-bar progress-bar-info progress-bar-striped"
-                              role="progressbar"
-                              attr.aria-valuenow="{{ progress }}"
-                              aria-valuemin="0"
-                              aria-valuemax="100"
-                              [ngStyle]="{ width: progress + '%' }"
-                            >
-                              {{ progress }}%
-                            </div>
-                        </div>
-                                  
-                        <div class="card mt-1">
-                            <div
-                              class="list-group list-group-flush"
-                              *ngFor="let file of stringArray"
-                            >
-                            <div *ngIf="message" class="alert alert-secondary" role="alert"><p>{{ file }}</p></div>
-                          </div>
-                        </div>
-                        <div class="card mt-2">
-                            <button class="btn btn-secondary px-4"
-                               routerLink="/integrations">Terminer
-                            </button>
-                        </div>
-                    </div>
-                </div> 
+                <div class="card mt-1">
+                    <div
+                      class="list-group list-group-flush"
+                      *ngFor="let file of stringArray"
+                    >
+                    <div *ngIf="message" class="alert alert-secondary" role="alert"><p>{{ file }}</p></div>
+                  </div>
+                </div>
+                <div class="card mt-2">
+                    <button class="btn btn-secondary px-4"
+                       routerLink="/integrations">Terminer
+                    </button>
+                </div>
             </div>
-        </div>
     </div>
     </div>
 </div>

@@ -1,1 +1,147 @@
-<p>menu works!</p>
+<div class="container">
+    <div class="row ">
+        <div class="col-md-12 mt-8">
+            <div class="card">
+                
+                    <nav class="navbar navbar-expand-sm navbar-dark bg-secondary " >
+                        <div class="container-fluid">
+                          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
+                            <span class="navbar-toggler-icon"></span>
+                          </button>
+                          <div class="collapse navbar-collapse" id="mynavbar">
+                            <ul class="navbar-nav me-auto">
+                              <li class="nav-item">
+                                <a class="navbar-brand" aria-current="page" routerLink="/">Accueil</a>
+                            </li>
+                              <li class="nav-item" *ngIf="authService.isloggedIn">
+                                <a class="navbar-brand" routerLink="/actualites">Actualités</a>
+                            </li>
+                              <li class="nav-item">
+                                <a class="navbar-brand" routerLink="/apropos">A propos</a>
+                            </li>
+                            <li class="nav-item" *ngIf="authService.isloggedIn">
+                                <a class="navbar-brand" routerLink="/militants">Militants</a>
+                            </li>
+                            
+                            <li class="nav-item dropdown" *ngIf="authService.isloggedIn">
+                                <a class="navbar-brand" href="#" id="navbarScrollingDropdown" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Documents
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                                    <li><a class="dropdown-item" routerLink="/avancements">Avancements</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" routerLink="/integrations">Integrations</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item"
+                                            routerLink="/hierachisations">Hiérachisations</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" routerLink="/formations">Formations</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" routerLink="/autres">Autres</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item dropdown"
+                            *ngIf="authService.isloggedIn && (authService.poste=='Admin' || poste=='Admin')">
+                                <a class="navbar-brand" href="#" id="navbarScrollingDropdown" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Admin
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                                    <li><a class="dropdown-item" routerLink="/users">Users
+                                            </a></li>
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                            <li><a class="dropdown-item" routerLink="/coordinations">Coordinations
+                                                    </a></li>
+                                </ul>
+                            </li>
+                            </ul>
+                            <form class="d-flex"><ul class="navbar-nav"
+                                *ngIf="authService.username!='' || user!=''">
+                                <li class="button">
+                                    <a class="navbar-brand"></a>
+                                </li>
+                                <li class="nav-item dropdown" >
+                                    <a class="navbar-brand" href="#" id="navbarScrollingDropdown" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        {{authService.username}}
+                                         
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                                        <li *ngIf="authService.isloggedIn==false">
+                                            <a class="dropdown-item" routerLink="/addMilitant">S'inscrire</a></li>
+                                        <li>
+                                           
+                                        </li>
+                                        <li *ngIf="authService.isloggedIn==false">
+                                            <a class="dropdown-item" routerLink="/connect">Se connecter</a>
+                                        </li>
+                                                
+                                            
+                                        <li *ngIf="authService.isloggedIn">
+                                            <a class="dropdown-item" routerLink="/profil">Profil</a>
+                                        </li>
+                                        <li *ngIf="authService.isloggedIn">
+                                            <a class="dropdown-item" routerLink="/password">Mot de passe</a>
+                                        </li>
+                                        <li *ngIf="authService.isloggedIn">
+                                            <a class="dropdown-item" style="cursor: pointer;"
+                                            (click)="onDeconnecter()">Se deconnecter</a>
+                                        </li>
+                                    </ul>
+                                </li></ul>
+                              </form>
+
+                              <form class="d-flex"><ul class="navbar-nav"
+                                *ngIf="authService.username=='' || user==''">
+                                <li class="button">
+                                    <a class="navbar-brand"></a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="navbar-brand" href="#" id="navbarScrollingDropdown" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false">
+                                        Compte
+                                    </a>
+                                    <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                                        <li *ngIf="authService.isloggedIn==false">
+                                            <a class="dropdown-item" routerLink="/addMilitant">S'inscrire</a></li>
+                                        <li>
+                                           
+                                        </li>
+                                        <li *ngIf="authService.isloggedIn==false">
+                                            <a class="dropdown-item" routerLink="/connect">Se connecter</a>
+                                        </li>
+                                                
+                                            
+                                        <li *ngIf="authService.isloggedIn">
+                                            <a class="dropdown-item" routerLink="/profil">Profil</a>
+                                        </li>
+                                        <li *ngIf="authService.isloggedIn">
+                                            <a class="dropdown-item" routerLink="/password">Mot de passe</a>
+                                        </li>
+                                        <li *ngIf="authService.isloggedIn">
+                                            <a class="dropdown-item" style="cursor: pointer;"
+                                            (click)="onDeconnecter()">Se deconnecter</a>
+                                        </li>
+                                    </ul>
+                                </li></ul>
+                              </form>
+                          </div>
+                        </div>
+                      </nav>
+                
+            </div>
+        </div>
+    </div>
+</div>
+

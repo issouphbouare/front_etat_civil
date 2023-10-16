@@ -6,7 +6,7 @@ import { Apiresponse } from '../models/Apiresponse';
   providedIn: 'root'
 })
 export class DivisionService {
-  base="http://62.171.169.168:8082"; /*connexion au serveur distant*/
+  base="https://synefct.org/api"; /*connexion au serveur distant*/
   baseUrl=this.base+"/divisions";
     
   
@@ -38,11 +38,11 @@ export class DivisionService {
   }
 
   getDivByCoor(url:any):Observable<any>{
-    return this.http.get<Apiresponse>(url);
+    return this.http.get<Apiresponse>(this.base+"/coordinations/"+url+"/divisions");
   }
 
   getCoor(url:any):Observable<any>{
-    return this.http.get<Apiresponse>(url);
+    return this.http.get<Apiresponse>(this.base+"/coordinations/"+url);
   
   }
 }

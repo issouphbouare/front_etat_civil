@@ -8,7 +8,7 @@ import { Apiresponse } from '../models/Apiresponse';
 })
 export class FileUploadService {
   //private baseUrl = 'http://localhost:8082';
-  private baseUrl="http://62.171.169.168:8082"; /*connexion au serveur distant*/
+  private baseUrl="https://synefct.org/api"; /*connexion au serveur distant*/
 
   constructor(private http: HttpClient) { }
 

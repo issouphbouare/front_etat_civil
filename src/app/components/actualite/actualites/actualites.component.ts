@@ -66,7 +66,7 @@ export class ActualitesComponent {
   onDelete(a: any){
     if(confirm("Voulez-vous vraiment supprimer l'actualite  "+a.titre+ " ?")){
       console.log();
-      this.apiService.deleteActualite(a._links.self.href)
+      this.apiService.deleteActualite(a.id)
       .subscribe( data=>{
         this.onGetAllActualite();
     

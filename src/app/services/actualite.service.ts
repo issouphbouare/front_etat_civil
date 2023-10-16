@@ -9,7 +9,7 @@ import { Actualite } from '../models/actualite';
 })
 export class ActualiteService {
 
-  base="http://62.171.169.168:8082"; /*connexion au serveur distant*/
+  base="https://synefct.org/api"; /*connexion au serveur distant*/
 
   //base="http://localhost:8082"
   baseUrl=this.base+"/actualites";
@@ -31,7 +31,7 @@ export class ActualiteService {
   }
 
   getActualiteById(url: string):Observable<any>{
-    return this.http.get<Apiresponse>(url);
+    return this.http.get<Apiresponse>(this.baseUrl+"/"+url);
   }
   
 
@@ -40,7 +40,7 @@ export class ActualiteService {
   }
 
   UpdateActualite(url: string, actualite : Actualite):Observable<Apiresponse>{
-    return this.http.put<Apiresponse>(url, actualite);
+    return this.http.put<Apiresponse>(this.baseUrl+"/"+url, actualite);
   }
 
   getMaxId(){
@@ -48,11 +48,11 @@ export class ActualiteService {
   }
 
   deleteActualite(url: string){
-    return this.http.delete<Apiresponse>(url);
+    return this.http.delete<Apiresponse>(this.baseUrl+"/"+url);
   }
 
   getImagesActualite(a :any):Observable<any>{ 
-    return this.http.get<Apiresponse>(a+"/images");
+    return this.http.get<Apiresponse>(this.baseUrl+"/"+a+"/images");
   }
 
 }

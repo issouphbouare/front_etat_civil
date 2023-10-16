@@ -16,7 +16,6 @@ export class AddAvancementComponent implements OnInit {
   constructor(private formBuilder:FormBuilder,
     private apiService: DocumentService,private uploadService: FileUploadService,
     private  router:Router) { }
-  formAdd : FormGroup= new FormGroup({});
   active : boolean=true;
   idAv:number=0;
   fich: boolean=false;
@@ -27,48 +26,12 @@ export class AddAvancementComponent implements OnInit {
   currentFile?: File;
   progress = 0;
   message = '';
-  default: string="Avancement";
   stringArray: string[] = [];
 
 
   ngOnInit(): void {
-    this.formAdd=this.formBuilder.group({
-      titre : ['',[Validators.required, Validators.pattern("([A-Z]).{2,}")]],
-      description : ['',[Validators.required, Validators.pattern("([a-zA-Z]).{2,}")]],
-      categorie : ['',[Validators.required, Validators.pattern("([a-zA-Z]).{2,}")]],
-      type : ['',[Validators.required, Validators.pattern("([a-zA-Z]).{2,}")]],
-    });
-    this.fich=false; 
-    this.getId();
-  }
-
-  
-
-  onSubmit(){ 
-    console.log(this.formAdd.value);
-    this.apiService.Create(this.formAdd.value).
-    subscribe( (data:any) => {
-         
-        //this.router.navigate(['avancements']);
-      },err=>{
-        console.log(err);
-        //alert("Cette matiere existe deja !");
-      });
-      this.fich=true; //this.getId()
-      this.idAv+=1;
-
-}
-
-getId(){
-  this.apiService.getMaxId().
-  subscribe( (data:any) => { 
-    this.idAv=data;
-    console.log(data)
-  },err=>{
     
-  });
-}
-
+  }
 
 selectFile(event: any): void {
   this.selectedFiles = event.target.files;
@@ -83,7 +46,7 @@ upload(): void {
     if (file) {
       this.currentFile = file;
 
-      this.uploadService .upload(this.currentFile, (this.idAv).toString()).subscribe(
+      this.apiService .upload(this.currentFile, "A").subscribe(
         (event: any) => {
           if (event.type === HttpEventType.UploadProgress) {
             this.progress = Math.round(100 * event.loaded / event.total);

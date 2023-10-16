@@ -11,7 +11,7 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  public i:number=6;
+  //public i:number=6;
   public total:number=0;
   public username:any;
 
@@ -33,7 +33,7 @@ export class HeaderComponent {
     this.router.navigate(['/login']);
     else
     this.authService.setLoggedProfFromLocalStorage(loggedMilitant);
-  this.getMilitantActif();
+  this.getMilitantTotal();
 
   }
   onDeconnecter(){
@@ -44,8 +44,8 @@ export class HeaderComponent {
 
   }
 
-  getMilitantActif(){
-    this.militantService.getMilitantActif().
+  getMilitantTotal(){
+    this.militantService.getMilitantTotal().
     subscribe( (data:any) => { 
       this.total=data;
       console.log(this.total);

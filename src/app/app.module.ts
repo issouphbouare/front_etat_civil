@@ -46,6 +46,7 @@ import { AddDivisionComponent } from './components/Admin/division/add-division/a
 import { EditDivisionComponent } from './components/Admin/division/edit-division/edit-division.component';
 import { UsersComponent } from './components/Admin/user/users/users.component';
 import { EditUserComponent } from './components/Admin/user/edit-user/edit-user.component';
+import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -99,7 +100,9 @@ import { EditUserComponent } from './components/Admin/user/edit-user/edit-user.c
     FormsModule,
     CarouselModule.forRoot()
   ],
-  providers: [],
+  providers: [
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

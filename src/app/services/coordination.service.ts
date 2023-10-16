@@ -6,7 +6,7 @@ import { Apiresponse } from '../models/Apiresponse';
   providedIn: 'root'
 })
 export class CoordinationService {
-  base="http://62.171.169.168:8082"; /*connexion au serveur distant*/
+  base="https://synefct.org/api"; /*connexion au serveur distant*/
 baseUrl=this.base+"/coordinations";
   
 
@@ -35,7 +35,7 @@ Update(url:any, m : any):Observable<Apiresponse>{
 }
 
 delete(url: any){
-  return this.http.delete<Apiresponse>(url);
+  return this.http.delete<Apiresponse>(this.baseUrl+"/"+url);
 }
 
 }

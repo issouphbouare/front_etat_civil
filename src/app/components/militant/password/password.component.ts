@@ -10,8 +10,6 @@ import { MilitantService } from 'src/app/services/militant.service';
   styleUrls: ['./password.component.css']
 })
 export class PasswordComponent {
-  base="http://62.171.169.168:8082"; /*connexion au serveur distant*/
-  public url1: string=this.base+"/militants/";
  
 
 
@@ -66,7 +64,7 @@ export class PasswordComponent {
   onSubmit(){
     //console.log(this.formEdit.value);
     //console.log(this.url1+this.militant.id);
-    this.url2=this.url1+this.militant.id;
+    //this.url2=this.url1+this.militant.id;
 
     console.log(this.url2);
     if(this.formEdit.value.section=="Secondaire") {
@@ -74,7 +72,7 @@ export class PasswordComponent {
     }
     if(this.militant.motDePasse==this.formEdit.value.actuelPassword && 
       this.formEdit.value.motDePasse==this.formEdit.value.confirmPassword ){
-        this.apiService.Update(this.url2, this.formEdit.value).
+        this.apiService.Update(this.militant.id.toString(), this.formEdit.value).
     subscribe( data => {
       //console.log(data);
       alert(" Mot de passe modifié avec succes !");
@@ -96,7 +94,7 @@ export class PasswordComponent {
     this.erreur=0; this.erreur1=0
   }
   onGetDivCur(){
-    this.apiService.getDivCur(this.url1+this.militant.id+"/division").
+    this.apiService.getDivCur(this.militant.id.toString()).
     subscribe(data => {
       this.division = data;
       console.log(this.division);

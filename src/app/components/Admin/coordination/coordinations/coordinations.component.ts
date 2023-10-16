@@ -46,7 +46,7 @@ export class CoordinationsComponent implements OnInit {
   onDelete(m:any){
     if(confirm("Voulez-vous vraiment supprimer la coordination  "+m.nom+ " ?")){
       console.log();
-      this.apiService.delete(m._links.self.href)
+      this.apiService.delete(m.id.toString())
       .subscribe( data=>{
         this.onGetAll();
     

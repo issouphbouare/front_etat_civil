@@ -12,6 +12,7 @@ import { MilitantService } from 'src/app/services/militant.service';
   styleUrls: ['./add-militant.component.css']
 })
 export class AddMilitantComponent implements OnInit {
+  base="https://synefct.org/api"; /*connexion au serveur distant*/
 
   public division: any;
   public divisions :any;
@@ -84,6 +85,7 @@ onGetCoordinations(){
   
   onGetDivByCoor(){
      console.log(this.selectedCoordination);
+     
     this.apiService.getDivisionsByCoordination(this.selectedCoordination).subscribe((data: any)=>{
       this.divisions=data;
       if(data!=null) this.affiche=true;

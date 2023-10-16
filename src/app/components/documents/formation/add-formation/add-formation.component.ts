@@ -11,10 +11,10 @@ import { Observable } from 'rxjs';
   styleUrls: ['./add-formation.component.css']
 })
 export class AddFormationComponent {
+  
   constructor(private formBuilder:FormBuilder,
     private apiService: DocumentService,private uploadService: FileUploadService,
     private  router:Router) { }
-  formAdd : FormGroup= new FormGroup({});
   active : boolean=true;
   idAv:number=0;
   fich: boolean=false;
@@ -25,62 +25,12 @@ export class AddFormationComponent {
   currentFile?: File;
   progress = 0;
   message = '';
-  default: string="Formation";
   stringArray: string[] = [];
-
-  selectedValue: string='';
-  options: { value: string, label: string }[] = [
-    { value: '', label: '' },
-    { value: 'Autorisation', label: 'Autorisation' },
-    { value: 'Congé de formation', label: 'Congé de formation' },
-    { value: "Rappel à l'activité", label: "Rappel à l'activité" },
-    { value: 'Affectation', label: 'Affectation' },
-    { value: 'Régularisation', label: 'Régularisation' },    
-  ];
-  onSelectionChange() {
-    // Cette fonction sera appelée lorsque la sélection change.
-    console.log('Option sélectionnée :', this.selectedValue);
-  }
 
 
   ngOnInit(): void {
-    this.formAdd=this.formBuilder.group({
-      titre : ['',[Validators.required, Validators.pattern("([A-Z]).{2,}")]],
-      description : ['',[Validators.required]],
-      categorie : ['',[Validators.required, Validators.pattern("([a-zA-Z]).{2,}")]],
-      type : ['',[Validators.required]],
-    });
-    this.fich=false; 
-    this.getId();
-  }
-
-  
-
-  onSubmit(){ 
-    console.log(this.formAdd.value);
-    this.apiService.Create(this.formAdd.value).
-    subscribe( (data:any) => {
-         
-        //this.router.navigate(['avancements']);
-      },err=>{
-        console.log(err);
-        //alert("Cette matiere existe deja !");
-      });
-      this.fich=true; //this.getId()
-      this.idAv+=1;
-
-}
-
-getId(){
-  this.apiService.getMaxId().
-  subscribe( (data:any) => { 
-    this.idAv=data;
-    console.log(data)
-  },err=>{
     
-  });
-}
-
+  }
 
 selectFile(event: any): void {
   this.selectedFiles = event.target.files;
@@ -95,7 +45,7 @@ upload(): void {
     if (file) {
       this.currentFile = file;
 
-      this.uploadService .upload(this.currentFile, (this.idAv).toString()).subscribe(
+      this.apiService .upload(this.currentFile, "F").subscribe(
         (event: any) => {
           if (event.type === HttpEventType.UploadProgress) {
             this.progress = Math.round(100 * event.loaded / event.total);
@@ -125,5 +75,3 @@ upload(): void {
 
 
 }
-
-

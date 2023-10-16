@@ -38,6 +38,7 @@ export class DetailsActualiteComponent {
         contenu : ['',[Validators.required]],      });
 
        this.url=this.router.snapshot.params['id']
+       console.log(this.url)
        this.getActualite();
        this.getId();
       
@@ -57,7 +58,8 @@ export class DetailsActualiteComponent {
     
     
      onGetImages(a : any){
-      this.apiService.getImagesActualite(this.url).
+      //console.log(this.base+"/actualites/"+this.url)
+      this.apiService.getImagesActualite(this.url.toString()).
           subscribe((data: any)=>{
                         this.images=data;
                         console.log(this.images);
@@ -71,7 +73,7 @@ export class DetailsActualiteComponent {
      onDelete(a: any){
       if(confirm("Voulez-vous vraiment supprimer l'actualité  "+a.titre+ " ?")){
         console.log();
-        this.apiService.deleteActualite(a._links.self.href)
+        this.apiService.deleteActualite(a.id)
         .subscribe( data=>{
             this.getActualite();          
             this.route.navigate(['actualites']);
@@ -155,9 +157,9 @@ export class DetailsActualiteComponent {
   }
 
   onDeleteImg(i :any): void {
-    if(confirm("Voulez-vous vraiment supprimer l'actualité  "+i.titre+ " ?")){
+    if(confirm("Voulez-vous vraiment supprimer cette image  "+i.name+ " ?")){
       console.log();
-      this.uploadImageService.delete(i._links.self.href)
+      this.uploadImageService.delete(i.id.toString())
       .subscribe( data=>{
           this.getActualite();          
           this.route.navigate(['actualites']);
@@ -179,7 +181,7 @@ export class DetailsActualiteComponent {
           subscribe((data: any)=>{
                         this.actualite=data;
                         console.log(this.actualite);
-                        this.onGetImages(data._links.images.href)
+                        this.onGetImages(data.id)
           }, err=>{
               console.log(err);
              } );

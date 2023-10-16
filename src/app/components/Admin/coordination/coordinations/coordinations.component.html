@@ -26,7 +26,7 @@
                                 <td>
                                     <button [routerLink]="['/divisions',m.id]"
                                         class="btn btn-light"><i class="bi bi-listt">Voir ses divisions</i></button>
-                                    <button [routerLink]="['/editCoordination',m._links.self.href]"
+                                    <button [routerLink]="['/editCoordination',m.id]"
                                         class="btn btn-light"><i class="bi bi-pencil"></i></button>
                                     <button (click)="onDelete(m)" class="btn btn-light"><i class="bi bi-trash"></i></button>
 

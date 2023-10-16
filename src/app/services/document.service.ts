@@ -9,11 +9,12 @@ import { Document } from '../models/document';
   providedIn: 'root'
 })
 export class DocumentService { 
-  base="http://62.171.169.168:8082"; /*connexion au serveur distant*/
+  base="https://synefct.org/api"; /*connexion au serveur distant*/
   //base="http://localhost:8082"
-  baseUrl=this.base+"/documents";
-  urlDownload=this.base+"/files/";
-  urlSearch=this.base+"/searchDocumentParCategorie?";
+  baseUrl=this.base+"/file";
+  urlDownload=this.base+"/filedownload";
+  urlUpload=this.base+"/fileupload";
+  urlSearch=this.base+"/search";
 
   constructor(private http: HttpClient) { }
 
@@ -34,19 +35,20 @@ export class DocumentService {
   }
 
   searchAvancement(url: string):Observable<any>{
-    return this.http.get<Apiresponse>(this.urlSearch+"categorie=Avancement&keyword="+url);
+    console.log(this.urlSearch+"A?keyword="+url)
+    return this.http.get<Apiresponse>(this.urlSearch+"A?keyword="+url);
   }
   searchIntegration(url: string):Observable<any>{
-    return this.http.get<Apiresponse>(this.urlSearch+"categorie=Integration&keyword="+url);
+    return this.http.get<Apiresponse>(this.urlSearch+"I?keyword="+url);
   }
   searchFormation(url: string):Observable<any>{
-    return this.http.get<Apiresponse>(this.urlSearch+"categorie=Formation&keyword="+url);
+    return this.http.get<Apiresponse>(this.urlSearch+"F?keyword="+url);
   }
   searchHierachisation(url: string):Observable<any>{
-    return this.http.get<Apiresponse>(this.urlSearch+"categorie=Hierachisation&keyword="+url);
+    return this.http.get<Apiresponse>(this.urlSearch+"H?keyword="+url);
   }
   searchAutre(url: string):Observable<any>{
-    return this.http.get<Apiresponse>(this.urlSearch+"categorie=Autre&keyword="+url);
+    return this.http.get<Apiresponse>(this.urlSearch+"Autre?keyword="+url);
   }
 
   getFile(url: any):Observable<any>{
@@ -65,7 +67,7 @@ export class DocumentService {
   }
 
   delete(url: string){
-    return this.http.delete<Apiresponse>(this.baseUrl+"/"+url);
+    return this.http.delete<Apiresponse>(this.base+url);
   }
 
   deleteFile(url: string){
@@ -75,17 +77,19 @@ export class DocumentService {
     return this.http.get<Apiresponse>(this.base+"/maxIdDoc")
   }
 
-  upload(file: File, id:any): Observable<HttpEvent<any>> {
+  upload(file: File, url:string): Observable<HttpEvent<any>> {
     const formData: FormData = new FormData();
 
     formData.append('file', file);
 
-    const req = new HttpRequest('POST', `${this.base}/upload/`+id, formData, {
+    const req = new HttpRequest('POST', `${this.base}/fileupload`+url, formData, {
       reportProgress: true,
       responseType: 'json'
     });
 
     return this.http.request(req);
   }
+
+  
 
 }

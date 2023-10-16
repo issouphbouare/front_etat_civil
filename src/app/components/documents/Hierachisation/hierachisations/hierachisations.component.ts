@@ -11,13 +11,12 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./hierachisations.component.css']
 })
 export class HierachisationsComponent {
-  public user:any;
   public hierachisations: any;
   public files : any;
-  public av=1;
   keyword: string = '';
   urlDownload: string='';
   idAv: number =0;
+  user:any ;
 
   constructor(private http: HttpClient, private authService: AuthService,
     private apiService: DocumentService,
@@ -25,11 +24,11 @@ export class HierachisationsComponent {
 
 
   ngOnInit(): void {
-    this.av=1;
+   
     this.search();
-    this.urlDownload=this.apiService.urlDownload;
-    this.getMaxId();
-
+    this.urlDownload=this.apiService.urlDownload+"H/";
+    
+    //this.telephone=this.authService.loggedMilitant;
     this.authService.getCon(this.authService.loggedMilitant.toString()).
   subscribe( data => {
     this.user=data; 
@@ -47,45 +46,11 @@ export class HierachisationsComponent {
       }
     );
   }
-  getMaxId(){
-    this.apiService.getMaxId().
-    subscribe( (data:any) => { 
-      this.idAv=data;
-      console.log(data)
-    },err=>{
-      
-    });
-  }
-
-
   
-
-  
-
- 
-
-  onGetFile(url :any){
-    this.av=0;
-    console.log(url);
-    this.apiService.getFile(url)
-    .subscribe((data: any) => { // Utilisez un type générique 'any' pour 'data'
-      this.files = data;
-      console.log(this.files);
-    }, err => {
-      console.log(err);
-    });
-
-  }
-
-  
-  
-
-  
-
   onDelete(a: any){
     if(confirm("Voulez-vous vraiment supprimer ce document ?")){
       console.log();
-      this.apiService.delete(a)
+      this.apiService.delete("/fileHs/"+a)
       .subscribe( data=>{
         this.search();
     
@@ -94,13 +59,11 @@ export class HierachisationsComponent {
         }
       );
 
-    alert("Hierachisation  supprimé avec succes");
+    alert("Document  supprimé avec succes");
   }
     
   }
-  onRetour(){
-    this.av=1;
-  }
+  
 
 }
 

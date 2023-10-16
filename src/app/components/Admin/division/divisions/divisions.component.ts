@@ -13,7 +13,7 @@ export class DivisionsComponent implements OnInit {
   public donnees:any;
   public coordination: any;
   //public base : string="http://localhost:8082/coordinations/";
-  public base="http://62.171.169.168:8082/coordinations/"; /*connexion au serveur distant*/
+ // public base="https://62.171.169.168:8082/coordinations/"; /*connexion au serveur distant*/
   public nbPage : number=0;
   public pages : Array<number>=[];
   public url: string='';
@@ -30,7 +30,7 @@ export class DivisionsComponent implements OnInit {
   }
 
   onGetByCoor(){
-    this.apiService.getDivByCoor(this.base+this.url+"/divisions")
+    this.apiService.getDivByCoor(this.url.toString())
     .subscribe((data: any)=>{
     
     this.donnees=data;
@@ -42,7 +42,7 @@ export class DivisionsComponent implements OnInit {
   }
 
   onGetCoor(){
-    this.apiService.getCoor(this.base+this.url)
+    this.apiService.getCoor(this.url.toString())
     .subscribe((data: any)=>{
     
     this.coordination=data;

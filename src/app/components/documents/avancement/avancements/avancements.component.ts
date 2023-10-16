@@ -13,7 +13,6 @@ import { AuthService } from 'src/app/services/auth.service';
 export class AvancementsComponent {
   public avancements: any;
   public files : any;
-  public av=1;
   keyword: string = '';
   urlDownload: string='';
   idAv: number =0;
@@ -25,10 +24,9 @@ export class AvancementsComponent {
 
 
   ngOnInit(): void {
-    this.av=1;
+   
     this.search();
-    this.urlDownload=this.apiService.urlDownload;
-    this.getMaxId();
+    this.urlDownload=this.apiService.urlDownload+"A/";
     
     //this.telephone=this.authService.loggedMilitant;
     this.authService.getCon(this.authService.loggedMilitant.toString()).
@@ -48,15 +46,7 @@ export class AvancementsComponent {
       }
     );
   }
-  getMaxId(){
-    this.apiService.getMaxId().
-    subscribe( (data:any) => { 
-      this.idAv=data;
-      console.log(data)
-    },err=>{
-      
-    });
-  }
+  
 
 
   
@@ -66,15 +56,7 @@ export class AvancementsComponent {
  
 
   onGetFile(url :any){
-    this.av=0;
-    console.log(url);
-    this.apiService.getFile(url)
-    .subscribe((data: any) => { // Utilisez un type générique 'any' pour 'data'
-      this.files = data;
-      console.log(this.files);
-    }, err => {
-      console.log(err);
-    });
+    
 
   }
 
@@ -86,7 +68,7 @@ export class AvancementsComponent {
   onDelete(a: any){
     if(confirm("Voulez-vous vraiment supprimer ce document ?")){
       console.log();
-      this.apiService.delete(a)
+      this.apiService.delete("/fileAs/"+a)
       .subscribe( data=>{
         this.search();
     
@@ -99,9 +81,7 @@ export class AvancementsComponent {
   }
     
   }
-  onRetour(){
-    this.av=1;
-  }
+  
 
 }
 

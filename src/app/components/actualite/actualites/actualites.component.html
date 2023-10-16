@@ -17,7 +17,7 @@
                     </div>
                 </div> <br>
                 <div class="card-body" *ngIf="actualites">
-                    <div class="card clickable-div" [routerLink]="['/detailsActualite',c._links.self.href]"
+                    <div class="card clickable-div" [routerLink]="['/detailsActualite',c.id]"
                      *ngFor="let c of actualites._embedded.actualites">
                         <div class="card-header">
                             <h5 style="text-align: center;">

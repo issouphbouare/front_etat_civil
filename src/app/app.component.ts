@@ -9,6 +9,6 @@ import { AutoLogoutService } from './services/auto-logout.service';
 export class AppComponent {
   title = 'site synefct';
 
-  constructor(private autoLogoutService: AutoLogoutService,
+  constructor(
     ) { }
 }

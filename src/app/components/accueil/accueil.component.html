@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-12 mt-8">
+        <div class="col-md-12 mt-8" *ngIf="actualites">
             <div class="card">
                 <div class="card-header">
                     <h5>A la une
@@ -11,12 +11,12 @@
                             <div class="col-md-12">
                                 <div class="container">
                                     <div class="row">
-                                        <div class="col-md-7" *ngIf="actualites">
+                                        <div class="col-md-7" >
                                             <carousel >
                                                 <slide *ngFor="let c of actualites._embedded.actualites">
                                                     <img [src]="urlImageTitre+c.imageTitre.id" class="img-thumbnail" *ngIf="c.imageTitre">
                                                     <div class="carousel-caption clickable-div" *ngIf="authService.isloggedIn"
-                                                    [routerLink]="['/detailsActualite',c._links.self.href]">
+                                                    [routerLink]="['/detailsActualite',c.id]">
                                                       <h4>{{ c.titre }}</h4>  
                                                       </div>
                                                 </slide>
@@ -63,7 +63,7 @@
 
                 </div>
             </div>
-    </div><br />
+    </div><br *ngIf="actualites" />
 
     <div class="row">
         <div class="col-md-12 mt-8">
@@ -108,7 +108,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div *ngIf="contentVisible" class="row content-box" style="text-align: justify;">
+                        <div  *ngIf="contentVisible" class="row content-box" style="text-align: justify;">
                             <p>
                                 Aussi, faut- il ajouter la création du journal « SYNEFCT
                                 INFORMATIONS » qui est une manifestation
@@ -128,7 +128,8 @@
                             <p>
                                 
                             </p>
-                            <ul style="list-style-type:square; margin: 30px;">
+                            <p>
+                            <ul style="list-style-type:square; margin-left: 5px;">
                                 <li>Créer un compte ;</li>
                                 <li>
                                     Consulter des informations relatives aux différentes activités
@@ -153,7 +154,7 @@
                                 :
 
                             </p>
-                            <ul style="margin: 30px;">
+                            <ul style="margin-left: 5px;">
                                 <li>
                                     le syndicalisme désintéressé ;
                                 </li>
@@ -297,8 +298,117 @@
                         </div>
                     
                 </div>
-    </div> <br/>
+    </div>
+    <div class="row">
+        <div class="col-md-12 mt-8">
+            <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <img class="img-thumbnail"
+                                                src="../assets/images/sg/13.jpeg">
+                                                <p>M.Yaya Dembélé 5 ème adjoint au secrétaire à l'organisation et aux logistiques</p>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <img class="img-thumbnail" src="../assets/images/sg/14.jpeg">
+                                            <p>M.Abdoulaye Sacko 1er adjoint secrétaire aux finances et à la comptabilité</p>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <img class="img-thumbnail"
+                                                src="../assets/images/sg/15.jpeg">
+                                                <p>M.Gaoussou Dembélé 2e secrétaire général adjoint pour la formation et la syndicalisation</p>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <img class="img-thumbnail" src="../assets/images/sg/16.jpeg">
+                                            <p>M.Moussa M KEITA, 3ème secrétaire Adjoint à la revendication</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
+                </div>
+            
+        </div>
+</div>
+
+<div class="row">
+        <div class="col-md-12 mt-8">
+            <div class="card">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <img class="img-thumbnail"
+                                                src="../assets/images/sg/17.jpeg">
+                                                <p>Mme.Mah Fatoumata TRAORE 3ème secrétaire à l'organisation BEN SYNEFCT</p>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <img class="img-thumbnail" src="../assets/images/sg/18.jpeg">
+                                            <p>M.Adama BANGALY, Secrétaire aux revendications du BEN/SYNEFCT</p>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <img class="img-thumbnail"
+                                                src="../assets/images/sg/19.jpeg">
+                                                <p>M.Donegué Diarra  Secrétaire adjoint au compte</p>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <img class="img-thumbnail" src="../assets/images/sg/20.jpeg">
+                                            <p>M.Dougakoro dit Seydou Koumaré ,Commissaire aux comptes</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            
+        </div>
+</div>
+<div class="row">
+    <div class="col-md-12 mt-8">
+        <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-md-3">
+                                        <img class="img-thumbnail"
+                                            src="../assets/images/sg/21.jpeg">
+                                            <p>21M.Yamoudou Soumano, Secrétaire  Adjoint au droit de l'homme</p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <img class="img-thumbnail" src="../assets/images/sg/22.jpeg">
+                                        <p>Secrétaire adjoint à la syndicalisation</p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <img class="img-thumbnail"
+                                            src="../assets/images/sg/23.jpeg">
+                                            <p>M.Oumar TRAORE,Secrétaire Administratif</p>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <img class="img-thumbnail" src="../assets/images/sg/24.jpeg">
+                                        <p>M.Sekou KEITA,  3ème Adjoint au Secrétaire à l’Education et à la Formation</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        
+    </div>
+</div>
+     <br/>
     <div class="row">
                 <div class="col-md-12 mt-8">
                     <div class="card">

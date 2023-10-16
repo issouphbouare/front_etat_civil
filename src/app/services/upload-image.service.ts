@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UploadImageService {
-  private baseUrl="http://62.171.169.168:8082"; /*connexion au serveur distant*/
+  private baseUrl="https://synefct.org/api"; /*connexion au serveur distant*/
   //private baseUrl = 'http://localhost:8082';
 
   constructor(private http: HttpClient) {}
@@ -56,7 +56,7 @@ export class UploadImageService {
   }
 
   delete(url: string){
-    return this.http.delete(url);
+    return this.http.delete(this.baseUrl+"/images/"+url);
   }
 }
 

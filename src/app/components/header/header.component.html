@@ -1,185 +1,33 @@
 <div class="container">
-    <div class="row">
-        <div class="col-md-12 mt-8">
+    <div class="row ">
+        <div class="col-md-12">
             <div class="card">
+                <div class="container  " style="background-color: rgb(217, 224, 231);">
+                    <div class="row ">
 
-                <div class="container sticky-top " style="background-color: rgb(217, 224, 231);">
-                    <div class="row">
-
-                        <div class="col-md-2">
-                            <img src="../assets/images/logo/logo.jpg" width="100" height="50" title="Nvcv" />
+                        <div class="col-md-8">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <img src="../assets/images/logo/logo.jpg" width="130" height="55" />
+                                </div>
+                                <div class="col-md-10">
+                                    <p class="p">Syndicat National   des Enseignants <br>
+                                     Fonctionnaires   des Collectivités Territoriales </p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="scrolling-text">
-                            <h6><i>
-                                BIENVENUE A L'UNIVERS DU SYNEFCT
-                            </i></h6>
-                            <h6><i>Actuallement {{total}} militants à son actif</i></h6>
-                        </div>
-                        </div>
+                        
                         <div class="col-md-4" style="text-align: right;">
-                                <p>Liberté-Action-Solidarité</p>
+                                <p class="small-text">Liberté-Action-Solidarité <br>
+                                Actuallement {{total}} militants à son actif</p>
                                 
                               
                             
                         </div>
                     </div>
                 </div>
-
-                <div class="container " style="background-color: rgb(217, 224, 231);">
-                    <nav class="navbar navbar-expand-sm navbar-dark bg-secondary">
-                        <div class="container-fluid">
-                          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
-                            <span class="navbar-toggler-icon"></span>
-                          </button>
-                          <div class="collapse navbar-collapse" id="mynavbar">
-                            <ul class="navbar-nav me-auto">
-                              <li class="nav-item">
-                                <a class="navbar-brand" aria-current="page" routerLink="/">Accueil</a>
-                            </li>
-                              <li class="nav-item" *ngIf="authService.isloggedIn">
-                                <a class="navbar-brand" routerLink="/actualites">Actualités</a>
-                            </li>
-                              <li class="nav-item">
-                                <a class="navbar-brand" routerLink="/apropos">A propos</a>
-                            </li>
-                            <li class="nav-item" *ngIf="authService.isloggedIn">
-                                <a class="navbar-brand" routerLink="/militants">Militants</a>
-                            </li>
-                            
-                            <li class="nav-item dropdown" *ngIf="authService.isloggedIn">
-                                <a class="navbar-brand" href="#" id="navbarScrollingDropdown" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Documents
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                                    <li><a class="dropdown-item" routerLink="/avancements">Avancements</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" routerLink="/integrations">Integrations</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item"
-                                            routerLink="/hierachisations">Hiérachisations</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" routerLink="/formations">Formations</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" routerLink="/autres">Autres</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown"
-                            *ngIf="authService.isloggedIn && (authService.poste=='Admin' || poste=='Admin')">
-                                <a class="navbar-brand" href="#" id="navbarScrollingDropdown" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Admin
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                                    <li><a class="dropdown-item" routerLink="/users">Users
-                                            </a></li>
-                                            <li>
-                                                <hr class="dropdown-divider">
-                                            </li>
-                                            <li><a class="dropdown-item" routerLink="/coordinations">Coordinations
-                                                    </a></li>
-                                </ul>
-                            </li>
-                            </ul>
-                            <form class="d-flex"><ul class="navbar-nav"
-                                *ngIf="authService.username!=''">
-                                <li class="button" style="background-color: rgb(183, 195, 190);">
-                                    <a class="navbar-brand"></a>
-                                </li>
-                                <li class="nav-item dropdown" style="background-color: rgb(183, 195, 190);">
-                                    <a class="navbar-brand" href="#" id="navbarScrollingDropdown" role="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        {{authService.username}}
-                                        <i class="bi bi-person"></i> 
-                                    </a>
-                                    <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                                        <li *ngIf="authService.isloggedIn==false">
-                                            <a class="dropdown-item" routerLink="/addMilitant">S'inscrire</a></li>
-                                        <li>
-                                           
-                                        </li>
-                                        <li *ngIf="authService.isloggedIn==false">
-                                            <a class="dropdown-item" routerLink="/connect">Se connecter</a>
-                                        </li>
-                                                
-                                            
-                                        <li *ngIf="authService.isloggedIn">
-                                            <a class="dropdown-item" routerLink="/profil">Profil</a>
-                                        </li>
-                                        <li *ngIf="authService.isloggedIn">
-                                            <a class="dropdown-item" routerLink="/password">Mot de passe</a>
-                                        </li>
-                                        <li *ngIf="authService.isloggedIn">
-                                            <a class="dropdown-item" style="cursor: pointer;"
-                                            (click)="onDeconnecter()">Se deconnecter</a>
-                                        </li>
-                                    </ul>
-                                </li></ul>
-                              </form>
-
-                              <form class="d-flex"><ul class="navbar-nav"
-                                *ngIf="authService.username==''">
-                                <li class="button" style="background-color: rgb(183, 195, 190);">
-                                    <a class="navbar-brand"></a>
-                                </li>
-                                <li class="nav-item dropdown" style="background-color: rgb(183, 195, 190);">
-                                    <a class="navbar-brand" href="#" id="navbarScrollingDropdown" role="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        {{user}}
-                                        <i class="bi bi-person"></i> 
-                                    </a>
-                                    <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                                        <li *ngIf="authService.isloggedIn==false">
-                                            <a class="dropdown-item" routerLink="/addMilitant">S'inscrire</a></li>
-                                        <li>
-                                           
-                                        </li>
-                                        <li *ngIf="authService.isloggedIn==false">
-                                            <a class="dropdown-item" routerLink="/connect">Se connecter</a>
-                                        </li>
-                                                
-                                            
-                                        <li *ngIf="authService.isloggedIn">
-                                            <a class="dropdown-item" routerLink="/profil">Profil</a>
-                                        </li>
-                                        <li *ngIf="authService.isloggedIn">
-                                            <a class="dropdown-item" routerLink="/password">Mot de passe</a>
-                                        </li>
-                                        <li *ngIf="authService.isloggedIn">
-                                            <a class="dropdown-item" style="cursor: pointer;"
-                                            (click)="onDeconnecter()">Se deconnecter</a>
-                                        </li>
-                                    </ul>
-                                </li></ul>
-                              </form>
-                          </div>
-                        </div>
-                      </nav>
-                </div>
             </div>
         </div>
     </div>
 </div>
 
-<style>
-    .scrolling-text {
-      white-space: nowrap;
-      overflow: hidden;
-      position: relative;
-      animation: marquee 6s linear infinite alternate;
-    }
-  
-    @keyframes marquee {
-      0% { left: 0; }
-      100% { left: calc(100% - 100px); } /* Ajustez la largeur du conteneur */
-    }
-  </style>

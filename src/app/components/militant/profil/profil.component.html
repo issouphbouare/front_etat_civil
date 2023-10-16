@@ -91,11 +91,11 @@
                                                     <div class="col-md-6" *ngIf="coordinations">
                                                         <label>Coordination</label>
                                                         <select class="form-control" (change)="onGetDivByCoor()"
-                                                            [(ngModel)]="coordination._links.self.href"
+                                                            [(ngModel)]="coordination.id"
                                                             formControlName="coordination">
                                                             <option
                                                                 *ngFor="let coordination of coordinations._embedded.coordinations"
-                                                                [value]="coordination._links.self.href">{{
+                                                                [value]="coordination.id">{{
                                                                 coordination.nom }}</option>
                                                         </select>
                                                         <p style="color: brown;"

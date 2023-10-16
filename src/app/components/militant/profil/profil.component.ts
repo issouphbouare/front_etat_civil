@@ -10,9 +10,10 @@ import { MilitantService } from 'src/app/services/militant.service';
   styleUrls: ['./profil.component.css']
 })
 export class ProfilComponent {
-public  base="http://62.171.169.168:8082"; /*connexion au serveur distant*/
-public url1: string=this.base+"/militants/";
-public url3: string=this.base+"/divisions/";
+//public  base="https://synefct.org/api"; /*connexion au serveur distant*/
+//public url1: string=this.base+"/militants/";
+//ublic urlCoor: string=this.base+"/coordinations/";
+//public url3: string=this.base+"/divisions/";
 
 
   public division: any;
@@ -46,7 +47,7 @@ public url3: string=this.base+"/divisions/";
     if(this.militant.section=="Secondaire"){
       this.sub="hidden";
     }
-    this.onGetDivCur()
+    this.onGetDivCur(this.militant)
      //console.log(this.prof);
   },err=>{console.log(err);});
   console.log(this.militant);
@@ -122,7 +123,7 @@ selectedValue: string='';
  
    
    onGetDivByCoor(){
-     this.apiService.getDivisionsByCoordination(this.coordination._links.self.href).
+     this.apiService.getDivisionsByCoordination(this.coordination.id.toString()).
      subscribe((data: any)=>{
        this.divisions=data;
        console.log(this.divisions)
@@ -132,8 +133,9 @@ selectedValue: string='';
            });
     }
 
-    onGetDivCur(){
-      this.apiService.getDivCur(this.url1+this.militant.id+"/division").
+    onGetDivCur(m:any){
+      
+      this.apiService.getDivCur(m.id.toString()).
       subscribe(data => {
         this.division = data;
         console.log(this.division);
@@ -144,7 +146,7 @@ selectedValue: string='';
     }
 
     onGetCoorCur(){
-      this.apiService.getCoorCur(this.url3+this.division.id+"/coordination").
+      this.apiService.getCoorCur(this.division.id.toString()).
       subscribe(data => {
         this.coordination = data;
         this.onGetDivByCoor()
@@ -168,9 +170,9 @@ selectedValue: string='';
     
     editMilitant(){
       
-    console.log(this.formEdit.value);
-    console.log(this.url1+this.militant.id);
-    this.url2=this.url1+this.militant.id;
+    //console.log(this.formEdit.value.division);
+    //console.log(this.url1+this.militant.id);
+    //this.url2=this.url1+this.militant.id;
 
     if(this.formEdit.value.section=="Secondaire") {
       this.formEdit.value.subdivision="";
@@ -179,9 +181,8 @@ selectedValue: string='';
     this.formEdit.value.nom=this.formEdit.value.nom.toUpperCase()
       this.formEdit.value.prenom=this.formEdit.value.prenom.charAt(0).toUpperCase()+ this.formEdit.value.prenom.slice(1);
       this.formEdit.value.subdivision=this.formEdit.value.subdivision.charAt(0).toUpperCase()+ this.formEdit.value.subdivision.slice(1);
-      this.formEdit.value.comite=this.formEdit.value.comite.charAt(0).toUpperCase()+ this.formEdit.value.comite.slice(1);
-   
-    this.apiService.Update(this.url2, this.formEdit.value).
+      this.formEdit.value.comite=this.formEdit.value.comite.toUpperCase();   
+    this.apiService.UpdateProfil(this.militant.id.toString(), this.formEdit.value).
     subscribe( data => {
       console.log(data);
       alert(" Profil modifiée avec succes !");

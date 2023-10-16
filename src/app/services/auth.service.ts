@@ -17,10 +17,10 @@ export class AuthService {
 
   constructor(private http : HttpClient,private router : Router) { }
   
-    //base="http://localhost:8082/" 
-    base="http://62.171.169.168:8082/"; /*connexion au serveur distant*/
+    //base="http://localhost:8082" 
+    base="https://synefct.org/api"; /*connexion au serveur distant*/
  
- baseUrl: string = this.base+"login/";  
+ baseUrl: string = this.base+"/login/";  
 
  
  getCon(c : string):Observable<any>{
@@ -29,7 +29,7 @@ export class AuthService {
 
  getUser(tel:number):Observable<Militant>
 {
-const url = "this.baseUrl"+tel;
+const url = this.baseUrl+tel;
 return this.http.get<Militant>(url);
 }
 

@@ -9,9 +9,10 @@ import { VariableGlobalService } from './variable-global.service';
   providedIn: 'root'
 })
 export class MilitantService {
-  base="http://62.171.169.168:8082"; /*connexion au serveur distant*/
+  base="https://synefct.org/api"; /*connexion au serveur distant*/
   //base="http://localhost:8082"
   baseUrl=this.base+"/militants";
+  UrlUpProfil=this.base+"/upateProfil/";
   urlSearch=this.base+"/searchMilitant?keyword=";
   urlSearchTotal=this.base+"/totalSearch?keyword=";
 
@@ -28,7 +29,8 @@ getCoordinations(){
 }
 
 getDivisionsByCoordination(url : any){
-  return this.http.get<Apiresponse>(url+"/divisions");
+  console.log(this.base+"/coordinations/"+url+"/divisions")
+  return this.http.get<Apiresponse>(this.base+"/coordinations/"+url+"/divisions");
 }
 
 getAll1():Observable<Apiresponse>{
@@ -50,14 +52,18 @@ Create(militant : Militant):Observable<Apiresponse>{
 }
 
 Update(url: string, militant : Militant):Observable<Apiresponse>{
-  return this.http.put<Apiresponse>(url, militant);
+  return this.http.put<Apiresponse>(this.baseUrl+"/"+url, militant);
+}
+
+UpdateProfil(url: string, militant : Militant):Observable<Apiresponse>{
+  return this.http.put<Apiresponse>(this.UrlUpProfil+url, militant);
 }
 
 delete(url: string){
   return this.http.delete<Apiresponse>(this.baseUrl+"/"+url);
 }
-getMilitantActif(){
-  return this.http.get<Apiresponse>(this.base+"/totalActif")
+getMilitantTotal(){
+  return this.http.get<Apiresponse>(this.base+"/totalInscrit")
 }
 
 getMaxId(){
@@ -68,10 +74,11 @@ getTotalSearch(url : string){
 }
 
 getDivCur(url: string):Observable<any>{
-  return this.http.get<Apiresponse>(url);
+  console.log(this.baseUrl+"/"+url+"/division")
+  return this.http.get<Apiresponse>(this.baseUrl+"/"+url+"/division");
 }
 getCoorCur(url: string):Observable<any>{
-  return this.http.get<Apiresponse>(url);
+  return this.http.get<Apiresponse>(this.base+"/divisions/"+url+"/coordination");
 }
 
 existByTelephone(tel: number){
