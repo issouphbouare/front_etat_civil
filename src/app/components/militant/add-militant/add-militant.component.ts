@@ -61,7 +61,8 @@ etape2: boolean = false;
 
    
 
-  onSubmit(){ this.apiService.existByTelephone(this.formAdd.value.telephone).
+  onSubmit(){ if(this.formAdd.value.telephone!=null && this.formAdd.value.matricule!="")
+    this.apiService.existByTelephone(this.formAdd.value.telephone).
     subscribe( (data:any) => { 
       if(data==false)
       this.existByMatrcule();
@@ -70,6 +71,7 @@ etape2: boolean = false;
     },err=>{
       
     });
+    else alert("Les champs matricules et telephone doivent etre correctement renseignés")
     
 }
 
@@ -130,7 +132,7 @@ selectedValue: string='';
     subscribe( (data:any) => { 
       if(data==false)
       this.addMilitant();
-    else alert("Il  existe deja un militant avec le meme numero de telephone : "+this.formAdd.value.matricule);
+    else alert("Il  existe deja un militant avec le meme numero matricule : "+this.formAdd.value.matricule);
       console.log(data)
     },err=>{
       
@@ -139,6 +141,7 @@ selectedValue: string='';
 
   addMilitant(){
     console.log(this.formAdd.value);
+    if(this.formAdd.value.poste=="") this.formAdd.value.poste="Militant";
     this.formAdd.value.nom=this.formAdd.value.nom.toUpperCase()
       this.formAdd.value.prenom=this.formAdd.value.prenom.charAt(0).toUpperCase()+ this.formAdd.value.prenom.slice(1);
       this.formAdd.value.subdivision=this.formAdd.value.subdivision.charAt(0).toUpperCase()+ this.formAdd.value.subdivision.slice(1);

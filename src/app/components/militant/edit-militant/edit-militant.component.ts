@@ -24,6 +24,7 @@ export class EditMilitantComponent {
 
     selectedPoste: string='';
   optionPoste: { value: string, label: string }[] = [
+    { value: '', label: '' },
     { value: 'Militant', label: 'Militant' },
     { value: 'Sécretaire Général', label: 'Sécretaire Général' },
     { value: "Sécretaire de Coordination", label: "Sécretaire de Coordination" },

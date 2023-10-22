@@ -28,10 +28,9 @@
                                                         <div class="col-md-6">
                                                             <label>Matricule</label>
                                                             <input type="text" formControlName="matricule" class="form-control"
-                                                                placeholder="au moins 3 letttres ">
+                                                                placeholder="">
                                                             <p style="color: brown;"
-                                                                *ngIf="!formAdd.controls['matricule'].valid"> (Le premier
-                                                                caractere doit etre une lettre majuscule ) </p>
+                                                                *ngIf="!formAdd.controls['matricule'].valid"> (Champ obligatoire * ) </p>
                                                         </div>
                                                         <div class="col-md-6">
                                                             <label>Telephone</label>
@@ -45,7 +44,7 @@
                                                         <div class="col-md-6">
                                                             <label>Prénom</label>
                                                     <input type="text" formControlName="prenom" class="form-control"
-                                                        placeholder="au moins 3 letttres ">
+                                                        placeholder=" ">
                                                     <p style="color: brown;" *ngIf="!formAdd.controls['prenom'].valid">
                                                         (Le premier
                                                         caractere doit etre une lettre majuscule ) </p>
@@ -53,10 +52,9 @@
                                                         <div class="col-md-6">
                                                             <label>Nom</label>
                                                             <input type="text" formControlName="nom" class="form-control"
-                                                                placeholder="au moins 3 letttres ">
-                                                            <p style="color: brown;" *ngIf="!formAdd.controls['nom'].valid"> (Le
-                                                                premier
-                                                                caractere doit etre une lettre majuscule ) </p>
+                                                                placeholder="">
+                                                            <p style="color: brown;" *ngIf="!formAdd.controls['nom'].valid"> (Mettez
+                                                                des lettres majuscules) </p>
                                                         </div>
                                                     </div>
                                                     <label>Genre</label>
@@ -78,8 +76,12 @@
                                                     <input type="hidden" formControlName="statut"
                                                         class="form-control" [(ngModel)]="defaultStatut">
                                                 </div>
-                                                <div class="form-group card mt-3">
-                                                    <button (click)="OnSuivant()"
+                                                <div class="form-group card mt-3" >
+                                                    <button (click)="OnSuivant()" [disabled]="!formAdd.controls['telephone'].valid
+                                                    || !formAdd.controls['matricule'].valid
+                                                    || !formAdd.controls['genre'].valid
+                                                    || !formAdd.controls['prenom'].valid
+                                                    || !formAdd.controls['nom'].valid"
                                                         class="btn btn-secondary px-4">Suivant <i
                                                             class="bi bi-arrow-right"></i></button>
                                                 </div>
