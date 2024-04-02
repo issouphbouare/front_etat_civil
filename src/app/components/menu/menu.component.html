@@ -8,61 +8,31 @@
                           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mynavbar">
                             <span class="navbar-toggler-icon"></span>
                           </button>
-                          <div class="collapse navbar-collapse" id="mynavbar">
+                          <div class="collapse navbar-collapse" id="mynavbar" >
                             <ul class="navbar-nav me-auto">
-                              <li class="nav-item">
-                                <a class="navbar-brand" aria-current="page" routerLink="/">Accueil</a>
+                             
+                            <li class="nav-item">
+                                <a class="navbar-brand" routerLink="/addCitoyen" *ngIf="isLoggedIn">Enrolement</a>
                             </li>
-                              <li class="nav-item" *ngIf="authService.isloggedIn">
-                                <a class="navbar-brand" routerLink="/actualites">Actualités</a>
+                            <li class="nav-item">
+                                <a class="navbar-brand" routerLink="/citoyens" *ngIf="isLoggedIn">Recherche</a>
                             </li>
-                              <li class="nav-item">
-                                <a class="navbar-brand" routerLink="/apropos">A propos</a>
+
+                            <li class="nav-item">
+                                <a class="navbar-brand" routerLink="/regions" *ngIf="isLoggedIn">Collectivites</a>
                             </li>
-                            <li class="nav-item" *ngIf="authService.isloggedIn">
-                                <a class="navbar-brand" routerLink="/militants">Militants</a>
-                            </li>
-                            
-                            <li class="nav-item dropdown" *ngIf="authService.isloggedIn">
-                                <a class="navbar-brand" href="#" id="navbarScrollingDropdown" role="button"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Documents
-                                </a>
-                                <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                                    <li><a class="dropdown-item" routerLink="/avancements">Avancements</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" routerLink="/integrations">Integrations</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item"
-                                            routerLink="/hierachisations">Hiérachisations</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" routerLink="/formations">Formations</a></li>
-                                    <li>
-                                        <hr class="dropdown-divider">
-                                    </li>
-                                    <li><a class="dropdown-item" routerLink="/autres">Autres</a></li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown"
-                            *ngIf="authService.isloggedIn && (authService.poste=='Admin' || poste=='Admin')">
-                                <a class="navbar-brand" href="#" id="navbarScrollingDropdown" role="button"
+                            <li class="nav-item dropdown">
+                            <a class="navbar-brand" href="#" id="navbarScrollingDropdown" *ngIf="isLoggedIn" role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                     Admin
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                                    <li><a class="dropdown-item" routerLink="/users">Users
-                                            </a></li>
-                                            <li>
-                                                <hr class="dropdown-divider">
-                                            </li>
-                                            <li><a class="dropdown-item" routerLink="/coordinations">Coordinations
-                                                    </a></li>
+                                    <li><a class="dropdown-item" routerLink="/users">users</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" routerLink="/professions">Professions</a></li>
+                                    <li>
                                 </ul>
                             </li>
                             </ul>
@@ -77,25 +47,25 @@
                                          
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                                        <li *ngIf="authService.isloggedIn==false">
-                                            <a class="dropdown-item" routerLink="/addMilitant">S'inscrire</a></li>
+                                        <li>
+                                            <a class="dropdown-item" *ngIf="!isLoggedIn" routerLink="/addUser">S'inscrire</a></li>
                                         <li>
                                            
                                         </li>
-                                        <li *ngIf="authService.isloggedIn==false">
-                                            <a class="dropdown-item" routerLink="/connect">Se connecter</a>
+                                        <li>
+                                            <a class="dropdown-item" *ngIf="!isLoggedIn" routerLink="/login">Se connecter</a>
                                         </li>
                                                 
                                             
-                                        <li *ngIf="authService.isloggedIn">
-                                            <a class="dropdown-item" routerLink="/profil">Profil</a>
+                                        <li>
+                                            <a class="dropdown-item" *ngIf="isLoggedIn" routerLink="/profil">Profil</a>
                                         </li>
-                                        <li *ngIf="authService.isloggedIn">
-                                            <a class="dropdown-item" routerLink="/password">Mot de passe</a>
+                                        <li>
+                                            <a class="dropdown-item" *ngIf="isLoggedIn" routerLink="/password">Mot de passe</a>
                                         </li>
-                                        <li *ngIf="authService.isloggedIn">
-                                            <a class="dropdown-item" style="cursor: pointer;"
-                                            (click)="onDeconnecter()">Se deconnecter</a>
+                                        <li>
+                                            <a class="dropdown-item" style="cursor: pointer;" *ngIf="isLoggedIn"
+                                            (click)="logout()">Se deconnecter</a>
                                         </li>
                                     </ul>
                                 </li></ul>

@@ -1,0 +1,54 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mt-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+<div class="col-md-10"><h4>Liste Des Regions</h4></div>
+<div class="col-md-2">
+    <a routerLink="/addRegion" class="btn btn-secondary float-right"><i class="bi bi-plus"></i></a>
+
+</div>
+                    </div>
+                    
+                    
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered" *ngIf="donnees">
+                        <thead>
+                            <tr>
+                                <th>Code</th>
+                                <th>Nom</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let m of donnees">
+                                <td>{{m.code}}</td>
+                                <td>{{m.nom}}</td>
+                                <td>
+                                    <button [routerLink]="['/cercles',m.id]"
+                                        class="btn btn-light"><i class="bi bi-listt">Voir ses cercles</i></button>
+                                    <button [routerLink]="['/editRegion',m.id]"
+                                        class="btn btn-light"><i class="bi bi-pencil"></i></button>
+                                    <button (click)="onDelete(m)" class="btn btn-light"><i class="bi bi-trash"></i></button>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!-- <div class="row">
+                        <div class="col-md-12">
+                            <ul *ngIf="pages" class="pagination float-right">
+                                <li class="page-link">Pages</li>
+                                <li class=" page-item " [ngClass]="i==currentPage? 'active' : ''"
+                                    *ngFor="let p of pages; let i=index">
+                                    <a class="page-link clickable sp" (click)="goToPage(i)">{{i}}</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

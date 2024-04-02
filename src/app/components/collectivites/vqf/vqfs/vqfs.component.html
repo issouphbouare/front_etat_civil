@@ -1,0 +1,51 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mt-12">
+            <div class="card">
+                <div class="card-header" *ngIf="cercle">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <button [routerLink]="['/communes', cercle.id]" class="btn btn-light"><i
+                                    class="bi bi-arrow-left"></i></button>
+                        </div>
+                        <div class="col-md-8">
+                            <h4>Liste Des Vqfs de {{commune.nom}}</h4>
+                        </div>
+                        <div class="col-md-2">
+                            <a [routerLink]="['/addVqf',commune.id]" class="btn btn-secondary float-right"><i
+                                    class="bi bi-plus"></i></a>
+
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="card-body">
+                    <table class="table table-bordered" *ngIf="donnees">
+                        <thead>
+                            <tr>
+                                <th>Code</th>
+                                <th>Nom</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let m of donnees">
+                                <td>{{m.code}}</td>
+                                <td>{{m.nom}}</td>
+
+                                <td>
+                                    <button [routerLink]="['/editVqf',m.id]" class="btn btn-light"><i
+                                            class="bi bi-pencil"></i></button>
+                                    <button (click)="onDelete(m)" class="btn btn-light"><i
+                                            class="bi bi-trash"></i></button>
+
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

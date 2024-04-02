@@ -1,95 +1,64 @@
-import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { MilitantService } from 'src/app/services/militant.service';
-import { AuthService } from 'src/app/services/auth.service';
+import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent {
-  public user:any;
-  public militants: any;
-  public files : any;
-  public av=1;
-  keyword: string = '';
-  urlDownload: string='';
-  idAv: number =0;
-  totalSearch:number=0;
+  public donnees:any;
+  public currentPage: number=0;
+  public size : number=6;
+  public nbPage : number=0;
+  public pages : Array<number>=[];
 
-  constructor(private http: HttpClient,private authService: AuthService,
-    private apiService: MilitantService,
+
+  constructor(private http: HttpClient,
+    private apiService: UserService,
     private router : Router) { }
 
-
   ngOnInit(): void {
-    this.av=1;
-    this.search();
-    this.getTotalSearch();
-    this.getMaxId();
-
-    this.authService.getCon(this.authService.loggedMilitant.toString()).
-    subscribe( data => {
-      this.user=data; 
-    },err=>{console.log(err);});
-    
+    this.onGetAll();
   }
 
-  search() {
-    this.apiService.search(this.keyword).subscribe(
-      (data :any) => {
-        this.militants = data.content;
-        this.getTotalSearch();
-      },
-      (error) => {
-        console.error('Une erreur est survenue:', error);
-      }
-    );
-  }
-  getMaxId(){
-    this.apiService.getMaxId().
-    subscribe( (data:any) => { 
-      this.idAv=data;
-      console.log(data)
-    },err=>{
-      
-    });
-  }
+  onGetAll(){
+    this.apiService.getUsers()
+    .subscribe((data: any)=>{
+    //this.nbPage=data["page"].totalPages;
+    //this.pages=new Array<number>(this.nbPage);
+    this.donnees=data;
 
-  getTotalSearch(){
-    this.apiService.getTotalSearch(this.keyword).subscribe(
-      (data :any) => {
-        this.totalSearch = data;
-      },
-      (error) => {
-        console.error('Une erreur est survenue:', error);
-      }
-    );
+  }, err=>{
+    console.log(err);
+  })
 
   }
-  
 
-  onDelete(a: any){
-    if(confirm("Voulez-vous vraiment supprimer ce compte ?")){
+  goToPage(i: any){
+    this.currentPage=i;
+    this.onGetAll();
+  }
+
+  onDelete(m:any){
+    if(confirm("Voulez-vous vraiment supprimer la region  "+m.nom+ " ?")){
       console.log();
-      this.apiService.delete(a)
+      this.apiService.delete(m.id.toString())
       .subscribe( data=>{
-        this.search();
-        window.location.reload();
+        this.onGetAll();
     
         }, err=>{
           console.log(err);
         }
       );
 
-    //alert("Militant  supprimé avec succes");
+    alert("Region "+m.nom+  " supprimé avec succes");
   }
     
   }
-  onRetour(){
-    this.av=1;
-  }
+
 
 }
+

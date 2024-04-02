@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { AutoLogoutService } from './services/auto-logout.service';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +6,7 @@ import { AutoLogoutService } from './services/auto-logout.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'site synefct';
+  title = 'site Ravec';
 
   constructor(
     ) { }

@@ -1,49 +1,37 @@
 import { ResourceLoader } from '@angular/compiler';
 import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { Militant } from 'src/app/models/militant';
-import { AuthService } from 'src/app/services/auth.service';
-import { MilitantService } from 'src/app/services/militant.service';
-import { UserService } from 'src/app/services/user.service';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
+
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent {
-  public total:number=0;
-  public username:any;
+  private roles: string[] = [];
+  isLoggedIn = false;
+  showAdminBoard = false;
+  showModeratorBoard = false;
+  username?: string;
+  constructor(private tokenStorageService: TokenStorageService) { }
 
-  //public cu: number;
-  constructor (private router : Router,private militantService: MilitantService,
-     public authService : AuthService, private userService: UserService){}
-     @Input() user: any=localStorage.getItem('username');
-     @Input() poste: any=localStorage.getItem('poste');
-  ngOnInit(): void{
-    let us=localStorage.getItem('username');
-    let poste;
-    this.username= this.userService.userName$;
-    let isloggedin;
-    let loggedMilitant: any;
-    isloggedin = localStorage.getItem('isloggedIn');
-    loggedMilitant = localStorage.getItem('loggedMilitant');
-    poste = localStorage.getItem('poste');
-    if (isloggedin!="true" || !loggedMilitant)
-    this.router.navigate(['/login']);
-    else
-    this.authService.setLoggedProfFromLocalStorage(loggedMilitant);
-  
+  ngOnInit(): void {
+    this.isLoggedIn = !!this.tokenStorageService.getToken();
 
-  }
-  onDeconnecter(){
-    //localStorage.removeItem('user');
-    //this.router.navigate(['/login']);
-    this.user=null;
-    this.authService.logout();
+    if (this.isLoggedIn) {
+      const user = this.tokenStorageService.getUser();
+      this.roles = user.roles;
 
+      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+      this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
+
+      this.username = user.username;
+    }
   }
 
-  
-
+  logout(): void {
+    this.tokenStorageService.signOut();
+    window.location.href = '/login';
+  }
 }
-

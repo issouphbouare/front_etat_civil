@@ -1,0 +1,57 @@
+<div class="col-md-12">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mt-8">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <!-- <a routerLink="/users" class="btn btn-light float-light"><i class="bi bi-arrow-left"></i></a> -->
+                            </div>
+                            <div class="col-md-8">
+                                <h4>
+                                    Ajout de Utilisateur
+                                </h4>
+                            </div>
+                        </div>
+                        
+                    </div>
+                       <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img src="../assets/images/logo/pass.png" width="300" height="400">
+                            </div>
+                            <div class="col-md-8">
+                        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                           <div class="row">
+                               <div class="col-md-8">
+                                   <div class="form-group">
+                                    <div class="alert alert-danger" *ngIf="erreur1==1">
+                                        <strong>Mot de passe et confirmation differentes ...</strong>
+                                    </div>
+                                    <label>Username</label>
+                                    <input type="text" formControlName="username" class="form-control" placeholder="au moins 2 caracteres ">
+                                    <p style="color: brown;" *ngIf="!form.controls['username'].valid"> (au moins 2 caracteres ) </p> 
+                                    <label>Email</label>
+                                    <input type="email" formControlName="email" class="form-control" placeholder="au moins 3 letttres ">
+                                    <p style="color: brown;" *ngIf="!form.controls['email'].valid"> (Le remier caractere doit etre une lettres majuscule ) </p> 
+                               
+                                       <label>Password</label>
+                                       <input type="password" formControlName="password" class="form-control">
+                                       <p style="color: brown;" *ngIf="!form.controls['password'].valid"> (Champ obligatoire * ) </p> 
+                                       <label>Confirmation de Password</label>
+                                       <input type="password" formControlName="confirmPassword" class="form-control">
+                                       <p style="color: brown;" *ngIf="!form.controls['confirmPassword'].valid"> (Champ obligatoire * ) </p> 
+                                   </div><Br/>
+                                   <div class="form-group card mt-3" >
+                                    <button type="submit" 
+                                        class="btn btn-secondary px-4">Ajouter</button>
+                                </div>
+                               </div>
+                           </div>
+                        </form></div>
+                       </div>
+                </div>
+            </div>
+        </div>
+    </div>

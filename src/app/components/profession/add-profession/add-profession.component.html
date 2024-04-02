@@ -1,0 +1,39 @@
+<div class="col-md-12">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mt-8">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <a routerLink="/professions" class="btn btn-light float-light"><i class="bi bi-arrow-left"></i></a>
+                            </div>
+                            <div class="col-md-10">
+                                <h4>
+                                    Ajout de Profession
+                                </h4>
+                            </div>
+                        </div>
+                        
+                    </div>
+                       <div class="card-body">
+                        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                           <div class="row">
+                               <div class="col-md-8">
+                                   <div class="form-group">
+                                   <label>Libéllé Profession</label>
+                                    <input type="text" formControlName="libelle" class="form-control" placeholder="au moins 3 letttres ">
+                                    <p style="color: brown;" *ngIf="!form.controls['libelle'].valid"> (Le premier caractere doit etre une lettre majuscule ) </p> 
+                               
+                                  </div><Br/>
+                                   <div class="form-group">
+                                    <button  [disabled]="!form.valid" type="submit" class="btn btn-secondary px-4">Ajouter</button>
+                                </div>
+                               </div>
+                           </div>
+                        </form>
+                       </div>
+                </div>
+            </div>
+        </div>
+    </div>
