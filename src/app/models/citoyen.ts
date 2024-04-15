@@ -8,20 +8,20 @@ export class Citoyen {
     prenom: string;
     telephone: number;
     genre: string;
-    profession: string;
-    situationMatrimoniale: string;
+    profession: number;
+    civilite: string;
     dateNaissance: Date;
     portrait: string; 
 
     prenomPere: string;
-    professionPere: string;
+    professionPere: number;
 
     prenomMere: string;
     nomMere: string;
-    professionMere: string;
+    professionMere: number;
     
-    lieuNaissance: Vqf;
-    adresse : Vqf
+    lieuNaissance: number;
+    adresse : number
     rue: string;
     porte: string;
     autre: string;
@@ -35,20 +35,20 @@ export class Citoyen {
     prenom: string,
     telephone: number,
     genre: string,
-    profession: string,
-    situationMatrimoniale: string,
+    profession: number,
+    civilite: string,
     dateNaissance: Date,
     portrait: string,
 
     prenomPere: string,
-    professionPere: string,
+    professionPere: number,
 
     prenomMere: string,
     nomMere: string,
-    professionMere: string,
+    professionMere: number,
     
-    lieuNaissance: Vqf,
-    adresse : Vqf,
+    lieuNaissance: number,
+    adresse : number,
     rue: string,
     porte: string,
     autre: string,
@@ -62,7 +62,7 @@ export class Citoyen {
         this.telephone = telephone;
         this.genre=genre;
         this.profession = profession;
-        this.situationMatrimoniale=situationMatrimoniale;
+        this.civilite=civilite;
         this.dateNaissance = dateNaissance;
         this.portrait = portrait;
 

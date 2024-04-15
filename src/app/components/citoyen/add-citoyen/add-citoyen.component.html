@@ -110,7 +110,6 @@
                                     <div class="card-header">
                                         <div class="row">
                                             <div class="col-md-1">
-                                                <button [routerLink]="['/']" class="btn btn-light"><i class="bi bi-arrow-left"></i></button>
                                             </div>
                                             <div class="col-md-11">
                                                 <div class="col-md-2 btn btn-light" (click)="onEtape1()"><h6>Etape 1</h6></div>
@@ -214,7 +213,6 @@
                                     <div class="card-header">
                                         <div class="row">
                                             <div class="col-md-1">
-                                                <button [routerLink]="['/']" class="btn btn-light"><i class="bi bi-arrow-left"></i></button>
                                             </div>
                                             <div class="col-md-11">
                                                 <div class="col-md-2 btn btn-light" (click)="onEtape1()"><h6>Etape 1</h6></div>
@@ -331,7 +329,6 @@
                                     <div class="card-header">
                                         <div class="row">
                                             <div class="col-md-1">
-                                                <button [routerLink]="['/']" class="btn btn-light"><i class="bi bi-arrow-left"></i></button>
                                             </div>
                                             <div class="col-md-11">
                                                 <div class="col-md-2 btn btn-light" (click)="onEtape1()"><h6>Etape 1</h6></div>
@@ -443,7 +440,7 @@
                                                         </div>
                                                         <div class="col-md-2"></div>
                                                         <div class="col-md-5">
-                                                            <button (click)="onEtape5()" [disabled]="
+                                                            <button (click)="onEtape6()" [disabled]="
                                                    !formAdd.controls['rue'].valid
                                                 || !formAdd.controls['porte'].valid
                                                 || !formAdd.controls['autre'].valid
@@ -466,7 +463,6 @@
                                     <div class="card-header">
                                         <div class="row">
                                             <div class="col-md-1">
-                                                <button [routerLink]="['/']" class="btn btn-light"><i class="bi bi-arrow-left"></i></button>
                                             </div>
                                             <div class="col-md-11">
                                                 <div class="col-md-2 btn btn-light" (click)="onEtape1()"><h6>Etape 1</h6></div>
@@ -481,7 +477,11 @@
                                         <div class="row">
                                             <div class="col-md-12">
 
-                                                
+                                                    <div class="col-10">
+                                                     <label class="btn btn-default p-0">
+                                                         <input type="file" (change)="onFileSelected($event)" />
+                                                     </label>
+                                                    </div>
 
                                                  <br>
                                                 <div class="form-group" >
@@ -495,7 +495,7 @@
                                                         </div>
                                                         <div class="col-md-2"></div>
                                                         <div class="col-md-5">
-                                                            <button (click)="onEtape6()" 
+                                                            <button [disabled]="!selectedFile" (click)="onUpload()" 
                                                     class="btn btn-secondary px-4" style="width: 410px;">Suivant <i
                                                         class="bi bi-arrow-right"></i></button>
                                                         </div>  
@@ -511,8 +511,6 @@
                                     <div class="card-header">
                                         <div class="row">
                                             <div class="col-md-2">
-                                                <button 
-                                                class="btn btn-light"><i class="bi bi-arrow-left"></i></button>
                                             </div>
                                             <div class="col-md-10">
                                                 <h5>Veuillez faire une derniere verification </h5>

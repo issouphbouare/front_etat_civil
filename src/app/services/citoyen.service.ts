@@ -45,6 +45,16 @@ export class CitoyenService {
     return this.http.delete<Apiresponse>(this.baseUrl+"/"+url, { headers });
   }
   
+  upload(file: File, id:any): Observable<any> {
+    const headers = this.tokenStorageService.getHeaders();
+    const formData = new FormData();
+    
+    console.log(this.baseUrl+"/uploadPortrait/"+id)
+
+    return this.http.put(this.baseUrl+"/uploadPortrait/"+id, formData, { headers });
+  }
+
+
   }
   
   

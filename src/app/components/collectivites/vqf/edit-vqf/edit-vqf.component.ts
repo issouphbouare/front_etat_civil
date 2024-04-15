@@ -45,6 +45,7 @@ export class EditVqfComponent implements OnInit {
     .subscribe((data: any)=>{
     
     this.donnee=data;
+    console.log(this.donnee)
     this.onGetCom(this.donnee.commune)
 
   }, err=>{
@@ -58,6 +59,7 @@ export class EditVqfComponent implements OnInit {
     .subscribe((data: any)=>{
     
     this.commune=data;
+    console.log(data)
     this.onGetCommunesByCer(this.commune.cercle)
 
   }, err=>{
@@ -71,6 +73,7 @@ export class EditVqfComponent implements OnInit {
     .subscribe((data: any)=>{
     
     this.communes=data;
+    this.sortCommunes()
 
   }, err=>{
     console.log(err);
@@ -104,6 +107,12 @@ export class EditVqfComponent implements OnInit {
       });  
  
   }
+
+  sortCommunes(): void{
+    this.communes.sort((a: any, b: any) => {
+      return a.code.localeCompare(b.code)
+    })
+   }
  
 
 

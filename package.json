@@ -23,6 +23,7 @@
     "jquery": "^3.7.0",
     "jspdf": "^2.5.1",
     "ngx-bootstrap": "^11.0.2",
+    "ngx-camera": "^0.0.4",
     "ngx-mask": "^17.0.4",
     "ngx-pipes": "^3.2.2",
     "pdfmake": "^0.2.7",

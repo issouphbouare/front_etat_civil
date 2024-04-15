@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
-
+import { NgxCameraModule } from 'ngx-camera';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -70,7 +70,9 @@ import { EditProfessionComponent } from './components/profession/edit-profession
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
-    CarouselModule.forRoot()
+    CarouselModule.forRoot(),
+    NgxCameraModule.forRoot(),
+    
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy }

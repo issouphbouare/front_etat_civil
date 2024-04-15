@@ -18,7 +18,8 @@ export class AddCitoyenComponent implements OnInit {
 
  
 
-
+selectedFiles?: FileList;
+currentFile?: File;
 etape1: boolean = false; 
 etape2: boolean = false;
 etape3: boolean = false; 
@@ -48,6 +49,7 @@ vqfAs:any;
 cercleAs:any;
 communeAs:any;
 vqfs:any;
+citoyen:any;
 
 prenom: String='';
 nom: string='';
@@ -78,7 +80,7 @@ autre: string='';
     
 
 
-  ngOnInit() { this.onEtape1(); this.onGetRegions(); this.onGetProfessions();
+  ngOnInit() { this.onEtape5(); this.onGetRegions(); this.onGetProfessions();
     this.formAdd=this.formBuilder.group({
       telephone : ['',[Validators.required, Validators.min(50000000), Validators.max(100000000)]],      prenom : ['',[Validators.required, Validators.pattern("([a-zA-Z]).{1,}")]],
       nom : ['',[Validators.required, Validators.pattern("([A-Z]){1,}")]],
@@ -338,10 +340,12 @@ onGetRegionCur(){
   onSubmit(){
   this.apiService.Create(this.formAdd.value).
   subscribe( data => {
-      alert("Citoyen : "+this.formAdd.value.nom+
-      "   "+this.formAdd.value.prenom+
+    this.citoyen=data;
+      alert("Citoyen : " + this.citoyen.nom +
+      "   " + this.citoyen.prenom +" de numero niciv "+this.citoyen.niciv+
       "  enroulé avec succès  "); 
-      this.router.navigate(['citoyens']);
+      //this.router.navigate(['citoyens']);
+      this.onEtape5()
     },err=>{
       console.log(err);
       alert(err.error.message);
@@ -349,6 +353,26 @@ onGetRegionCur(){
 }
 
 
+selectedFile: File | null = null;
+
+  onFileSelected(event: any): void {
+    this.selectedFile = event.target.files[0];
+  }
+
+onUpload(): void {
+  if (this.selectedFile) {
+    this.apiService.upload(this.selectedFile, '29701010101000A').subscribe(
+      (response: any) => {
+        console.log('Upload successful:', response.message);
+        
+      },
+      error => {
+        console.error('Upload error:', error);
+        // Traitez les erreurs d'upload ici
+      }
+    ); this.selectedFile = null;
+  }  
+}
    
    selectedGenre: string='';
    optionsG: { value: string, label: string }[] = [
