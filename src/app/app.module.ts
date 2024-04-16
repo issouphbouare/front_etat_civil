@@ -71,7 +71,7 @@ import { EditProfessionComponent } from './components/profession/edit-profession
     ReactiveFormsModule,
     FormsModule,
     CarouselModule.forRoot(),
-    NgxCameraModule.forRoot(),
+    NgxCameraModule
     
   ],
   providers: [

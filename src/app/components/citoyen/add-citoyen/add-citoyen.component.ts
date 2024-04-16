@@ -7,6 +7,8 @@ import { CommuneService } from 'src/app/services/commune.service';
 import { ProfessionService } from 'src/app/services/profession.service';
 import { RegionService } from 'src/app/services/region.service';
 import { VqfService } from 'src/app/services/vqf.service';
+import { NgxCameraModule } from 'ngx-camera';
+import { NgxCameraComponent } from 'ngx-camera';
 
 @Component({
   selector: 'app-add-citoyen',
@@ -435,5 +437,19 @@ onUpload(): void {
     return null;
   }
 
+  @ViewChild('camera') camera!: NgxCameraComponent;
+  public capturedImage: string | undefined;
+  capturePhoto() {
+    this.camera.captureImageData().then((imageData: string) => {
+      this.capturedImage = imageData;
+    }).catch((error: any) => {
+      console.error('Erreur lors de la capture de l\'image:', error);
+    });
+  }
+
+  uploadPhoto() {
+    // Ajoutez ici la logique d'envoi de l'image capturée vers votre serveur
+    console.log('Envoi de l\'image:', this.capturedImage);
+  }
 
   }

@@ -477,11 +477,13 @@
                                         <div class="row">
                                             <div class="col-md-12">
 
-                                                    <div class="col-10">
-                                                     <label class="btn btn-default p-0">
-                                                         <input type="file" (change)="onFileSelected($event)" />
-                                                     </label>
-                                                    </div>
+                                                <div>
+                                                    <ngx-camera #camera></ngx-camera>
+                                                    <button (click)="capturePhoto()">Capturer une photo</button>
+                                                    <button (click)="uploadPhoto()" [disabled]="!capturedImage">Envoyer la photo</button>
+                                                    <img *ngIf="capturedImage" [src]="capturedImage" alt="Photo Capturée">
+                                                  </div>
+                                                  
 
                                                  <br>
                                                 <div class="form-group" >
