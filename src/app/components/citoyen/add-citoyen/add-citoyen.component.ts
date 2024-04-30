@@ -7,8 +7,8 @@ import { CommuneService } from 'src/app/services/commune.service';
 import { ProfessionService } from 'src/app/services/profession.service';
 import { RegionService } from 'src/app/services/region.service';
 import { VqfService } from 'src/app/services/vqf.service';
-import { NgxCameraModule } from 'ngx-camera';
-import { NgxCameraComponent } from 'ngx-camera';
+import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
+import { Subject, Observable } from 'rxjs';
 
 @Component({
   selector: 'app-add-citoyen',
@@ -82,7 +82,7 @@ autre: string='';
     
 
 
-  ngOnInit() { this.onEtape5(); this.onGetRegions(); this.onGetProfessions();
+  ngOnInit() { this.onEtape1(); this.onGetRegions(); this.onGetProfessions();
     this.formAdd=this.formBuilder.group({
       telephone : ['',[Validators.required, Validators.min(50000000), Validators.max(100000000)]],      prenom : ['',[Validators.required, Validators.pattern("([a-zA-Z]).{1,}")]],
       nom : ['',[Validators.required, Validators.pattern("([A-Z]){1,}")]],
@@ -343,14 +343,14 @@ onGetRegionCur(){
   this.apiService.Create(this.formAdd.value).
   subscribe( data => {
     this.citoyen=data;
-      alert("Citoyen : " + this.citoyen.nom +
+      /* alert("Citoyen : " + this.citoyen.nom +
       "   " + this.citoyen.prenom +" de numero niciv "+this.citoyen.niciv+
-      "  enroulé avec succès  "); 
+      "  enroulé avec succès  "); */ 
       //this.router.navigate(['citoyens']);
       this.onEtape5()
     },err=>{
       console.log(err);
-      alert(err.error.message);
+      //alert(err.error.message);
     }); 
 }
 
@@ -361,20 +361,7 @@ selectedFile: File | null = null;
     this.selectedFile = event.target.files[0];
   }
 
-onUpload(): void {
-  if (this.selectedFile) {
-    this.apiService.upload(this.selectedFile, '29701010101000A').subscribe(
-      (response: any) => {
-        console.log('Upload successful:', response.message);
-        
-      },
-      error => {
-        console.error('Upload error:', error);
-        // Traitez les erreurs d'upload ici
-      }
-    ); this.selectedFile = null;
-  }  
-}
+
    
    selectedGenre: string='';
    optionsG: { value: string, label: string }[] = [
@@ -437,19 +424,25 @@ onUpload(): void {
     return null;
   }
 
-  @ViewChild('camera') camera!: NgxCameraComponent;
-  public capturedImage: string | undefined;
-  capturePhoto() {
-    this.camera.captureImageData().then((imageData: string) => {
-      this.capturedImage = imageData;
-    }).catch((error: any) => {
-      console.error('Erreur lors de la capture de l\'image:', error);
-    });
+  
+  private trigger: Subject<void> = new Subject<void>();
+  public triggerObservable: Observable<void> = this.trigger.asObservable();
+
+  public webcamImage: WebcamImage | undefined;
+
+  // Déclenche la capture de la photo
+  takePhoto() {
+    this.trigger.next();
   }
 
-  uploadPhoto() {
-    // Ajoutez ici la logique d'envoi de l'image capturée vers votre serveur
-    console.log('Envoi de l\'image:', this.capturedImage);
+  // Gère l'image capturée
+  handleImage(webcamImage: WebcamImage) {
+    this.webcamImage = webcamImage;
+    console.log('Photo capturée:', webcamImage);
   }
 
+  // Gère les erreurs d'initialisation
+  handleInitError(error: WebcamInitError) {
+    console.error('Erreur d\'initialisation de la webcam:', error);
+  }
   }

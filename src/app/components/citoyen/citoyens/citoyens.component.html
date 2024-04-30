@@ -50,7 +50,9 @@
                                 <td>{{p.dateNaissance | date}}</td>
                                 
                                 <td>
-                                    
+                                    <button [routerLink]="['/citoyen',p.id]"
+                                    class="btn btn-light"><i class="bi bi-listt">Voir en details</i></button>
+
                                     
                                 
                             </tr>

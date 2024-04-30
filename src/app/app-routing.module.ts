@@ -20,6 +20,7 @@ import { UsersComponent } from './components/admin/user/users/users.component';
 import { ProfessionsComponent } from './components/profession/professions/professions.component';
 import { AddProfessionComponent } from './components/profession/add-profession/add-profession.component';
 import { EditProfessionComponent } from './components/profession/edit-profession/edit-profession.component';
+import { CitoyenComponent } from './components/citoyen/citoyen/citoyen.component';
 
 const routes: Routes = [
   {path : "" , component : LoginComponent },
@@ -46,6 +47,7 @@ const routes: Routes = [
 
  {path :"addCitoyen" , component : AddCitoyenComponent},
  {path :"citoyens" , component : CitoyensComponent},
+ {path : "citoyen/:id" , component : CitoyenComponent },
 
  {path : "professions" , component : ProfessionsComponent },
  {path :"addProfession" , component : AddProfessionComponent},

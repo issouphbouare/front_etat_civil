@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
-import { NgxCameraModule } from 'ngx-camera';
-
+import {WebcamModule} from 'ngx-webcam';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RacineComponent } from './components/racine/racine.component';
@@ -34,6 +33,8 @@ import { LoginComponent } from './components/admin/user/login/login.component';
 import { ProfessionsComponent } from './components/profession/professions/professions.component';
 import { AddProfessionComponent } from './components/profession/add-profession/add-profession.component';
 import { EditProfessionComponent } from './components/profession/edit-profession/edit-profession.component';
+import { WebcamComponent } from './components/citoyen/webcam/webcam.component';
+import { CitoyenComponent } from './components/citoyen/citoyen/citoyen.component';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,9 @@ import { EditProfessionComponent } from './components/profession/edit-profession
     ProfessionsComponent,
     AddProfessionComponent,
     EditProfessionComponent,
+    WebcamComponent,
+    CitoyenComponent,
+   
 
   ],
   imports: [
@@ -71,7 +75,8 @@ import { EditProfessionComponent } from './components/profession/edit-profession
     ReactiveFormsModule,
     FormsModule,
     CarouselModule.forRoot(),
-    NgxCameraModule
+    WebcamModule,
+    
     
   ],
   providers: [

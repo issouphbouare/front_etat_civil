@@ -477,13 +477,7 @@
                                         <div class="row">
                                             <div class="col-md-12">
 
-                                                <div>
-                                                    <ngx-camera #camera></ngx-camera>
-                                                    <button (click)="capturePhoto()">Capturer une photo</button>
-                                                    <button (click)="uploadPhoto()" [disabled]="!capturedImage">Envoyer la photo</button>
-                                                    <img *ngIf="capturedImage" [src]="capturedImage" alt="Photo Capturée">
-                                                  </div>
-                                                  
+                                              <app-webcam [niciv]="citoyen.niciv"></app-webcam>    
 
                                                  <br>
                                                 <div class="form-group" >
@@ -497,8 +491,8 @@
                                                         </div>
                                                         <div class="col-md-2"></div>
                                                         <div class="col-md-5">
-                                                            <button [disabled]="!selectedFile" (click)="onUpload()" 
-                                                    class="btn btn-secondary px-4" style="width: 410px;">Suivant <i
+                                                            <button  (click)="onEtape6()" 
+                                                    class="btn btn-secondary px-4" style="width: 410px;">Continuer sans photo <i
                                                         class="bi bi-arrow-right"></i></button>
                                                         </div>  
                                                     </div>

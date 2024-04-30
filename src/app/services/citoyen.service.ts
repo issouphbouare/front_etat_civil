@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import {  HttpClient, HttpRequest, HttpEvent } from '@angular/common/http';
+import {  HttpClient, HttpRequest, HttpEvent, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Apiresponse } from '../models/Apiresponse';
 import { Citoyen } from '../models/citoyen';
 import { TokenStorageService } from './token-storage.service';
+import { WebcamImage } from 'ngx-webcam';
 @Injectable({
   providedIn: 'root'
 })
@@ -44,17 +46,44 @@ export class CitoyenService {
     const headers = this.tokenStorageService.getHeaders();
     return this.http.delete<Apiresponse>(this.baseUrl+"/"+url, { headers });
   }
-  
-  upload(file: File, id:any): Observable<any> {
-    const headers = this.tokenStorageService.getHeaders();
-    const formData = new FormData();
-    
-    console.log(this.baseUrl+"/uploadPortrait/"+id)
 
-    return this.http.put(this.baseUrl+"/uploadPortrait/"+id, formData, { headers });
+  uploadPortrait(id: string, webcamImage: WebcamImage): Observable<any> {
+    const formData = new FormData();
+      const imageBlob = this.convertBase64ToBlob(webcamImage.imageAsBase64, 'image/jpeg');
+      const headers = new HttpHeaders({
+        'Authorization': 'Bearer '+this.tokenStorageService.getToken()
+      });
+      formData.append('file', imageBlob);  
+  
+    return this.http.put(this.baseUrl+'/uploadPortrait/'+id , formData, { headers })
   }
 
+  getImage(filename: string): Observable<Blob> {
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer '+this.tokenStorageService.getToken(),
+    });
 
+    return this.http.get(this.baseUrl+"/affichePortrait/"+filename, { headers, responseType: 'blob' });
+  }
+
+  private convertBase64ToBlob(base64: string, contentType = '', sliceSize = 512): Blob {
+    const byteCharacters = atob(base64);
+    const byteArrays = [];
+
+    for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+      const slice = byteCharacters.slice(offset, offset + sliceSize);
+
+      const byteNumbers = new Array(slice.length);
+      for (let i = 0; slice[i] !== undefined; i++) {
+        byteNumbers[i] = slice.charCodeAt(i);
+      }
+
+      const byteArray = new Uint8Array(byteNumbers);
+      byteArrays.push(byteArray);
+    }
+
+    return new Blob(byteArrays, { type: contentType });
+  }
   }
   
   

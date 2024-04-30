@@ -50,6 +50,5 @@ getCerByReg(url:any):Observable<any>{
 }
 
 
-
 }
 

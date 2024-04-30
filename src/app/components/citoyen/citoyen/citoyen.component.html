@@ -1,0 +1,91 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mt-8"> 
+            <div class="card" *ngIf="citoyen lieuNaissance">
+            <div class="card-header">
+        <div class="row">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-10">
+                <h5>Informations sur la nouvelle enroulée </h5>
+            </div>
+        </div>
+        </div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group" >
+                    <div class="card">
+                        <div class="card-header" >Informations Personnelles</div>
+                        <div class="card-body">
+                            <div class="row">
+                               <div class="col-md-6" ><label>Prenom : {{citoyen.Prenom}}  </label></div>
+                               <div class="col-md-6" ><label>Numero Niciv : {{citoyen.niciv}}  </label></div>
+                            </div>
+                            <div class="row">
+                                <img *ngIf="imageUrl" [src]="imageUrl" alt="Loaded Image" />
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3" ><label>Nom : {{citoyen.nom}}  </label></div>
+                                <div class="col-md-3" ><label>Telephone : {{citoyen.telephone}}  </label></div>
+                                <div class="col-md-3" ><label>Genre : {{citoyen.genre}}  </label></div>
+                                <div class="col-md-3" ><label>Civilité : {{citoyen.civilite}}  </label></div>
+                            </div>
+                        </div>
+                    </div><br>
+                    <div class="card">
+                        <div class="card-header" ><h6>Informations Naissance</h6></div>
+                        <div class="card-body">
+                           <div class="row">
+                              <div class="col-md-4" >Date : {{citoyen.dateNaissance}}</div>
+<!--                               <div class="col-md-4" >Region : {{region.nom}}</div>
+                              <div class="col-md-4" >Cercle : {{cercle.nom}}</div>
+ -->                            </div>
+                            <div class="row">
+<!--                               <div class="col-md-4" >Commune : {{commune.nom}}</div>
+ -->                              <div class="col-md-4" >Quatier ou Village : {{lieuNaissance.nom}}</div>
+                            </div>
+                        </div>
+                    </div><br>
+                    <div class="card">
+                        <div class="card">
+                            <div class="card-header">Informations sur l'Adresse Actuelle</div>
+                            <div class="card-body">
+                                <div class="row">
+<!--                                     <div class="col-md-3" >Region : {{regionA.nom}}</div>
+                                    <div class="col-md-3" >Cercle  : {{cercleA.nom}}</div>
+                                    <div class="col-md-3" >Commune : {{communeA.nom}}</div>
+                                    <div class="col-md-3" >Quatier ou Village : {{vqfA.nom}}</div>
+ -->                                </div>
+                                <div class="row">
+                                    <div class="col-md-3" >Rue : {{citoyen.rue}}</div>
+                                    <div class="col-md-3" >Porte  : {{citoyen.porte}}</div>
+                                    <div class="col-md-6" >Autre : {{citoyen.autre}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><br>
+                    <div class="card">
+                        <div class="card">
+                            <div class="card-header">Informations sur les parents</div>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-4" >Prenon Pere : {{citoyen.prenomPere}}</div>
+<!--                                     <div class="col-md-4" >Profession Pere   : {{professionPere.libelle}}</div>
+ -->                                </div>
+                                <div class="row">
+                                    <div class="col-md-4" >Prenom Mere : {{citoyen.prenomMere}}</div>
+                                    <div class="col-md-4" >Nom Mere  : {{citoyen.nomMere}}</div>
+<!--                                     <div class="col-md-4" >Profession Mere : {{professionMere.libelle}}</div>
+ -->                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+                </div>
+                </div>
+    </div>
+</div>
+</div>
+</div>
+</div>
