@@ -4,18 +4,18 @@ import {WebcamImage, WebcamInitError, WebcamUtil} from 'ngx-webcam';
 import { CitoyenService } from 'src/app/services/citoyen.service';
 import { HttpClient} from '@angular/common/http';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
-  selector: 'app-webcam',
-  templateUrl: './webcam.component.html',
-  styleUrls: ['./webcam.component.css']
+  selector: 'app-edit-webcam',
+  templateUrl: './edit-webcam.component.html',
+  styleUrls: ['./edit-webcam.component.css']
 })
-export class WebcamComponent implements OnInit {
+export class EditWebcamComponent implements OnInit {
   constructor(private http: HttpClient, private tokenStorageService: TokenStorageService,
-    private apiService:CitoyenService, private  router:Router
+    private apiService:CitoyenService, private  router:Router,private route:ActivatedRoute
   ) { }
   
-  @Input() niciv!: string; // Recevoir le NICIV du composant parent
+  niciv!: string; // Recevoir le NICIV du composant parent
   // toggle webcam on/off
   public showWebcam = true;
   public allowCameraSwitch = true;
@@ -41,6 +41,7 @@ export class WebcamComponent implements OnInit {
       .then((mediaDevices: MediaDeviceInfo[]) => {
         this.multipleWebcamsAvailable = mediaDevices && mediaDevices.length > 1;
       });
+      this.niciv=this.route.snapshot.params['id']
   }
 
   public triggerSnapshot(): void {
@@ -83,3 +84,4 @@ export class WebcamComponent implements OnInit {
 
 
 }
+

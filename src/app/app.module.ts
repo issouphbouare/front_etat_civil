@@ -35,6 +35,7 @@ import { AddProfessionComponent } from './components/profession/add-profession/a
 import { EditProfessionComponent } from './components/profession/edit-profession/edit-profession.component';
 import { WebcamComponent } from './components/citoyen/webcam/webcam.component';
 import { CitoyenComponent } from './components/citoyen/citoyen/citoyen.component';
+import { EditWebcamComponent } from './components/citoyen/edit-webcam/edit-webcam.component';
 
 @NgModule({
   declarations: [
@@ -65,6 +66,7 @@ import { CitoyenComponent } from './components/citoyen/citoyen/citoyen.component
     EditProfessionComponent,
     WebcamComponent,
     CitoyenComponent,
+    EditWebcamComponent,
    
 
   ],

@@ -1,0 +1,6 @@
+circular-image {
+    border-radius: 50%; /* Pour arrondir l'image */
+    width: 100px;       /* Largeur */
+    height: 100px;      /* Hauteur */
+    object-fit: cover;  /* Assurer que l'image remplit le cercle */
+  }

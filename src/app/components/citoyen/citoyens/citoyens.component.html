@@ -47,7 +47,7 @@
                                 <td>{{p.telephone}}</td>                              
                                 <td>{{p.prenom}}</td>
                                 <td>{{p.nom}}</td>
-                                <td>{{p.dateNaissance | date}}</td>
+                                <td>{{p.dateNaissance | date:'dd-MM-yy' }}</td>
                                 
                                 <td>
                                     <button [routerLink]="['/citoyen',p.id]"

@@ -355,13 +355,6 @@ onGetRegionCur(){
 }
 
 
-selectedFile: File | null = null;
-
-  onFileSelected(event: any): void {
-    this.selectedFile = event.target.files[0];
-  }
-
-
    
    selectedGenre: string='';
    optionsG: { value: string, label: string }[] = [
@@ -389,10 +382,7 @@ selectedFile: File | null = null;
    onEtape3(){this.etape1=false; this.etape2=false; this.etape3=true; this.etape4=false;this.etape5=false;this.etape6=false;}
    onEtape4(){this.etape1=false; this.etape2=false; this.etape3=false; this.etape4=true;this.etape5=false;this.etape6=false;}
    onEtape5(){this.etape1=false; this.etape2=false; this.etape3=false; this.etape4=false;this.etape5=true;this.etape6=false;}
-   onEtape6(){  this.onGetCerCur(); this.onGetComCur(); this.onGetRegionCur();
-                this.onGetCerCurA(); this.onGetComCurA(); this.onGetRegionCurA();
-                this.onGetProfCur(); this.onGetProfPCur(); this.onGetProfMCur();
-                this.etape1=false; this.etape2=false; this.etape3=false; this.etape4=false;this.etape5=false;this.etape6=true;}
+   onEtape6(){ this.router.navigate(['citoyen',this.citoyen.id]); }
 
 
 
