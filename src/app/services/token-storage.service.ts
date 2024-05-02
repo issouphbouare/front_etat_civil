@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, switchMap, timer } from 'rxjs';
+import { jwtDecode } from 'jwt-decode';
+import { Router } from '@angular/router';
 
 
 const TOKEN_KEY = 'auth-token';
@@ -9,10 +11,12 @@ const USER_KEY = 'auth-user';
   providedIn: 'root'
 })
 export class TokenStorageService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router : Router) { }
 
   signOut(): void {
     window.sessionStorage.clear();
+    this.reloadPage()
+    //this.router.navigate(['/login']);
   }
 
   public saveToken(token: string): void {
@@ -47,27 +51,14 @@ export class TokenStorageService {
     
   }
 
-  //gestion de la deconnection automatique apres expiration de token en 1800s
-  private tokenExpirationTimeMs = 1800 * 1000; // 1800 secondes
-  private logoutIntervalMs = 60000; // 60 secondes
-
-  checkTokenExpiration(): Observable<any> {
-    return timer(0, this.logoutIntervalMs).pipe(
-      switchMap(() => this.http.get<any>('api/checkTokenExpiration'))
-    );
+  reloadPage(): void {
+    this.router.navigate(['login']).then(() => {
+      setTimeout(() => {
+        window.location.reload();
+      }, 100); // délai de 100 millisecondes
+    });
   }
-
-  logoutIfTokenExpired(): void {
-    const token = localStorage.getItem('accessToken');
-    if (token) {
-      const tokenData = JSON.parse(atob(token.split('.')[1]));
-      const expirationTime = tokenData.exp * 1000; // convertir en millisecondes
-      const currentTime = new Date().getTime();
-      if (currentTime >= expirationTime) {
-        // Déconnecter l'utilisateur
-        this.signOut();
-      }
-    }
-  }
+  
+  
 }
 

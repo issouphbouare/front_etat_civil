@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   roles: string[] = [];
 
-  constructor(private router: Router, private formBuilder: FormBuilder, private authService: AuthService, private tokenStorage: TokenStorageService) { }
+  constructor(private router: Router, private formBuilder: FormBuilder, private authService: AuthService, private tokenStorageService: TokenStorageService) { }
 
 
   ngOnInit(): void {
@@ -44,13 +44,12 @@ export class LoginComponent implements OnInit {
     console.log(this.login.value);
     this.authService.login(this.login.value).subscribe(
       data => {
-        this.tokenStorage.saveToken(data.token);
-        this.tokenStorage.saveUser(data);
-        
+        this.tokenStorageService.saveToken(data.token);
+        this.tokenStorageService.saveUser(data);
 
         this.isLoginFailed = false;
         this.isLoggedIn = true;
-        this.roles = this.tokenStorage.getUser().roles;
+        this.roles = this.tokenStorageService.getUser().roles;
         this.reloadPage();
         
       }, err => {

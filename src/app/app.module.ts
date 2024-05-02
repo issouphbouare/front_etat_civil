@@ -36,6 +36,7 @@ import { EditProfessionComponent } from './components/profession/edit-profession
 import { WebcamComponent } from './components/citoyen/webcam/webcam.component';
 import { CitoyenComponent } from './components/citoyen/citoyen/citoyen.component';
 import { EditWebcamComponent } from './components/citoyen/edit-webcam/edit-webcam.component';
+import { TokenInterceptorService } from './services/token-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,12 @@ import { EditWebcamComponent } from './components/citoyen/edit-webcam/edit-webca
     
   ],
   providers: [
-    { provide: LocationStrategy, useClass: HashLocationStrategy }
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenInterceptorService,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent]
 })

@@ -32,6 +32,6 @@ export class MenuComponent {
 
   logout(): void {
     this.tokenStorageService.signOut();
-    window.location.href = '/login';
+    //window.location.href = '/login';
   }
 }
