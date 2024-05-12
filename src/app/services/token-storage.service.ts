@@ -11,7 +11,7 @@ const USER_KEY = 'auth-user';
   providedIn: 'root'
 })
 export class TokenStorageService {
-  constructor(private http: HttpClient, private router : Router) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   signOut(): void {
     window.sessionStorage.clear();
@@ -48,7 +48,7 @@ export class TokenStorageService {
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${this.getToken()}`
     });
-    
+
   }
 
   reloadPage(): void {
@@ -58,7 +58,7 @@ export class TokenStorageService {
       }, 100); // délai de 100 millisecondes
     });
   }
-  
-  
+
+
 }
 

@@ -1,34 +1,29 @@
 <div class="card">
-<div class="card-header">
-<div class="row">
-  <div class="col-md-6">
-  
-    <div>
-      <webcam [height]="480" [width]="500" [trigger]="triggerObservable" (imageCapture)="handleImage($event)" *ngIf="showWebcam"
-              [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
-              [videoOptions]="videoOptions"
-              [imageQuality]="1"
-              (cameraSwitched)="cameraWasSwitched($event)"
-              (initError)="handleInitError($event)"
-      ></webcam>
-      <br/>
-      <button  (click)="triggerSnapshot()" 
-      class="btn btn-secondary px-4">Capter 
-    </button>
-      <br/>
+  <div class="card-header">
+    <div class="row">
+      <div class="col-md-6">
+
+        <div>
+          <webcam [height]="480" [width]="500" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"
+            *ngIf="showWebcam" [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
+            [videoOptions]="videoOptions" [imageQuality]="1" (cameraSwitched)="cameraWasSwitched($event)"
+            (initError)="handleInitError($event)"></webcam>
+          <br />
+          <button (click)="triggerSnapshot()" class="btn btn-secondary px-4">Capter
+          </button>
+          <br />
+        </div>
+      </div>
+
+      <div class="col-md-6 snapshot" *ngIf="webcamImage">
+        <div>
+          <image-cropper [imageBase64]="webcamImage.imageAsDataUrl" [maintainAspectRatio]="true" [aspectRatio]="4 / 4"
+            format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded($event)"
+            (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()"></image-cropper>
+        </div><br />
+        <div><button (click)="upload()" class="btn btn-secondary px-4">Ajouter la photo
+          </button></div>
+      </div>
     </div>
   </div>
-  
-  <div class="col-md-6 snapshot" *ngIf="webcamImage">
-    <div>
-      <img [src]="webcamImage.imageAsDataUrl" [height]="370" [width]="500"/>
-    </div><br/>
-    <div><button  (click)="upload()" 
-      class="btn btn-secondary px-4">Ajouter la photo 
-    </button></div>
-  </div>   
 </div>
-</div>
-</div>
-  
-  

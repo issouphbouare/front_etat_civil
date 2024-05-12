@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {  HttpClient, HttpRequest, HttpEvent, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpRequest, HttpEvent, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Apiresponse } from '../models/Apiresponse';
@@ -10,80 +10,81 @@ import { WebcamImage } from 'ngx-webcam';
   providedIn: 'root'
 })
 export class CitoyenService {
-  base="http://localhost:8080"; /*connexion au serveur distant*/
-  baseUrl=this.base+"/api/citoyen";
-    
-  
-  
+  base = "http://localhost:8080"; /*connexion au serveur distant*/
+  baseUrl = this.base + "/api/citoyen";
+  croppedImageUrl: string | null = null; // URL de l'image recadrée
+  imageBlob!: Blob
+
+
+
   constructor(private http: HttpClient, private tokenStorageService: TokenStorageService) { }
-  
-  getAll(p :number, size :number):Observable<Apiresponse>{
-    return this.http.get<Apiresponse>(this.baseUrl+"?sort=code,asc&page="+p+"&size="+size);
-  }
-  
-  getCitoyens():Observable<Apiresponse>{
-    const headers = this.tokenStorageService.getHeaders();
-    return this.http.get<Apiresponse>(this.baseUrl,{ headers });
-  }
-  
-  getById(url:any):Observable<any>{
-    const headers = this.tokenStorageService.getHeaders();
-    return this.http.get<Apiresponse>(this.baseUrl+"/"+url,{ headers } );
-  }
-  
-  
-  Create(m : any):Observable<Apiresponse>{
-    const headers = this.tokenStorageService.getHeaders();
-    return this.http.post<Apiresponse>(this.baseUrl , m,{ headers });
-  }
-  
-  Update(url:any, m : any):Observable<Apiresponse>{
-    const headers = this.tokenStorageService.getHeaders();
-    return this.http.put<Apiresponse>(this.baseUrl+"/"+ url, m, { headers });
-  }
-  
-  delete(url: any){
-    const headers = this.tokenStorageService.getHeaders();
-    return this.http.delete<Apiresponse>(this.baseUrl+"/"+url, { headers });
+
+  getAll(p: number, size: number): Observable<Apiresponse> {
+    return this.http.get<Apiresponse>(this.baseUrl + "?sort=code,asc&page=" + p + "&size=" + size);
   }
 
-  uploadPortrait(id: string, webcamImage: WebcamImage): Observable<any> {
+  getCitoyens(): Observable<Apiresponse> {
+    const headers = this.tokenStorageService.getHeaders();
+    return this.http.get<Apiresponse>(this.baseUrl, { headers });
+  }
+
+  getById(url: any): Observable<any> {
+    const headers = this.tokenStorageService.getHeaders();
+    return this.http.get<Apiresponse>(this.baseUrl + "/" + url, { headers });
+  }
+
+
+  Create(m: any): Observable<Apiresponse> {
+    const headers = this.tokenStorageService.getHeaders();
+    return this.http.post<Apiresponse>(this.baseUrl, m, { headers });
+  }
+
+  Update(url: any, m: any): Observable<Apiresponse> {
+    const headers = this.tokenStorageService.getHeaders();
+    return this.http.put<Apiresponse>(this.baseUrl + "/" + url, m, { headers });
+  }
+
+  delete(url: any) {
+    const headers = this.tokenStorageService.getHeaders();
+    return this.http.delete<Apiresponse>(this.baseUrl + "/" + url, { headers });
+  }
+
+  uploadPortrait(id: string, webcamImage: string): Observable<any> {
     const formData = new FormData();
-      const imageBlob = this.convertBase64ToBlob(webcamImage.imageAsBase64, 'image/jpeg');
-      const headers = new HttpHeaders({
-        'Authorization': 'Bearer '+this.tokenStorageService.getToken()
-      });
-      formData.append('file', imageBlob);  
-  
-    return this.http.put(this.baseUrl+'/uploadPortrait/'+id , formData, { headers })
+    this.croppedImageUrl = webcamImage;
+    this.convertImageUrlToBlob()
+    const headers = new HttpHeaders({
+      'Authorization': 'Bearer ' + this.tokenStorageService.getToken()
+    });
+    formData.append('file', this.imageBlob);
+
+    return this.http.put(this.baseUrl + '/uploadPortrait/' + id, formData, { headers })
   }
 
   getImage(filename: string): Observable<Blob> {
     const headers = new HttpHeaders({
-      'Authorization': 'Bearer '+this.tokenStorageService.getToken(),
+      'Authorization': 'Bearer ' + this.tokenStorageService.getToken(),
     });
 
-    return this.http.get(this.baseUrl+"/affichePortrait/"+filename, { headers, responseType: 'blob' });
+    return this.http.get(this.baseUrl + "/affichePortrait/" + filename, { headers, responseType: 'blob' });
   }
 
-  private convertBase64ToBlob(base64: string, contentType = '', sliceSize = 512): Blob {
-    const byteCharacters = atob(base64);
-    const byteArrays = [];
 
-    for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-      const slice = byteCharacters.slice(offset, offset + sliceSize);
-
-      const byteNumbers = new Array(slice.length);
-      for (let i = 0; slice[i] !== undefined; i++) {
-        byteNumbers[i] = slice.charCodeAt(i);
-      }
-
-      const byteArray = new Uint8Array(byteNumbers);
-      byteArrays.push(byteArray);
+  convertImageUrlToBlob() {
+    if (this.croppedImageUrl) {
+      fetch(this.croppedImageUrl)
+        .then(response => response.blob())
+        .then(blob => {
+          // Faites quelque chose avec le blob, par exemple, l'envoyer au backend
+          console.log("Blob créé avec succès :", blob);
+          this.imageBlob = blob;
+        })
+        .catch(error => {
+          console.error("Erreur lors de la création du blob :", error);
+        });
+    } else {
+      console.warn("L'URL de l'image rognée est null.");
     }
+  }
+}
 
-    return new Blob(byteArrays, { type: contentType });
-  }
-  }
-  
-  

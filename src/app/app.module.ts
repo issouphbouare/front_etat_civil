@@ -26,7 +26,6 @@ import { VqfsComponent } from './components/collectivites/vqf/vqfs/vqfs.componen
 import { EditVqfComponent } from './components/collectivites/vqf/edit-vqf/edit-vqf.component';
 import { AddCitoyenComponent } from './components/citoyen/add-citoyen/add-citoyen.component';
 import { CitoyensComponent } from './components/citoyen/citoyens/citoyens.component';
-import { NgxMaskPipe } from 'ngx-mask';
 import { UsersComponent } from './components/admin/user/users/users.component';
 import { AddUserComponent } from './components/admin/user/add-user/add-user.component';
 import { LoginComponent } from './components/admin/user/login/login.component';
@@ -37,6 +36,7 @@ import { WebcamComponent } from './components/citoyen/webcam/webcam.component';
 import { CitoyenComponent } from './components/citoyen/citoyen/citoyen.component';
 import { EditWebcamComponent } from './components/citoyen/edit-webcam/edit-webcam.component';
 import { TokenInterceptorService } from './services/token-interceptor.service';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 @NgModule({
   declarations: [
@@ -79,8 +79,8 @@ import { TokenInterceptorService } from './services/token-interceptor.service';
     FormsModule,
     CarouselModule.forRoot(),
     WebcamModule,
-    
-    
+    ImageCropperModule
+  
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },

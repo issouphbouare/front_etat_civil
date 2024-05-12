@@ -1,131 +1,156 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-12 mt-8"> 
+        <div class="col-md-12 mt-8">
             <div class="card" *ngIf="citoyen lieuNaissance adresse commune communeA
             cercle cercleA region regionA profession professionP professionM">
-            <div class="card-header" style="text-align: center;">
-                <h3>Details sur le citoyen {{citoyen.niciv}} </h3>
-            </div>
-        
-        
-    <div class="card-body">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group" >
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-7">
-                                    <div class="card">
-                                        <div class="card-header" style="text-align: center;">
-                                            Informations Personnelles</div>
-                                        <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-6" ><label>Prenom : {{citoyen.prenom}}  </label></div>
-                                        <div class="col-md-6" ><label>Numero Niciv : {{citoyen.niciv}}  </label></div>
-                                     </div>
-                                     <div class="row">
-                                         <div class="col-md-6" ><label>Nom : {{citoyen.nom}}  </label></div>
-                                         <div class="col-md-6" ><label>Telephone : {{citoyen.telephone}}  </label></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6" ><label>Genre : {{citoyen.genre}}  </label></div>
-                                        <div class="col-md-6" ><label>Civilité : {{citoyen.civilite}}  </label></div>
-                                        <div class="col-md-6" ><label>Profession : {{profession.libelle}}  </label></div>
-                                    </div>
-                                </div>
-                            </div>  
-                                    <br/>
-                                    <div class="card">
-                                        <div class="card-header" style="text-align: center;">
-                                            Date et lieu de naissance</div>
-                                        <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-md-6" ><label>Date Naissance : {{citoyen.dateNaissance | date:'dd-MM-yy'}}  </label></div>
-                                     </div>
-                                     <div class="row">
-                                        <div class="col-md-6" ><label>Vqf Naissance : {{lieuNaissance.nom}}  </label></div>
-                                         <div class="col-md-6" ><label>Commune Naissance: {{commune.nom}}  </label></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6" ><label>Cercle Naissance: {{cercle.nom}}  </label></div>
-                                        <div class="col-md-6" ><label>Region Naissance : {{region.nom}}  </label></div>
-                                    </div>
-                                </div>
-                            </div>
-                                     <br/>
-                                     <div class="card">
-                                        <div class="card-header" style="text-align: center;">
-                                            Les parents</div>
-                                        <div class="card-body">
-                                     <div class="row">
-                                        <div class="col-md-6" ><label>Prenom Pere : {{citoyen.prenomPere}}  </label></div>
-                                        <div class="col-md-6" ><label>Profession Pere: {{professionP.libelle}}  </label></div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6" ><label>Prenom Mere : {{citoyen.prenomMere}}  </label></div>
-                                        <div class="col-md-6" ><label>Nom Mere : {{citoyen.nomMere}}  </label></div>
-                                     </div>
-                                     <div class="row">
-                                         <div class="col-md-6" ><label>Profession Mere : {{professionM.libelle}}  </label></div>
-                                    </div>
-                                </div>
-                            </div>
-                                      <br/>                                   
+                <div class="card-header" style="text-align: center;">
+                    <h3>Details sur le citoyen {{citoyen.niciv}} </h3>
+                </div>
 
-                                </div>
-                                <div class="col-md-5">
-                                    <div class="card">
-                                        <div class="card-header" style="text-align: center;">Photo</div>
-                                        <div class="card-body">
-                                            <div  style="width: 30rem;">
-                                                <div class="col-md-12" >
-                                                    <img *ngIf="imageUrl" [src]="imageUrl" class="card-img-top" />
-                                                   </div>
-                                            </div> <br/>
-                                            <div>
-                                                <button *ngIf="!imageUrl" [routerLink]="['/editWebcam',citoyen.niciv]"
-                                                class="btn btn-secondary" style="width: 210px;">
-                                                    <i class="bi bi-camera"></i>
-                                                </button>
-                                                <button *ngIf="imageUrl" [routerLink]="['/editWebcam',citoyen.niciv]"
-                                                class="btn btn-secondary" style="width: 210px;">
-                                                    <i class="bi bi-pencil"></i>
-                                                </button>
+
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-md-7">
+                                                <div class="card">
+                                                    <div class="card-header" style="text-align: center;">
+                                                        Informations Personnelles</div>
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="col-md-6"><label>Prenom : {{citoyen.prenom}}
+                                                                </label></div>
+                                                            <div class="col-md-6"><label>Numero Niciv :
+                                                                    {{citoyen.niciv}} </label></div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6"><label>Nom : {{citoyen.nom}} </label>
+                                                            </div>
+                                                            <div class="col-md-6"><label>Telephone :
+                                                                    {{citoyen.telephone}} </label></div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6"><label>Genre : {{citoyen.genre}}
+                                                                </label></div>
+                                                            <div class="col-md-6"><label>Civilité : {{citoyen.civilite}}
+                                                                </label></div>
+                                                            <div class="col-md-6"><label>Profession :
+                                                                    {{profession.libelle}} </label></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br />
+                                                <div class="card">
+                                                    <div class="card-header" style="text-align: center;">
+                                                        Date et lieu de naissance</div>
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="col-md-6"><label>Date Naissance :
+                                                                    {{citoyen.dateNaissance | date:'dd-MM-yy'}} </label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6"><label>Vqf Naissance :
+                                                                    {{lieuNaissance.nom}} </label></div>
+                                                            <div class="col-md-6"><label>Commune Naissance:
+                                                                    {{commune.nom}} </label></div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6"><label>Cercle Naissance:
+                                                                    {{cercle.nom}} </label></div>
+                                                            <div class="col-md-6"><label>Region Naissance :
+                                                                    {{region.nom}} </label></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br />
+                                                <div class="card">
+                                                    <div class="card-header" style="text-align: center;">
+                                                        Les parents</div>
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="col-md-6"><label>Prenom Pere :
+                                                                    {{citoyen.prenomPere}} </label></div>
+                                                            <div class="col-md-6"><label>Profession Pere:
+                                                                    {{professionP.libelle}} </label></div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6"><label>Prenom Mere :
+                                                                    {{citoyen.prenomMere}} </label></div>
+                                                            <div class="col-md-6"><label>Nom Mere : {{citoyen.nomMere}}
+                                                                </label></div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6"><label>Profession Mere :
+                                                                    {{professionM.libelle}} </label></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <br />
+
                                             </div>
+                                            <div class="col-md-5">
+                                                <div class="card">
+                                                    <div class="card-header" style="text-align: center;">Photo</div>
+                                                    <div class="card-body">
+                                                        <div style="width: 30rem;">
+                                                            <div class="col-md-12">
+                                                                <img *ngIf="imageUrl" [src]="imageUrl"
+                                                                    class="card-img-top" />
+                                                            </div>
+                                                        </div> <br />
+                                                        <div>
+                                                            <button *ngIf="!imageUrl"
+                                                                [routerLink]="['/editWebcam',citoyen.niciv]"
+                                                                class="btn btn-secondary" style="width: 210px;">
+                                                                <i class="bi bi-camera"></i>
+                                                            </button>
+                                                            <button *ngIf="imageUrl"
+                                                                [routerLink]="['/editWebcam',citoyen.niciv]"
+                                                                class="btn btn-secondary" style="width: 210px;">
+                                                                <i class="bi bi-pencil"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div><br />
+                                        <div class="row">
+                                            <div class="card">
+                                                <div class="card">
+                                                    <div class="card-header" style="text-align: center;">Adresse</div>
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="col-md-2">Region : {{regionA.nom}}</div>
+                                                            <div class="col-md-3">Cercle : {{cercleA.nom}}</div>
+                                                            <div class="col-md-3">Commune : {{communeA.nom}}</div>
+                                                            <div class="col-md-4">Quatier / Village / Fraction : {{adresse.nom}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-2">Rue : {{citoyen.rue}}</div>
+                                                            <div class="col-md-3">Porte : {{citoyen.porte}}</div>
+                                                            <div class="col-md-7">Autre : {{citoyen.autre}}</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div><br>
                                         </div>
+
                                     </div>
-                                    
-                                </div>
-                                
-                            </div>
-                            
-                        </div>
-                    </div><br>
-                    
-                    <div class="card">
-                        <div class="card">
-                            <div class="card-header" style="text-align: center;">Adresse</div>
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-3" >Region : {{regionA.nom}}</div>
-                                    <div class="col-md-3" >Cercle  : {{cercleA.nom}}</div>
-                                    <div class="col-md-3" >Commune : {{communeA.nom}}</div>
-                                    <div class="col-md-3" >Quatier ou Village : {{adresse.nom}}</div>
-                                 </div>
-                                <div class="row">
-                                    <div class="col-md-3" >Rue : {{citoyen.rue}}</div>
-                                    <div class="col-md-3" >Porte  : {{citoyen.porte}}</div>
-                                    <div class="col-md-6" >Autre : {{citoyen.autre}}</div>
-                                </div>
+                                </div><br>
+
+
                             </div>
                         </div>
-                    </div><br>
-                </div> 
+                    </div>
                 </div>
-                </div>
+            </div>
+        </div>
     </div>
-</div>
-</div>
-</div>
 </div>

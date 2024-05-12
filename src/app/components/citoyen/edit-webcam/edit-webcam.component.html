@@ -24,8 +24,18 @@
       
       <div class="col-md-6 snapshot" *ngIf="webcamImage">
         <div>
-          <img [src]="webcamImage.imageAsDataUrl" [height]="370" [width]="500"/>
-        </div><br/>
+          <image-cropper
+    [imageBase64]="webcamImage.imageAsDataUrl"
+    [maintainAspectRatio]="true"
+    [aspectRatio]="4 / 4"
+    format="png"
+    (imageCropped)="imageCropped($event)"
+    (imageLoaded)="imageLoaded($event)"
+    (cropperReady)="cropperReady()"
+    (loadImageFailed)="loadImageFailed()"
+></image-cropper>
+
+<br/>
         <div><button  (click)="upload()" 
           class="btn btn-secondary px-4">Ajouter la photo 
         </button></div>
@@ -37,4 +47,5 @@
     </div>
 </div>
       
+
       
