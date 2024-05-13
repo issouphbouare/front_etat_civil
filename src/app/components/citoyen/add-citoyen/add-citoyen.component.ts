@@ -9,6 +9,7 @@ import { RegionService } from 'src/app/services/region.service';
 import { VqfService } from 'src/app/services/vqf.service';
 import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
 import { Subject, Observable } from 'rxjs';
+import { JasperService } from 'src/app/services/jasper.service';
 
 @Component({
   selector: 'app-add-citoyen',
@@ -76,7 +77,7 @@ autre: string='';
      private apiService: CitoyenService, private route:ActivatedRoute,
      private professionService: ProfessionService,
      private regionService: RegionService,private vqfService: VqfService,
-     private cercleService: CercleService,
+     private cercleService: CercleService,private jasperService: JasperService,
      private communeService: CommuneService, private  router:Router) { }
     formAdd : FormGroup= new FormGroup({});
     
@@ -382,7 +383,10 @@ onGetRegionCur(){
    onEtape3(){this.etape1=false; this.etape2=false; this.etape3=true; this.etape4=false;this.etape5=false;this.etape6=false;}
    onEtape4(){this.etape1=false; this.etape2=false; this.etape3=false; this.etape4=true;this.etape5=false;this.etape6=false;}
    onEtape5(){this.etape1=false; this.etape2=false; this.etape3=false; this.etape4=false;this.etape5=true;this.etape6=false;}
-   onEtape6(){ this.router.navigate(['citoyen',this.citoyen.id]); }
+   onEtape6(){ 
+    this.router.navigate(['citoyen',this.citoyen.id]);
+    this.generateRecu(this.citoyen.id)
+    }
 
 
 
@@ -414,8 +418,17 @@ onGetRegionCur(){
     return null;
   }
 
-  
-  private trigger: Subject<void> = new Subject<void>();
+  generateRecu(id: number): void {
+    this.jasperService.generateRecu(id).subscribe(
+      (response: Blob) => {
+        this.jasperService.downloadFile(response, id);
+      },
+      error => {
+        console.error('Erreur lors du téléchargement du recu : ', error);
+      }
+    ); 
+  }
+  /* private trigger: Subject<void> = new Subject<void>();
   public triggerObservable: Observable<void> = this.trigger.asObservable();
 
   public webcamImage: WebcamImage | undefined;
@@ -435,4 +448,6 @@ onGetRegionCur(){
   handleInitError(error: WebcamInitError) {
     console.error('Erreur d\'initialisation de la webcam:', error);
   }
-  }
+   */
+  
+}

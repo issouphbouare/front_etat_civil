@@ -1,0 +1,46 @@
+import { Injectable } from '@angular/core';
+import { TokenStorageService } from './token-storage.service';
+import { Apiresponse } from '../models/Apiresponse';
+import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { saveAs } from 'file-saver';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class JasperService {base="http://localhost:8080"; /*connexion au serveur distant*/
+baseUrl=this.base+"/api/jasper";
+  
+
+
+constructor(private http: HttpClient, private tokenStorageService: TokenStorageService) { }
+
+getCarteById(url:any):Observable<any>{
+  const headers = this.tokenStorageService.getHeaders();
+  return this.http.get<Apiresponse>(this.baseUrl+"/carte/"+url,{ headers } );
+}
+
+
+generateRecu(id: number): Observable<Blob> {
+  const headers = new HttpHeaders()
+    .set('Authorization', 'Bearer ' + this.tokenStorageService.getToken())
+    .set('Content-Type', 'application/pdf'); // Remplacez 'application/pdf' par le type MIME approprié si nécessaire
+
+  const url = `${this.baseUrl}/recu/${id}`;
+  return this.http.get(url, { responseType: 'blob', headers: headers });
+}
+
+public downloadFile(blob: Blob, id: any): void {
+  const downloadLink = document.createElement('a');
+  const url = window.URL.createObjectURL(blob);
+  downloadLink.href = url;
+  downloadLink.download = "recépissé_"+id+".pdf"; // Nom du fichier
+  document.body.appendChild(downloadLink);
+  downloadLink.click();
+  setTimeout(() => {
+    document.body.removeChild(downloadLink);
+    window.URL.revokeObjectURL(url);
+  }, 100);
+}
+
+}

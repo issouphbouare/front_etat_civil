@@ -4,6 +4,7 @@ import { ActivatedRoute, Route } from '@angular/router';
 import { CercleService } from 'src/app/services/cercle.service';
 import { CitoyenService } from 'src/app/services/citoyen.service';
 import { CommuneService } from 'src/app/services/commune.service';
+import { JasperService } from 'src/app/services/jasper.service';
 import { ProfessionService } from 'src/app/services/profession.service';
 import { RegionService } from 'src/app/services/region.service';
 import { VqfService } from 'src/app/services/vqf.service';
@@ -15,7 +16,7 @@ import { VqfService } from 'src/app/services/vqf.service';
 })
 export class CitoyenComponent implements OnInit {
   constructor(private route: ActivatedRoute, private apiService: CitoyenService,
-    private vqfService:VqfService, private communeService:CommuneService,
+    private vqfService:VqfService, private communeService:CommuneService, private jasperService: JasperService,
     private cercleService:CercleService,private regionService:RegionService,
     private professionService:ProfessionService, private sanitizer: DomSanitizer
   ){}
@@ -163,5 +164,6 @@ onGetProfessionM(id:any){
       (error) => console.error('Erreur lors du chargement de l\'image:', error) // Gérer les erreurs
     );
   }
+  
 
 }
