@@ -14,6 +14,11 @@ baseUrl=this.base+"/api/profession";
 
 constructor(private http: HttpClient, private tokenStorageService: TokenStorageService) { }
 
+search(keyword: string, page: number, size: number): Observable<Apiresponse> {
+  const headers = this.tokenStorageService.getHeaders();
+  return this.http.get<Apiresponse>(this.baseUrl + "/search?keyword=" + keyword +"&page="+page+"&size=" + size, { headers });
+}
+
 getAll(p :number, size :number):Observable<Apiresponse>{
   return this.http.get<Apiresponse>(this.baseUrl+"?sort=code,asc&page="+p+"&size="+size);
 }

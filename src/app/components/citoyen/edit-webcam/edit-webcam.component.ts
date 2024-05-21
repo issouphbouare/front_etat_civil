@@ -19,13 +19,14 @@ export class EditWebcamComponent implements OnInit {
     , private sanitizer: DomSanitizer
   ) { }
 
-  niciv!: string; // Recevoir le NICIV du composant parent
+  id!: string; // Recevoir le NICIV du composant parent
   // toggle webcam on/off
   public showWebcam = true;
   public allowCameraSwitch = true;
   public multipleWebcamsAvailable = false;
   public deviceId!: string;
   citoyen: any;
+  citoyenCur: any;
   public videoOptions: MediaTrackConstraints = {
     width: { ideal: 230 },
     height: { ideal: 1024 }
@@ -68,7 +69,17 @@ export class EditWebcamComponent implements OnInit {
       .then((mediaDevices: MediaDeviceInfo[]) => {
         this.multipleWebcamsAvailable = mediaDevices && mediaDevices.length > 1;
       });
-    this.niciv = this.route.snapshot.params['id']
+    this.id = this.route.snapshot.params['id']
+    this.onGetCitoyen(this.id)
+  }
+
+  onGetCitoyen(id:any){
+    this.apiService.getById(id)
+    .subscribe((data: any)=>{
+    this.citoyenCur=data;
+  }, err=>{
+    console.log(err);
+  })
   }
 
   public triggerSnapshot(): void {
@@ -98,7 +109,7 @@ export class EditWebcamComponent implements OnInit {
   public upload(): void {
     if (this.croppedImageUrl) {
 
-      this.apiService.uploadPortrait(this.niciv, this.croppedImageUrl).subscribe(
+      this.apiService.uploadPortrait(this.citoyenCur.niciv, this.croppedImageUrl).subscribe(
         (response) => {
           this.citoyen = response;
           console.log('Image envoyée avec succès', this.citoyen.id)

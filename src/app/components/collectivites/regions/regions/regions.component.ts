@@ -9,7 +9,7 @@ import { RegionService } from 'src/app/services/region.service';
   styleUrls: ['./regions.component.css']
 })
 export class RegionsComponent {
-  public donnees: any;
+public donnees: any;
 public av=1;
 keyword: string = '';
 urlDownload: string='';

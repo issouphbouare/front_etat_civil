@@ -123,12 +123,12 @@
                                                         </div> <br />
                                                         <div>
                                                             <button *ngIf="!imageUrl"
-                                                                [routerLink]="['/editWebcam',citoyen.niciv]"
+                                                                [routerLink]="['/editWebcam',citoyen.id]"
                                                                 class="btn btn-secondary" style="width: 210px;">
                                                                 <i class="bi bi-camera"></i>
                                                             </button>
                                                             <button *ngIf="imageUrl"
-                                                                [routerLink]="['/editWebcam',citoyen.niciv]"
+                                                                [routerLink]="['/editWebcam',citoyen.id]"
                                                                 class="btn btn-secondary" style="width: 210px;">
                                                                 <i class="bi bi-pencil"></i>
                                                             </button>
