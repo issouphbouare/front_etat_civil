@@ -36,21 +36,11 @@ export class AddCercleComponent implements OnInit {
       autre : [''],
     });
     this.url=this.route.snapshot.params['id']
-    this.onGetReg();
+    this.onGetAllReg();
     
   }
 
-  onGetReg(){
-    this.regionService.getById(this.url)
-    .subscribe((data: any)=>{
-    
-    this.region=data;
-
-  }, err=>{
-    console.log(err);
-  })
-
-  }
+  
 
  
 
@@ -64,7 +54,7 @@ export class AddCercleComponent implements OnInit {
     subscribe( (data: any) => {
       console.log(data);
       alert(" Cercle  "+this.form.value.nom+"  ajoutée avec succes ");
-      this.router.navigate(['cercles',this.region.id]);
+      this.router.navigate(['cercles']);
       }, err=>{
         console.log(err);
         alert(err.error.message);
@@ -72,7 +62,17 @@ export class AddCercleComponent implements OnInit {
  
   }
  
+  onGetAllReg(){
+    this.regionService.getRegions()
+    .subscribe((data: any)=>{
+    
+    this.regions=data;
 
+  }, err=>{
+    console.log(err);
+  })
+
+  }
 
 }
 

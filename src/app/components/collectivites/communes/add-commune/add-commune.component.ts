@@ -5,6 +5,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { CercleService } from 'src/app/services/cercle.service';
 import { CommuneService } from 'src/app/services/commune.service';
+import { RegionService } from 'src/app/services/region.service';
 @Component({
   selector: 'app-add-commune',
   templateUrl: './add-commune.component.html',
@@ -12,9 +13,11 @@ import { CommuneService } from 'src/app/services/commune.service';
 })
 export class AddCommuneComponent implements OnInit {
 
-  public donnee:any;
+  public selectedReg:any; 
+  public selectedCer:any;
   public cercle: any;
   public cercles: any;
+  public regions: any;
   //public base : string="http://localhost:8082/divisions/";
   public base : string="http://62.171.169.168:8082/divisions/"; /*connexion au serveur distant*/
   public nbPage : number=0;
@@ -26,36 +29,47 @@ export class AddCommuneComponent implements OnInit {
 
   constructor(private http: HttpClient,private route:ActivatedRoute,
     private apiService: CommuneService, private formBuilder:FormBuilder ,
-    private router : Router, private cercleService: CercleService) { }
+    private router : Router, private cercleService: CercleService, private regionService: RegionService) { }
 
   ngOnInit(): void {
     this.form=this.formBuilder.group({
       code : ['',[Validators.required, Validators.pattern("([0-9]).{1,}")]],
       nom : ['',[Validators.required, Validators.pattern("([A-Z]).{2,}")]],
       cercle : ['',[Validators.required]],
+      region : ['',[Validators.required]],
       autre : [''],
     });
-    this.url=this.route.snapshot.params['id']
-    this.onGetCer();
+    
+    this.onGetRegions();
     
   }
 
-  onGetCer(){
-    this.cercleService.getById(this.url)
-    .subscribe((data: any)=>{
-    
-    this.cercle=data;
-
-  }, err=>{
-    console.log(err);
-  })
-
-  }
+  
+  
 
  
 
   
-
+  onGetRegions(){
+    this.regionService.getRegions().subscribe((data: any)=>{
+      this.regions=data;
+      this.sortRegions()
+        console.log(this.regions);
+        }, err=>{
+            console.log(err);
+          }); 
+   }
+ 
+   
+   onGetCerByReg(){      
+     this.cercleService.getCerByReg(this.selectedReg).subscribe((data: any)=>{
+       this.cercles=data; 
+       this.sortCercles(); 
+          this.selectedCer=null;
+         }, err=>{
+             console.log(err);
+           }); 
+    }
   
   onSubmit(){
     console.log(this.form.value);
@@ -64,7 +78,7 @@ export class AddCommuneComponent implements OnInit {
     subscribe( (data: any) => {
       console.log(data);
       alert(" Commune  "+this.form.value.nom+"  ajoutée avec succes ");
-      this.router.navigate(['communes',this.cercle.id]);
+      this.router.navigate(['communes']);
       }, err=>{
         console.log(err);
         alert(err.error.message);
@@ -73,7 +87,21 @@ export class AddCommuneComponent implements OnInit {
   }
  
 
-
+  sortRegions(): void{
+    this.regions.sort((a: any, b: any) => {
+      return a.code.localeCompare(b.code)
+    })
+   }
+   sortCercles(): void{
+    this.cercles.sort((a: any, b: any) => {
+      return a.code.localeCompare(b.code)
+    })
+   }
+   sortCommunes(): void{
+    this.cercles.sort((a: any, b: any) => {
+      return a.code.localeCompare(b.code)
+    })
+   }
 }
 
 

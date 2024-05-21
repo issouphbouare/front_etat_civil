@@ -9,62 +9,75 @@ import { RegionService } from 'src/app/services/region.service';
   styleUrls: ['./regions.component.css']
 })
 export class RegionsComponent {
-  public donnees:any;
-  public currentPage: number=0;
+  public donnees: any;
+public av=1;
+keyword: string = '';
+urlDownload: string='';
+idAv: number =0;
+totalSearch:number=0;
+public currentPage: number=0;
   public size : number=6;
   public nbPage : number=0;
   public pages : Array<number>=[];
 
 
-  constructor(private http: HttpClient,
-    private apiService: RegionService,
-    private router : Router) { }
+constructor(private http: HttpClient,
+  private apiService: RegionService
+  ,
+  private router : Router) { }
 
-  ngOnInit(): void {
-    this.onGetAll();
-  }
 
-  onGetAll(){
-    this.apiService.getRegions()
-    .subscribe((data: any)=>{
-    /* this.nbPage=data["page"].totalPages;
-    this.pages=new Array<number>(this.nbPage); */
-    this.donnees=data;
-    this.sortRegions();
-
-  }, err=>{
-    console.log(err);
-  })
-
-  }
-
-  // goToPage(i: any){
-  //   this.currentPage=i;
-  //   this.onGetAll();
-  // }
-
-  onDelete(m:any){
-    if(confirm("Voulez-vous vraiment supprimer la region  "+m.nom+ " ?")){
-      console.log();
-      this.apiService.delete(m.id.toString())
-      .subscribe( data=>{
-        this.onGetAll();
-    
-        }, err=>{
-          console.log(err);
-        }
-      );
-
-    alert("Region "+m.nom+  " supprimé avec succes");
-  }
-    
-  }
-  sortRegions(): void{
-    this.donnees.sort((a: any, b: any) => {
-      return a.code.localeCompare(b.code)
-    })
-   }
-
+ngOnInit(): void {
+  this.av=1;
+  this.onSearch() 
 }
 
 
+goToPage(i:any){
+  this.currentPage=i;
+  this.onSearch();
+}
+goToPrevious(){
+  this.currentPage=this.currentPage-1;
+  this.onSearch();
+}
+goToNext(){
+  this.currentPage=this.currentPage+1;
+  this.onSearch();
+}
+search(){
+  this.currentPage=0;
+  this.onSearch();
+}
+onDelete(a: any){
+  if(confirm("Voulez-vous vraiment supprimer ce citoyen ?")){
+    console.log();
+    this.apiService.delete(a)
+    .subscribe( data=>{
+      this.onSearch();
+      window.location.reload();
+  
+      }, err=>{
+        console.log(err);
+      }
+    );
+
+  //alert("Militant  supprimé avec succes");
+}
+  
+}
+
+onSearch() {
+  this.apiService.search(this.keyword, this.currentPage, this.size)
+    .subscribe((data: any) => { // Utilisez un type générique 'any' pour 'data'
+      this.nbPage = data.totalPages;
+      this.totalSearch=data.totalElements;
+      this.pages = new Array<number>(this.nbPage);
+      this.donnees = data.content;
+      console.log(this.donnees)
+    }, err => {
+      console.log(err);
+    });
+}
+
+}

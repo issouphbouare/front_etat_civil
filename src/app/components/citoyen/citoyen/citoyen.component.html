@@ -4,7 +4,26 @@
             <div class="card" *ngIf="citoyen lieuNaissance adresse commune communeA
             cercle cercleA region regionA profession professionP professionM">
                 <div class="card-header" style="text-align: center;">
-                    <h3>Details sur le citoyen {{citoyen.niciv}} </h3>
+                    <div class="row">
+                        <div class="col-md-1">
+                            <button [routerLink]="['/citoyens']" class="btn btn-light"><i
+                                class="bi bi-arrow-left"></i></button>
+                        </div>
+                        <div class="col-md-9">
+                            <h3>CITOYEN DE N° NICIV  {{citoyen.niciv}} </h3>
+                        </div>
+                        <div class="col-md-2">
+                            <a class="btn btn-secondary" href="#" id="navbarScrollingDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Générer PDF <i class="bi bi-file-pdf"></i>
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
+                            <li><a class="btn btn-light" (click)="genererCarte()">Carte  Biometrique</a></li>
+                            <li><a class="btn btn-light" (click)="genererFiche()">Fiche  Individuelle</a></li>
+                            <li><a class="btn btn-light" (click)="genererRecu()">Recépissé Insciption</a></li>
+                        </ul>
+                        </div>
+                    </div>
                 </div>
 
 

@@ -111,7 +111,7 @@ export class WebcamComponent implements OnInit {
   generateRecu(id: number): void {
     this.jasperService.generateRecu(id).subscribe(
       (response: Blob) => {
-        this.jasperService.downloadFile(response,id);
+        this.jasperService.downloadFile(response,"recépissé_"+id.toString());
       },
       error => {
         console.error('Erreur lors du téléchargement du recu : ', error);

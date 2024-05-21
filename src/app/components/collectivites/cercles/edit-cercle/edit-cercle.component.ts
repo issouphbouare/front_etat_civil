@@ -99,7 +99,7 @@ export class EditCercleComponent implements OnInit {
     subscribe( (data: any) => {
       console.log(data);
       alert(" Cercle  "+this.form.value.nom+"  modifiee avec succes ");
-      this.router.navigate(['cercles', this.region.id]);
+      this.router.navigate(['cercles']);
       }, err=>{
         console.log(err);
         alert(err.error.message);

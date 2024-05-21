@@ -30,11 +30,29 @@ generateRecu(id: number): Observable<Blob> {
   return this.http.get(url, { responseType: 'blob', headers: headers });
 }
 
-public downloadFile(blob: Blob, id: any): void {
+generateCarte(id: number): Observable<Blob> {
+  const headers = new HttpHeaders()
+    .set('Authorization', 'Bearer ' + this.tokenStorageService.getToken())
+    .set('Content-Type', 'application/pdf'); // Remplacez 'application/pdf' par le type MIME approprié si nécessaire
+
+  const url = `${this.baseUrl}/carte/${id}`;
+  return this.http.get(url, { responseType: 'blob', headers: headers });
+}
+
+generateFiche(id: number): Observable<Blob> {
+  const headers = new HttpHeaders()
+    .set('Authorization', 'Bearer ' + this.tokenStorageService.getToken())
+    .set('Content-Type', 'application/pdf'); // Remplacez 'application/pdf' par le type MIME approprié si nécessaire
+
+  const url = `${this.baseUrl}/fiche/${id}`;
+  return this.http.get(url, { responseType: 'blob', headers: headers });
+}
+
+public downloadFile(blob: Blob, name: any): void {
   const downloadLink = document.createElement('a');
   const url = window.URL.createObjectURL(blob);
   downloadLink.href = url;
-  downloadLink.download = "recépissé_"+id+".pdf"; // Nom du fichier
+  downloadLink.download =name+".pdf"; // Nom du fichier
   document.body.appendChild(downloadLink);
   downloadLink.click();
   setTimeout(() => {

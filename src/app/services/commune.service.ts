@@ -14,7 +14,10 @@ baseUrl=this.base+"/api/commune";
 constructor(private http: HttpClient,
   private tokenStorageService: TokenStorageService) { }
 
-
+  search(keyword: string, page: number, size: number): Observable<Apiresponse> {
+    const headers = this.tokenStorageService.getHeaders();
+    return this.http.get<Apiresponse>(this.baseUrl + "/search?keyword=" + keyword +"&page="+page+"&size=" + size, { headers });
+  }
 
 getCommunes():Observable<Apiresponse>{
   const headers = this.tokenStorageService.getHeaders();

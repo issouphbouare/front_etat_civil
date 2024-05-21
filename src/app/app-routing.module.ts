@@ -33,18 +33,18 @@ const routes: Routes = [
  {path : "regions" , component : RegionsComponent },
  {path :"addRegion" , component : AddRegionComponent},
  {path : "editRegion/:id" , component : EditRegionComponent },
- {path : "cercles/:id" , component : CerclesComponent },
+ {path : "cercles" , component : CerclesComponent },
 
- {path :"addCercle/:id" , component : AddCercleComponent},
+ {path :"addCercle" , component : AddCercleComponent},
  {path : "editCercle/:id" , component : EditCercleComponent },
- {path : "cercles/:id" , component : CerclesComponent },
+ {path : "cercles" , component : CerclesComponent },
 
- {path :"addCommune/:id" , component : AddCommuneComponent},
+ {path :"addCommune" , component : AddCommuneComponent},
  {path : "editCommune/:id" , component : EditCommuneComponent },
- {path : "communes/:id" , component : CommunesComponent },
+ {path : "communes" , component : CommunesComponent },
 
- {path : "vqfs/:id" , component : VqfsComponent },
- {path :"addVqf/:id" , component : AddVqfComponent},
+ {path : "vqfs" , component : VqfsComponent },
+ {path :"addVqf" , component : AddVqfComponent},
  {path : "editVqf/:id" , component : EditVqfComponent },
 
  {path :"addCitoyen" , component : AddCitoyenComponent},

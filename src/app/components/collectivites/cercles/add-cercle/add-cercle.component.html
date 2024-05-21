@@ -6,11 +6,11 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-md-2">
-                                <a [routerLink]="['/cercles',region.id]" class="btn btn-light float-light"><i class="bi bi-arrow-left"></i></a>
+                                <a [routerLink]="['/cercles']" class="btn btn-light float-light"><i class="bi bi-arrow-left"></i></a>
                             </div>
                             <div class="col-md-10">
                                 <h4>
-                                    Ajout de Cercle Dans la Region de {{region.nom}}
+                                    Ajout de Cercle
                                 </h4>
                             </div>
                         </div>
@@ -20,6 +20,14 @@
                         <form [formGroup]="form" (ngSubmit)="onSubmit()">
                            <div class="row">
                                <div class="col-md-8">
+                                <div class="form-group">
+                                    <label>Region</label>
+                                    <select  formControlName="region" class="form-control" id=""
+                                        >
+                                        <option *ngFor="let p of regions"
+                                            [value]="p.id">{{p.nom}} </option>
+                                    </select>
+                                </div>
                                    <div class="form-group">
                                     <label>Code Cercle</label>
                                     <input type="text" formControlName="code" class="form-control" placeholder="au moins 2 caracteres ">
@@ -31,10 +39,7 @@
                                        <label>Autre</label>
                                        <input type="text" formControlName="autre" class="form-control">
                                    </div>
-                                   <div class="form-group">
-                                    <input type="hidden" formControlName="region" class="form-control"  [(ngModel)]="region.id">
-                                    <p style="color: brown;" *ngIf="!form.controls['region'].valid"> (Le remier caractere doit etre une lettres majuscule ) </p> 
-                                </div><br>
+                                   <br>
                                    <div class="form-group">
                                     <button  [disabled]="!form.valid" type="submit" class="btn btn-secondary px-4">Ajouter</button>
                                 </div>

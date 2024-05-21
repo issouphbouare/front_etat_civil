@@ -165,5 +165,36 @@ onGetProfessionM(id:any){
     );
   }
   
+  genererCarte(): void {
+    this.jasperService.generateCarte(this.citoyen.id).subscribe(
+      (response: Blob) => {
+        this.jasperService.downloadFile(response,"carte_Biometrique_"+this.citoyen.id.toString());
+      },
+      error => {
+        console.error('Erreur lors du téléchargement du recu : ', error);
+      }
+    ); 
+  }
 
+  genererFiche(): void {
+    this.jasperService.generateFiche(this.citoyen.id).subscribe(
+      (response: Blob) => {
+        this.jasperService.downloadFile(response,"fiche_individuelle_"+this.citoyen.id.toString());
+      },
+      error => {
+        console.error('Erreur lors du téléchargement du recu : ', error);
+      }
+    ); 
+  }
+
+  genererRecu(): void {
+    this.jasperService.generateRecu(this.citoyen.id).subscribe(
+      (response: Blob) => {
+        this.jasperService.downloadFile(response,"recépissé_"+this.citoyen.id.toString());
+      },
+      error => {
+        console.error('Erreur lors du téléchargement du recu : ', error);
+      }
+    ); 
+  }
 }

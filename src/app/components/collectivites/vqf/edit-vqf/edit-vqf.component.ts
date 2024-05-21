@@ -5,6 +5,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { CommuneService } from 'src/app/services/commune.service';
 import { VqfService } from 'src/app/services/vqf.service';
+import { CercleService } from 'src/app/services/cercle.service';
+import { RegionService } from 'src/app/services/region.service';
 @Component({
   selector: 'app-edit-vqf',
   templateUrl: './edit-vqf.component.html',
@@ -15,6 +17,10 @@ export class EditVqfComponent implements OnInit {
   public donnee:any;
   public commune: any;
   public communes: any;
+  public cercle: any;
+  public cercles: any;
+  public region: any;
+  public regions: any;
   //public base : string="http://localhost:8082/divisions/";
   public base="http://62.171.169.168:8082/divisions/"; /*connexion au serveur distant*/
   public nbPage : number=0;
@@ -26,17 +32,21 @@ export class EditVqfComponent implements OnInit {
 
   constructor(private http: HttpClient,private route:ActivatedRoute,
     private apiService: VqfService, private formBuilder:FormBuilder ,
-    private router : Router, private communeService: CommuneService) { }
+    private router : Router, private communeService: CommuneService
+    , private cercleService: CercleService, private regionService: RegionService) { }
 
   ngOnInit(): void {
     this.form=this.formBuilder.group({
       code : ['',[Validators.required, Validators.pattern("([0-9]).{1,}")]],
       nom : ['',[Validators.required, Validators.pattern("([A-Z]).{2,}")]],
       commune : ['',[Validators.required]],
+      cercle : ['',[Validators.required]],
+      region : ['',[Validators.required]],
       autre : [''],
     });
     this.url=this.route.snapshot.params['id']
     this.onGetVqf();
+    this.onGetRegions()
     //this.onGetAllCer();
   }
 
@@ -47,11 +57,9 @@ export class EditVqfComponent implements OnInit {
     this.donnee=data;
     console.log(this.donnee)
     this.onGetCom(this.donnee.commune)
-
   }, err=>{
     console.log(err);
   })
-
   }
 
   onGetCom(c:any){
@@ -59,8 +67,35 @@ export class EditVqfComponent implements OnInit {
     .subscribe((data: any)=>{
     
     this.commune=data;
+    this.onGetCer(this.commune.cercle)
     console.log(data)
-    this.onGetCommunesByCer(this.commune.cercle)
+
+  }, err=>{
+    console.log(err);
+  })
+
+  }
+  onGetCer(c:any){
+    this.cercleService.getById(c)
+    .subscribe((data: any)=>{
+    
+    this.cercle=data;
+    this.onGetReg(this.cercle.region);
+    this.onGetComByCer(this.cercle.id);
+  }, err=>{
+    console.log(err);
+  })
+
+  }
+
+  
+
+  onGetReg(c:any){
+    this.regionService.getById(c)
+    .subscribe((data: any)=>{
+    
+    this.region=data;
+    this.onGetCerByReg(this.region.id)
 
   }, err=>{
     console.log(err);
@@ -68,18 +103,48 @@ export class EditVqfComponent implements OnInit {
 
   }
 
-  onGetCommunesByCer(c:any){
-    this.communeService.getComByCer(c)
+  onGetComByCer(cercle:any){
+    this.communeService.getComByCer(cercle)
     .subscribe((data: any)=>{
     
     this.communes=data;
-    this.sortCommunes()
-
+    if(cercle!=this.commune.cercle){
+      this.commune.cercle=null;
+        this.commune.id=null;
+        
+    }
   }, err=>{
     console.log(err);
   })
 
   }
+
+  onGetRegions(){
+    this.regionService.getRegions().subscribe((data: any)=>{
+      this.regions=data;
+      this.sortRegions()
+        console.log(this.regions);
+        }, err=>{
+            console.log(err);
+          }); 
+   }
+ 
+   
+   onGetCerByReg(region:any){    
+     this.cercleService.getCerByReg(region).subscribe((data: any)=>{
+       this.cercles=data; 
+       this.sortCercles(); 
+       if(region!=this.cercle.region){
+        this.cercle.id=null;
+        this.cercle.region=null;
+        this.commune.id=null;
+        this.communes=null;
+       }
+         }, err=>{
+             console.log(err);
+           }); 
+    }
+    
 
   /* onGetAllCer(){
     this.cercleService.getCercles()
@@ -100,7 +165,7 @@ export class EditVqfComponent implements OnInit {
     subscribe( (data: any) => {
       console.log(data);
       alert(" Vqf  "+this.form.value.nom+"  modifiee avec succes ");
-      this.router.navigate(['vqfs', this.commune.id]);
+      this.router.navigate(['vqfs']);
       }, err=>{
         console.log(err);
         alert(err.error.message);
@@ -114,6 +179,17 @@ export class EditVqfComponent implements OnInit {
     })
    }
  
+   sortRegions(): void{
+    this.regions.sort((a: any, b: any) => {
+      return a.code.localeCompare(b.code)
+    })
+   }
+   sortCercles(): void{
+    this.cercles.sort((a: any, b: any) => {
+      return a.code.localeCompare(b.code)
+    })
+   }
+   
 
 
 }

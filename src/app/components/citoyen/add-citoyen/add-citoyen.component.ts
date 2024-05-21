@@ -421,10 +421,10 @@ onGetRegionCur(){
   generateRecu(id: number): void {
     this.jasperService.generateRecu(id).subscribe(
       (response: Blob) => {
-        this.jasperService.downloadFile(response, id);
+        this.jasperService.downloadFile(response, "recépissé_"+id.toString());
       },
       error => {
-        console.error('Erreur lors du téléchargement du recu : ', error);
+        console.error('Erreur lors du téléchargement du recépissé : ', error);
       }
     ); 
   }

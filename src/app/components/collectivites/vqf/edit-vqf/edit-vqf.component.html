@@ -5,11 +5,11 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-2">
-                            <a [routerLink]="['/vqfs',commune.id]" class="btn btn-light float-light"><i class="bi bi-arrow-left"></i></a>
+                            <a [routerLink]="['/vqfs']" class="btn btn-light float-light"><i class="bi bi-arrow-left"></i></a>
                         </div>
                         <div class="col-md-10">
                             <h4>
-                                Modification de la VQF de {{donnee.nom}}
+                                Modification du Village  Quartier  Fraction  {{donnee.nom}}
                             </h4>
                         </div>
                     </div>
@@ -19,6 +19,33 @@
                         <div class="row">
                             <div class="col-md-8">
                                 <div class="form-group">
+                                    <label>Region</label>
+                                    <select class="form-control" (change)="onGetCerByReg(region.id)"
+                                        [(ngModel)]="region.id" formControlName="region">
+                                        <option *ngFor="let reg of regions" [value]="reg.id">{{
+                                            reg.nom }}</option>
+                                    </select>
+                                    <p style="color: brown;" *ngIf="!form.controls['region'].valid"> (Champ
+                                        obligatoire * ) </p>
+
+                                        <label>Cercle</label>
+                                    <select class="form-control" (change)="onGetComByCer(cercle.id)"
+                                        [(ngModel)]="cercle.id" formControlName="cercle">
+                                        <option *ngFor="let cer of cercles" [value]="cer.id">{{
+                                            cer.nom }}</option>
+                                    </select>
+                                    <p style="color: brown;" *ngIf="!form.controls['cercle'].valid"> (Champ
+                                        obligatoire * ) </p>
+
+                                    <label>Commune</label>
+                                    <select class="form-control" formControlName="commune" [(ngModel)]="commune.id">
+                                        <option *ngFor="let com of communes" [value]="com.id">{{
+                                            com.nom }}</option>
+                                    </select>
+                                    <p style="color: brown;" *ngIf="!form.controls['commune'].valid"> (Champ
+                                        obligatoire * ) </p>
+
+
                                  <label>Code VQF</label>
                                  <input type="text" formControlName="code" class="form-control" placeholder="au moins 2 caracteres " [(ngModel)]="donnee.code">
                                  <p style="color: brown;" *ngIf="!form.controls['code'].valid"> (au moins 2 caracteres ) </p> 
@@ -29,14 +56,7 @@
                                     <label>Autre</label>
                                     <input type="text" formControlName="autre" class="form-control" [(ngModel)]="donnee.autre">
                                 </div>
-                            <div class="form-group">
-                                <label>Commune</label>
-                                <select  formControlName="commune" class="form-control" id=""
-                                    [(ngModel)]="commune.id">
-                                    <option *ngFor="let p of communes"
-                                        [value]="p.id">{{p.nom}} </option>
-                                </select>
-                            </div><br>
+                            <br>
                                <div class="form-group sm-2">
                                 <button  [disabled]="!form.valid" type="submit" class="btn btn-secondary px-4">Enregistrer</button>
                             </div>
