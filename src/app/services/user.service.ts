@@ -13,6 +13,9 @@ export class UserService {
   
   
   constructor(private http: HttpClient) { }
+  search(keyword: string, page: number, size: number): Observable<Apiresponse> {
+    return this.http.get<Apiresponse>(this.baseUrl + "/search?keyword=" + keyword +"&page="+page+"&size=" + size);
+  }
   
   getAll(p :number, size :number):Observable<Apiresponse>{
     return this.http.get<Apiresponse>(this.baseUrl+"?sort=code,asc&page="+p+"&size="+size);
@@ -23,7 +26,11 @@ export class UserService {
   }
   
   getById(url:any):Observable<any>{
-    return this.http.get<Apiresponse>(this.baseUrl+"/"+url);
+    return this.http.get<Apiresponse>(this.baseUrl+"/user/"+url);
+  }
+
+  getByUsername(username:any):Observable<any>{
+    return this.http.get<Apiresponse>(this.baseUrl+"/userByName/"+username);
   }
   
   
@@ -31,12 +38,24 @@ export class UserService {
     return this.http.post<Apiresponse>(this.baseUrl+"/signup" , m);
   }
   
+  AddRole(url:any, roleName : any, m:any):Observable<Apiresponse>{
+    return this.http.post<Apiresponse>(this.baseUrl+"/"+url+"/roles?roleName="+roleName, m);
+  }
+
+  DeleteRole(url:any, roleName : any):Observable<Apiresponse>{
+    return this.http.delete<Apiresponse>(this.baseUrl+"/"+url+"/roles?roleName="+roleName);
+  }
+
   Update(url:any, m : any):Observable<Apiresponse>{
-    return this.http.put<Apiresponse>(this.baseUrl+"/"+ url, m);
+    return this.http.put<Apiresponse>(this.baseUrl+"/user/"+ url, m);
+  }
+
+  UpdatePassword(url:any, m : any):Observable<Apiresponse>{
+    return this.http.put<Apiresponse>(this.baseUrl+"/editPassword/"+ url, m);
   }
   
   delete(url: any){
-    return this.http.delete<Apiresponse>(this.baseUrl+"/"+url);
+    return this.http.delete<Apiresponse>(this.baseUrl+"/users/"+url);
   }
   
   }

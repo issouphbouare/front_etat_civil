@@ -1,8 +1,18 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12 mt-8">
-            <div class="card">
-                
+            <div class="card"> 
+                <div class="card-header">
+                    <div class="row">
+                         <div class="col-md-1">
+                            <button [routerLink]="['/citoyens']" class="btn btn-light"><i
+                                class="bi bi-arrow-left"></i></button>
+                         </div>
+                         <div class="col-md-11">
+                            <h3>ENROULEMENT DE CITOYEN </h3>
+                         </div>
+                    </div>
+                </div>               
                 <div class="card-body">
                     <form [formGroup]="formAdd" (ngSubmit)="onSubmit()">
                         <div class="container">
@@ -501,106 +511,6 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <!-- <div class="card" *ngIf="etape6">
-                                    <div class="card-header">
-                                        <div class="row">
-                                            <div class="col-md-2">
-                                            </div>
-                                            <div class="col-md-10">
-                                                <h5>Veuillez faire une derniere verification </h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <div class="form-group" *ngIf=" region cercle commune vqf regionA cercleA communeA vqfA profession">
-                                                    <div class="card">
-                                                        <div class="card-header" >Informations Personnelles</div>
-                                                        <div class="card-body">
-                                                            <div class="row">
-                                                               <div class="col-md-6" ><label>Nom : {{prenom}}  </label></div>
-                                                               <div class="col-md-6" ><label>Profession : {{profession.libelle}}  </label></div>
-                                                            </div>
-                                                            <div class="row">
-                                                                <div class="col-md-3" ><label>Nom : {{nom}}  </label></div>
-                                                                <div class="col-md-3" ><label>Telephone : {{telephone}}  </label></div>
-                                                                <div class="col-md-3" ><label>Genre : {{selectedGenre}}  </label></div>
-                                                                <div class="col-md-3" ><label>Civilité : {{selectedCivilite}}  </label></div>
-                                                            </div>
-                                                        </div>
-                                                    </div><br>
-                                                    <div class="card">
-                                                        <div class="card-header" ><h6>Informations Naissance</h6></div>
-                                                        <div class="card-body">
-                                                           <div class="row">
-                                                              <div class="col-md-4" >Date : {{dateNaissance}}</div>
-                                                              <div class="col-md-4" >Region : {{region.nom}}</div>
-                                                              <div class="col-md-4" >Cercle : {{cercle.nom}}</div>
-                                                            </div>
-                                                            <div class="row">
-                                                              <div class="col-md-4" >Commune : {{commune.nom}}</div>
-                                                              <div class="col-md-4" >Quatier ou Village : {{vqf.nom}}</div>
-                                                            </div>
-                                                        </div>
-                                                    </div><br>
-                                                    <div class="card">
-                                                        <div class="card">
-                                                            <div class="card-header">Informations sur l'Adresse Actuelle</div>
-                                                            <div class="card-body">
-                                                                <div class="row">
-                                                                    <div class="col-md-3" >Region : {{regionA.nom}}</div>
-                                                                    <div class="col-md-3" >Cercle  : {{cercleA.nom}}</div>
-                                                                    <div class="col-md-3" >Commune : {{communeA.nom}}</div>
-                                                                    <div class="col-md-3" >Quatier ou Village : {{vqfA.nom}}</div>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col-md-3" >Rue : {{rue}}</div>
-                                                                    <div class="col-md-3" >Porte  : {{porte}}</div>
-                                                                    <div class="col-md-6" >Autre : {{autre}}</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div><br>
-                                                    <div class="card">
-                                                        <div class="card">
-                                                            <div class="card-header">Informations sur les parents</div>
-                                                            <div class="card-body">
-                                                                <div class="row">
-                                                                    <div class="col-md-4" >Prenon Pere : {{prenomPere}}</div>
-                                                                    <div class="col-md-4" >Profession Pere   : {{professionPere.libelle}}</div>
-                                                                </div>
-                                                                <div class="row">
-                                                                    <div class="col-md-4" >Prenom Mere : {{prenomMere}}</div>
-                                                                    <div class="col-md-4" >Porte  : {{nomMere}}</div>
-                                                                    <div class="col-md-4" >Profession Mere : {{professionMere.libelle}}</div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div> <br>
-                                                <div class="form-group" >
-
-                                                    <div class="row">
-                                                        <div class="col-md-5">
-                                                            <button (click)="onEtape5()" class="btn btn-secondary"
-                                                            style="width: 410px;" >
-                                                                 <i class="bi bi-arrow-left"></i> Retour
-                                                            </button>
-                                                        </div>
-                                                        <div class="col-md-2"></div>
-                                                        <div class="col-md-5">
-                                                            <button type="submit" 
-                                                    class="btn btn-secondary px-4" style="width: 410px;">Enregistrer</button>
-                                                        </div>  
-                                                </div>
-                                                </div>
-                                                
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> -->
 
                             </div>             
                         </div>

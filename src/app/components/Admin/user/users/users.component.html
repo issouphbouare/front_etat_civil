@@ -4,11 +4,25 @@
             <div class="card">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-md-11">
-                            <h4>Espace de Gestion des Utilisateurs</h4>
-                        </div>
                         <div class="col-md-1">
-                            <a routerLink="/addUser" class="btn btn-secondary float-right"><i class="bi bi-plus"></i></a>
+                            <a routerLink="/addUser" class="btn btn-secondary float-right"><i class="bi bi-plus"></i></a>                        </div>
+                        <div class="col-md-7">
+                            <h4>Liste Des Utilisateurs </h4>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="row justify-content-end">
+                                <div class="col-auto">
+
+                                    <input style="height: 35px; width: 250px;" type="text"
+                                    [(ngModel)]="keyword"   placeholder="Entrez votre mot-clé">
+
+                                    <button class="btn btn-secondary rounded ms-2" (click)="search()"><i
+                                            class="bi bi-search"></i></button>
+                                    <!-- Bouton que vous voulez aligner à droite -->
+
+
+                                </div>
+                            </div>
                         </div>
 
                     </div>
@@ -16,54 +30,54 @@
                 <div class="card-body">
                     <table class="table table-striped" *ngIf="donnees">
                         <thead>
-
-                            <tr>
+                            <tr *ngIf="totalSearch==0"><h2 style="text-align: center;" class="alert alert-danger">aucun utilisateur trouvé !!!</h2></tr>
+                            <tr *ngIf="totalSearch!=0">
                                 <th>Username</th>
                                 <th>Email</th>
                                 <th>Roles</th>
-                                
+                            
                                 
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let p of donnees">
-                                <td>{{p.username}}</td>
+                                <td>{{p.username}}</td>  
                                 <td>{{p.email}}</td>
-                                <td>{{p.role}}</td>
+                                <td>
+                                    <h6  *ngIf="p.roles==''">AUCUN</h6>
+                                    <h6 *ngFor="let r of p.roles">
+                                    {{r.name}}</h6>
+                                </td>                              
+                                <td>
+                                    <button [routerLink]="['/editUser',p.id]"
+                                        class="btn btn-light"><i class="bi bi-pencil"></i></button>
+                                    <button (click)="onDelete(p.id)" class="btn btn-light"><i class="bi bi-trash"></i></button>
                                 
-                                <td>
-                                    <!-- <button [routerLink]="['/editMilitant',p.id]" class="btn btn-light"><i
-                                            class="bi bi-pencil" *ngIf="user.telephone !=p.telephone && user.poste=='Sécretaire Général'
-                                    || (user.division.nom==p.division.nom && p.poste!='Sécretaire Général' && user.telephone !=p.telephone &&
-                                    p.poste!='Sécretaire de Coordination' && user.poste=='Sécretaire de Division')
-                                    || (user.division.coordination.nom==p.division.coordination.nom && p.poste!='Sécretaire Général' && user.telephone !=p.telephone &&
-                                     user.poste=='Sécretaire de Coordination')
-                                     "></i></button> -->
-                                    
-                                </td>
-                                <td>
-                                    <!-- <button (click)="onDelete(p.id)" class="btn btn-light sp" *ngIf="user.telephone !=p.telephone && user.poste=='Sécretaire Général'
-                                    || (user.division.nom==p.division.nom && p.poste!='Sécretaire Général' && user.telephone !=p.telephone &&
-                                    p.poste!='Sécretaire de Coordination' && user.poste=='Sécretaire de Division')
-                                    || (user.division.coordination.nom==p.division.coordination.nom && p.poste!='Sécretaire Général' && user.telephone !=p.telephone &&
-                                     user.poste=='Sécretaire de Coordination')
-                                     "><i class="bi bi-trash"></i></button> -->
-                                </td>
                             </tr>
                         </tbody>
                     </table>
-                
+                    <div class="row" *ngIf="totalSearch!=0">
+                        <div class="col-md-8"></div>
+                        <div class="col-md-2" style="background-color: rgb(227, 232, 232);">
+                            <h6>Total : </h6>
+                        </div>
+                        <div class="col-md-2" style="background-color: rgb(227, 232, 232);">{{totalSearch}}</div>
+                    </div>
 
-                    <!-- <div class="row">
+                    <div class="row" *ngIf="totalSearch!=0">
                             <div class="col-md-12">
                                 <ul *ngIf="pages" class="pagination float-right">
-                                    <li class="page-link">Pages</li>
+                                    <li class="page-link clickable sp" (click)="goToPrevious()" *ngIf="currentPage>0">
+                                        <i class="bi bi-chevron-double-left"></i></li>
                                     <li class=" page-item " [ngClass]="i==currentPage? 'active' : ''" *ngFor="let p of pages; let i=index">
-                                       <a class="page-link clickable sp" (click)="goToPage(i)">{{i}}</a>
+                                       <a class="page-link clickable sp" *ngIf="i>=currentPage-2 && i<=currentPage+2"
+                                        (click)="goToPage(i)">{{i+1}}</a>
                                     </li>
+                                    <li class="page-link clickable sp" (click)="goToNext()" *ngIf="currentPage<nbPage-1">
+                                        <i class="bi bi-chevron-double-right"></i></li>
                                 </ul>
                             </div>
-                    </div> -->
+                        </div>
                 </div>
             </div>
         </div>

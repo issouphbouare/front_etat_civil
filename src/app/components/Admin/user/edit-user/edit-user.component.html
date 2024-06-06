@@ -1,0 +1,75 @@
+<div class="col-md-12">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mt-8">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-4">
+                                 <a routerLink="/users" class="btn btn-light float-light"><i class="bi bi-arrow-left"></i></a>
+                            </div>
+                            <div class="col-md-8">
+                                <h4>
+                                    Gestion Des Roles de {{donnee.username}}
+                                </h4>
+                            </div>
+                        </div>
+                        
+                    </div>
+                       <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img src="../assets/images/logo/pass.png" width="300" height="400">
+                            </div>
+                            <div class="col-md-8">
+                        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                           <div class="row">
+                               <div class="col-md-8">
+                                   <div class="form-group" *ngIf="!editing">                                    
+                                    <label>ROLES</label><br>
+                                   <div class="row">
+                                    <label *ngIf="donnee.roles==''" style="text-align: center;" class="alert alert-danger">
+                                        Aucun role attribué à {{donnee.username}}</label>
+                                    <label *ngFor="let r of donnee.roles" style="text-align: center;" class="alert alert-light">
+                                        <button (click)="onDelete(r.name)"  class="btn btn-light"><i class="bi bi-trash"></i></button>
+                                        {{r.name}} 
+                                       </label>
+                                   </div>
+                                    
+                                    </div><Br/>
+                                    <div class="form-group" *ngIf="!editing" >
+                                        <button type="button" (click)="onAdding()" 
+                                          class="btn btn-secondary"><i class="bi bi-plus"></i></button>
+                                   </div> <br>
+
+                                   <div class="card" *ngIf="editing">
+                                    <div class="card-header">
+                                        <button type="button" (click)="onReturn()" 
+                                          class="btn btn-secondary"><i class="bi bi-x"></i></button>
+                                    </div>
+                                    <div class="card-body">
+                                    <div class="col-md-6">
+                                        <label>Role</label>
+                                        <select [(ngModel)]="selectedRole" formControlName="role"
+                                        class="form-control" (change)="onSelectionRole()">
+                                         <option *ngFor="let option of optionsRole" [value]="option.value">{{
+                                        option.label }}</option>
+                                        </select>
+                                        <p style="color: brown;" *ngIf="!form.controls['role'].valid">
+                                        (Champ obligatoire * ) </p>
+                                    </div> <br>
+
+                                   <div class="form-group" >
+                                        <button type="submit" [disabled]="!form.valid"
+                                          class="btn btn-secondary"><i class="bi bi-check"></i></button>
+                                   </div>
+                                </div>
+                                </div>
+                               </div>
+                           </div>
+                        </form></div>
+                       </div>
+                </div>
+            </div>
+        </div>
+    </div>

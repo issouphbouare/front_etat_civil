@@ -9,56 +9,75 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./users.component.css']
 })
 export class UsersComponent {
-  public donnees:any;
+  public donnees: any;
+  public av=1;
+  keyword: string = '';
+  urlDownload: string='';
+  idAv: number =0;
+  totalSearch:number=0;
   public currentPage: number=0;
-  public size : number=6;
-  public nbPage : number=0;
-  public pages : Array<number>=[];
-
-
+    public size : number=6;
+    public nbPage : number=0;
+    public pages : Array<number>=[];
+  
+  
   constructor(private http: HttpClient,
-    private apiService: UserService,
+    private apiService: UserService
+    ,
     private router : Router) { }
-
+  
+  
   ngOnInit(): void {
-    this.onGetAll();
+    this.av=1;
+    this.onSearch() 
   }
-
-  onGetAll(){
-    this.apiService.getUsers()
-    .subscribe((data: any)=>{
-    //this.nbPage=data["page"].totalPages;
-    //this.pages=new Array<number>(this.nbPage);
-    this.donnees=data;
-
-  }, err=>{
-    console.log(err);
-  })
-
-  }
-
-  goToPage(i: any){
+  
+  
+  goToPage(i:any){
     this.currentPage=i;
-    this.onGetAll();
+    this.onSearch();
   }
-
-  onDelete(m:any){
-    if(confirm("Voulez-vous vraiment supprimer la region  "+m.nom+ " ?")){
+  goToPrevious(){
+    this.currentPage=this.currentPage-1;
+    this.onSearch();
+  }
+  goToNext(){
+    this.currentPage=this.currentPage+1;
+    this.onSearch();
+  }
+  search(){
+    this.currentPage=0;
+    this.onSearch();
+  }
+  onDelete(a: any){
+    if(confirm("Voulez-vous vraiment supprimer ce utilisateur ?")){
       console.log();
-      this.apiService.delete(m.id.toString())
+      this.apiService.delete(a)
       .subscribe( data=>{
-        this.onGetAll();
+        this.onSearch();
+        window.location.reload();
     
         }, err=>{
           console.log(err);
         }
       );
-
-    alert("Region "+m.nom+  " supprimé avec succes");
+  
+    //alert("Militant  supprimé avec succes");
   }
     
   }
-
-
-}
-
+  
+  onSearch() {
+    this.apiService.search(this.keyword, this.currentPage, this.size)
+      .subscribe((data: any) => { // Utilisez un type générique 'any' pour 'data'
+        this.nbPage = data.totalPages;
+        this.totalSearch=data.totalElements;
+        this.pages = new Array<number>(this.nbPage);
+        this.donnees = data.content;
+        console.log(this.donnees)
+      }, err => {
+        console.log(err);
+      });
+  }
+  
+  }

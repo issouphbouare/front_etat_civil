@@ -64,7 +64,6 @@ onDelete(a: any){
 
   //alert("Militant  supprimé avec succes");
 }
-  
 }
 
 onSearch() {

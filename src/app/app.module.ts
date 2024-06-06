@@ -37,6 +37,10 @@ import { CitoyenComponent } from './components/citoyen/citoyen/citoyen.component
 import { EditWebcamComponent } from './components/citoyen/edit-webcam/edit-webcam.component';
 import { TokenInterceptorService } from './services/token-interceptor.service';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { EditCitoyenComponent } from './components/citoyen/edit-citoyen/edit-citoyen.component';
+import { EditUserComponent } from './components/admin/user/edit-user/edit-user.component';
+import { PasswordComponent } from './components/admin/user/password/password.component';
+import { ProfilComponent } from './components/admin/user/profil/profil.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +72,10 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     WebcamComponent,
     CitoyenComponent,
     EditWebcamComponent,
+    EditCitoyenComponent,
+    EditUserComponent,
+    PasswordComponent,
+    ProfilComponent,
    
 
   ],

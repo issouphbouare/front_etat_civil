@@ -65,13 +65,17 @@ export class AddCercleComponent implements OnInit {
   onGetAllReg(){
     this.regionService.getRegions()
     .subscribe((data: any)=>{
-    
     this.regions=data;
-
+    this.sortRegions()
   }, err=>{
     console.log(err);
   })
 
+  }
+  sortRegions(): void {
+    this.regions.sort((a: any, b: any) => {
+      return a.code.localeCompare(b.code)
+    })
   }
 
 }

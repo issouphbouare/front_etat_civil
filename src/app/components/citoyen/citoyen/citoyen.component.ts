@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { ActivatedRoute, Route } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { CercleService } from 'src/app/services/cercle.service';
 import { CitoyenService } from 'src/app/services/citoyen.service';
 import { CommuneService } from 'src/app/services/commune.service';
@@ -17,7 +17,7 @@ import { VqfService } from 'src/app/services/vqf.service';
 export class CitoyenComponent implements OnInit {
   constructor(private route: ActivatedRoute, private apiService: CitoyenService,
     private vqfService:VqfService, private communeService:CommuneService, private jasperService: JasperService,
-    private cercleService:CercleService,private regionService:RegionService,
+    private cercleService:CercleService,private regionService:RegionService, private router: Router,
     private professionService:ProfessionService, private sanitizer: DomSanitizer
   ){}
   imageUrl: SafeUrl | null = null;
@@ -196,5 +196,20 @@ onGetProfessionM(id:any){
         console.error('Erreur lors du téléchargement du recu : ', error);
       }
     ); 
+  }
+
+  onDelete(a: any){
+    if(confirm("Voulez-vous vraiment supprimer ce citoyen ?")){
+      console.log();
+      this.apiService.delete(a)
+      .subscribe( data=>{
+        this.router.navigate(['citoyens']);    
+        }, err=>{
+          console.log(err);
+        }
+      );
+  
+    alert("Militant  supprimé avec succes");
+  }
   }
 }

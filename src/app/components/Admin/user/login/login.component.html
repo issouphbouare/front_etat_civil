@@ -19,15 +19,6 @@
                             
                         </div>
                         <div class="card-body">
-                            <div class="alert alert-danger" *ngIf="erreur==1 && erreur1==0">
-                                <strong>login ou mot de passe erronés..</strong>
-                            </div>
-                            <div class="alert alert-danger" *ngIf="erreur==1 && erreur1==1">
-                                <strong> Compte inactif et login ou mot de passe erronés</strong>
-                            </div>
-                            <div class="alert alert-danger" *ngIf="erreur==0 && erreur1==1">
-                                <strong>Compte est inactif</strong>
-                            </div>
                             <form [formGroup]="login" (ngSubmit)="onSubmit()">
                                 <div class="form-group">
                                     <label>Username :</label>

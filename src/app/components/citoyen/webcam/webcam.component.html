@@ -9,7 +9,7 @@
             [videoOptions]="videoOptions" [imageQuality]="1" (cameraSwitched)="cameraWasSwitched($event)"
             (initError)="handleInitError($event)"></webcam>
           <br />
-          <button (click)="triggerSnapshot()" class="btn btn-secondary px-4">Capter
+          <button (click)="triggerSnapshot()" type="button" class="btn btn-secondary px-4">Capter
           </button>
           <br />
         </div>
@@ -21,7 +21,7 @@
             format="png" (imageCropped)="imageCropped($event)" (imageLoaded)="imageLoaded($event)"
             (cropperReady)="cropperReady()" (loadImageFailed)="loadImageFailed()"></image-cropper>
         </div><br />
-        <div><button (click)="upload()" class="btn btn-secondary px-4">Ajouter la photo
+        <div><button (click)="upload()" type="button" class="btn btn-secondary px-4">Ajouter la photo
           </button></div>
       </div>
     </div>

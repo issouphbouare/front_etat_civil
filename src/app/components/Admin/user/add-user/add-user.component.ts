@@ -32,7 +32,7 @@ export class AddUserComponent {
   onSubmit(){ 
     console.log(this.form.value);
     if(this.form.value.password==this.form.value.confirmPassword){
-      this.form.value.role=[]
+      this.form.value.role=["user"]
     this.apiService.Create(this.form.value).
     subscribe( data => {
         alert("User : "+this.form.value.username+

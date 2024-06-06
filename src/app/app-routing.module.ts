@@ -23,11 +23,18 @@ import { EditProfessionComponent } from './components/profession/edit-profession
 import { CitoyenComponent } from './components/citoyen/citoyen/citoyen.component';
 import { WebcamComponent } from 'ngx-webcam';
 import { EditWebcamComponent } from './components/citoyen/edit-webcam/edit-webcam.component';
+import { EditCitoyenComponent } from './components/citoyen/edit-citoyen/edit-citoyen.component';
+import { EditUserComponent } from './components/admin/user/edit-user/edit-user.component';
+import { PasswordComponent } from './components/admin/user/password/password.component';
+import { ProfilComponent } from './components/admin/user/profil/profil.component';
 
 const routes: Routes = [
   {path : "" , component : LoginComponent },
  {path : "login" , component : LoginComponent },
  {path :"addUser" , component : AddUserComponent},
+ {path :"editUser/:id" , component : EditUserComponent},
+ {path :"profil/:id" , component : ProfilComponent},
+ {path :"password/:id" , component : PasswordComponent},
  {path :"users" , component : UsersComponent},
 
  {path : "regions" , component : RegionsComponent },
@@ -50,6 +57,7 @@ const routes: Routes = [
  {path :"addCitoyen" , component : AddCitoyenComponent},
  {path :"citoyens" , component : CitoyensComponent},
  {path : "citoyen/:id" , component : CitoyenComponent },
+ {path : "editCitoyen/:id" , component : EditCitoyenComponent },
  {path : "editWebcam/:id" , component : EditWebcamComponent },
 
 

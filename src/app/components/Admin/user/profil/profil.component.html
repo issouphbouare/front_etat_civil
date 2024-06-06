@@ -1,0 +1,78 @@
+<div class="col-md-12">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mt-8">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <a routerLink="/citoyens" class="btn btn-light float-right">
+                                    <i class="bi bi-arrow-left"></i>
+                                </a>
+    
+                            </div>
+                            <div class="col-md-8">
+                                <h4>
+                                    PROFIL USER
+                                </h4>
+                            </div>
+                        </div>
+                        
+                    </div>
+                       <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img src="../assets/images/logo/profil.png" width="300" height="300">
+                            </div>
+                            <div class="col-md-8">
+                        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                           <div class="row">
+                               <div class="col-md-8" *ngIf="editing">
+                                   <div class="form-group">
+                                    
+                                    <label>Username</label>
+                                    <input type="text" formControlName="username" class="form-control" [disabled]="editing" 
+                                    [(ngModel)]="donnee.username" placeholder="au moins 2 caracteres ">
+                                    <p style="color: brown;" *ngIf="!form.controls['username'].valid"> (au moins 2 caracteres ) </p> 
+                                    <label>Email</label>
+                                    <input type="email" formControlName="email" class="form-control" 
+                                    [(ngModel)]="donnee.email" placeholder="au moins 3 letttres ">
+                                    <p style="color: brown;" *ngIf="!form.controls['email'].valid"> (Le remier caractere doit etre une lettres majuscule ) </p> 
+                               
+                                    </div><Br/>
+                                   <div class="form-group card mt-3" *ngIf="editing" >
+                                        <button type="submit" 
+                                             class="btn btn-secondary px-4">Enregistrer</button>
+                                   </div>
+                                   
+                               </div>
+
+                               <div class="col-md-8" *ngIf="!editing">
+                                <div class="form-group">
+                                 
+                                 <label>Username : </label> <br>
+                                 <label>{{donnee.username}}</label> <br>
+                                  
+                                 <label>Email : </label> <br>
+                                 <label>{{donnee.email}}</label> <br>
+
+                                 <label>Roles : </label> <br>
+                                 <div class="row">
+                                    <label *ngIf="donnee.roles==''" >Aucun Role</label>
+                                 <label *ngFor="let r of donnee.roles">{{r.name}}</label>
+                                </div>
+                            
+                            
+                                 </div><Br/>
+                                <div class="form-group card mt-3" *ngIf="!editing" >
+                                 <button type="submit" (click)="onEdit()"
+                                      class="btn btn-secondary px-4">Modifier</button>
+                            </div>
+                            </div>
+                           </div>
+                        </form></div>
+                       </div>
+                </div>
+            </div>
+        </div>
+    </div>

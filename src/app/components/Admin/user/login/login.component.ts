@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
         this.reloadPage();
         
       }, err => {
-        this.erreur = 1; this.erreur1 = 0
+        alert("login ou mot de passe erronés")
       });
 
   }

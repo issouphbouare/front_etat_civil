@@ -20,7 +20,7 @@
                                 </li>
 
 
-                                <li class="nav-item dropdown">
+                                <li class="nav-item dropdown" *ngIf="isUser">
                                     <a class="navbar-brand" href="#" id="navbarScrollingDropdown" *ngIf="isLoggedIn"
                                         role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         Collectivites
@@ -44,7 +44,7 @@
                                     </ul>
                                 </li>
 
-                                <li class="nav-item dropdown">
+                                <li class="nav-item dropdown" *ngIf="isAdmin">
                                     <a class="navbar-brand" href="#" id="navbarScrollingDropdown" *ngIf="isLoggedIn"
                                         role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         Admin
@@ -67,7 +67,7 @@
                                     <li class="nav-item dropdown">
                                         <a class="navbar-brand" href="#" id="navbarScrollingDropdown" role="button"
                                             data-bs-toggle="dropdown" aria-expanded="false">
-                                            Compte
+                                            {{username}} <i *ngIf="isLoggedIn" class="bi bi-person"></i>
 
                                         </a>
                                         <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
@@ -86,10 +86,10 @@
 
                                             <li>
                                                 <a class="dropdown-item" *ngIf="isLoggedIn"
-                                                    routerLink="/profil">Profil</a>
+                                                [routerLink]="['/profil',username]">Profil</a>
                                             </li>
                                             <li>
-                                                <a class="dropdown-item" *ngIf="isLoggedIn" routerLink="/password">Mot
+                                                <a class="dropdown-item" *ngIf="isLoggedIn" [routerLink]="['/password',username]">Mot
                                                     de passe</a>
                                             </li>
                                             <li>

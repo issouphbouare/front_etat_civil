@@ -100,6 +100,10 @@ export class WebcamComponent implements OnInit {
           this.citoyen=response;
           console.log('Image envoyée avec succès', this.citoyen.id)
           
+          alert("Citoyen : " + this.citoyen.nom +
+                "   " + this.citoyen.prenom +" de numero niciv "+this.citoyen.niciv+
+                "  enroulé avec succès  "
+              )
           this.router.navigate(['citoyen',this.citoyen.id]);
           this.generateRecu(this.citoyen.id)
         } ,
