@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable } from 'rxjs';
 import { CommuneService } from 'src/app/services/commune.service';
 import { VqfService } from 'src/app/services/vqf.service';
 import { CercleService } from 'src/app/services/cercle.service';

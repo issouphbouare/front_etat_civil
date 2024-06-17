@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { Observable } from 'rxjs';
 import { CitoyenService } from 'src/app/services/citoyen.service';
 @Component({
   selector: 'app-citoyens',

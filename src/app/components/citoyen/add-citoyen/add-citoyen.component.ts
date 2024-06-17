@@ -7,8 +7,6 @@ import { CommuneService } from 'src/app/services/commune.service';
 import { ProfessionService } from 'src/app/services/profession.service';
 import { RegionService } from 'src/app/services/region.service';
 import { VqfService } from 'src/app/services/vqf.service';
-import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
-import { Subject, Observable } from 'rxjs';
 import { JasperService } from 'src/app/services/jasper.service';
 
 @Component({

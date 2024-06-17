@@ -1,12 +1,12 @@
-import { Component, Input, OnInit, SecurityContext } from '@angular/core';
+import { Component,  OnInit } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
 import { CitoyenService } from 'src/app/services/citoyen.service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-edit-webcam',

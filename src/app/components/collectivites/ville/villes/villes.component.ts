@@ -1,9 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { CercleService } from 'src/app/services/cercle.service';
-import { CommuneService } from 'src/app/services/commune.service';
+import { Router } from '@angular/router';
 import { VqfService } from 'src/app/services/vqf.service';
 
 @Component({

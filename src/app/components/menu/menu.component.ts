@@ -1,6 +1,4 @@
-import { ResourceLoader } from '@angular/compiler';
-import { Component, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component } from '@angular/core';
 import { TokenStorageService } from 'src/app/services/token-storage.service';
 
 @Component({

@@ -1,10 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { CercleService } from 'src/app/services/cercle.service';
+import { Router } from '@angular/router';
 import { CommuneService } from 'src/app/services/commune.service';
-import { RegionService } from 'src/app/services/region.service';
 
 @Component({
   selector: 'app-payes',

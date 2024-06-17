@@ -1,4 +1,4 @@
-import { Component, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RegionsComponent } from './components/collectivites/regions/regions/regions.component';
 import { AddRegionComponent } from './components/collectivites/regions/add-region/add-region.component';
@@ -21,7 +21,6 @@ import { ProfessionsComponent } from './components/profession/professions/profes
 import { AddProfessionComponent } from './components/profession/add-profession/add-profession.component';
 import { EditProfessionComponent } from './components/profession/edit-profession/edit-profession.component';
 import { CitoyenComponent } from './components/citoyen/citoyen/citoyen.component';
-import { WebcamComponent } from 'ngx-webcam';
 import { EditWebcamComponent } from './components/citoyen/edit-webcam/edit-webcam.component';
 import { EditCitoyenComponent } from './components/citoyen/edit-citoyen/edit-citoyen.component';
 import { EditUserComponent } from './components/admin/user/edit-user/edit-user.component';
