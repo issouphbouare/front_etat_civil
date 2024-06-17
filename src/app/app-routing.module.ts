@@ -27,6 +27,12 @@ import { EditCitoyenComponent } from './components/citoyen/edit-citoyen/edit-cit
 import { EditUserComponent } from './components/admin/user/edit-user/edit-user.component';
 import { PasswordComponent } from './components/admin/user/password/password.component';
 import { ProfilComponent } from './components/admin/user/profil/profil.component';
+import { EditPayeComponent } from './components/collectivites/payes/edit-paye/edit-paye.component';
+import { AddPayeComponent } from './components/collectivites/payes/add-paye/add-paye.component';
+import { PayesComponent } from './components/collectivites/payes/payes/payes.component';
+import { EditVilleComponent } from './components/collectivites/ville/edit-ville/edit-ville.component';
+import { AddVilleComponent } from './components/collectivites/ville/add-ville/add-ville.component';
+import { VillesComponent } from './components/collectivites/ville/villes/villes.component';
 
 const routes: Routes = [
   {path : "" , component : LoginComponent },
@@ -53,6 +59,14 @@ const routes: Routes = [
  {path : "vqfs" , component : VqfsComponent },
  {path :"addVqf" , component : AddVqfComponent},
  {path : "editVqf/:id" , component : EditVqfComponent },
+
+ {path : "payes" , component : PayesComponent },
+ {path :"addPayes" , component : AddPayeComponent},
+ {path : "editPayes/:id" , component : EditPayeComponent },
+
+ {path : "villes" , component : VillesComponent },
+ {path :"addVille" , component : AddVilleComponent},
+ {path : "editVille/:id" , component : EditVilleComponent },
 
  {path :"addCitoyen" , component : AddCitoyenComponent},
  {path :"citoyens" , component : CitoyensComponent},

@@ -4,16 +4,19 @@ import { Apiresponse } from '../models/Apiresponse';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { saveAs } from 'file-saver';
+import { VariableGService } from './variable-g.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class JasperService {base="http://localhost:8080"; /*connexion au serveur distant*/
+export class JasperService {
+  base=this.variableGService.getApi(); /*connexion au serveur distant*/
 baseUrl=this.base+"/api/jasper";
   
 
 
-constructor(private http: HttpClient, private tokenStorageService: TokenStorageService) { }
+constructor(private http: HttpClient, private variableGService: VariableGService,
+   private tokenStorageService: TokenStorageService) { }
 
 getCarteById(url:any):Observable<any>{
   const headers = this.tokenStorageService.getHeaders();

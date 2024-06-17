@@ -1,0 +1,64 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mt-8" *ngIf="donnee commune communes">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <a [routerLink]="['/villes']" class="btn btn-light float-light"><i class="bi bi-arrow-left"></i></a>
+                        </div>
+                        <div class="col-md-10">
+                            <h4>
+                                Modification de la Ville  {{donnee.nom}}
+                            </h4>
+                        </div>
+                    </div>
+                </div>
+                   <div class="card-body"  >
+                    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                        <div class="row">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    
+
+                                        <label>Continent</label>
+                                    <select class="form-control" (change)="onGetComByCer(cercle.id)"
+                                        [(ngModel)]="cercle.id" formControlName="cercle">
+                                        <option *ngFor="let cer of cercles" [value]="cer.id">{{
+                                            cer.nom }}</option>
+                                    </select>
+                                    <p style="color: brown;" *ngIf="!form.controls['cercle'].valid"> (Champ
+                                        obligatoire * ) </p>
+
+                                    <label>Payes</label>
+                                    <select class="form-control" formControlName="commune" [(ngModel)]="commune.id">
+                                        <option *ngFor="let com of communes" [value]="com.id">{{
+                                            com.nom }}</option>
+                                    </select>
+                                    <p style="color: brown;" *ngIf="!form.controls['commune'].valid"> (Champ
+                                        obligatoire * ) </p>
+
+
+                                 <input type="hidden" formControlName="code" class="form-control" placeholder="au moins 2 caracteres " [(ngModel)]="donnee.code">
+                                 <label>Nom Ville</label>
+                                 <input type="text" formControlName="nom" class="form-control" placeholder="au moins 3 letttres "  [(ngModel)]="donnee.nom">
+                                 <p style="color: brown;" *ngIf="!form.controls['nom'].valid"> (Le remier caractere doit etre une lettres majuscule ) </p> 
+                            
+                                    <label>Autre</label>
+                                    <input type="text" formControlName="autre" class="form-control" [(ngModel)]="donnee.autre">
+                                </div>
+                            <br>
+                               <div class="form-group sm-2">
+                                <button  [disabled]="!form.valid" type="submit" class="btn btn-secondary px-4">Enregistrer</button>
+                            </div>
+                           </div>
+                       </div>
+                    </form>
+                   </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

@@ -3,22 +3,28 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Apiresponse } from '../models/Apiresponse'; 
 import { TokenStorageService } from './token-storage.service';
+import { VariableGService } from './variable-g.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VqfService {
-base="http://localhost:8080"; /*connexion au serveur distant*/
+base=this.variableGService.getApi(); /*connexion au serveur distant*/
 baseUrl=this.base+"/api/vqf";
   
 
 
-constructor(private http: HttpClient,
+constructor(private http: HttpClient, private variableGService: VariableGService,
   private tokenStorageService: TokenStorageService) { }
 
   search(keyword: string, page: number, size: number): Observable<Apiresponse> {
     const headers = this.tokenStorageService.getHeaders();
     return this.http.get<Apiresponse>(this.baseUrl + "/search?keyword=" + keyword +"&page="+page+"&size=" + size, { headers });
+  }
+
+  searchV(keyword: string, page: number, size: number): Observable<Apiresponse> {
+    const headers = this.tokenStorageService.getHeaders();
+    return this.http.get<Apiresponse>(this.baseUrl + "/searchVille?keyword=" + keyword +"&page="+page+"&size=" + size, { headers });
   }
 
 getVqfs():Observable<Apiresponse>{
@@ -35,6 +41,11 @@ getById(url:any):Observable<any>{
 Create(m : any):Observable<Apiresponse>{
   const headers = this.tokenStorageService.getHeaders();
   return this.http.post<Apiresponse>(this.baseUrl , m,{ headers });
+}
+
+CreateV(m : any):Observable<Apiresponse>{
+  const headers = this.tokenStorageService.getHeaders();
+  return this.http.post<Apiresponse>(this.baseUrl+"/ville" , m,{ headers });
 }
 
 Update(url:any, m : any):Observable<Apiresponse>{

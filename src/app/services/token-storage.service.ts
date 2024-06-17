@@ -13,6 +13,9 @@ const USER_KEY = 'auth-user';
 export class TokenStorageService {
   constructor(private http: HttpClient, private router: Router) { }
 
+  isAdmin = false;
+  isUser = false;
+
   signOut(): void {
     window.sessionStorage.clear();
     this.reloadPage()
@@ -31,12 +34,15 @@ export class TokenStorageService {
   public saveUser(user: any): void {
     window.sessionStorage.removeItem(USER_KEY);
     window.sessionStorage.setItem(USER_KEY, JSON.stringify(user));
+
   }
 
   public getUser(): any {
     const user = window.sessionStorage.getItem(USER_KEY);
     if (user) {
+      
       return JSON.parse(user);
+      
     }
 
     return {};
@@ -58,7 +64,25 @@ export class TokenStorageService {
       }, 100); // délai de 100 millisecondes
     });
   }
+  getIsAdmin(roles:any){
+    for (let i = 0; i < roles.length; i++) {
+      if (roles[i].name === "ROLE_ADMIN") {
+        this.isAdmin = true;
+        break;
+      }
+    }
+    return this.isAdmin;
+  }
 
+  getIsUser(roles:any){
+    for (let i = 0; i < roles.length; i++) {
+      if (roles[i].name === "ROLE_USER") {
+        this.isUser = true;
+        break
+      }
+    }
+    return this.isUser
+  }
 
 }
 

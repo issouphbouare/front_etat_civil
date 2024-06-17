@@ -35,12 +35,17 @@ import { EditProfessionComponent } from './components/profession/edit-profession
 import { WebcamComponent } from './components/citoyen/webcam/webcam.component';
 import { CitoyenComponent } from './components/citoyen/citoyen/citoyen.component';
 import { EditWebcamComponent } from './components/citoyen/edit-webcam/edit-webcam.component';
-import { TokenInterceptorService } from './services/token-interceptor.service';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { EditCitoyenComponent } from './components/citoyen/edit-citoyen/edit-citoyen.component';
 import { EditUserComponent } from './components/admin/user/edit-user/edit-user.component';
 import { PasswordComponent } from './components/admin/user/password/password.component';
 import { ProfilComponent } from './components/admin/user/profil/profil.component';
+import { PayesComponent } from './components/collectivites/payes/payes/payes.component';
+import { AddPayeComponent } from './components/collectivites/payes/add-paye/add-paye.component';
+import { EditPayeComponent } from './components/collectivites/payes/edit-paye/edit-paye.component';
+import { VillesComponent } from './components/collectivites/ville/villes/villes.component';
+import { AddVilleComponent } from './components/collectivites/ville/add-ville/add-ville.component';
+import { EditVilleComponent } from './components/collectivites/ville/edit-ville/edit-ville.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +81,12 @@ import { ProfilComponent } from './components/admin/user/profil/profil.component
     EditUserComponent,
     PasswordComponent,
     ProfilComponent,
+    PayesComponent,
+    AddPayeComponent,
+    EditPayeComponent,
+    VillesComponent,
+    AddVilleComponent,
+    EditVilleComponent,
    
 
   ],
@@ -92,11 +103,7 @@ import { ProfilComponent } from './components/admin/user/profil/profil.component
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptorService,
-      multi: true,
-    },
+    
   ],
   bootstrap: [AppComponent]
 })

@@ -27,13 +27,16 @@
                                                                 1</span><br> <span>Infos Personnelles</span> </div>
                                                         <div class="col-md-3 btn btn-light" (click)="onEtape2()"
                                                             [class.disabled]="isButtonEtape1()"><span>Etape 2</span><br>
-                                                            <span>Infos sur les Parents</span> </div>
+                                                            <span>Infos sur les Parents</span>
+                                                        </div>
                                                         <div class="col-md-3 btn btn-light" (click)="onEtape3()"
                                                             [class.disabled]="isButtonEtape1()"><span>Etape 3</span><br>
-                                                            <span>Infos sur la Naissance</span> </div>
+                                                            <span>Infos sur la Naissance</span>
+                                                        </div>
                                                         <div class="col-md-2 btn btn-light" (click)="onEtape4()"
                                                             [class.disabled]="isButtonEtape1()"><span>Etape 4</span><br>
-                                                            <span>Adresse Courante</span> </div>
+                                                            <span>Adresse Courante</span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -152,13 +155,16 @@
                                                             [class.disabled]="isButtonEtape2()"> <span>Etape
                                                                 1</span><br> <span>Infos Personnelles</span> </div>
                                                         <div class="col-md-4 btn btn-secondary"><span>Etape 2</span><br>
-                                                            <span>Infos sur les Parents</span> </div>
+                                                            <span>Infos sur les Parents</span>
+                                                        </div>
                                                         <div class="col-md-3 btn btn-light" (click)="onEtape3()"
                                                             [class.disabled]="isButtonEtape2()"><span>Etape 3</span><br>
-                                                            <span>Infos sur la Naissance</span> </div>
+                                                            <span>Infos sur la Naissance</span>
+                                                        </div>
                                                         <div class="col-md-2 btn btn-light" (click)="onEtape4()"
                                                             [class.disabled]="isButtonEtape2()"><span>Etape 4</span><br>
-                                                            <span>Adresse Courante</span> </div>
+                                                            <span>Adresse Courante</span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -263,15 +269,18 @@
                                                     <div class="col-md-12">
                                                         <div class="col-md-3 btn btn-light" (click)="onEtape1()"
                                                             [class.disabled]="isButtonEtape3()"><span>Etape 1</span><br>
-                                                            <span>Infos Personnelles</span> </div>
+                                                            <span>Infos Personnelles</span>
+                                                        </div>
                                                         <div class="col-md-3 btn btn-light" (click)="onEtape2()"
                                                             [class.disabled]="isButtonEtape3()"><span>Etape 2</span><br>
-                                                            <span>Infos sur les Parents</span> </div>
+                                                            <span>Infos sur les Parents</span>
+                                                        </div>
                                                         <div class="col-md-4 btn btn-secondary"> <span>Etape
                                                                 3</span><br> <span>Infos sur la Naissance</span> </div>
                                                         <div class="col-md-2 btn btn-light" (click)="onEtape4()"
                                                             [class.disabled]="isButtonEtape3()"><span>Etape 4</span><br>
-                                                            <span>Adresse Courante</span> </div>
+                                                            <span>Adresse Courante</span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -282,8 +291,19 @@
 
                                                             <div class="row">
                                                                 <div class="col-md-4">
-                                                                    <label>Date</label>
-                                                                    <input type="date" formControlName="dateNaissance"
+                                                                    <label>Date</label> <br>
+                                                                    <label class="alert alert-light"
+                                                                        *ngIf="editing=='hidden'">{{citoyen.dateNaissance
+                                                                        | date:'dd-MM-yyyy'}}</label>
+                                                                    <button type="button" (click)="onEditing()"
+                                                                        class="btn btn-light"
+                                                                        *ngIf="editing=='hidden'"><i
+                                                                            class="bi bi-pencil"></i></button>
+                                                                    <button type="button" (click)="noEditing()"
+                                                                        class="btn btn-light" *ngIf="editing=='date'"><i
+                                                                            class="bi bi-x"></i></button>
+                                                                    <input [type]="editing"
+                                                                        formControlName="dateNaissance"
                                                                         class="form-control" placeholder=" "
                                                                         [(ngModel)]="citoyen.dateNaissance">
                                                                     <p style="color: brown;"

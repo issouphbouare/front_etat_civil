@@ -12,7 +12,7 @@
                         <div class="col-md-8">
                             <h3>CITOYEN DE N° NICIV  {{citoyen.niciv}} </h3>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-3" *ngIf="isAdmin">
                             <button (click)="onDelete(citoyen.id)" class="btn btn-light"><i class="bi bi-trash"></i></button>
 
                             <button 
@@ -70,7 +70,7 @@
                                                     </div>
                                                 </div>
                                                 <br />
-                                                <div class="card">
+                                                <div class="card" *ngIf="region.nom!='Diaspora'">
                                                     <div class="card-header" style="text-align: center;">
                                                         Date et lieu de naissance</div>
                                                     <div class="card-body">
@@ -90,6 +90,26 @@
                                                                     {{cercle.nom}} </label></div>
                                                             <div class="col-md-6"><label>Region Naissance :
                                                                     {{region.nom}} </label></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card" *ngIf="region.nom=='Diaspora'">
+                                                    <div class="card-header" style="text-align: center;">
+                                                        Date et lieu de naissance</div>
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="col-md-6"><label>Date Naissance :
+                                                                    {{citoyen.dateNaissance | date:'dd-MM-yy'}} </label>
+                                                            </div>
+                                                            <div class="col-md-6"><label>Ville Naissance :
+                                                                {{lieuNaissance.nom}} </label></div>
+                                                        </div>
+                                                        <div class="row">
+                                                            
+                                                            <div class="col-md-6"><label>Payes Naissance:
+                                                                    {{commune.nom}} </label></div>
+                                                                    <div class="col-md-6"><label>Continent Naissance:
+                                                                        {{cercle.nom}} </label></div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -150,7 +170,7 @@
                                         </div><br />
                                         <div class="row">
                                             <div class="card">
-                                                <div class="card">
+                                                <div class="card" *ngIf="regionA.nom!='Diaspora'">
                                                     <div class="card-header" style="text-align: center;">Adresse</div>
                                                     <div class="card-body">
                                                         <div class="row">
@@ -164,6 +184,22 @@
                                                             <div class="col-md-2">Rue : {{citoyen.rue}}</div>
                                                             <div class="col-md-3">Porte : {{citoyen.porte}}</div>
                                                             <div class="col-md-7">Autre : {{citoyen.autre}}</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="card" *ngIf="regionA.nom=='Diaspora'">
+                                                    <div class="card-header" style="text-align: center;">Adresse</div>
+                                                    <div class="card-body">
+                                                        <div class="row">
+                                                            <div class="col-md-3">Continent : {{cercleA.nom}}</div>
+                                                            <div class="col-md-3">Payes : {{communeA.nom}}</div>
+                                                            <div class="col-md-4">Ville : {{adresse.nom}}
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-3">Rue : {{citoyen.rue}}</div>
+                                                            <div class="col-md-3">Porte : {{citoyen.porte}}</div>
+                                                            <div class="col-md-4">Autre : {{citoyen.autre}}</div>
                                                         </div>
                                                     </div>
                                                 </div>

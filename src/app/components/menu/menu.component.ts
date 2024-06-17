@@ -13,8 +13,6 @@ export class MenuComponent {
   isLoggedIn = false;
   isAdmin = false;
   isUser = false;
-  showAdminBoard = false;
-  showModeratorBoard = false;
   username?: string;
   constructor(private tokenStorageService: TokenStorageService) { }
 
@@ -24,34 +22,13 @@ export class MenuComponent {
     if (this.isLoggedIn) {
       const user = this.tokenStorageService.getUser();
       this.roles = user.roles;
-      this.getIsAdmin(this.roles)
-      this.getIsUser(this.roles)
-
-      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
-      this.showModeratorBoard = this.roles.includes('ROLE_MODERATOR');
+      this.isAdmin=this.tokenStorageService.getIsAdmin(this.roles)
+      this.isUser=this.tokenStorageService.getIsUser(this.roles)
 
       this.username = user.username;
     }
   }
-  getIsAdmin(roles:any){
-    for (let i = 0; i < roles.length; i++) {
-      if (roles[i].name === "ROLE_ADMIN") {
-        this.isAdmin = true;
-        break;
-      }
-    }
-    
-  }
-
-  getIsUser(roles:any){
-    for (let i = 0; i < roles.length; i++) {
-      if (roles[i].name === "ROLE_USER") {
-        this.isUser = true;
-        break
-      }
-    }
-    
-  }
+  
 
   logout(): void {
     this.tokenStorageService.signOut();

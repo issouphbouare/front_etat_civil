@@ -245,7 +245,8 @@
                                                         (Date invalide ) </p>
                                                         </div>
                                                         <div class="col-md-4" *ngIf="regions">
-                                                            <label>Region</label>
+                                                            <label *ngIf="isMali">Region</label>
+                                                            <label *ngIf="!isMali">Hors Mali</label>
                                                             <select class="form-control" (change)="onGetCerByReg()"
                                                                 [(ngModel)]="selectedReg"
                                                                 formControlName="region">
@@ -262,7 +263,8 @@
 
                                                     <div class="row">
                                                         <div class="col-md-4" *ngIf="regions cercles">
-                                                            <label>Cercle</label>
+                                                            <label *ngIf="isMali">Cercle</label>
+                                                            <label *ngIf="!isMali">Continent</label>
                                                             <select [(ngModel)]="selectedCer" (change)="onGetComByCer()"
                                                                 formControlName="cercle" class="form-control">
                                                                 <option
@@ -276,7 +278,8 @@
 
                                                         </div>
                                                         <div class="col-md-4" *ngIf="regions cercles communes">
-                                                            <label>Commune</label>
+                                                            <label *ngIf="isMali">Commune</label>
+                                                            <label *ngIf="!isMali">Payes</label>
                                                             <select class="form-control" 
                                                                 [(ngModel)]="selectedCom" (change)="onGetVqfByCom()"
                                                                 formControlName="commune">
@@ -290,7 +293,8 @@
                                                                 obligatoire * ) </p>
                                                         </div>
                                                         <div class="col-md-4" *ngIf="regions cercles communes vqfs">
-                                                            <label>Village Quatier Fraction</label>
+                                                            <label *ngIf="isMali">Village Quatier Fraction</label>
+                                                            <label *ngIf="!isMali">Ville</label>
                                                             <select class="form-control" (change)="onGetVqfCur()"
                                                                 [(ngModel)]="selectedVqf"
                                                                 formControlName="lieuNaissance">
@@ -356,7 +360,8 @@
                                                     
                                                     <div class="row">
                                                         <div class="col-md-4" *ngIf="regions">
-                                                            <label>Region</label>
+                                                            <label *ngIf="isMaliA">Region</label>
+                                                            <label *ngIf="!isMaliA">Hors Mali</label>
                                                             <select class="form-control" (change)="onGetCerByRegA()"
                                                                 [(ngModel)]="selectedRegA"
                                                                 formControlName="regionA">
@@ -370,7 +375,8 @@
                                                                 obligatoire * ) </p>
                                                         </div>
                                                         <div class="col-md-4" *ngIf="regions cercleAs">
-                                                            <label>Cercle</label>
+                                                            <label *ngIf="isMaliA">Cercle</label>
+                                                            <label *ngIf="!isMaliA">Continent</label>
                                                             <select [(ngModel)]="selectedCerA" (change)="onGetComByCerA()"
                                                                 formControlName="cercleA" class="form-control">
                                                                 <option
@@ -384,7 +390,8 @@
 
                                                         </div>
                                                         <div class="col-md-4" *ngIf="regions cercleAs">
-                                                            <label>Commune</label>
+                                                            <label *ngIf="isMaliA">Commune</label>
+                                                            <label *ngIf="!isMaliA">Payes</label>
                                                             <select class="form-control" 
                                                                 [(ngModel)]="selectedComA" (change)="onGetVqfByComA()"
                                                                 formControlName="communeA">
@@ -401,7 +408,8 @@
 
                                                     <div class="row">                                           
                                                         <div class="col-md-4" *ngIf="regions cercleAs communeAs vqfAs">
-                                                            <label>Village Quatier Fraction</label>
+                                                            <label *ngIf="isMaliA">Village Quatier Fraction</label>
+                                                            <label *ngIf="!isMaliA">Ville</label>
                                                             <select class="form-control" (change)="onGetVqfCurA()"
                                                                 [(ngModel)]="selectedVqfA"
                                                                 formControlName="adresse">

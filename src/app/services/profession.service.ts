@@ -3,16 +3,18 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Apiresponse } from '../models/Apiresponse'; 
 import { TokenStorageService } from './token-storage.service';
+import { VariableGService } from './variable-g.service';
 @Injectable({
   providedIn: 'root'
 })
 export class ProfessionService {
-  base="http://localhost:8080"; /*connexion au serveur distant*/
+  base=this.variableGService.getApi(); /*connexion au serveur distant*/
 baseUrl=this.base+"/api/profession";
   
 
 
-constructor(private http: HttpClient, private tokenStorageService: TokenStorageService) { }
+constructor(private http: HttpClient, private variableGService: VariableGService,
+   private tokenStorageService: TokenStorageService) { }
 
 search(keyword: string, page: number, size: number): Observable<Apiresponse> {
   const headers = this.tokenStorageService.getHeaders();

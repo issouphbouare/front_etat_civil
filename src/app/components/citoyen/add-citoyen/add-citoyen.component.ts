@@ -23,6 +23,8 @@ export class AddCitoyenComponent implements OnInit {
 
   selectedFiles?: FileList;
   currentFile?: File;
+  isMali:boolean=true
+  isMaliA:boolean=true
   etape1: boolean = false;
   etape2: boolean = false;
   etape3: boolean = false;
@@ -83,7 +85,7 @@ export class AddCitoyenComponent implements OnInit {
 
 
 
-  ngOnInit() {
+  ngOnInit() { this.isMali=true;  this.isMaliA=true
     this.onEtape1(); this.onGetRegions(); this.onGetProfessions();
     this.formAdd = this.formBuilder.group({
       telephone: ['', [Validators.min(50000000), Validators.max(100000000)]], prenom: ['', [Validators.required, Validators.pattern("([a-zA-Z]).{1,}")]],
@@ -132,10 +134,13 @@ export class AddCitoyenComponent implements OnInit {
       this.selectedCer = null;
       this.selectedCom = null;
       this.selectedVqf = null;
-      this.afficheCom = true; this.afficheVqf = true;
+      this.afficheCom = true; this.afficheVqf = true; 
     }, err => {
       console.log(err);
     });
+    console.log(this.selectedReg)
+    //if(this.selectedReg===30) this.isMali=false
+      this.isMali=(this.selectedReg==11)?false:true
   }
 
   onGetComByCer() {
@@ -175,6 +180,7 @@ export class AddCitoyenComponent implements OnInit {
     }, err => {
       console.log(err);
     });
+    this.isMaliA=(this.selectedRegA==11)?false:true
   }
 
   onGetComByCerA() {
@@ -366,6 +372,10 @@ export class AddCitoyenComponent implements OnInit {
   onSelectionGenre() {
 
   }
+
+  
+  
+
   selectedCivilite: string = '';
   optionsCivilite = [
     { value: '', label: '' },

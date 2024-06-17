@@ -7,6 +7,7 @@ import { CommuneService } from 'src/app/services/commune.service';
 import { JasperService } from 'src/app/services/jasper.service';
 import { ProfessionService } from 'src/app/services/profession.service';
 import { RegionService } from 'src/app/services/region.service';
+import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { VqfService } from 'src/app/services/vqf.service';
 
 @Component({
@@ -15,7 +16,7 @@ import { VqfService } from 'src/app/services/vqf.service';
   styleUrls: ['./citoyen.component.css']
 })
 export class CitoyenComponent implements OnInit {
-  constructor(private route: ActivatedRoute, private apiService: CitoyenService,
+  constructor(private route: ActivatedRoute, private apiService: CitoyenService, private tokenStorageService: TokenStorageService,
     private vqfService:VqfService, private communeService:CommuneService, private jasperService: JasperService,
     private cercleService:CercleService,private regionService:RegionService, private router: Router,
     private professionService:ProfessionService, private sanitizer: DomSanitizer
@@ -34,9 +35,21 @@ export class CitoyenComponent implements OnInit {
   profession:any;
   professionP:any;
   professionM:any;
+
+  isLoggedIn = false;
+  isAdmin = false;
+  isUser = false;
   ngOnInit(): void {
     this.url=this.route.snapshot.params['id']
     this.onGetCitoyen();
+    
+    this.isLoggedIn = !!this.tokenStorageService.getToken();
+    if (this.isLoggedIn) {
+      const user = this.tokenStorageService.getUser();
+      this.isAdmin=this.tokenStorageService.getIsAdmin(user.roles)
+      this.isUser=this.tokenStorageService.getIsUser(user.roles)
+
+    }
     
 
   }

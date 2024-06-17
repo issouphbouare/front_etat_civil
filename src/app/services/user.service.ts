@@ -3,16 +3,19 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Apiresponse } from '../models/Apiresponse'; 
 import { TokenStorageService } from './token-storage.service';
+import { VariableGService } from './variable-g.service';
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  base="http://localhost:8080"; /*connexion au serveur distant*/
+  //base="http://localhost:8080"; /*connexion au serveur distant*/
+  base=this.variableGService.getApi()
   baseUrl=this.base+"/api/auth";
     
   
   
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private variableGService: VariableGService) { }
+  
   search(keyword: string, page: number, size: number): Observable<Apiresponse> {
     return this.http.get<Apiresponse>(this.baseUrl + "/search?keyword=" + keyword +"&page="+page+"&size=" + size);
   }

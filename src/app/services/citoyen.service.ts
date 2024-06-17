@@ -6,18 +6,20 @@ import { Apiresponse } from '../models/Apiresponse';
 import { Citoyen } from '../models/citoyen';
 import { TokenStorageService } from './token-storage.service';
 import { WebcamImage } from 'ngx-webcam';
+import { VariableGService } from './variable-g.service';
 @Injectable({
   providedIn: 'root'
 })
 export class CitoyenService {
-  base = "http://localhost:8080"; /*connexion au serveur distant*/
+  base = this.variableGService.getApi(); /*connexion au serveur distant*/
   baseUrl = this.base + "/api/citoyen";
   croppedImageUrl: string | null = null; // URL de l'image recadrée
   imageBlob!: Blob
 
 
 
-  constructor(private http: HttpClient, private tokenStorageService: TokenStorageService) { }
+  constructor(private http: HttpClient, private variableGService: VariableGService,
+     private tokenStorageService: TokenStorageService) { }
 
   search(keyword: string, page: number, size: number): Observable<Apiresponse> {
     const headers = this.tokenStorageService.getHeaders();

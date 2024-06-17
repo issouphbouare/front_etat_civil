@@ -72,6 +72,7 @@ professionMere: any;
 rue: string='';
 porte: string='';
 autre: string='';
+editing :string="hidden";
 
 
 
@@ -118,7 +119,7 @@ autre: string='';
     this.isButtonEtape2()
     this.isButtonEtape3()
     this.isButtonEtape4()
-    
+    this.editing="hidden"
 
   }
   onGetCitoyen(){
@@ -610,6 +611,12 @@ onGetRegionCur(){
     || !this.formAdd.controls['cercleA'].valid
     || !this.formAdd.controls['communeA'].valid
     || !this.formAdd.controls['adresse'].valid
+  }
+  onEditing(){
+    this.editing="date"
+  }
+  noEditing(){
+    this.editing="hidden"
   }
   /* private trigger: Subject<void> = new Subject<void>();
   public triggerObservable: Observable<void> = this.trigger.asObservable();
