@@ -52,18 +52,6 @@ export class CitoyenService {
     return this.http.delete<Apiresponse>(this.baseUrl + "/" + url, { headers });
   }
 
-  uploadPortrait(id: string, webcamImage: string): Observable<any> {
-    const formData = new FormData();
-    this.croppedImageUrl = webcamImage;
-    this.convertImageUrlToBlob()
-    const headers = new HttpHeaders({
-      'Authorization': 'Bearer ' + this.tokenStorageService.getToken()
-    });
-    formData.append('file', this.imageBlob);
-
-    return this.http.put(this.baseUrl + '/uploadPortrait/' + id, formData, { headers })
-  }
-
   getImage(filename: string): Observable<Blob> {
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + this.tokenStorageService.getToken(),
@@ -72,22 +60,33 @@ export class CitoyenService {
     return this.http.get(this.baseUrl + "/affichePortrait/" + filename, { headers, responseType: 'blob' });
   }
 
-
-  convertImageUrlToBlob() {
-    if (this.croppedImageUrl) {
-      fetch(this.croppedImageUrl)
-        .then(response => response.blob())
-        .then(blob => {
-          // Faites quelque chose avec le blob, par exemple, l'envoyer au backend
-          console.log("Blob créé avec succès :", blob);
-          this.imageBlob = blob;
-        })
-        .catch(error => {
-          console.error("Erreur lors de la création du blob :", error);
+    uploadPortrait(id: string, webcamImageUrl: string): Observable<any> {
+      return new Observable(observer => {
+        this.convertImageUrlToBlob(webcamImageUrl).then(imageBlob => {
+          const formData = new FormData();
+          const headers = new HttpHeaders({
+            'Authorization': 'Bearer ' + this.tokenStorageService.getToken()
+          });
+  
+          formData.append('file', imageBlob, 'portrait.png');
+  
+          this.http.put(this.baseUrl + '/uploadPortrait/' + id, formData, { headers })
+            .subscribe(response => {
+              observer.next(response);
+              observer.complete();
+            }, error => {
+              observer.error(error);
+            });
+        }).catch(error => {
+          observer.error(error);
         });
-    } else {
-      console.warn("L'URL de l'image rognée est null.");
+      });
     }
-  }
+  
+    private convertImageUrlToBlob(imageUrl: string): Promise<Blob> {
+      return fetch(imageUrl)
+        .then(response => response.blob());
+    }
+  
 }
 

@@ -47,6 +47,9 @@ import { VillesComponent } from './components/collectivites/ville/villes/villes.
 import { AddVilleComponent } from './components/collectivites/ville/add-ville/add-ville.component';
 import { EditVilleComponent } from './components/collectivites/ville/edit-ville/edit-ville.component';
 
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './services/auth.interceptor';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -103,6 +106,11 @@ import { EditVilleComponent } from './components/collectivites/ville/edit-ville/
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
     
   ],
   bootstrap: [AppComponent]

@@ -6,7 +6,9 @@
   
   .snapshot {
     text-align: center;
-    
+    :is(img) {
+      width: 75%; height: 100%;
+    }
   }
   
   ul.links {

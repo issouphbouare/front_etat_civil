@@ -1,4 +1,4 @@
-import { Component,  OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
 import { CitoyenService } from 'src/app/services/citoyen.service';
@@ -14,13 +14,16 @@ import { DomSanitizer } from '@angular/platform-browser';
   styleUrls: ['./edit-webcam.component.css']
 })
 export class EditWebcamComponent implements OnInit {
-  constructor(private http: HttpClient, private tokenStorageService: TokenStorageService,
-    private apiService: CitoyenService, private router: Router, private route: ActivatedRoute
-    , private sanitizer: DomSanitizer
+  constructor(
+    private http: HttpClient,
+    private tokenStorageService: TokenStorageService,
+    private apiService: CitoyenService,
+    private router: Router,
+    private route: ActivatedRoute,
+    private sanitizer: DomSanitizer
   ) { }
 
   id!: string; // Recevoir le NICIV du composant parent
-  // toggle webcam on/off
   public showWebcam = true;
   public allowCameraSwitch = true;
   public multipleWebcamsAvailable = false;
@@ -35,65 +38,54 @@ export class EditWebcamComponent implements OnInit {
 
   // latest snapshot
   public webcamImage!: WebcamImage;
-  croppedImageUrl: string | null = null; // URL de l'image recadrée
+  public croppedImageUrl: string | null = null; // URL de l'image recadrée
 
-
-  imageCropped(event: ImageCroppedEvent) {
-    console.log(event.blob)
-    if (event.objectUrl) {
-      this.croppedImageUrl = event.objectUrl;
-    } else {
-      console.error('L\'URL de l\'image recadrée est vide');
-    }
-
-  }
-  imageLoaded(image: LoadedImage) {
-    // show cropper
-  }
-  cropperReady() {
-    // cropper ready
-  }
-  loadImageFailed() {
-    // show message
-  }
-
-
-
-  // webcam snapshot trigger
+  // Subjects for webcam
   private trigger: Subject<void> = new Subject<void>();
-  // switch to next / previous / specific webcam; true/false: forward/backwards, string: deviceId
   private nextWebcam: Subject<boolean | string> = new Subject<boolean | string>();
 
   public ngOnInit(): void {
-    WebcamUtil.getAvailableVideoInputs()
-      .then((mediaDevices: MediaDeviceInfo[]) => {
-        this.multipleWebcamsAvailable = mediaDevices && mediaDevices.length > 1;
-      });
-    this.id = this.route.snapshot.params['id']
-    this.onGetCitoyen(this.id)
+    // Initialiser l'URL de l'image recadrée à chaque affichage du composant
+    this.croppedImageUrl = null;
+
+    // Récupérer les webcams disponibles
+    WebcamUtil.getAvailableVideoInputs().then((mediaDevices: MediaDeviceInfo[]) => {
+      this.multipleWebcamsAvailable = mediaDevices && mediaDevices.length > 1;
+    });
+
+    // Récupérer l'ID du citoyen depuis les paramètres de la route
+    this.id = this.route.snapshot.params['id'];
+    this.onGetCitoyen(this.id);
   }
 
-  onGetCitoyen(id:any){
-    this.apiService.getById(id)
-    .subscribe((data: any)=>{
-    this.citoyenCur=data;
-  }, err=>{
-    console.log(err);
-  })
+  onGetCitoyen(id: any): void {
+    this.apiService.getById(id).subscribe(
+      (data: any) => {
+        this.citoyenCur = data;
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
+  // Prendre une photo avec la webcam
   public triggerSnapshot(): void {
     this.trigger.next();
   }
 
+  // Gérer les erreurs d'initialisation de la webcam
   public handleInitError(error: WebcamInitError): void {
     this.errors.push(error);
   }
+
+  // Recevoir l'image de la webcam
   public handleImage(webcamImage: WebcamImage): void {
     console.info('received webcam image', webcamImage);
     this.webcamImage = webcamImage;
   }
 
+  // Changer de webcam
   public cameraWasSwitched(deviceId: string): void {
     console.log('active device: ' + deviceId);
     this.deviceId = deviceId;
@@ -106,41 +98,44 @@ export class EditWebcamComponent implements OnInit {
   public get nextWebcamObservable(): Observable<boolean | string> {
     return this.nextWebcam.asObservable();
   }
-  public upload(): void {
-    if (this.croppedImageUrl) {
 
-      this.apiService.uploadPortrait(this.citoyenCur.niciv, this.croppedImageUrl).subscribe(
-        (response) => {
-          this.citoyen = response;
-          console.log('Image envoyée avec succès', this.citoyen.id)
-          this.router.navigate(['citoyen', this.citoyen.id]);
-        },
-        (error) => console.error('Erreur lors de l\'envoi de l\'image', error)
-      );
+  // Rognage de l'image
+  imageCropped(event: ImageCroppedEvent): void {
+    console.log(event.blob);
+    if (event.objectUrl) {
+      this.croppedImageUrl = event.objectUrl;
+    } else {
+      console.error('L\'URL de l\'image recadrée est vide');
     }
   }
 
-  /*  uploadCroppedImageToBackend() {
-     if (this.croppedImageUrl) {
-       const formData = new FormData();
-       formData.append('file', this.img);
-       const headers = new HttpHeaders({
-         'Authorization': 'Bearer '+this.tokenStorageService.getToken()
-       });
-       // Envoyer l'URL de l'image recadrée au backend
-       this.http.put<any>("http://localhost:8080/api/citoyen/uploadPortrait/"+this.niciv, formData,{ headers }).subscribe(
-         (response) => {
-           console.log('Image recadrée téléchargée avec succès:', response);
-           // Traiter la réponse du backend si nécessaire
-         },
-         (error) => {
-           console.error('Erreur lors du téléchargement de l\'image recadrée:', error);
-           // Gérer les erreurs si nécessaire
-         }
-       );
-     } else {
-       console.error('L\'URL de l\'image recadrée est vide');
-     }
-   } */
-}
+  imageLoaded(image: LoadedImage): void {
+    // Show cropper
+  }
 
+  cropperReady(): void {
+    // Cropper ready
+  }
+
+  loadImageFailed(): void {
+    // Show message
+  }
+
+  // Envoi de l'image rognée au serveur
+  public upload(): void {
+    if (this.croppedImageUrl) {
+      this.apiService.uploadPortrait(this.citoyenCur.niciv, this.croppedImageUrl).subscribe(
+        (response) => {
+          this.citoyen = response;
+          console.log('Image envoyée avec succès', this.citoyen.id);
+          this.router.navigate(['citoyen', this.citoyen.id]);
+          this.croppedImageUrl = null; // Réinitialiser l'URL de l'image recadrée après l'upload
+        },
+        (error) => {
+          console.error('Erreur lors de l\'envoi de l\'image', error);
+          this.croppedImageUrl = null; // Réinitialiser l'URL de l'image recadrée même en cas d'erreur
+        }
+      );
+    }
+  }
+}

@@ -23,6 +23,8 @@ selectedFiles?: FileList;
 currentFile?: File;
 
 public url!: string;
+isMali?:boolean
+isMaliA?:boolean
 etape1: boolean = false; 
 etape2: boolean = false;
 etape3: boolean = false; 
@@ -119,7 +121,8 @@ editing :string="hidden";
     this.isButtonEtape3()
     this.isButtonEtape4()
     this.editing="hidden"
-
+    this.isMali=(this.region.id!=11)?false:true
+    this.isMaliA=(this.regionA.id!=11)?false:true
   }
   onGetCitoyen(){
     this.apiService.getById(this.url)
@@ -269,7 +272,8 @@ onGetProfessionM(id:any){
        this.commune.id=null;
        this.vqf.id=null;  
        this.afficheCom=true; this.afficheVqf=true;
-      }        
+      }  
+      this.isMali=(this.region.id!=11)?false:true      
          }, err=>{
              console.log(err);
            }); 
@@ -314,7 +318,9 @@ onGetProfessionM(id:any){
         this.communeA.id=null;
         this.vqfA.id=null;  
         this.afficheComA=true; this.afficheVqfA=true;
-       }        
+        
+       }     
+       this.isMaliA=(this.regionA.id!=11)?false:true   
           }, err=>{
               console.log(err);
             }); 

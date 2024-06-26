@@ -106,8 +106,13 @@ export class WebcamComponent implements OnInit {
               )
           this.router.navigate(['citoyen',this.citoyen.id]);
           this.generateRecu(this.citoyen.id)
+          this.croppedImageUrl = null; // Réinitialiser l'URL de l'image recadrée même en cas d'erreur
         } ,
-        (error) => console.error('Erreur lors de l\'envoi de l\'image', error)
+        (error) => {
+          console.error('Erreur lors de l\'envoi de l\'image', error)
+          this.croppedImageUrl = null; // Réinitialiser l'URL de l'image recadrée même en cas d'erreur
+
+        }
       );
     }
   }
