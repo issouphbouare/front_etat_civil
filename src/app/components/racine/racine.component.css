@@ -1,9 +1,37 @@
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
 .bg-image {
-    background-image: url('src/assets/images/logo/theme.jpg'); /* Remplacez par le chemin correct de votre image */
-    background-size: cover; /* Ajuste la taille de l'image pour couvrir le conteneur */
-    background-repeat: no-repeat; /* Empêche l'image de se répéter */
-    background-attachment: fixed;
-     /* Fixe l'image en arrière-plan, même lorsque vous faites défiler la page */
-    /* Ajoutez d'autres styles personnalisés si nécessaire */
-  }
+  background-image: url('src/assets/images/logo/theme.jpg'); /* Remplacez par le chemin correct de votre image */
+  background-size: cover; /* Ajuste la taille de l'image pour couvrir le conteneur */
+  background-repeat: no-repeat; /* Empêche l'image de se répéter */
+  background-attachment: fixed; /* Fixe l'image en arrière-plan, même lorsque vous faites défiler la page */
+  background-position: center; /* Centre l'image de fond */
+  min-height: 100vh; /* Définit la hauteur pour couvrir tout l'écran */
+  display: flex;
+  flex-direction: column;
+}
+
+.header-container,
+.menu-container,
+.content-container,
+.footer-container {
+  position: relative;
+  z-index: 1;
+  color: white; /* Pour rendre le texte visible sur une image de fond sombre */
+  padding: 20px; /* Espacement autour du contenu */
+}
+
+.content-container {
+  flex: 1;
+}
+
+.sticky-top {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+}
+
   
