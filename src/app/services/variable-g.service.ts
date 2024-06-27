@@ -5,10 +5,10 @@ import { Injectable } from '@angular/core';
 })
 export class VariableGService {
   api: string="http://localhost:8080"
-  apiDist: string="https://back-etat-civil-5.onrender.com"
+  apiDist: string="https://back-etat-civil.onrender.com"
 
   constructor() { }
   getApi(){
-    return this.api;
+    return this.apiDist;
   }
 }
