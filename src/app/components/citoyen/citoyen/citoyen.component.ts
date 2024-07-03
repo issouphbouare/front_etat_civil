@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { CercleService } from 'src/app/services/cercle.service';
 import { CitoyenService } from 'src/app/services/citoyen.service';
 import { CommuneService } from 'src/app/services/commune.service';
+import { DocumentService } from 'src/app/services/document.service';
 import { JasperService } from 'src/app/services/jasper.service';
 import { ProfessionService } from 'src/app/services/profession.service';
 import { RegionService } from 'src/app/services/region.service';
@@ -18,9 +20,10 @@ import { VqfService } from 'src/app/services/vqf.service';
 export class CitoyenComponent implements OnInit {
   constructor(private route: ActivatedRoute, private apiService: CitoyenService, private tokenStorageService: TokenStorageService,
     private vqfService:VqfService, private communeService:CommuneService, private jasperService: JasperService,
-    private cercleService:CercleService,private regionService:RegionService, private router: Router,
-    private professionService:ProfessionService, private sanitizer: DomSanitizer
+    private cercleService:CercleService,private regionService:RegionService, private router: Router, private documentService: DocumentService,
+    private professionService:ProfessionService, private sanitizer: DomSanitizer, private formBuilder:FormBuilder,
   ){}
+  form : FormGroup= new FormGroup({});
   imageUrl: SafeUrl | null = null;
   public citoyen:any;
   public url!: string;
@@ -51,6 +54,11 @@ export class CitoyenComponent implements OnInit {
 
     }
     
+    this.form=this.formBuilder.group({
+      type : ['',[Validators.required]],
+      citoyen : ['',[Validators.required]],
+      
+    });
 
   }
 
@@ -179,6 +187,9 @@ onGetProfessionM(id:any){
   }
   
   genererCarte(): void {
+    this.form.value.type="Carte_Biometrique"
+    this.form.value.citoyen=this.citoyen.id
+    this.addDoc(this.form);
     this.jasperService.generateCarte(this.citoyen.id).subscribe(
       (response: Blob) => {
         this.jasperService.downloadFile(response,"carte_Biometrique_"+this.citoyen.id.toString());
@@ -190,6 +201,9 @@ onGetProfessionM(id:any){
   }
 
   genererFiche(): void {
+    this.form.value.type="Fiche_individuelle"
+    this.form.value.citoyen=this.citoyen.id
+    this.addDoc(this.form);
     this.jasperService.generateFiche(this.citoyen.id).subscribe(
       (response: Blob) => {
         this.jasperService.downloadFile(response,"fiche_individuelle_"+this.citoyen.id.toString());
@@ -201,12 +215,29 @@ onGetProfessionM(id:any){
   }
 
   genererRecu(): void {
+    this.form.value.type="Recépissé"
+    this.form.value.citoyen=this.citoyen.id
+    this.addDoc(this.form);
     this.jasperService.generateRecu(this.citoyen.id).subscribe(
       (response: Blob) => {
         this.jasperService.downloadFile(response,"recépissé_"+this.citoyen.id.toString());
       },
       error => {
         console.error('Erreur lors du téléchargement du recu : ', error);
+      }
+    ); 
+  }
+
+  genererNationalite(): void {
+    this.form.value.type="Certificat_Nationalité"
+    this.form.value.citoyen=this.citoyen.id
+    this.addDoc(this.form);
+    this.jasperService.generateNationalite(this.citoyen.id).subscribe(
+      (response: Blob) => {
+        this.jasperService.downloadFile(response,"Nationalité_"+this.citoyen.id.toString());
+      },
+      error => {
+        console.error('Erreur lors du téléchargement du certificat : ', error);
       }
     ); 
   }
@@ -224,5 +255,11 @@ onGetProfessionM(id:any){
   
     alert("Militant  supprimé avec succes");
   }
+  }
+
+  addDoc(doc: any){
+    this.documentService.Create(this.form.value).
+    subscribe( data => {},
+      err=>{});
   }
 }

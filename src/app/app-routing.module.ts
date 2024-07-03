@@ -32,6 +32,8 @@ import { PayesComponent } from './components/collectivites/payes/payes/payes.com
 import { EditVilleComponent } from './components/collectivites/ville/edit-ville/edit-ville.component';
 import { AddVilleComponent } from './components/collectivites/ville/add-ville/add-ville.component';
 import { VillesComponent } from './components/collectivites/ville/villes/villes.component';
+import { DocumentsComponent } from './components/document/documents/documents.component';
+import { AddDocumentComponent } from './components/document/add-document/add-document.component';
 
 const routes: Routes = [
   {path : "" , component : LoginComponent },
@@ -77,6 +79,9 @@ const routes: Routes = [
  {path : "professions" , component : ProfessionsComponent },
  {path :"addProfession" , component : AddProfessionComponent},
  {path : "editProfession/:id" , component : EditProfessionComponent },
+
+ {path : "documents" , component : DocumentsComponent },
+ {path :"addDocument" , component : AddDocumentComponent},
  
  // Ajoutez vos autres routes ici
  { path: '', redirectTo: '/citoyens', pathMatch: 'full' }, // Redirection par défaut

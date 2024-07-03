@@ -49,6 +49,8 @@ import { EditVilleComponent } from './components/collectivites/ville/edit-ville/
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './services/auth.interceptor';
+import { DocumentsComponent } from './components/document/documents/documents.component';
+import { AddDocumentComponent } from './components/document/add-document/add-document.component';
 
 @NgModule({
   declarations: [
@@ -90,6 +92,8 @@ import { AuthInterceptor } from './services/auth.interceptor';
     VillesComponent,
     AddVilleComponent,
     EditVilleComponent,
+    DocumentsComponent,
+    AddDocumentComponent,
    
 
   ],

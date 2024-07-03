@@ -1,0 +1,88 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12 mt-8">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-md-1">
+                            <a routerLink="/addDocument" class="btn btn-secondary float-right"><i class="bi bi-plus"></i></a>                        </div>
+                        <div class="col-md-7">
+                            <h4>Liste Des Documents </h4>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="row justify-content-end">
+                                <div class="col-auto">
+
+                                    <input style="height: 35px; width: 250px;" type="text"
+                                    [(ngModel)]="keyword"   placeholder="Entrez votre mot-clé">
+
+                                    <button class="btn btn-secondary rounded ms-2" (click)="search()"><i
+                                            class="bi bi-search"></i></button>
+                                    <!-- Bouton que vous voulez aligner à droite -->
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table table-striped" *ngIf="donnees">
+                        <thead>
+                            <tr *ngIf="totalSearch==0"><h2 style="text-align: center;" class="alert alert-danger">aucune region trouvée !!!</h2></tr>
+                            <tr *ngIf="totalSearch!=0">
+                                <th>Numero</th>
+                                <th>Nom</th>
+                                <th>type</th>
+                                <th>date délivrance</th>
+                                <th>Tel Citoyen</th>
+                                <th>Niciv Citoyen</th>
+                                
+                            
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let p of donnees">
+                                <td>{{p.id}}</td>  
+                                <td>{{p.nom}}</td> 
+                                <td>{{p.type}}</td>  
+                                <td>{{p.date}}</td>
+                                <td>{{p.citoyen.telephone}}</td>
+                                <td>{{p.citoyen.niciv}}</td>                             
+                                
+                                
+                                <td>
+                                     <button (click)="onDelete(p.id)" class="btn btn-light"><i class="bi bi-trash"></i></button>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="row" *ngIf="totalSearch!=0">
+                        <div class="col-md-8"></div>
+                        <div class="col-md-2" style="background-color: rgb(227, 232, 232);">
+                            <h6>Total : </h6>
+                        </div>
+                        <div class="col-md-2" style="background-color: rgb(227, 232, 232);">{{totalSearch}}</div>
+                    </div>
+
+                    <div class="row" *ngIf="totalSearch!=0">
+                            <div class="col-md-12">
+                                <ul *ngIf="pages" class="pagination float-right">
+                                    <li class="page-link clickable sp" (click)="goToPrevious()" *ngIf="currentPage>0">
+                                        <i class="bi bi-chevron-double-left"></i></li>
+                                    <li class=" page-item " [ngClass]="i==currentPage? 'active' : ''" *ngFor="let p of pages; let i=index">
+                                       <a class="page-link clickable sp" *ngIf="i>=currentPage-2 && i<=currentPage+2"
+                                        (click)="goToPage(i)">{{i+1}}</a>
+                                    </li>
+                                    <li class="page-link clickable sp" (click)="goToNext()" *ngIf="currentPage<nbPage-1">
+                                        <i class="bi bi-chevron-double-right"></i></li>
+                                </ul>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
