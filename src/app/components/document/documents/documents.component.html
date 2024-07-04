@@ -30,7 +30,7 @@
                 <div class="card-body">
                     <table class="table table-striped" *ngIf="donnees">
                         <thead>
-                            <tr *ngIf="totalSearch==0"><h2 style="text-align: center;" class="alert alert-danger">aucune region trouvée !!!</h2></tr>
+                            <tr *ngIf="totalSearch==0"><h2 style="text-align: center;" class="alert alert-danger">aucune document trouvé !!!</h2></tr>
                             <tr *ngIf="totalSearch!=0">
                                 <th>Numero</th>
                                 <th>Nom</th>
@@ -54,6 +54,8 @@
                                 
                                 
                                 <td>
+                                    <button [routerLink]="['/citoyen',p.citoyen.id]"
+                                    class="btn btn-light"><i class="bi bi-listt">Details citoyen</i></button>
                                      <button (click)="onDelete(p.id)" class="btn btn-light"><i class="bi bi-trash"></i></button>
                                 
                             </tr>

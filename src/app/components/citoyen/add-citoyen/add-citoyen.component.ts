@@ -8,6 +8,7 @@ import { ProfessionService } from 'src/app/services/profession.service';
 import { RegionService } from 'src/app/services/region.service';
 import { VqfService } from 'src/app/services/vqf.service';
 import { JasperService } from 'src/app/services/jasper.service';
+import { DocumentService } from 'src/app/services/document.service';
 
 @Component({
   selector: 'app-add-citoyen',
@@ -75,11 +76,12 @@ export class AddCitoyenComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     private apiService: CitoyenService, private route: ActivatedRoute,
-    private professionService: ProfessionService,
+    private professionService: ProfessionService, private documentService: DocumentService,
     private regionService: RegionService, private vqfService: VqfService,
     private cercleService: CercleService, private jasperService: JasperService,
     private communeService: CommuneService, private router: Router) { }
   formAdd: FormGroup = new FormGroup({});
+  form: FormGroup = new FormGroup({});
 
 
 
@@ -110,6 +112,11 @@ export class AddCitoyenComponent implements OnInit {
       nomMere: ['', [Validators.required, Validators.pattern("([A-Z]){1,}")]],
       professionPere: ['', Validators.required],
       professionMere: ['', Validators.required]
+    });
+
+    this.form=this.formBuilder.group({
+      type : ['',[Validators.required]],
+      citoyen : ['',[Validators.required]],
     });
   }
 
@@ -429,6 +436,9 @@ export class AddCitoyenComponent implements OnInit {
   }
 
   generateRecu(id: number): void {
+    this.form.value.type="Recépissé"
+    this.form.value.citoyen=id
+    this.addDoc(this.form);
     this.jasperService.generateRecu(id).subscribe(
       (response: Blob) => {
         this.jasperService.downloadFile(response, "recépissé_" + id.toString());
@@ -438,6 +448,13 @@ export class AddCitoyenComponent implements OnInit {
       }
     );
   }
+  
+  addDoc(doc: any){
+    this.documentService.Create(this.form.value).
+    subscribe( data => {},
+      err=>{});
+  }
+
   /* private trigger: Subject<void> = new Subject<void>();
   public triggerObservable: Observable<void> = this.trigger.asObservable();
 

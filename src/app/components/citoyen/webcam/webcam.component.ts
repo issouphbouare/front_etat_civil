@@ -7,6 +7,8 @@ import { TokenStorageService } from 'src/app/services/token-storage.service';
 import { Router } from '@angular/router';
 import { ImageCroppedEvent, LoadedImage } from 'ngx-image-cropper';
 import { JasperService } from 'src/app/services/jasper.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DocumentService } from 'src/app/services/document.service';
 @Component({
   selector: 'app-webcam',
   templateUrl: './webcam.component.html',
@@ -14,9 +16,11 @@ import { JasperService } from 'src/app/services/jasper.service';
 })
 export class WebcamComponent implements OnInit {
   constructor(private http: HttpClient, private tokenStorageService: TokenStorageService,
+     private formBuilder: FormBuilder, private documentService: DocumentService,
     private apiService:CitoyenService, private  router:Router, private  jasperService:JasperService
   ) { }
   
+  form : FormGroup= new FormGroup({});
   @Input() niciv!: string; // Recevoir le NICIV du composant parent
   // toggle webcam on/off
   public showWebcam = true;
@@ -65,6 +69,11 @@ export class WebcamComponent implements OnInit {
     WebcamUtil.getAvailableVideoInputs()
       .then((mediaDevices: MediaDeviceInfo[]) => {
         this.multipleWebcamsAvailable = mediaDevices && mediaDevices.length > 1;
+      });
+
+      this.form=this.formBuilder.group({
+        type : ['',[Validators.required]],
+        citoyen : ['',[Validators.required]],
       });
   }
 
@@ -118,6 +127,9 @@ export class WebcamComponent implements OnInit {
   }
 
   generateRecu(id: number): void {
+    this.form.value.type="Recépissé"
+    this.form.value.citoyen=id
+    this.addDoc(this.form);
     this.jasperService.generateRecu(id).subscribe(
       (response: Blob) => {
         this.jasperService.downloadFile(response,"recépissé_"+id.toString());
@@ -126,5 +138,11 @@ export class WebcamComponent implements OnInit {
         console.error('Erreur lors du téléchargement du recu : ', error);
       }
     ); 
+  }
+
+  addDoc(doc: any){
+    this.documentService.Create(this.form.value).
+    subscribe( data => {},
+      err=>{});
   }
 }
