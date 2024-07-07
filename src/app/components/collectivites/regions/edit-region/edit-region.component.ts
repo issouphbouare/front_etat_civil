@@ -48,7 +48,7 @@ export class EditRegionComponent implements OnInit {
      this.route.navigate(['regions']);
      }, err=>{
        console.log(err);
-       alert(alert(err.error.message));
+       alert("Ce code ou nom de Region existe deja !");
      });  
 
  }

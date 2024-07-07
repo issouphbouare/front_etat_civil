@@ -12,7 +12,10 @@ import { UserService } from 'src/app/services/user.service';
 export class PasswordComponent {
 
 public username? : String;
-user : any
+user : any;
+visible : string='';
+visible1 : string='';
+visible2 : string='';
 
 
 
@@ -23,7 +26,7 @@ constructor(private formBuilder:FormBuilder,
   private  router:Router ,private route: ActivatedRoute) { }
   formEdit : FormGroup= new FormGroup({});
 
-ngOnInit() {
+ngOnInit() { this.visible='password'; this.visible1='password'; this.visible2='password'
   this.username=this.route.snapshot.params['id']
   this.getUser()
     
@@ -58,11 +61,19 @@ onSubmit(){
     alert(" Mot de passe modifié avec succes !");
     this.tokenStorageService.signOut();
     }, err=>{
-      console.log(err.error.message); 
-      alert(err.error.message)
+       
+      alert(" Ancien mot de passe incorrecte ou nouveau mot de passe different de la confirmation  !");
     });
     
 }
+
+
+onVisible(){this.visible='text'}
+onNotVisible(){this.visible='password'}
+onVisible1(){this.visible1='text'}
+onNotVisible1(){this.visible1='password'}
+onVisible2(){this.visible2='text'}
+onNotVisible2(){this.visible2='password'}
 
 }
 

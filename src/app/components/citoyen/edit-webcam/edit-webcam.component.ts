@@ -127,7 +127,8 @@ export class EditWebcamComponent implements OnInit {
       this.apiService.uploadPortrait(this.citoyenCur.niciv, this.croppedImageUrl).subscribe(
         (response) => {
           this.citoyen = response;
-          console.log('Image envoyée avec succès', this.citoyen.id);
+          console.log('Image ajoutée avec succès', this.citoyen.id);
+          alert('Image ajoutée avec succès')
           this.router.navigate(['citoyen', this.citoyen.id]);
           this.croppedImageUrl = null; // Réinitialiser l'URL de l'image recadrée après l'upload
         },

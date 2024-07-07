@@ -34,7 +34,7 @@ export class AddProfessionComponent implements OnInit {
       },err=>{
         
         console.log(err.error.message);
-        alert(err.error.message);
+        alert("cette profession existe déja !");
       });
 
 }

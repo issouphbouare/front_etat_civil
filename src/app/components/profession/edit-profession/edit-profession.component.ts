@@ -47,7 +47,7 @@ export class EditProfessionComponent implements OnInit {
      this.route.navigate(['professions']);
      }, err=>{
        console.log(err);
-       alert(alert(err.error.message));
+       alert(alert("Cette profession existe déja !"));
      });  
 
  }

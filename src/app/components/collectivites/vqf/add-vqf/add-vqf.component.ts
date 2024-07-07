@@ -24,8 +24,6 @@ export class AddVqfComponent implements OnInit {
   
   public cercle: any;
   public cercles: any;
-  //public base : string="http://localhost:8082/divisions/";
-  public base : string="http://62.171.169.168:8082/divisions/"; /*connexion au serveur distant*/
   public nbPage : number=0;
   public pages : Array<number>=[];
   public url: string='';
@@ -107,7 +105,7 @@ export class AddVqfComponent implements OnInit {
       this.router.navigate(['vqfs']);
       }, err=>{
         console.log(err);
-        alert(err.error.message);
+        alert("Ce code ou nom de Vqf existe deja !");
       });  
  
   }

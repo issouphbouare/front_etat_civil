@@ -508,6 +508,7 @@ onGetRegionCur(){
       //this.onEtape5()
     },err=>{
       console.log(err);
+      alert("Ce numéro de téléphone existe déjà");
       //alert(err.error.message);
     }); 
 }

@@ -20,11 +20,12 @@ export class LoginComponent implements OnInit {
   isLoginFailed = false;
   errorMessage = '';
   roles: string[] = [];
+  visible : string='';
 
   constructor(private router: Router, private formBuilder: FormBuilder, private authService: AuthService, private tokenStorageService: TokenStorageService) { }
 
 
-  ngOnInit(): void {
+  ngOnInit(): void { this.visible='password'
 
     this.login = this.formBuilder.group({
       username: ['', Validators.required],
@@ -62,5 +63,8 @@ export class LoginComponent implements OnInit {
     }, 100); // délai de 100 millisecondes
   });
 }
+
+onVisible(){this.visible='text'}
+onNotVisible(){this.visible='password'}
 }
 

@@ -44,7 +44,7 @@ export class EditUserComponent {
     
     this.apiService.AddRole(this.donnee.id,this.form.value.role ,this.form.value).
     subscribe( data => {
-        alert("User : "+this.form.value.role+
+        alert("Role : "+this.form.value.role+
         "  ajouté avec succes  !"); 
         window.location.reload();
       },err=>{

@@ -32,9 +32,7 @@ export class AddRegionComponent implements OnInit {
         "  ajoutée avec succes  !"); 
         this.router.navigate(['regions']);
       },err=>{
-        
-        console.log(err.error.message);
-        alert(err.error.message);
+        alert("Ce code ou nom de Region existe deja !");
       });
 
 }

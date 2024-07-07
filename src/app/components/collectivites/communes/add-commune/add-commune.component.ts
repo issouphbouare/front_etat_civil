@@ -17,8 +17,6 @@ export class AddCommuneComponent implements OnInit {
   public cercle: any;
   public cercles: any;
   public regions: any;
-  //public base : string="http://localhost:8082/divisions/";
-  public base : string="http://62.171.169.168:8082/divisions/"; /*connexion au serveur distant*/
   public nbPage : number=0;
   public pages : Array<number>=[];
   public url: string='';
@@ -80,7 +78,7 @@ export class AddCommuneComponent implements OnInit {
       this.router.navigate(['communes']);
       }, err=>{
         console.log(err);
-        alert(err.error.message);
+        alert("Ce code ou nom de Commune existe deja !");
       });  
  
   }

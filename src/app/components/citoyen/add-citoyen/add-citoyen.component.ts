@@ -72,6 +72,19 @@ export class AddCitoyenComponent implements OnInit {
   porte: string = '';
   autre: string = '';
 
+  newProf: string = '';
+  addProf:Boolean=false
+  newPayes: string='';
+  addPayes:Boolean=false
+  newVille: string='';
+  addVille:Boolean=false
+  newPayesA: string='';
+  addPayesA:Boolean=false
+  newVilleA: string='';
+  addVilleA:Boolean=false
+  addProfP:Boolean=false
+  addProfM:Boolean=false
+
 
 
   constructor(private formBuilder: FormBuilder,
@@ -82,10 +95,16 @@ export class AddCitoyenComponent implements OnInit {
     private communeService: CommuneService, private router: Router) { }
   formAdd: FormGroup = new FormGroup({});
   form: FormGroup = new FormGroup({});
+  formProf: FormGroup = new FormGroup({});
+  formPayes: FormGroup = new FormGroup({});
+  formVille: FormGroup = new FormGroup({});
+  formPayesA: FormGroup = new FormGroup({});
+  formVilleA: FormGroup = new FormGroup({});
 
 
 
-  ngOnInit() { this.isMali=true;  this.isMaliA=true
+  ngOnInit() { this.isMali=true;  this.isMaliA=true; this.addProf=false; this.addVilleA=false;
+    this.addProfP=false; this.addProfM=false; this.addPayes=false; this.addPayesA=false; this.addVille=false;
     this.onEtape1(); this.onGetRegions(); this.onGetProfessions();
     this.formAdd = this.formBuilder.group({
       telephone: ['', [Validators.min(50000000), Validators.max(100000000)]], prenom: ['', [Validators.required, Validators.pattern("([a-zA-Z]).{1,}")]],
@@ -117,6 +136,29 @@ export class AddCitoyenComponent implements OnInit {
     this.form=this.formBuilder.group({
       type : ['',[Validators.required]],
       citoyen : ['',[Validators.required]],
+    });
+    this.formProf=this.formBuilder.group({
+      libelle : ['',[Validators.required]],
+    });
+
+    this.formPayes=this.formBuilder.group({
+      nom : ['',[Validators.required]],
+      cercle : ['',[Validators.required]],
+    });
+
+    this.formVille=this.formBuilder.group({
+      nom : ['',[Validators.required]],
+      commune : ['',[Validators.required]],
+    });
+
+    this.formPayesA=this.formBuilder.group({
+      nom : ['',[Validators.required]],
+      cercle : ['',[Validators.required]],
+    });
+
+    this.formVilleA=this.formBuilder.group({
+      nom : ['',[Validators.required]],
+      commune : ['',[Validators.required]],
     });
   }
 
@@ -361,7 +403,7 @@ export class AddCitoyenComponent implements OnInit {
         this.onEtape5()
       }, err => {
         console.log(err);
-        alert(err.error.message);
+        alert("Ce numéro de téléphone existe déjà");
       });
   }
 
@@ -454,6 +496,75 @@ export class AddCitoyenComponent implements OnInit {
     subscribe( data => {},
       err=>{});
   }
+
+  onAddProf(){ this.addProf=true}
+  onNoAddProf(){ this.addProf=false}
+  onAddProfP(){ this.addProfP=true}
+  onNoAddProfP(){ this.addProfP=false}
+  onAddProfM(){ this.addProfM=true}
+  onNoAddProfM(){ this.addProfM=false}
+  onAddPayesA(){ this.addPayesA=true}
+  onNoAddPayesA(){ this.addPayesA=false}
+  onAddVilleA(){ this.addVilleA=true}
+  onNoAddVilleA(){ this.addVilleA=false}
+  onAddPayes(){ this.addPayes=true}
+  onNoAddPayes(){ this.addPayes=false}
+  onAddVille(){ this.addVille=true}
+  onNoAddVille(){ this.addVille=false}
+
+
+  onAddNewProf(){
+this.formProf.value.libelle=this.newProf;
+console.log(this.formProf.value)
+this.professionService.Create(this.formProf.value).
+    subscribe( data => { this.onGetProfessions(); this.addProf=false
+      this.addProfP=false; this.addProfM=false
+    },
+      err=>{});
+  }
+
+  onAddNewPayes(){
+    this.formPayes.value.nom=this.newPayes;
+    this.formPayes.value.cercle=this.selectedCer
+    console.log(this.formPayes.value)
+    this.communeService.CreateP(this.formPayes.value).
+        subscribe( data => { 
+          this.onGetComByCer(); this.addPayes=false; this.newPayes="";
+        },
+          err=>{});
+      }
+    
+  onAddNewVille(){
+        this.formVille.value.nom=this.newVille;
+        this.formVille.value.commune=this.selectedCom
+        console.log(this.formVille.value)
+        this.vqfService.CreateV(this.formVille.value).
+            subscribe( data => { 
+              this.onGetVqfByCom(); this.addVille=false; this.newVille="";
+            },
+              err=>{});
+      }
+      onAddNewPayesA(){
+        this.formPayesA.value.nom=this.newPayesA;
+        this.formPayesA.value.cercle=this.selectedCerA
+        console.log(this.formPayesA.value)
+        this.communeService.CreateP(this.formPayesA.value).
+            subscribe( data => { 
+              this.onGetComByCerA(); this.addPayesA=false; this.newPayesA="";
+            },
+              err=>{});
+          }
+        
+      onAddNewVilleA(){
+            this.formVilleA.value.nom=this.newVilleA;
+            this.formVilleA.value.commune=this.selectedComA
+            console.log(this.formVilleA.value)
+            this.vqfService.CreateV(this.formVilleA.value).
+                subscribe( data => { 
+                  this.onGetVqfByComA(); this.addVilleA=false; this.newVilleA="";
+                },
+                  err=>{});
+          }
 
   /* private trigger: Subject<void> = new Subject<void>();
   public triggerObservable: Observable<void> = this.trigger.asObservable();

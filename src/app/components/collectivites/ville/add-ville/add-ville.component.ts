@@ -106,7 +106,7 @@ export class AddVilleComponent implements OnInit {
       this.router.navigate(['villes']);
       }, err=>{
         console.log(err);
-        alert(err.error.message);
+        alert("Ce code ou nom de Ville existe deja !");
       });  
  
   }

@@ -70,7 +70,7 @@ public currentPage: number=0;
       },err=>{
         
         console.log(err.error.message);
-        alert(err.error.message);
+        
       });
 
 }
