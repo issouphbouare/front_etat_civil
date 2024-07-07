@@ -9,6 +9,6 @@ export class VariableGService {
 
   constructor() { }
   getApi(){
-    return this.api;
+    return this.apiDist;
   }
 }
