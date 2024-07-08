@@ -4,7 +4,7 @@ html, body {
 }
 
 .bg-image {
-  background-image: url('src/assets/images/logo/theme.jpg'); /* Remplacez par le chemin correct de votre image */
+  background-image: url('src/assets/images/logo/theme1.jpg'); /* Remplacez par le chemin correct de votre image */
   background-size: cover; /* Ajuste la taille de l'image pour couvrir le conteneur */
   background-repeat: no-repeat; /* Empêche l'image de se répéter */
   background-attachment: fixed; /* Fixe l'image en arrière-plan, même lorsque vous faites défiler la page */
@@ -33,5 +33,33 @@ html, body {
   position: sticky;
   top: 0;
 }
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+.bg-image {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Ensure the bg-image takes the full height of the screen */
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.content {
+  flex: 1; /* Make the content area take up all remaining space */
+}
+
+.footer {
+  
+  text-align: center;
+  padding: 1rem;
+}
+
 
   

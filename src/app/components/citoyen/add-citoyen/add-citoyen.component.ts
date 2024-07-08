@@ -518,7 +518,7 @@ this.formProf.value.libelle=this.newProf;
 console.log(this.formProf.value)
 this.professionService.Create(this.formProf.value).
     subscribe( data => { this.onGetProfessions(); this.addProf=false
-      this.addProfP=false; this.addProfM=false
+      this.addProfP=false; this.addProfM=false; this.newProf='';
     },
       err=>{});
   }
