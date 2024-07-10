@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Apiresponse } from '../models/Apiresponse'; 
 import { TokenStorageService } from './token-storage.service';
@@ -51,6 +51,16 @@ delete(url: any){
 getCerByReg(url:any):Observable<any>{
   const headers = this.tokenStorageService.getHeaders();
   return this.http.get<Apiresponse>(this.baseUrl+"/getCerclesByReg/"+url, { headers });
+}
+
+Importer(file: File): Observable<any> {
+  const formData: FormData = new FormData();
+  formData.append('file', file, file.name);
+
+  const headers = new HttpHeaders();
+  // Note: Aucun besoin de définir explicitement 'Content-Type' pour FormData
+
+  return this.http.post(`${this.baseUrl}/import`, formData);
 }
 
 

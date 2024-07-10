@@ -29,7 +29,7 @@ export class AddPayeComponent implements OnInit {
     private apiService: CommuneService, private formBuilder:FormBuilder ,
     private router : Router, private cercleService: CercleService, private regionService: RegionService) { }
 
-  ngOnInit(): void { this.selectedReg=11 ; this.onGetCerByReg()
+  ngOnInit(): void { this.selectedReg=21 ; this.onGetCerByReg()
     this.form=this.formBuilder.group({
       nom : ['',[Validators.required, Validators.pattern("([A-Z]).{2,}")]],
       cercle : ['',[Validators.required]],

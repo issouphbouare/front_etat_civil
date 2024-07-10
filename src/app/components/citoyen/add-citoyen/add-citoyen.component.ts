@@ -187,7 +187,7 @@ export class AddCitoyenComponent implements OnInit {
     });
     console.log(this.selectedReg)
     //if(this.selectedReg===30) this.isMali=false
-      this.isMali=(this.selectedReg==11)?false:true
+      this.isMali=(this.selectedReg==21)?false:true
   }
 
   onGetComByCer() {
@@ -227,7 +227,7 @@ export class AddCitoyenComponent implements OnInit {
     }, err => {
       console.log(err);
     });
-    this.isMaliA=(this.selectedRegA==11)?false:true
+    this.isMaliA=(this.selectedRegA==21)?false:true
   }
 
   onGetComByCerA() {
@@ -427,7 +427,9 @@ export class AddCitoyenComponent implements OnInit {
   optionsCivilite = [
     { value: '', label: '' },
     { value: 'Celibataire', label: 'Celibataire' },
-    { value: 'Marié(e)', label: 'Marié(e)' }
+    {value: 'Divorcé(e)', label: 'Divorcé(e)' },
+    { value: 'Marié(e)', label: 'Marié(e)' },
+    { value: 'Veuf(ve)', label: 'Veuf(ve)' }
   ];
 
   onSelectionCivilite() {

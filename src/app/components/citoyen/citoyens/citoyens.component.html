@@ -40,6 +40,7 @@
                                 <th>Date Nais</th>
                                 <th>Lieu Nais</th>
                                 <th>Profession</th>
+                                <th>Genre</th>
                                 
                             </tr>
                         </thead>
@@ -52,6 +53,7 @@
                                 <td>{{p.dateNaissance | date:'yyyy-MM-dd' }}</td>
                                 <td>{{p.lieuNaissance.commune.cercle.nom}}</td>
                                 <td>{{p.profession.libelle}}</td>
+                                <td>{{p.genre}}</td>
                                 
                                 <td>
                                     <button [routerLink]="['/citoyen',p.id]"

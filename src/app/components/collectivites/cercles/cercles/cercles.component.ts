@@ -8,6 +8,7 @@ import { CercleService } from 'src/app/services/cercle.service';
   styleUrls: ['./cercles.component.css']
 })
 export class CerclesComponent implements OnInit {
+  public import : boolean=false
   public donnees: any;
   public av=1;
   keyword: string = '';
@@ -26,6 +27,7 @@ export class CerclesComponent implements OnInit {
   
   
   ngOnInit(): void {
+    this.import=false;
     this.av=1;
     this.onSearch() 
   }
@@ -77,6 +79,37 @@ export class CerclesComponent implements OnInit {
         console.log(err);
       });
   }
+
+  // Importation du fichier.txt 
+  onImport(){
+    this.import=true;
+  }
+  onNotImport(){
+    this.import=false;
+  }
+
+selectedFile!: File;
+onFileSelected(event: any): void {
+  this.selectedFile = event.target.files[0] as File;
+}
+
+onUpload(): void {
+  if (this.selectedFile) {
+    this.apiService.Importer(this.selectedFile).subscribe(
+      response => {
+        console.log('Importation réussie', response);
+        // Gérer la réponse ici (par exemple, afficher un message à l'utilisateur)
+      },
+      error => {
+        alert("Fichier importé avec succès ")
+        console.error('Erreur lors de l\'importation du fichier', error.err);
+        // Gérer l'erreur ici (par exemple, afficher un message d'erreur à l'utilisateur)
+      }
+    );
+  } 
+  this.onSearch();
+  window.location.reload();
+}
   
   }
   
