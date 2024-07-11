@@ -50,7 +50,7 @@ export class PayesComponent implements OnInit {
     this.onSearch();
   }
   onDelete(a: any){
-    if(confirm("Voulez-vous vraiment supprimer ce citoyen ?")){
+    if(confirm("Voulez-vous vraiment supprimer ce payes ?")){
       console.log();
       this.apiService.delete(a)
       .subscribe( data=>{
