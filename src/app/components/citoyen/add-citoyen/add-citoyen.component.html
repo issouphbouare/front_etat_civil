@@ -5,7 +5,7 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-1">
-                            <button [routerLink]="['/citoyens']" class="btn btn-light"><i
+                            <button type="button" [routerLink]="['/citoyens']" class="btn btn-light"><i
                                     class="bi bi-arrow-left"></i></button>
                         </div>
                         <div class="col-md-11">
@@ -144,7 +144,7 @@
 
                                                 </div>
                                                 <div class="form-group card mt-3">
-                                                    <button (click)="onEtape2()" [disabled]="!formAdd.controls['telephone'].valid
+                                                    <button type="button" (click)="onEtape2()" [disabled]="!formAdd.controls['telephone'].valid
                                                     || !formAdd.controls['telephone'].valid
                                                     || !formAdd.controls['genre'].valid
                                                     || !formAdd.controls['civilite'].valid
@@ -314,7 +314,7 @@
                                                         </div>
                                                         <div class="col-md-2"></div>
                                                         <div class="col-md-5">
-                                                            <button (click)="onEtape3()" [disabled]="
+                                                            <button type="button" (click)="onEtape3()" [disabled]="
                                                    !formAdd.controls['prenomPere'].valid
                                                 || !formAdd.controls['professionPere'].valid
                                                 || !formAdd.controls['prenomMere'].valid
@@ -677,7 +677,7 @@
 
                                                     <div class="row">
                                                         <div class="col-md-5">
-                                                            <button (click)="onEtape3()" class="btn btn-secondary"
+                                                            <button type="button" (click)="onEtape3()" class="btn btn-secondary"
                                                                 style="width: 410px;">
                                                                 <i class="bi bi-arrow-left"></i> Retour
                                                             </button>
@@ -733,14 +733,14 @@
 
                                                     <div class="row">
                                                         <div class="col-md-5">
-                                                            <button (click)="onEtape4()" class="btn btn-secondary"
+                                                            <button type="button" (click)="onEtape4()" class="btn btn-secondary"
                                                                 style="width: 410px;">
                                                                 <i class="bi bi-arrow-left"></i> Retour
                                                             </button>
                                                         </div>
                                                         <div class="col-md-2"></div>
                                                         <div class="col-md-5">
-                                                            <button (click)="onEtape6()" class="btn btn-secondary px-4"
+                                                            <button type="button" (click)="onEtape6()" class="btn btn-secondary px-4"
                                                                 style="width: 410px;">Continuer sans photo <i
                                                                     class="bi bi-arrow-right"></i></button>
                                                         </div>
