@@ -8,7 +8,7 @@ import { CommuneService } from 'src/app/services/commune.service';
   styleUrls: ['./communes.component.css']
 })
 export class CommunesComponent implements OnInit {
-
+  public import: boolean=false
   public donnees: any;
   public av=1;
   keyword: string = '';
@@ -27,6 +27,7 @@ export class CommunesComponent implements OnInit {
   
   
   ngOnInit(): void {
+    this.import=false;
     this.av=1;
     this.onSearch() 
   }
@@ -49,7 +50,7 @@ export class CommunesComponent implements OnInit {
     this.onSearch();
   }
   onDelete(a: any){
-    if(confirm("Voulez-vous vraiment supprimer ce citoyen ?")){
+    if(confirm("Voulez-vous vraiment supprimer cet Arrondissement ?")){
       console.log();
       this.apiService.delete(a)
       .subscribe( data=>{
@@ -78,6 +79,37 @@ export class CommunesComponent implements OnInit {
         console.log(err);
       });
   }
+
+  // Importation du fichier.txt 
+  onImport(){
+    this.import=true;
+  }
+  onNotImport(){
+    this.import=false;
+  }
+
+selectedFile!: File;
+onFileSelected(event: any): void {
+  this.selectedFile = event.target.files[0] as File;
+}
+
+onUpload(): void {
+  if (this.selectedFile) {
+    this.apiService.Importer(this.selectedFile).subscribe(
+      response => {
+        console.log('Importation réussie', response);
+        // Gérer la réponse ici (par exemple, afficher un message à l'utilisateur)
+      },
+      error => {
+        alert("Fichier importé avec succès ")
+        console.error('Erreur lors de l\'importation du fichier', error.err);
+        // Gérer l'erreur ici (par exemple, afficher un message d'erreur à l'utilisateur)
+      }
+    );
+  } 
+  //this.onSearch();
+  //window.location.reload();
+}
 }
 
 

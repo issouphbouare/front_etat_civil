@@ -50,7 +50,7 @@ export class CerclesComponent implements OnInit {
     this.onSearch();
   }
   onDelete(a: any){
-    if(confirm("Voulez-vous vraiment supprimer ce citoyen ?")){
+    if(confirm("Voulez-vous vraiment supprimer ce cercle ?")){
       console.log();
       this.apiService.delete(a)
       .subscribe( data=>{
@@ -62,7 +62,7 @@ export class CerclesComponent implements OnInit {
         }
       );
   
-    //alert("Militant  supprimé avec succes");
+    alert("Cercle  supprimé avec succes");
   }
     
   }
@@ -107,8 +107,8 @@ onUpload(): void {
       }
     );
   } 
-  this.onSearch();
-  window.location.reload();
+  //this.onSearch();
+  //window.location.reload();
 }
   
   }

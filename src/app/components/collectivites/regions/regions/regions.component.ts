@@ -69,7 +69,7 @@ onDelete(a: any){
       }
     );
 
-  //alert("Militant  supprimé avec succes");
+  alert("Region  supprimé avec succes");
 }
 }
 
@@ -106,7 +106,7 @@ onUpload(): void {
       }
     );
   } 
-  this.onSearch();
-  window.location.reload();
+  //this.onSearch();
+  //window.location.reload();
 }
 }

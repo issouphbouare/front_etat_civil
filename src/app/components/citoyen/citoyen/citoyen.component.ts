@@ -253,7 +253,7 @@ onGetProfessionM(id:any){
         }
       );
   
-    alert("Militant  supprimé avec succes");
+    alert("Citoyen  supprimé avec succès");
   }
   }
 

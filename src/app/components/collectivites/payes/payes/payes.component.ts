@@ -62,7 +62,7 @@ export class PayesComponent implements OnInit {
         }
       );
   
-    //alert("Militant  supprimé avec succes");
+    alert("Payes  supprimé avec succes");
   }
     
   }

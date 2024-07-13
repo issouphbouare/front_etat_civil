@@ -4,9 +4,16 @@
             <div class="card">
                 <div class="card-header">
                     <div class="row">
-                        <div class="col-md-1">
-                            <a routerLink="/addVqf" class="btn btn-secondary float-right"><i class="bi bi-plus"></i></a>                        </div>
-                        <div class="col-md-7">
+                        <div class="col-md-2">
+                            <a routerLink="/addVqf" class="btn btn-secondary float-right"><i class="bi bi-plus"></i></a>
+                            <button *ngIf="!import" (click)="onImport()" class="btn btn-primary" style="margin-left:10px ;"><i class="bi bi-upload"></i></button>
+                        </div>
+                        <div class="col-md-6" *ngIf="import">
+                            <button *ngIf="import" (click)="onNotImport()" class="btn btn-light"><i class="bi bi-x"></i></button>
+                            <input type="file" (change)="onFileSelected($event)">
+                            <button (click)="onUpload()">Importer</button>
+                        </div>
+                        <div class="col-md-6">
                             <h4>Liste Des Villages Quartiers et Fractions </h4>
                         </div>
                         <div class="col-md-4">
