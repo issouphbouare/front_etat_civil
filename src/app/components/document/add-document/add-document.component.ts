@@ -11,6 +11,7 @@ import { JasperService } from 'src/app/services/jasper.service';
 })
 export class AddDocumentComponent implements OnInit {
   public donnees: any;
+  public document: any;
   keyword: string = '';
   totalSearch:number=0;
 public currentPage: number=0;
@@ -60,8 +61,7 @@ public currentPage: number=0;
   onSubmit(){ 
     console.log(this.form.value);
     this.apiService.Create(this.form.value).
-    subscribe( data => {
-        
+    subscribe( data => { this.document=data;
         alert("Document : "+this.form.value.type+
         "  ajoutée avec succes  !"); 
         this.router.navigate(['documents']);
@@ -78,7 +78,7 @@ public currentPage: number=0;
 generateDoc(doc: any){
     if(doc.type=="Recépissé") this.genererRecu(doc.citoyen)
     if(doc.type=="Fiche_individuelle") this.genererFiche(doc.citoyen)
-    if(doc.type=="Certificat_Nationalité") this.genererNationalite(doc.citoyen)
+    if(doc.type=="Certificat_Nationalité") this.genererNationalite(doc.citoyen, this.document.id)
     if(doc.type=="Carte_Biometrique") this.genererCarte(doc.citoyen)
 
 }
@@ -116,8 +116,8 @@ genererRecu(c:number): void {
   ); 
 }
 
-genererNationalite(c:number): void {
-  this.jasperService.generateNationalite(c).subscribe(
+genererNationalite(c:number, id:number): void {
+  this.jasperService.generateNationalite(c, id).subscribe(
     (response: Blob) => {
       this.jasperService.downloadFile(response,"Nationalité_"+c.toString());
     },

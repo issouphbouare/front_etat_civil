@@ -26,6 +26,7 @@ export class CitoyenComponent implements OnInit {
   form : FormGroup= new FormGroup({});
   imageUrl: SafeUrl | null = null;
   public citoyen:any;
+  public doc:any;
   public url!: string;
   public lieuNaissance:any;
   public commune: any;
@@ -231,16 +232,24 @@ onGetProfessionM(id:any){
   genererNationalite(): void {
     this.form.value.type="Certificat_Nationalité"
     this.form.value.citoyen=this.citoyen.id
-    this.addDoc(this.form);
-    this.jasperService.generateNationalite(this.citoyen.id).subscribe(
-      (response: Blob) => {
-        this.jasperService.downloadFile(response,"Nationalité_"+this.citoyen.id.toString());
-      },
-      error => {
-        console.error('Erreur lors du téléchargement du certificat : ', error);
-      }
-    ); 
+    this.documentService.Create(this.form.value).
+    subscribe( data => {this.doc=data; 
+      this.jasperService.generateNationalite(this.citoyen.id, this.doc.id).subscribe(
+        (response: Blob) => {
+          this.jasperService.downloadFile(response,"Nationalité_"+this.citoyen.id.toString());
+        },
+        error => {
+          console.error('Erreur lors du téléchargement du certificat : ', error);
+        }
+      ); 
+    },
+      err=>{});
   }
+    
+  
+
+
+  
 
   onDelete(a: any){
     if(confirm("Voulez-vous vraiment supprimer ce citoyen ?")){

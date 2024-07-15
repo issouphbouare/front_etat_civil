@@ -51,12 +51,12 @@ generateFiche(id: number): Observable<Blob> {
   return this.http.get(url, { responseType: 'blob', headers: headers });
 }
 
-generateNationalite(id: number): Observable<Blob> {
+generateNationalite(id: number,numero: number): Observable<Blob> {
   const headers = new HttpHeaders()
     .set('Authorization', 'Bearer ' + this.tokenStorageService.getToken())
     .set('Content-Type', 'application/pdf'); // Remplacez 'application/pdf' par le type MIME approprié si nécessaire
 
-  const url = `${this.baseUrl}/nationalite/${id}`;
+  const url = `${this.baseUrl}/nationalite/${id}?numero=${numero}`;
   return this.http.get(url, { responseType: 'blob', headers: headers });
 }
 
