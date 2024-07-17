@@ -48,6 +48,7 @@ search(){
   this.currentPage=0;
   this.onSearch();
 }
+clean(){this.keyword=''; this.onSearch()}
 onDelete(a: any){
   if(confirm("Voulez-vous vraiment supprimer ce citoyen ?")){
     console.log();
