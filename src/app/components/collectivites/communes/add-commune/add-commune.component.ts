@@ -74,11 +74,11 @@ export class AddCommuneComponent implements OnInit {
     this.apiService.Create(this.form.value).
     subscribe( (data: any) => {
       console.log(data);
-      alert(" Commune  "+this.form.value.nom+"  ajoutée avec succes ");
+      alert(" Arrondissement  "+this.form.value.nom+"  ajoutée avec succes ");
       this.router.navigate(['communes']);
       }, err=>{
         console.log(err);
-        alert("Ce code ou nom de Commune existe deja !");
+        alert("Ce code ou nom d'Arrondissement existe deja !");
       });  
  
   }

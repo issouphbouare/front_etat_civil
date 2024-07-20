@@ -104,11 +104,11 @@ export class EditCommuneComponent implements OnInit {
     this.apiService.Update(this.donnee.id, this.form.value).
     subscribe( (data: any) => {
       console.log(data);
-      alert(" Cercle  "+this.form.value.nom+"  modifiee avec succes ");
+      alert(" Arrondissement  "+this.form.value.nom+"  modifiee avec succes ");
       this.router.navigate(['communes']);
       }, err=>{
         console.log(err);
-        alert("Ce code ou nom de Commune existe deja !");
+        alert("Ce code ou nom d' Arrondissement existe deja !");
       });  
  
   }
