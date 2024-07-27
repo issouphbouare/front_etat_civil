@@ -34,6 +34,9 @@ import { AddVilleComponent } from './components/collectivites/ville/add-ville/ad
 import { VillesComponent } from './components/collectivites/ville/villes/villes.component';
 import { DocumentsComponent } from './components/document/documents/documents.component';
 import { AddDocumentComponent } from './components/document/add-document/add-document.component';
+import { CondamnationsComponent } from './components/condamnation/condamnations/condamnations.component';
+import { AddCondamnationComponent } from './components/condamnation/add-condamnation/add-condamnation.component';
+import { EditCondamnationComponent } from './components/condamnation/edit-condamnation/edit-condamnation.component';
 
 const routes: Routes = [
   {path : "" , component : LoginComponent },
@@ -82,6 +85,10 @@ const routes: Routes = [
 
  {path : "documents" , component : DocumentsComponent },
  {path :"addDocument" , component : AddDocumentComponent},
+
+ {path : "condamnations" , component : CondamnationsComponent },
+ {path :"addCondamnation" , component : AddCondamnationComponent},
+ {path : "editCondamnation/:id" , component : EditCondamnationComponent },
  
  // Ajoutez vos autres routes ici
  { path: '', redirectTo: '/citoyens', pathMatch: 'full' }, // Redirection par défaut

@@ -1,0 +1,96 @@
+<div class="col-md-12">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mt-8">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <a routerLink="/condamnations" class="btn btn-light float-light"><i class="bi bi-arrow-left"></i></a>
+                            </div>
+                            <div class="col-md-10">
+                                <h4>
+                                    Ajout de Condamnation
+                                </h4>
+                            </div>
+                        </div>
+                        
+                    </div>
+                       <div class="card-body">
+                        <div class="row justify-content-end">
+                            <div class="col-auto">
+                        <input style="height: 35px; width: 290px;" type="text" 
+                                    [(ngModel)]="keyword"   placeholder="Entrez le niciv ou le téléphone du citoyen">
+
+                                    <button class="btn btn-secondary rounded ms-2" (click)="search()"><i
+                                            class="bi bi-search"></i></button>
+                                    <!-- Bouton que vous voulez aligner à droite -->
+                                     </div>
+                                     </div>
+
+                        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                           <div class="row">
+                               <div class="col-md-8">
+
+                                <label>Citoyen</label>
+                                    <select  formControlName="citoyen" class="form-control" id=""
+                                        >
+                                        <option *ngFor="let p of donnees"
+                                            [value]="p.id">{{p.niciv}} - {{p.telephone}} - {{p.prenom}} - {{p.nom}}</option>
+                                    </select>
+                                    <p style="color: brown;" *ngIf="!form.controls['citoyen'].valid">
+                                        (Champ obligatoire * ) </p>
+                                   
+                                <label>Juridiction</label>
+                                <input type="text" formControlName="juridiction"
+                                class="form-control" 
+                                placeholder="Entrez la juridiction">
+                                <p style="color: brown;" *ngIf="!form.controls['juridiction'].valid">
+                                (Champ obligatoire * ) </p>
+                                <label>Nature du Delit ou Crime</label>
+                                <input type="text" formControlName="natureDelitCrime"
+                                class="form-control" 
+                                placeholder="Entrez la nature du Delit ou Crime">
+                                <p style="color: brown;" *ngIf="!form.controls['natureDelitCrime'].valid">
+                                (Champ obligatoire * ) </p>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label>Date Condamnation</label>
+                                        <input type="date" formControlName="dateCondamnation"
+                                            class="form-control" placeholder=" ">
+                                        <p style="color: brown;"
+                                            *ngIf="!form.controls['dateCondamnation'].valid">
+                                            (Date invalide ) </p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>Date Detention</label>
+                                        <input type="date" formControlName="dateDetention"
+                                            class="form-control" placeholder=" ">
+                                        <p style="color: brown;"
+                                            *ngIf="!form.controls['dateDetention'].valid">
+                                            (Date invalide ) </p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>Date du Delit ou Crime</label>
+                                        <input type="date" formControlName="dateDelitCrime"
+                                            class="form-control" placeholder=" "
+                                            >
+                                        <p style="color: brown;"
+                                            *ngIf="!form.controls['dateDelitCrime'].valid">
+                                            (Date invalide ) </p>
+                                    </div>
+                                    </div>
+
+                                <br>
+                                   <div class="form-group">
+                                    <button  [disabled]="!form.valid" type="submit" class="btn btn-secondary px-4">Ajouter</button>
+                                </div>
+                               </div>
+                           </div>
+                        </form>
+                       </div>
+                </div>
+            </div>
+        </div>
+    </div>

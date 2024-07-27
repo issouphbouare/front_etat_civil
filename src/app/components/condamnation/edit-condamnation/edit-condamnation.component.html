@@ -1,0 +1,119 @@
+<div class="col-md-12">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 mt-8">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row">
+                            <div class="col-md-2">
+                                <a routerLink="/condamnations" class="btn btn-light float-light"><i class="bi bi-arrow-left"></i></a>
+                            </div>
+                            <div class="col-md-10">
+                                <h4>
+                                    Mise A Jour  de Condamnation
+                                </h4>
+                            </div>
+                        </div>
+                        
+                    </div>
+                       <div class="card-body">
+                        
+                        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                           <div class="row">
+                               <div class="col-md-8">
+
+                                <input type="hidden" formControlName="citoyen"
+                                class="form-control" [(ngModel)]="donnee.citoyen"
+                                placeholder="Entrez la juridiction">
+                                    
+                                <label>Juridiction</label>
+                                <input type="text" formControlName="juridiction"
+                                class="form-control" [(ngModel)]="donnee.juridiction"
+                                placeholder="Entrez la juridiction">
+                                <p style="color: brown;" *ngIf="!form.controls['juridiction'].valid">
+                                (Champ obligatoire * ) </p>
+                                <label>Nature du Delit ou Crime</label>
+                                <input type="text" formControlName="natureDelitCrime"
+                                class="form-control" [(ngModel)]="donnee.natureDelitCrime"
+                                placeholder="Entrez la nature du Delit ou Crime">
+                                <p style="color: brown;" *ngIf="!form.controls['natureDelitCrime'].valid">
+                                (Champ obligatoire * ) </p>
+
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <label>Date Condamnation</label> <br>
+                                        <label class="alert alert-light"
+                                                *ngIf="editing=='hidden'">{{donnee.dateCondamnation
+                                                | date:'dd-MM-yyyy'}}</label>
+                                            <button type="button" (click)="onEditing()"
+                                                class="btn btn-light"
+                                                *ngIf="editing=='hidden'"><i
+                                                    class="bi bi-pencil"></i></button>
+                                            <button type="button" (click)="noEditing()"
+                                                class="btn btn-light" *ngIf="editing=='date'"><i
+                                                    class="bi bi-x"></i></button>
+                                            <input [type]="editing"
+                                                formControlName="dateCondamnation"
+                                                class="form-control" placeholder=" "
+                                                [(ngModel)]="donnee.dateCondamnation">
+                                            
+                                            <p style="color: brown;"
+                                            *ngIf="!form.controls['dateCondamnation'].valid">
+                                            (Date invalide ) </p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>Date Detention</label> <br>
+                                        <label class="alert alert-light"
+                                                *ngIf="editing1=='hidden'">{{donnee.dateDetention
+                                                | date:'dd-MM-yyyy'}}</label>
+                                            <button type="button" (click)="onEditing1()"
+                                                class="btn btn-light"
+                                                *ngIf="editing1=='hidden'"><i
+                                                    class="bi bi-pencil"></i></button>
+                                            <button type="button" (click)="noEditing1()"
+                                                class="btn btn-light" *ngIf="editing1=='date'"><i
+                                                    class="bi bi-x"></i></button>
+                                            <input [type]="editing1"
+                                                formControlName="dateDetention"
+                                                class="form-control" placeholder=" "
+                                                [(ngModel)]="donnee.dateDetention">
+                                            
+                                            <p style="color: brown;"
+                                            *ngIf="!form.controls['dateDetention'].valid">
+                                            (Date invalide ) </p>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label>Date Delit ou Crime</label> <br>
+                                        <label class="alert alert-light"
+                                                *ngIf="editing2=='hidden'">{{donnee.dateDelitCrime
+                                                | date:'dd-MM-yyyy'}}</label>
+                                            <button type="button" (click)="onEditing2()"
+                                                class="btn btn-light"
+                                                *ngIf="editing2=='hidden'"><i
+                                                    class="bi bi-pencil"></i></button>
+                                            <button type="button" (click)="noEditing2()"
+                                                class="btn btn-light" *ngIf="editing2=='date'"><i
+                                                    class="bi bi-x"></i></button>
+                                            <input [type]="editing2"
+                                                formControlName="dateDelitCrime"
+                                                class="form-control" placeholder=" "
+                                                [(ngModel)]="donnee.dateDelitCrime">
+                                            
+                                            <p style="color: brown;"
+                                            *ngIf="!form.controls['dateDelitCrime'].valid">
+                                            (Date invalide ) </p>
+                                    </div>
+                                    </div>
+
+                                <br>
+                                   <div class="form-group">
+                                    <button  [disabled]="!form.valid" type="submit" class="btn btn-secondary px-4">Ajouter</button>
+                                </div>
+                               </div>
+                           </div>
+                        </form>
+                       </div>
+                </div>
+            </div>
+        </div>
+    </div>

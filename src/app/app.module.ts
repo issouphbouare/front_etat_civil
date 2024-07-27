@@ -51,6 +51,9 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './services/auth.interceptor';
 import { DocumentsComponent } from './components/document/documents/documents.component';
 import { AddDocumentComponent } from './components/document/add-document/add-document.component';
+import { CondamnationsComponent } from './components/condamnation/condamnations/condamnations.component';
+import { AddCondamnationComponent } from './components/condamnation/add-condamnation/add-condamnation.component';
+import { EditCondamnationComponent } from './components/condamnation/edit-condamnation/edit-condamnation.component';
 
 @NgModule({
   declarations: [
@@ -94,6 +97,9 @@ import { AddDocumentComponent } from './components/document/add-document/add-doc
     EditVilleComponent,
     DocumentsComponent,
     AddDocumentComponent,
+    CondamnationsComponent,
+    AddCondamnationComponent,
+    EditCondamnationComponent,
    
 
   ],

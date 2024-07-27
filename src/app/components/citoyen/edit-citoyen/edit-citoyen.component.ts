@@ -529,7 +529,9 @@ onGetRegionCur(){
    optionsCivilite = [
     { value: '', label: '' },
     { value: 'Celibataire', label: 'Celibataire' },
-    { value: 'Marié(e)', label: 'Marié(e)' }
+    {value: 'Divorcé(e)', label: 'Divorcé(e)' },
+    { value: 'Marié(e)', label: 'Marié(e)' },
+    { value: 'Veuf(ve)', label: 'Veuf(ve)' }
   ];
   
    onSelectionCivilite() {

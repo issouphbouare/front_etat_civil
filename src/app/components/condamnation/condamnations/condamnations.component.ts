@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { DocumentService } from 'src/app/services/document.service';
+import { CondamnationService} from 'src/app/services/condamnation.service';
 @Component({
-  selector: 'app-documents',
-  templateUrl: './documents.component.html',
-  styleUrls: ['./documents.component.css']
+  selector: 'app-condamnations',
+  templateUrl: './condamnations.component.html',
+  styleUrls: ['./condamnations.component.css']
 })
-export class DocumentsComponent {
+export class CondamnationsComponent {
   public donnees: any;
   public av=1;
   keyword: string = '';
@@ -21,7 +21,7 @@ export class DocumentsComponent {
   
   
   constructor(private http: HttpClient,
-    private apiService: DocumentService
+    private apiService: CondamnationService
     ,
     private router : Router) { }
   
@@ -49,7 +49,7 @@ export class DocumentsComponent {
     this.onSearch();
   }
   onDelete(a: any){
-    if(confirm("Voulez-vous vraiment supprimer ce document ?")){
+    if(confirm("Voulez-vous vraiment supprimer cette condamnation ?")){
       console.log();
       this.apiService.delete(a)
       .subscribe( data=>{
@@ -79,3 +79,4 @@ export class DocumentsComponent {
   }
   
   }
+
