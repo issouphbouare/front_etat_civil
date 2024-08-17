@@ -13,4 +13,17 @@
     width: 300px;
     margin-top: 10px;
   }
+
+  .flex-row-nowrap {
+    flex-wrap: nowrap;
+}
+
+.overflow-auto {
+    overflow-x: auto;
+}
+
+.flex-shrink-0 {
+    flex-shrink: 0;
+}
+
   

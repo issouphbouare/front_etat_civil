@@ -14,37 +14,46 @@
             <div class="col-md-1"></div>
           </div>
         </div>
-        <div class="carrd-body">
+        <div class="card-body">
           <div class="row">
-            <div class="col-md-1"></div>
-            <div class="col-md-5">
-                  <br/>
-              <div>
-                <webcam [height]="480" [width]="500" [trigger]="triggerObservable" (imageCapture)="handleImage($event)"
-                  *ngIf="showWebcam" [allowCameraSwitch]="allowCameraSwitch" [switchCamera]="nextWebcamObservable"
-                  [videoOptions]="videoOptions" [imageQuality]="1" (cameraSwitched)="cameraWasSwitched($event)"
-                  (initError)="handleInitError($event)"></webcam>
-                <br />
-                <button (click)="triggerSnapshot()" type="button" class="btn btn-secondary px-4">Capter
-                </button>
-                
-              </div><br/>
-            </div>
-
-            <div class="col-md-6 snapshot" *ngIf="webcamImage">
-              <div>
-                <image-cropper [imageBase64]="webcamImage.imageAsDataUrl" [maintainAspectRatio]="true"
-                  [aspectRatio]="4 / 4" format="png" (imageCropped)="imageCropped($event)"
-                  (imageLoaded)="imageLoaded($event)" (cropperReady)="cropperReady()"
-                  (loadImageFailed)="loadImageFailed()"></image-cropper>
-
-                <br />
-                <div><button (click)="upload()" type="button" class="btn btn-secondary px-4">Ajouter la photo
-                  </button></div>
+              <!-- Colonne vide pour espacement, masquée sur les petits écrans -->
+              <div class="col-md-1 d-none d-md-block"></div>
+      
+              <!-- Webcam container -->
+              <div class="col-12 col-md-5">
+                  <div class="mb-3">
+                      <webcam [height]="isMobile ? 240 : 480" [width]="isMobile ? 320 : 500" 
+                          [trigger]="triggerObservable" (imageCapture)="handleImage($event)" 
+                          *ngIf="showWebcam" [allowCameraSwitch]="allowCameraSwitch" 
+                          [switchCamera]="nextWebcamObservable" [videoOptions]="videoOptions" 
+                          [imageQuality]="1" 
+                          (cameraSwitched)="cameraWasSwitched($event)" 
+                          (initError)="handleInitError($event)">
+                      </webcam>
+                      <button (click)="triggerSnapshot()" type="button" class="btn btn-secondary px-4 mt-3">
+                          Capter
+                      </button>
+                  </div>
               </div>
-            </div>
+      
+              <!-- Snapshot container -->
+              <div class="col-12 col-md-6 snapshot mt-3 mt-md-0" *ngIf="webcamImage">
+                  <div>
+                      <image-cropper [imageBase64]="webcamImage.imageAsDataUrl" 
+                          [maintainAspectRatio]="true" [aspectRatio]="4 / 4" format="png" 
+                          (imageCropped)="imageCropped($event)" 
+                          (imageLoaded)="imageLoaded($event)" 
+                          (cropperReady)="cropperReady()" 
+                          (loadImageFailed)="loadImageFailed()">
+                      </image-cropper>
+                      <button (click)="upload()" type="button" class="btn btn-secondary px-4 mt-3">
+                          Ajouter la photo
+                      </button>
+                  </div>
+              </div>
           </div>
         </div>
+      
       </div>
     </div>
   </div>

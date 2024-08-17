@@ -29,6 +29,7 @@
                             <li><a class="btn btn-light" (click)="genererCarte()">Carte  Biometrique</a></li>
                             <li><a class="btn btn-light" (click)="genererFiche()">Fiche  Individuelle</a></li>
                             <li><a class="btn btn-light" (click)="genererRecu()">Recépissé Insciption</a></li>
+                            <li><a class="btn btn-light" (click)="genererCasier()">Casier Judiciaire</a></li>
                             <li><a class="btn btn-light" (click)="genererNationalite()">Certificat de Nationalité</a></li>
                         </ul>
                         </div>
@@ -107,7 +108,7 @@
                                                         </div>
                                                         <div class="row">
                                                             
-                                                            <div class="col-md-6"><label>Payes Naissance:
+                                                            <div class="col-md-6"><label>Pays Naissance:
                                                                     {{commune.nom}} </label></div>
                                                                     <div class="col-md-6"><label>Continent Naissance:
                                                                         {{cercle.nom}} </label></div>
@@ -144,7 +145,7 @@
                                                 <div class="card">
                                                     <div class="card-header" style="text-align: center;">Photo</div>
                                                     <div class="card-body">
-                                                        <div style="width: 19rem;">
+                                                        <div style="width: 16rem;">
                                                             <div class="col-md-12">
                                                                 <img *ngIf="imageUrl" [src]="imageUrl"
                                                                     class="card-img-top" />
@@ -193,7 +194,7 @@
                                                     <div class="card-body">
                                                         <div class="row">
                                                             <div class="col-md-3">Continent : {{cercleA.nom}}</div>
-                                                            <div class="col-md-3">Payes : {{communeA.nom}}</div>
+                                                            <div class="col-md-3">Pays : {{communeA.nom}}</div>
                                                             <div class="col-md-4">Ville : {{adresse.nom}}
                                                             </div>
                                                         </div>

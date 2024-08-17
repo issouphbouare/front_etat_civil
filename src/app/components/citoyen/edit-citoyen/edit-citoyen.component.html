@@ -21,19 +21,19 @@
                                     <div class="row">
                                         <div class="card" *ngIf="etape1">
                                             <div class="card-header">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="col-md-4 btn btn-secondary"> <span>Etape
+                                                <div class="row flex-row-nowrap">
+                                                    <div class="col-md-12 d-flex justify-content-start overflow-auto p-0">
+                                                        <div class="col-md-4 btn btn-secondary flex-shrink-0"> <span>Etape
                                                                 1</span><br> <span>Infos Personnelles</span> </div>
-                                                        <div class="col-md-3 btn btn-light" (click)="onEtape2()"
+                                                        <div class="col-md-3 btn btn-light flex-shrink-0" (click)="onEtape2()"
                                                             [class.disabled]="isButtonEtape1()"><span>Etape 2</span><br>
                                                             <span>Infos sur les Parents</span>
                                                         </div>
-                                                        <div class="col-md-3 btn btn-light" (click)="onEtape3()"
+                                                        <div class="col-md-3 btn btn-light flex-shrink-0" (click)="onEtape3()"
                                                             [class.disabled]="isButtonEtape1()"><span>Etape 3</span><br>
                                                             <span>Infos sur la Naissance</span>
                                                         </div>
-                                                        <div class="col-md-2 btn btn-light" (click)="onEtape4()"
+                                                        <div class="col-md-2 btn btn-light flex-shrink-0" (click)="onEtape4()"
                                                             [class.disabled]="isButtonEtape1()"><span>Etape 4</span><br>
                                                             <span>Adresse Courante</span>
                                                         </div>
@@ -124,14 +124,13 @@
                                                         </div> <br />
                                                         <div class="form-group">
                                                             <div class="row">
-                                                                <div class="col-md-5">
+                                                                <div class="col-md-6 col-md-6 d-flex justify-content-start">
                                                                     <button [routerLink]="['/citoyen',citoyen.id]"
                                                                         class="btn btn-secondary" style="width: 410px;">
                                                                         <i class="bi bi-arrow-left"></i> Retour
                                                                     </button>
                                                                 </div>
-                                                                <div class="col-md-2"></div>
-                                                                <div class="col-md-5">
+                                                                <div class="col-md-6 col-md-6 d-flex justify-content-end">
                                                                     <button (click)="onEtape2()"
                                                                         [disabled]="isButtonEtape1()"
                                                                         class="btn btn-secondary px-4"
@@ -148,20 +147,20 @@
                                         <div class="card" *ngIf="etape2">
 
                                             <div class="card-header">
-                                                <div class="row">
+                                                <div class="row flex-row-nowrap">
 
-                                                    <div class="col-md-12">
-                                                        <div class="col-md-3 btn btn-light" (click)="onEtape1()"
+                                                    <div class="col-md-12 d-flex justify-content-start overflow-auto p-0">
+                                                        <div class="col-md-3 btn btn-light flex-shrink-0" (click)="onEtape1()"
                                                             [class.disabled]="isButtonEtape2()"> <span>Etape
                                                                 1</span><br> <span>Infos Personnelles</span> </div>
-                                                        <div class="col-md-4 btn btn-secondary"><span>Etape 2</span><br>
+                                                        <div class="col-md-4 btn btn-secondary flex-shrink-0"><span>Etape 2</span><br>
                                                             <span>Infos sur les Parents</span>
                                                         </div>
-                                                        <div class="col-md-3 btn btn-light" (click)="onEtape3()"
+                                                        <div class="col-md-3 btn btn-light flex-shrink-0" (click)="onEtape3()"
                                                             [class.disabled]="isButtonEtape2()"><span>Etape 3</span><br>
                                                             <span>Infos sur la Naissance</span>
                                                         </div>
-                                                        <div class="col-md-2 btn btn-light" (click)="onEtape4()"
+                                                        <div class="col-md-2 btn btn-light flex-shrink-0" (click)="onEtape4()"
                                                             [class.disabled]="isButtonEtape2()"><span>Etape 4</span><br>
                                                             <span>Adresse Courante</span>
                                                         </div>
@@ -239,14 +238,13 @@
                                                         <div class="form-group">
 
                                                             <div class="row">
-                                                                <div class="col-md-5">
+                                                                <div class="col-md-6 d-flex justify-content-start">
                                                                     <button (click)="onEtape1()"
                                                                         class="btn btn-secondary" style="width: 410px;">
                                                                         <i class="bi bi-arrow-left"></i> Retour
                                                                     </button>
                                                                 </div>
-                                                                <div class="col-md-2"></div>
-                                                                <div class="col-md-5">
+                                                                <div class="col-md-6 col-md-6 d-flex justify-content-end">
                                                                     <button (click)="onEtape3()"
                                                                         [disabled]="isButtonEtape2()"
                                                                         [attr.disabled]="!etape2 ? true : null"
@@ -264,20 +262,20 @@
 
                                         <div class="card" *ngIf="etape3">
                                             <div class="card-header">
-                                                <div class="row">
+                                                <div class="row flex-row-nowrap">
 
-                                                    <div class="col-md-12">
-                                                        <div class="col-md-3 btn btn-light" (click)="onEtape1()"
+                                                    <div class="col-md-12 d-flex justify-content-center overflow-auto p-0">
+                                                        <div class="col-md-3 btn btn-light flex-shrink-0" (click)="onEtape1()"
                                                             [class.disabled]="isButtonEtape3()"><span>Etape 1</span><br>
                                                             <span>Infos Personnelles</span>
                                                         </div>
-                                                        <div class="col-md-3 btn btn-light" (click)="onEtape2()"
+                                                        <div class="col-md-3 btn btn-light flex-shrink-0" (click)="onEtape2()"
                                                             [class.disabled]="isButtonEtape3()"><span>Etape 2</span><br>
                                                             <span>Infos sur les Parents</span>
                                                         </div>
-                                                        <div class="col-md-4 btn btn-secondary"> <span>Etape
+                                                        <div class="col-md-4 btn btn-secondary flex-shrink-0"> <span>Etape
                                                                 3</span><br> <span>Infos sur la Naissance</span> </div>
-                                                        <div class="col-md-2 btn btn-light" (click)="onEtape4()"
+                                                        <div class="col-md-2 btn btn-light flex-shrink-0" (click)="onEtape4()"
                                                             [class.disabled]="isButtonEtape3()"><span>Etape 4</span><br>
                                                             <span>Adresse Courante</span>
                                                         </div>
@@ -347,7 +345,7 @@
                                                                 </div>
                                                                 <div class="col-md-4" *ngIf="regions cercles communes">
                                                                     <label *ngIf="!isMali">Arrondissement</label>
-                                                                    <label *ngIf="isMali">Payes</label>
+                                                                    <label *ngIf="isMali">Pays</label>
                                                                     <select class="form-control"
                                                                         [(ngModel)]="commune.id"
                                                                         (change)="onGetVqfByCom()"
@@ -384,14 +382,13 @@
                                                         <div class="form-group">
 
                                                             <div class="row">
-                                                                <div class="col-md-5">
+                                                                <div class="col-md-6 d-flex justify-content-start">
                                                                     <button (click)="onEtape2()"
                                                                         class="btn btn-secondary" style="width: 410px;">
                                                                         <i class="bi bi-arrow-left"></i> Retour
                                                                     </button>
                                                                 </div>
-                                                                <div class="col-md-2"></div>
-                                                                <div class="col-md-5">
+                                                                <div class="col-md-6 d-flex justify-content-end">
                                                                     <button (click)="onEtape4()"
                                                                         [disabled]="isButtonEtape3()"
                                                                         [attr.disabled]="!etape3 ? true : null"
@@ -409,18 +406,18 @@
 
                                         <div class="card" *ngIf="etape4">
                                             <div class="card-header">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="col-md-2 btn btn-light" (click)="onEtape1()">
+                                                <div class="row flex-row-nowrap">
+                                                    <div class="col-md-12 d-flex justify-content-end overflow-auto p-0">
+                                                        <div class="col-md-2 btn btn-light flex-shrink-0" (click)="onEtape1()">
                                                             <span>Etape 1</span><br> <span>Infos Personnelles</span>
                                                         </div>
-                                                        <div class="col-md-3 btn btn-light" (click)="onEtape2()">
+                                                        <div class="col-md-3 btn btn-light flex-shrink-0" (click)="onEtape2()">
                                                             <span>Etape 2</span><br> <span>Infos sur les Parents</span>
                                                         </div>
-                                                        <div class="col-md-3 btn btn-light" (click)="onEtape3()">
+                                                        <div class="col-md-3 btn btn-light flex-shrink-0" (click)="onEtape3()">
                                                             <span>Etape 3</span><br> <span>Infos sur la Naissance</span>
                                                         </div>
-                                                        <div class="col-md-4 btn btn-secondary"> <span>Etape
+                                                        <div class="col-md-4 btn btn-secondary flex-shrink-0"> <span>Etape
                                                                 4</span><br> <span>Adresse Courante</span> </div>
 
                                                     </div>
@@ -466,7 +463,7 @@
                                                                 </div>
                                                                 <div class="col-md-4" *ngIf="regions cercleAs">
                                                                     <label *ngIf="!isMaliA">Arrondissement</label>
-                                                                    <label *ngIf="isMaliA">Payes</label>
+                                                                    <label *ngIf="isMaliA">Pays</label>
                                                                     <select class="form-control"
                                                                         [(ngModel)]="communeA.id"
                                                                         (change)="onGetVqfByComA()"
@@ -536,14 +533,13 @@
                                                         <div class="form-group">
 
                                                             <div class="row">
-                                                                <div class="col-md-5">
+                                                                <div class="col-md-6 d-flex justify-content-start">
                                                                     <button (click)="onEtape3()"
                                                                         class="btn btn-secondary" style="width: 410px;">
                                                                         <i class="bi bi-arrow-left"></i> Retour
                                                                     </button>
                                                                 </div>
-                                                                <div class="col-md-2"></div>
-                                                                <div class="col-md-5">
+                                                                <div class="col-md-6 d-flex justify-content-end">
                                                                     <button type="submit" [disabled]="isButtonEtape4()"
                                                                         [attr.disabled]="!etape4 ? true : null"
                                                                         class="btn btn-secondary px-4"
@@ -560,23 +556,22 @@
 
                                         <div class="card" *ngIf="etape5">
                                             <div class="card-header">
-                                                <div class="row">
-                                                    <div class="col-md-1">
-                                                    </div>
-                                                    <div class="col-md-11">
-                                                        <div class="col-md-2 btn btn-light" (click)="onEtape1()">
+                                                <div class="row flex-row-nowrap">
+                                                  
+                                                    <div class="col-md-12 d-flex justify-content-end overflow-auto p-0">
+                                                        <div class="col-md-2 btn btn-light flex-shrink-0" (click)="onEtape1()">
                                                             <span>Etape 1</span><br> <span>Infos Personnelles</span>
                                                         </div>
-                                                        <div class="col-md-2 btn btn-light" (click)="onEtape2()">
+                                                        <div class="col-md-2 btn btn-light flex-shrink-0" (click)="onEtape2()">
                                                             <span>Etape 2</span><br> <span>Infos sur les Parents</span>
                                                         </div>
-                                                        <div class="col-md-2 btn btn-light" (click)="onEtape3()">
+                                                        <div class="col-md-2 btn btn-light flex-shrink-0" (click)="onEtape3()">
                                                             <span>Etape 3</span><br> <span>Infos sur la Naissance</span>
                                                         </div>
-                                                        <div class="col-md-2 btn btn-light" (click)="onEtape4()">
+                                                        <div class="col-md-2 btn btn-light flex-shrink-0" (click)="onEtape4()">
                                                             <span>Etape 4</span><br> <span>Adresse Courante</span>
                                                         </div>
-                                                        <div class="col-md-4 btn btn-secondary"> <span>Etape
+                                                        <div class="col-md-4 btn btn-secondary flex-shrink-0"> <span>Etape
                                                                 5</span><br> <span>Photo et Empreintes</span> </div>
                                                     </div>
                                                 </div>
@@ -591,14 +586,13 @@
                                                         <div class="form-group">
 
                                                             <div class="row">
-                                                                <div class="col-md-5">
+                                                                <div class="col-md-6 d-flex justify-content-start">
                                                                     <button (click)="onEtape4()"
                                                                         class="btn btn-secondary" style="width: 410px;">
                                                                         <i class="bi bi-arrow-left"></i> Retour
                                                                     </button>
                                                                 </div>
-                                                                <div class="col-md-2"></div>
-                                                                <div class="col-md-5">
+                                                                <div class="col-md-6 d-flex justify-content-end">
                                                                     <button (click)="onEtape6()"
                                                                         class="btn btn-secondary px-4"
                                                                         style="width: 410px;">Continuer sans photo <i

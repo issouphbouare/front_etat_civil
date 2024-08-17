@@ -9,7 +9,7 @@
                         </div>
                         <div class="col-md-10">
                             <h4>
-                                Modification du Payes {{donnee.nom}}
+                                Modification du Pays {{donnee.nom}}
                             </h4>
                         </div>
                     </div>
@@ -30,7 +30,7 @@
                                             obligatoire * ) </p>
 
                                  <input type="hidden" formControlName="code" class="form-control" placeholder="au moins 2 caracteres " [(ngModel)]="donnee.code">
-                                 <label>Nom Payes</label>
+                                 <label>Nom Pays</label>
                                  <input type="text" formControlName="nom" class="form-control" placeholder="au moins 3 letttres "  [(ngModel)]="donnee.nom">
                                  <p style="color: brown;" *ngIf="!form.controls['nom'].valid"> (Le remier caractere doit etre une lettres majuscule ) </p> 
                             

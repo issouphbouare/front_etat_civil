@@ -60,6 +60,15 @@ generateNationalite(id: number,numero: number): Observable<Blob> {
   return this.http.get(url, { responseType: 'blob', headers: headers });
 }
 
+generateCasier(id: number,numero: number): Observable<Blob> {
+  const headers = new HttpHeaders()
+    .set('Authorization', 'Bearer ' + this.tokenStorageService.getToken())
+    .set('Content-Type', 'application/pdf'); // Remplacez 'application/pdf' par le type MIME approprié si nécessaire
+
+  const url = `${this.baseUrl}/casier/${id}?numero=${numero}`;
+  return this.http.get(url, { responseType: 'blob', headers: headers });
+}
+
 public downloadFile(blob: Blob, name: any): void {
   const downloadLink = document.createElement('a');
   const url = window.URL.createObjectURL(blob);

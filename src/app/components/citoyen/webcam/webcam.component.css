@@ -12,3 +12,24 @@
   ul.links {
     padding-bottom: 20px;
   }
+
+  .card {
+    margin: 10px;
+  }
+  
+  @media (max-width: 768px) {
+    .card-header .row {
+      display: flex;
+      flex-direction: column;
+    }
+  
+    .col-md-6 {
+      width: 100%;
+      margin-bottom: 15px;
+    }
+  
+    .snapshot {
+      text-align: center;
+    }
+  }
+  

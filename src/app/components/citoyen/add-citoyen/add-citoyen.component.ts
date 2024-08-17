@@ -71,6 +71,7 @@ export class AddCitoyenComponent implements OnInit {
   rue: string = '';
   porte: string = '';
   autre: string = '';
+  idf: string = '22';
 
   newProf: string = '';
   addProf:Boolean=false
@@ -103,7 +104,7 @@ export class AddCitoyenComponent implements OnInit {
 
 
 
-  ngOnInit() { this.isMali=true;  this.isMaliA=true; this.addProf=false; this.addVilleA=false;
+  ngOnInit() {this.idf='22'; this.isMali=true;  this.isMaliA=true; this.addProf=false; this.addVilleA=false;
     this.addProfP=false; this.addProfM=false; this.addPayes=false; this.addPayesA=false; this.addVille=false;
     this.onEtape1(); this.onGetRegions(); this.onGetProfessions();
     this.formAdd = this.formBuilder.group({

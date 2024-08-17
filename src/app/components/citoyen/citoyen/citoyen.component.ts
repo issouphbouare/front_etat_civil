@@ -246,7 +246,22 @@ onGetProfessionM(id:any){
       err=>{});
   }
     
-  
+  genererCasier(): void {
+    this.form.value.type="Casier_judiciaire"
+    this.form.value.citoyen=this.citoyen.id
+    this.documentService.Create(this.form.value).
+    subscribe( data => {this.doc=data; 
+      this.jasperService.generateCasier(this.citoyen.id, this.doc.id).subscribe(
+        (response: Blob) => {
+          this.jasperService.downloadFile(response,"Casier_"+this.citoyen.id.toString());
+        },
+        error => {
+          console.error('Erreur lors du téléchargement du casier : ', error);
+        }
+      ); 
+    },
+      err=>{});
+  } 
 
 
   

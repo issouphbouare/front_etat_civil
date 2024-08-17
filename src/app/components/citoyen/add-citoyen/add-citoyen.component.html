@@ -19,22 +19,32 @@
                             <div class="row">
                                 <div class="card" *ngIf="etape1">
                                     <div class="card-header">
-                                        <div class="row">
-
-                                            <div class="col-md-12">
-                                                <div class="col-md-4 btn btn-secondary"> <span>Etape 1</span><br>
-                                                    <span>Infos Personnelles</span> </div>
-                                                <div class="col-md-2 btn btn-light"><span>Etape 2</span><br> <span>Infos
-                                                        sur les Parents</span> </div>
-                                                <div class="col-md-2 btn btn-light"><span>Etape 3</span><br> <span>Infos
-                                                        sur la Naissance</span> </div>
-                                                <div class="col-md-2 btn btn-light"><span>Etape 4</span><br>
-                                                    <span>Adresse Courante</span> </div>
-                                                <div class="col-md-2 btn btn-light"><span>Etape 5</span><br> <span>Photo
-                                                        et Empreintes</span> </div>
+                                        <div class="row flex-row-nowrap">
+                                            <div class="col-md-12 d-flex justify-content-left overflow-auto p-0">
+                                                <div class="col-md-4 btn btn-secondary flex-shrink-0">
+                                                    <span>Etape 1</span><br>
+                                                    <span>Infos Personnelles</span>
+                                                </div>
+                                                <div class="col-md-2 btn btn-light flex-shrink-0">
+                                                    <span>Etape 2</span><br>
+                                                    <span>Infos sur les Parents</span>
+                                                </div>
+                                                <div class="col-md-2 btn btn-light flex-shrink-0">
+                                                    <span>Etape 3</span><br>
+                                                    <span>Infos sur la Naissance</span>
+                                                </div>
+                                                <div class="col-md-2 btn btn-light flex-shrink-0">
+                                                    <span>Etape 4</span><br>
+                                                    <span>Adresse Courante</span>
+                                                </div>
+                                                <div class="col-md-2 btn btn-light flex-shrink-0">
+                                                    <span>Etape 5</span><br>
+                                                    <span>Photo et Empreintes</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
+                                    
                                     <div class="card-body">
                                         <div class="row">
                                             <div class="col-md-10">
@@ -143,7 +153,7 @@
                                                     </div>
 
                                                 </div>
-                                                <div class="form-group card mt-3">
+                                                <div class="form-group">
                                                     <button type="button" (click)="onEtape2()" [disabled]="!formAdd.controls['telephone'].valid
                                                     || !formAdd.controls['telephone'].valid
                                                     || !formAdd.controls['genre'].valid
@@ -151,7 +161,7 @@
                                                     || !formAdd.controls['prenom'].valid
                                                     || !formAdd.controls['nom'].valid
                                                     || !formAdd.controls['profession'].valid"
-                                                        class="btn btn-secondary px-4">Suivant <i
+                                                        class="btn btn-secondary"style="width: 210px;">Suivant <i
                                                             class="bi bi-arrow-right"></i></button>
                                                 </div>
                                             </div>
@@ -162,18 +172,18 @@
                                 <div class="card" *ngIf="etape2">
 
                                     <div class="card-header">
-                                        <div class="row">
+                                        <div class="row flex-row-nowrap">
 
-                                            <div class="col-md-12">
-                                                <div class="col-md-2 btn btn-light" (click)="onEtape1()"> <span>Etape
+                                            <div class="col-md-12 d-flex justify-content-left overflow-auto p-0">
+                                                <div class="col-md-2 btn btn-light flex-shrink-0" (click)="onEtape1()"> <span>Etape
                                                         1</span><br> <span>Infos Personnelles</span> </div>
-                                                <div class="col-md-4 btn btn-secondary"><span>Etape 2</span><br>
+                                                <div class="col-md-4 btn btn-secondary flex-shrink-0"><span>Etape 2</span><br>
                                                     <span>Infos sur les Parents</span> </div>
-                                                <div class="col-md-2 btn btn-light"><span>Etape 3</span><br> <span>Infos
+                                                <div class="col-md-2 btn btn-light flex-shrink-0"><span>Etape 3</span><br> <span>Infos
                                                         sur la Naissance</span> </div>
-                                                <div class="col-md-2 btn btn-light"><span>Etape 4</span><br>
+                                                <div class="col-md-2 btn btn-light flex-shrink-0"><span>Etape 4</span><br>
                                                     <span>Adresse Courante</span> </div>
-                                                <div class="col-md-2 btn btn-light"><span>Etape 5</span><br> <span>Photo
+                                                <div class="col-md-2 btn btn-light flex-shrink-0"><span>Etape 5</span><br> <span>Photo
                                                         et Empreintes</span> </div>
                                             </div>
                                         </div>
@@ -306,22 +316,22 @@
                                                 <div class="form-group">
 
                                                     <div class="row">
-                                                        <div class="col-md-5">
+                                                        <div class="col-md-6 col-md-6 d-flex justify-content-start">
                                                             <button (click)="onEtape1()" class="btn btn-secondary"
-                                                                style="width: 410px;">
+                                                            style="width: 410px;"  >
                                                                 <i class="bi bi-arrow-left"></i> Retour
                                                             </button>
                                                         </div>
-                                                        <div class="col-md-2"></div>
-                                                        <div class="col-md-5">
+                                                        
+                                                        <div class="col-md-6 col-md-6 d-flex justify-content-end">
                                                             <button type="button" (click)="onEtape3()" [disabled]="
-                                                   !formAdd.controls['prenomPere'].valid
-                                                || !formAdd.controls['professionPere'].valid
-                                                || !formAdd.controls['prenomMere'].valid
-                                                || !formAdd.controls['nomMere'].valid
-                                                || !formAdd.controls['professionMere'].valid"
-                                                                class="btn btn-secondary px-4"
-                                                                style="width: 410px;">Suivant <i
+                                                             !formAdd.controls['prenomPere'].valid
+                                                             || !formAdd.controls['professionPere'].valid
+                                                             || !formAdd.controls['prenomMere'].valid
+                                                             || !formAdd.controls['nomMere'].valid
+                                                             || !formAdd.controls['professionMere'].valid"
+                                                                class="btn btn-secondary" style="width: 410px;"
+                                                                >Suivant <i
                                                                     class="bi bi-arrow-right"></i></button>
                                                         </div>
                                                     </div>
@@ -334,18 +344,18 @@
 
                                 <div class="card" *ngIf="etape3">
                                     <div class="card-header">
-                                        <div class="row">
+                                        <div class="row flex-row-nowrap">
 
-                                            <div class="col-md-12">
-                                                <div class="col-md-2 btn btn-light" (click)="onEtape1()"><span>Etape
+                                            <div class="col-md-12 d-flex justify-content-center overflow-auto p-0">
+                                                <div class="col-md-2 btn btn-light flex-shrink-0" (click)="onEtape1()"><span>Etape
                                                         1</span><br> <span>Infos Personnelles</span> </div>
-                                                <div class="col-md-2 btn btn-light" (click)="onEtape2()"><span>Etape
+                                                <div class="col-md-2 btn btn-light flex-shrink-0" (click)="onEtape2()"><span>Etape
                                                         2</span><br> <span>Infos sur les Parents</span> </div>
-                                                <div class="col-md-4 btn btn-secondary"> <span>Etape 3</span><br>
+                                                <div class="col-md-4 btn btn-secondary flex-shrink-0"> <span>Etape 3</span><br>
                                                     <span>Infos sur la Naissance</span> </div>
-                                                <div class="col-md-2 btn btn-light"><span>Etape 4</span><br>
+                                                <div class="col-md-2 btn btn-light flex-shrink-0"><span>Etape 4</span><br>
                                                     <span>Adresse Courante</span> </div>
-                                                <div class="col-md-2 btn btn-light"><span>Etape 5</span><br> <span>Photo
+                                                <div class="col-md-2 btn btn-light flex-shrink-0"><span>Etape 5</span><br> <span>Photo
                                                         et Empreintes</span> </div>
                                             </div>
                                         </div>
@@ -396,7 +406,7 @@
                                                         </div>
                                                         <div class="col-md-4" *ngIf="regions cercles communes">
                                                             <label *ngIf="isMali">Arrondissement</label>
-                                                            <label *ngIf="!isMali">Payes</label>
+                                                            <label *ngIf="!isMali">Pays</label>
                                                             <div class="row" *ngIf="!addPayes">
                                                                 <div class="col-md-10">
                                                                     <select class="form-control" [(ngModel)]="selectedCom"
@@ -421,7 +431,7 @@
                                                                 <div class="col-md-8">
                                                                     <input type="text" formControlName="commune"
                                                                         class="form-control" [(ngModel)]="newPayes"
-                                                                        placeholder="Entrez le nom du Payes">
+                                                                        placeholder="Entrez le nom du Pays">
                                                                 </div>
                                                                 <div class="col-md-2">
                                                                     <button
@@ -482,14 +492,13 @@
                                                 <div class="form-group">
 
                                                     <div class="row">
-                                                        <div class="col-md-5">
+                                                        <div class="col-md-6 d-flex justify-content-start">
                                                             <button (click)="onEtape2()" class="btn btn-secondary"
                                                                 style="width: 410px;">
                                                                 <i class="bi bi-arrow-left"></i> Retour
                                                             </button>
                                                         </div>
-                                                        <div class="col-md-2"></div>
-                                                        <div class="col-md-5">
+                                                        <div class="col-md-6 d-flex justify-content-end">
                                                             <button (click)="onEtape4()" [disabled]="
                                                    !formAdd.controls['dateNaissance'].valid
                                                 || !formAdd.controls['region'].valid
@@ -510,17 +519,16 @@
 
                                 <div class="card" *ngIf="etape4">
                                     <div class="card-header">
-                                        <div class="row">
-                                            <div class="col-md-1">
-                                            </div>
-                                            <div class="col-md-11">
-                                                <div class="col-md-2 btn btn-light" (click)="onEtape1()"><span>Etape
+                                        <div class="row flex-row-nowrap">
+                                            
+                                            <div class="col-md-12 d-flex justify-content-end overflow-auto p-0">
+                                                <div class="col-md-2 btn btn-light flex-shrink-0" (click)="onEtape1()"><span>Etape
                                                         1</span><br> <span>Infos Personnelles</span> </div>
-                                                <div class="col-md-2 btn btn-light" (click)="onEtape2()"><span>Etape
+                                                <div class="col-md-2 btn btn-light flex-shrink-0" (click)="onEtape2()"><span>Etape
                                                         2</span><br> <span>Infos sur les Parents</span> </div>
-                                                <div class="col-md-2 btn btn-light" (click)="onEtape3()"><span>Etape
+                                                <div class="col-md-2 btn btn-light flex-shrink-0" (click)="onEtape3()"><span>Etape
                                                         3</span><br> <span>Infos sur la Naissance</span> </div>
-                                                <div class="col-md-4 btn btn-secondary"> <span>Etape 4</span><br>
+                                                <div class="col-md-4 btn btn-secondary flex-shrink-0"> <span>Etape 4</span><br>
                                                     <span>Adresse Courante</span> </div>
                                                 <div class="col-md-2 btn btn-light"><span>Etape 5</span><br> <span>Photo
                                                         et Empreintes</span> </div>
@@ -563,7 +571,7 @@
                                                         </div>
                                                         <div class="col-md-4" *ngIf="regions cercleAs">
                                                             <label *ngIf="isMaliA">Arrondissement</label>
-                                                            <label *ngIf="!isMaliA">Payes</label>
+                                                            <label *ngIf="!isMaliA">Pays</label>
                                                             <div class="row" *ngIf="!addPayesA">
                                                                 <div class="col-md-10">
                                                                     <select class="form-control" [(ngModel)]="selectedComA"
@@ -588,7 +596,7 @@
                                                                 <div class="col-md-8">
                                                                     <input type="text" formControlName="communeA"
                                                                         class="form-control" [(ngModel)]="newPayesA"
-                                                                        placeholder="Entrez le nom du Payes">
+                                                                        placeholder="Entrez le nom du Pays">
                                                                 </div>
                                                                 <div class="col-md-2">
                                                                     <button
@@ -676,14 +684,13 @@
                                                 <div class="form-group">
 
                                                     <div class="row">
-                                                        <div class="col-md-5">
+                                                        <div class="col-md-6 d-flex justify-content-start">
                                                             <button type="button" (click)="onEtape3()" class="btn btn-secondary"
                                                                 style="width: 410px;">
                                                                 <i class="bi bi-arrow-left"></i> Retour
                                                             </button>
                                                         </div>
-                                                        <div class="col-md-2"></div>
-                                                        <div class="col-md-5">
+                                                        <div class="col-md-6 d-flex justify-content-end">
                                                             <button type="submit" [disabled]="
                                                    !formAdd.controls['rue'].valid
                                                 || !formAdd.controls['porte'].valid
@@ -705,19 +712,18 @@
 
                                 <div class="card" *ngIf="etape5">
                                     <div class="card-header">
-                                        <div class="row">
-                                            <div class="col-md-1">
-                                            </div>
-                                            <div class="col-md-11">
-                                                <div class="col-md-2 btn btn-light" (click)="onEtape1()"><span>Etape
+                                        <div class="row flex-row-nowrap">
+                                            
+                                            <div class="col-md-12 d-flex justify-content-end overflow-auto p-0">
+                                                <div class="col-md-2 btn btn-light  flex-shrink-0" (click)="onEtape1()"><span>Etape
                                                         1</span><br> <span>Infos Personnelles</span> </div>
-                                                <div class="col-md-2 btn btn-light" (click)="onEtape2()"><span>Etape
+                                                <div class="col-md-2 btn btn-light  flex-shrink-0" (click)="onEtape2()"><span>Etape
                                                         2</span><br> <span>Infos sur les Parents</span> </div>
-                                                <div class="col-md-2 btn btn-light" (click)="onEtape3()"><span>Etape
+                                                <div class="col-md-2 btn btn-light  flex-shrink-0" (click)="onEtape3()"><span>Etape
                                                         3</span><br> <span>Infos sur la Naissance</span> </div>
-                                                <div class="col-md-2 btn btn-light" (click)="onEtape4()"><span>Etape
+                                                <div class="col-md-2 btn btn-light  flex-shrink-0" (click)="onEtape4()"><span>Etape
                                                         4</span><br> <span>Adresse Courante</span> </div>
-                                                <div class="col-md-4 btn btn-secondary"> <span>Etape 5</span><br>
+                                                <div class="col-md-4 btn btn-secondary  flex-shrink-0"> <span>Etape 5</span><br>
                                                     <span>Photo et Empreintes</span> </div>
                                             </div>
                                         </div>
@@ -732,14 +738,13 @@
                                                 <div class="form-group">
 
                                                     <div class="row">
-                                                        <div class="col-md-5">
+                                                        <div class="col-md-6 d-flex justify-content-start">
                                                             <button type="button" (click)="onEtape4()" class="btn btn-secondary"
                                                                 style="width: 410px;">
                                                                 <i class="bi bi-arrow-left"></i> Retour
                                                             </button>
                                                         </div>
-                                                        <div class="col-md-2"></div>
-                                                        <div class="col-md-5">
+                                                        <div class="col-md-6 d-flex justify-content-end">
                                                             <button type="button" (click)="onEtape6()" class="btn btn-secondary px-4"
                                                                 style="width: 410px;">Continuer sans photo <i
                                                                     class="bi bi-arrow-right"></i></button>

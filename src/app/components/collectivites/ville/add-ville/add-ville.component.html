@@ -32,7 +32,7 @@
                                     <p style="color: brown;" *ngIf="!form.controls['cercle'].valid"> (Champ
                                         obligatoire * ) </p>
 
-                                    <label>Payes</label>
+                                    <label>Pays</label>
                                     <select class="form-control" formControlName="commune" [(ngModel)]="commune">
                                         <option *ngFor="let com of communes" [value]="com.id">{{
                                             com.nom }}</option>

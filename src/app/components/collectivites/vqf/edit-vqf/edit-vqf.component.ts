@@ -35,7 +35,7 @@ export class EditVqfComponent implements OnInit {
   ngOnInit(): void {
     this.form=this.formBuilder.group({
       code : ['',[Validators.required, Validators.pattern("([0-9]).{1,}")]],
-      nom : ['',[Validators.required, Validators.pattern("([A-Z]).{2,}")]],
+      nom: ['', [Validators.required, Validators.pattern("([A-Z]){1,}")]],
       commune : ['',[Validators.required]],
       cercle : ['',[Validators.required]],
       region : ['',[Validators.required]],

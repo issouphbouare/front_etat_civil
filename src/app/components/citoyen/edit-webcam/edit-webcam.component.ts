@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
 import { CitoyenService } from 'src/app/services/citoyen.service';
@@ -30,10 +30,19 @@ export class EditWebcamComponent implements OnInit {
   public deviceId!: string;
   citoyen: any;
   citoyenCur: any;
+  public isMobile: boolean = window.innerWidth <= 768;
+
   public videoOptions: MediaTrackConstraints = {
-    width: { ideal: 230 },
-    height: { ideal: 1024 }
+    width: { ideal: this.isMobile ? 320 : 500 },
+    height: { ideal: this.isMobile ? 240 : 480 }
   };
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: Event) {
+    this.isMobile = window.innerWidth <= 768;
+    this.videoOptions.width = this.isMobile ? 320 : 500;
+    this.videoOptions.height = this.isMobile ? 240 : 480;
+  }
   public errors: WebcamInitError[] = [];
 
   // latest snapshot

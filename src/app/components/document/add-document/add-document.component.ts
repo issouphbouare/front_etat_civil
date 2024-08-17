@@ -40,6 +40,7 @@ public currentPage: number=0;
     { value: 'Carte_Biometrique', label: 'Carte_Biometrique' },
     { value: 'Certificat_Nationalité', label: 'Certificat_Nationalité' },
     { value: 'Fiche_individuelle', label: 'Fiche_individuelle' },
+    { value: 'Casier_judiciaire', label: 'Casier_judiciaire' },
     { value: 'Recépissé', label: 'Recépissé' }
 
   ];
@@ -78,6 +79,7 @@ public currentPage: number=0;
 generateDoc(doc: any){
     if(doc.type=="Recépissé") this.genererRecu(doc.citoyen)
     if(doc.type=="Fiche_individuelle") this.genererFiche(doc.citoyen)
+      if(doc.type=="Casier_judiciaire") this.genererCasier(doc.citoyen, this.document.id)
     if(doc.type=="Certificat_Nationalité") this.genererNationalite(doc.citoyen, this.document.id)
     if(doc.type=="Carte_Biometrique") this.genererCarte(doc.citoyen)
 
@@ -123,6 +125,17 @@ genererNationalite(c:number, id:number): void {
     },
     error => {
       console.error('Erreur lors du téléchargement du certificat : ', error);
+    }
+  ); 
+}
+
+genererCasier(c:number, id:number): void {
+  this.jasperService.generateCasier(c, id).subscribe(
+    (response: Blob) => {
+      this.jasperService.downloadFile(response,"Casier_"+c.toString());
+    },
+    error => {
+      console.error('Erreur lors du téléchargement du casier : ', error);
     }
   ); 
 }
