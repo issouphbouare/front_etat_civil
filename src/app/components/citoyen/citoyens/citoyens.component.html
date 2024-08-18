@@ -31,6 +31,9 @@
                     </div>
                 </div>
                 <div class="card-body">
+                    
+                    <app-loader [isLoading]="isLoading"></app-loader>
+                    <div *ngIf="!isLoading">
                     <table class="table table-striped" *ngIf="donnees">
                         <thead>
                             <tr *ngIf="totalSearch==0"><h2 style="text-align: center;" class="alert alert-danger">aucun citoyen trouvé !!!</h2></tr>
@@ -90,6 +93,7 @@
                             </div>
                         </div>
                 </div>
+            </div>
             </div>
         </div>
     </div>

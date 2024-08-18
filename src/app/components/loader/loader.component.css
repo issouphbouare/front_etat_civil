@@ -1,0 +1,18 @@
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Prend toute la hauteur de l'écran */
+  padding: 20px; /* Ajoute un peu de padding pour éviter que l'image ne soit trop proche des bords sur les petits écrans */
+}
+
+.loader-container img {
+  max-width: 50%; /* Taille relative de l'image */
+  height: auto;
+}

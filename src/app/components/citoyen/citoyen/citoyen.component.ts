@@ -24,6 +24,8 @@ export class CitoyenComponent implements OnInit {
     private professionService:ProfessionService, private sanitizer: DomSanitizer, private formBuilder:FormBuilder,
   ){}
   form : FormGroup= new FormGroup({});
+  isLoading: boolean = true;
+  isOk: boolean = false;
   imageUrl: SafeUrl | null = null;
   public citoyen:any;
   public doc:any;
@@ -60,10 +62,11 @@ export class CitoyenComponent implements OnInit {
       citoyen : ['',[Validators.required]],
       
     });
-
+     this.isOk=false
   }
 
   onGetCitoyen(){
+    this.isLoading = true;
     this.apiService.getById(this.url)
     .subscribe((data: any)=>{
     
@@ -74,7 +77,9 @@ export class CitoyenComponent implements OnInit {
        this.onGetProfessionP(this.citoyen.professionPere)
        this.onGetProfessionM(this.citoyen.professionMere)
        this.loadImage()
+       this.isLoading = false;
   }, err=>{
+    this.isLoading = false;
     console.log(err);
   })
   }
@@ -185,6 +190,7 @@ onGetProfessionM(id:any){
       },
       (error) => console.error('Erreur lors du chargement de l\'image:', error) // Gérer les erreurs
     );
+    this.isOk=true;
   }
   
   genererCarte(): void {

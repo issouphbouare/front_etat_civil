@@ -54,6 +54,7 @@ import { AddDocumentComponent } from './components/document/add-document/add-doc
 import { CondamnationsComponent } from './components/condamnation/condamnations/condamnations.component';
 import { AddCondamnationComponent } from './components/condamnation/add-condamnation/add-condamnation.component';
 import { EditCondamnationComponent } from './components/condamnation/edit-condamnation/edit-condamnation.component';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -100,6 +101,7 @@ import { EditCondamnationComponent } from './components/condamnation/edit-condam
     CondamnationsComponent,
     AddCondamnationComponent,
     EditCondamnationComponent,
+    LoaderComponent,
    
 
   ],

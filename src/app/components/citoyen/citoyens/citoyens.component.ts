@@ -19,7 +19,7 @@ public currentPage: number=0;
   public size : number=6;
   public nbPage : number=0;
   public pages : Array<number>=[];
-
+  isLoading: boolean = true;
 
 constructor(private http: HttpClient,
   private apiService: CitoyenService,
@@ -68,6 +68,8 @@ onDelete(a: any){
 }
 
 onSearch() {
+  this.isLoading = true;
+    
   this.apiService.search(this.keyword, this.currentPage, this.size)
     .subscribe((data: any) => { // Utilisez un type générique 'any' pour 'data'
       this.nbPage = data.totalPages;
@@ -75,8 +77,10 @@ onSearch() {
       this.pages = new Array<number>(this.nbPage);
       this.donnees = data.content;
       console.log(this.donnees)
+      this.isLoading = false;
     }, err => {
       console.log(err);
+      this.isLoading = false;
     });
 }
 
