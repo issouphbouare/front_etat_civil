@@ -8,6 +8,7 @@ import { CondamnationService} from 'src/app/services/condamnation.service';
   styleUrls: ['./condamnations.component.css']
 })
 export class CondamnationsComponent {
+  isLoading: boolean = true;
   public donnees: any;
   public av=1;
   keyword: string = '';
@@ -66,6 +67,7 @@ export class CondamnationsComponent {
   }
   
   onSearch() {
+    this.isLoading = true;
     this.apiService.search(this.keyword, this.currentPage, this.size)
       .subscribe((data: any) => { // Utilisez un type générique 'any' pour 'data'
         this.nbPage = data.totalPages;
@@ -73,8 +75,10 @@ export class CondamnationsComponent {
         this.pages = new Array<number>(this.nbPage);
         this.donnees = data.content;
         console.log(this.donnees)
+        this.isLoading = false;
       }, err => {
         console.log(err);
+        this.isLoading = false;
       });
   }
   

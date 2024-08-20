@@ -405,6 +405,7 @@ export class AddCitoyenComponent implements OnInit {
       }, err => {
         console.log(err);
         alert("Ce numéro de téléphone existe déjà");
+        this.onEtape1();
       });
   }
 

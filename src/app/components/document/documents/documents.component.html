@@ -28,6 +28,8 @@
                     </div>
                 </div>
                 <div class="card-body">
+                    <app-loader [isLoading]="isLoading"></app-loader>
+                    <div *ngIf="!isLoading">
                     <table class="table table-striped" *ngIf="donnees">
                         <thead>
                             <tr *ngIf="totalSearch==0"><h2 style="text-align: center;" class="alert alert-danger">aucun document trouvé !!!</h2></tr>
@@ -61,6 +63,7 @@
                             </tr>
                         </tbody>
                     </table>
+                </div>
                     <div class="row" *ngIf="totalSearch!=0">
                         <div class="col-md-8"></div>
                         <div class="col-md-2" style="background-color: rgb(227, 232, 232);">
