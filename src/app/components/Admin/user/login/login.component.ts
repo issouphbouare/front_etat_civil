@@ -21,6 +21,7 @@ export class LoginComponent implements OnInit {
   errorMessage = '';
   roles: string[] = [];
   visible : string='';
+  isPasswordVisible = false;
 
   constructor(private router: Router, private formBuilder: FormBuilder, private authService: AuthService, private tokenStorageService: TokenStorageService) { }
 
@@ -28,8 +29,8 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void { this.visible='password'
 
     this.login = this.formBuilder.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
+      username: [''],
+      password: ['']
     });
     this.erreur = 0;
     this.erreur1 = 0;
@@ -37,7 +38,9 @@ export class LoginComponent implements OnInit {
 
 
 
-
+  isMobile(): boolean {
+    return window.innerWidth < 768; // Ajustez cette valeur selon vos besoins
+  }
 
   onSubmit() {
     console.log(this.login.value);
@@ -50,21 +53,30 @@ export class LoginComponent implements OnInit {
         this.isLoggedIn = true;
         this.roles = this.tokenStorageService.getUser().roles;
         this.reloadPage();
-        
+
       }, err => {
         alert("login ou mot de passe erronés")
       });
 
   }
   reloadPage(): void {
-  this.router.navigate(['citoyens']).then(() => {
+  this.router.navigate(['dashboard']).then(() => {
     setTimeout(() => {
       window.location.reload();
     }, 100); // délai de 100 millisecondes
   });
 }
 
-onVisible(){this.visible='text'}
-onNotVisible(){this.visible='password'}
+
+
+
+
+
+
+  //visible: string = 'password';
+
+  toggleVisibility() {
+    this.visible = this.visible === 'password' ? 'text' : 'password';
+  }
 }
 

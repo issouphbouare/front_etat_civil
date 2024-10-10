@@ -1,159 +1,154 @@
 <div class="container">
-    <div class="row ">
-        <div class="col-md-12 mt-8">
-            <div class="card">
-
-                <nav class="navbar navbar-expand-sm navbar-dark bg-secondary">
-                    <div class="container-fluid">
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                            data-bs-target="#mynavbar">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="mynavbar">
+  <div class="row">
+    <div class="col-md-12 mt-8">
+      <div class="card">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-secondary">
+          <div class="container-fluid">
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#mynavbar"
+              (click)="isMenuCollapsed = !isMenuCollapsed"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div
+              class="collapse navbar-collapse"
+              [ngClass]="{'show': !isMenuCollapsed}"
+              id="mynavbar"
+            >
                             <ul class="navbar-nav me-auto">
 
-                                <li class="nav-item">
-                                    <a class="navbar-brand" routerLink="/addCitoyen" *ngIf="isLoggedIn">Enrolement</a>
+                                <li class="nav-item" [ngClass]="{'active': activeMenu === 'Enrolement'}">
+                                    <a class="navbar-brand" routerLink="/addCitoyen" *ngIf="isLoggedIn"
+                                    (click)="closeMenu('Enrolement')">Enrolement</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="navbar-brand" routerLink="/citoyens" *ngIf="isLoggedIn">Citoyens</a>
+                                <li class="nav-item" [ngClass]="{'active': activeMenu === 'Citoyens'}">
+                                    <a class="navbar-brand" routerLink="/citoyens" *ngIf="isLoggedIn"
+                                    (click)="closeMenu('Citoyens')">Citoyens</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="navbar-brand" routerLink="/documents" *ngIf="isLoggedIn">Documents</a>
+                                <li class="nav-item" [ngClass]="{'active': activeMenu === 'Documents'}">
+                                    <a class="navbar-brand" routerLink="/documents" *ngIf="isLoggedIn"
+                                    (click)="closeMenu('Documents')">Documents</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="navbar-brand" routerLink="/condamnations" *ngIf="isLoggedIn">Condamnations</a>
+                                <li class="nav-item" [ngClass]="{'active': activeMenu === 'Condamnations'}">
+                                    <a class="navbar-brand" routerLink="/condamnations" *ngIf="isLoggedIn"
+                                    (click)="closeMenu('Condamnations')">Condamnations</a>
                                 </li>
 
 
-                                <li class="nav-item dropdown" *ngIf="isUser || isAdmin">
+                                <li class="nav-item dropdown" *ngIf="isUser || isAdmin"
+                                [ngClass]="{'active': activeMenu === 'Collectivites'}">
                                     <a class="navbar-brand" href="#" id="navbarScrollingDropdown" *ngIf="isLoggedIn"
-                                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                                        (click)="closeMenu()">
                                         Collectivites
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                                        <li><a class="dropdown-item" routerLink="/regions">Regions</a></li>
+                                        <li><a class="dropdown-item" routerLink="/regions"
+                                          (click)="closeMenu('Collectivites')">Regions</a></li>
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>
-                                        <li><a class="dropdown-item" routerLink="/cercles">Cercles</a></li>
+                                        <li><a class="dropdown-item" routerLink="/cercles"
+                                          (click)="closeMenu('Collectivites')">Cercles</a></li>
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>
-                                        <li><a class="dropdown-item" routerLink="/communes">Arrondissements</a></li>
+                                        <li><a class="dropdown-item" routerLink="/communes"
+                                          (click)="closeMenu('Collectivites')">Arrondissements</a></li>
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>
-                                        <li><a class="dropdown-item" routerLink="/vqfs">Village Fraction Quartier</a>
+                                        <li><a class="dropdown-item" routerLink="/vqfs"
+                                          (click)="closeMenu('Collectivites')">Village Fraction Quartier</a>
                                         </li>
                                          <li></li><hr class="dropdown-divider">
                                         <li>
-                                        <li><a class="dropdown-item" routerLink="/payes">Autres Pays</a></li>
+                                        <li><a class="dropdown-item" routerLink="/payes"
+                                          (click)="closeMenu('Collectivites')">Autres Pays</a></li>
                                         <li>
                                         <hr class="dropdown-divider">
                                         </li>
-                                        <li><a class="dropdown-item" routerLink="/villes">Autres Villes</a>
+                                        <li><a class="dropdown-item" routerLink="/villes"
+                                          (click)="closeMenu('Collectivites')">Autres Villes</a>
                                         </li>
                                     </ul>
                                 </li>
 
-                                <li class="nav-item dropdown" *ngIf="isAdmin">
+                                <li class="nav-item dropdown" *ngIf="isAdmin"
+                                [ngClass]="{'active': activeMenu === 'Admin'}">
                                     <a class="navbar-brand" href="#" id="navbarScrollingDropdown" *ngIf="isLoggedIn"
-                                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        role="button" data-bs-toggle="dropdown" aria-expanded="false"
+                                        (click)="closeMenu()">
                                         Admin
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                                        <li><a class="dropdown-item" routerLink="/users">users</a></li>
+                                        <li><a class="dropdown-item" routerLink="/users"
+                                          (click)="closeMenu('Admin')">users</a></li>
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>
-                                        <li><a class="dropdown-item" routerLink="/professions">Professions</a></li>
+                                        <li><a class="dropdown-item" routerLink="/professions"
+                                          (click)="closeMenu('Admin')">Professions</a></li>
                                         <li>
                                     </ul>
                                 </li>
                             </ul>
-                            <form class="d-flex">
-                                <ul class="navbar-nav">
-                                    <li class="button">
-                                        <a class="navbar-brand"></a>
-                                    </li>
-                                    <li class="nav-item dropdown">
-                                        <a class="navbar-brand" href="#" id="navbarScrollingDropdown" role="button"
-                                            data-bs-toggle="dropdown" aria-expanded="false">
-                                            {{username}} <i *ngIf="isLoggedIn" class="bi bi-person"></i>
-
-                                        </a>
-                                        <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                                            <li>
-                                                <a class="dropdown-item" *ngIf="!isLoggedIn"
-                                                    routerLink="/addUser">S'inscrire</a>
-                                            </li>
-                                            <li>
-
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" *ngIf="!isLoggedIn" routerLink="/login">Se
-                                                    connecter</a>
-                                            </li>
-
-
-                                            <li>
-                                                <a class="dropdown-item" *ngIf="isLoggedIn"
-                                                [routerLink]="['/profil',username]">Profil</a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" *ngIf="isLoggedIn" [routerLink]="['/password',username]">Mot
-                                                    de passe</a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item" style="cursor: pointer;" *ngIf="isLoggedIn"
-                                                    (click)="logout()">Se deconnecter</a>
-                                            </li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </form>
-
-                            <!-- <form class="d-flex"><ul class="navbar-nav"
-                                *ngIf="authService.username==''">
-                                <li class="button">
-                                    <a class="navbar-brand"></a>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="navbar-brand" href="#" id="navbarScrollingDropdown" role="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false">
-                                        {{user}}
-                                        <i class="bi bi-person"></i> 
-                                    </a>
-                                    <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
-                                        <li *ngIf="authService.isloggedIn==false">
-                                            <a class="dropdown-item" routerLink="/addMilitant">S'inscrire</a></li>
-                                        <li>
-                                           
-                                        </li>
-                                        <li *ngIf="authService.isloggedIn==false">
-                                            <a class="dropdown-item" routerLink="/connect">Se connecter</a>
-                                        </li>
-                                                
-                                            
-                                        <li *ngIf="authService.isloggedIn">
-                                            <a class="dropdown-item" routerLink="/profil">Profil</a>
-                                        </li>
-                                        <li *ngIf="authService.isloggedIn">
-                                            <a class="dropdown-item" routerLink="/password">Mot de passe</a>
-                                        </li>
-                                        <li *ngIf="authService.isloggedIn">
-                                            <a class="dropdown-item" style="cursor: pointer;"
-                                            (click)="onDeconnecter()">Se deconnecter</a>
-                                        </li>
-                                    </ul>
-                                </li></ul>
-                              </form> -->
-                        </div>
-                    </div>
-                </nav>
+                            <!-- Authentification et profil -->
+<ul class="navbar-nav">
+  <li class="nav-item" *ngIf="!isLoggedIn">
+    <a class="navbar-brand" routerLink="/login" (click)="closeMenu()"
+      ></a
+    >
+  </li>
+  <li class="nav-item dropdown" *ngIf="isLoggedIn"
+  [ngClass]="{'active': activeMenu === username}"
+   (click)="closeMenu()">
+    <a
+      class="navbar-brand"
+      href="#"
+      id="navbarScrollingDropdown"
+      role="button"
+      data-bs-toggle="dropdown"
+      aria-expanded="false"
+    >
+      {{ username }} <i class="bi bi-person"></i>
+    </a>
+    <ul class="dropdown-menu">
+      <li>
+        <a
+          class="dropdown-item"
+          [routerLink]="['/profil', username]"
+          (click)="closeMenu(username)"
+          >Profil</a
+        >
+      </li>
+      <li>
+        <a
+          class="dropdown-item"
+          [routerLink]="['/password', username]"
+          (click)="closeMenu(username)"
+          >Mot de passe</a
+        >
+      </li>
+      <li>
+        <a
+          class="dropdown-item"
+          style="cursor: pointer"
+          (click)="logout(); closeMenu(username)"
+          >Se déconnecter</a
+        >
+      </li>
+    </ul>
+  </li>
+</ul>
 
             </div>
-        </div>
+          </div>
+        </nav>
+      </div>
     </div>
+  </div>
 </div>

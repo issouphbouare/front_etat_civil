@@ -7,7 +7,7 @@
                         <div class="col-md-2">
                             <a routerLink="/addRegion" class="btn btn-secondary float-right" style="margin-right:10px ;"><i class="bi bi-plus"></i></a>
                             <button *ngIf="!import" (click)="onImport()" class="btn btn-primary"><i class="bi bi-upload"></i></button>
-                                                    
+
                         </div>
                         <div class="col-md-6" *ngIf="import">
                             <button *ngIf="import" (click)="onNotImport()" class="btn btn-light"><i class="bi bi-x"></i></button>
@@ -27,12 +27,7 @@
                                 <div class="col-auto">
 
                                     <input style="height: 35px; width: 250px;" type="text"
-                                    [(ngModel)]="keyword"   placeholder="Entrez votre mot-clé">
-
-                                    <button class="btn btn-secondary rounded ms-2" (click)="search()"><i
-                                            class="bi bi-search"></i></button>
-                                    <!-- Bouton que vous voulez aligner à droite -->
-
+                                    [(ngModel)]="keyword" (input)="search()"  placeholder="Entrez votre mot-clé">
 
                                 </div>
                             </div>
@@ -47,21 +42,21 @@
                             <tr *ngIf="totalSearch!=0">
                                 <th>Code</th>
                                 <th>Nom</th>
-                            
-                                
+
+
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let p of donnees">
-                                <td>{{p.code}}</td>  
-                                <td>{{p.nom}}</td>                              
-                                
-                                
+                                <td>{{p.code}}</td>
+                                <td>{{p.nom}}</td>
+
+
                                 <td>
                                     <button [routerLink]="['/editRegion',p.id]"
                                         class="btn btn-light"><i class="bi bi-pencil"></i></button>
                                     <button (click)="onDelete(p.id)" class="btn btn-light"><i class="bi bi-trash"></i></button>
-                                
+
                             </tr>
                         </tbody>
                     </table>

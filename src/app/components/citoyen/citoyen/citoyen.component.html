@@ -10,25 +10,18 @@
             cercle cercleA region regionA profession professionP professionM">
                 <div class="card-header" style="text-align: center;">
                     <div class="row">
-                        <div class="col-md-1">
-                            <button [routerLink]="['/citoyens']" class="btn btn-light"><i
+                        <div class="col-md-3">
+                            <button [routerLink]="['/citoyens']" class="btn btn-light me-1"><i
                                 class="bi bi-arrow-left"></i></button>
-                        </div>
-                        <div class="col-md-8">
-                            <h3>CITOYEN DE N° NICIV  {{citoyen.niciv}} </h3>
-                        </div>
-                        <div class="col-md-3" *ngIf="isAdmin">
-                            <button (click)="onDelete(citoyen.id)" class="btn btn-light"><i class="bi bi-trash"></i></button>
-
-                            <button 
+                                <button
                             [routerLink]="['/editCitoyen',citoyen.id]"
-                            class="btn btn-light">
+                            class="btn btn-light me-1">
                             <i class="bi bi-pencil"></i>
                             </button>
 
-                            <a class="btn btn-light" href="#" id="navbarScrollingDropdown" role="button"
+                            <a class="btn btn-secondary" href="#" id="navbarScrollingDropdown" role="button"
                             data-bs-toggle="dropdown" aria-expanded="false">
-                            Générer PDF <i class="bi bi-file-pdf"></i>
+                            Document Civil
                             </a>
                         <ul class="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                             <li><a class="btn btn-light" (click)="genererCarte()">Carte  Biometrique</a></li>
@@ -37,6 +30,21 @@
                             <li><a class="btn btn-light" (click)="genererCasier()">Casier Judiciaire</a></li>
                             <li><a class="btn btn-light" (click)="genererNationalite()">Certificat de Nationalité</a></li>
                         </ul>
+
+                        </div>
+                        <div class="col-md-6">
+                            <h3>CITOYEN DE N° NICIV  {{citoyen.niciv}} </h3>
+                        </div>
+                        <div class="col-md-3" *ngIf="isAdmin">
+                            <button
+                            [routerLink]="['/declarationDeces',citoyen.id]"
+                            class="btn btn-danger me-1">
+                            Declaration de Décès
+                            </button>
+                            <button (click)="onDelete(citoyen.id)" class="btn btn-danger"><i class="bi bi-trash"></i></button>
+
+
+
                         </div>
                     </div>
                 </div>
@@ -112,7 +120,7 @@
                                                                 {{lieuNaissance.nom}} </label></div>
                                                         </div>
                                                         <div class="row">
-                                                            
+
                                                             <div class="col-md-6"><label>Pays Naissance:
                                                                     {{commune.nom}} </label></div>
                                                                     <div class="col-md-6"><label>Continent Naissance:

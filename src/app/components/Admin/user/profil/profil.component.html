@@ -6,10 +6,6 @@
                     <div class="card-header">
                         <div class="row">
                             <div class="col-md-4">
-                                <a routerLink="/citoyens" class="btn btn-light float-right">
-                                    <i class="bi bi-arrow-left"></i>
-                                </a>
-    
                             </div>
                             <div class="col-md-8">
                                 <h4>
@@ -17,7 +13,7 @@
                                 </h4>
                             </div>
                         </div>
-                        
+
                     </div>
                        <div class="card-body">
                         <div class="row">
@@ -29,30 +25,30 @@
                            <div class="row">
                                <div class="col-md-8" *ngIf="editing">
                                    <div class="form-group">
-                                    
+
                                     <label>Username</label>
-                                    <input type="text" formControlName="username" class="form-control" [disabled]="editing" 
+                                    <input type="text" formControlName="username" class="form-control" [disabled]="editing"
                                     [(ngModel)]="donnee.username" placeholder="au moins 2 caracteres ">
-                                    <p style="color: brown;" *ngIf="!form.controls['username'].valid"> (au moins 2 caracteres ) </p> 
+                                    <p style="color: brown;" *ngIf="!form.controls['username'].valid"> (au moins 2 caracteres ) </p>
                                     <label>Email</label>
-                                    <input type="email" formControlName="email" class="form-control" 
+                                    <input type="email" formControlName="email" class="form-control"
                                     [(ngModel)]="donnee.email" placeholder="au moins 3 letttres ">
-                                    <p style="color: brown;" *ngIf="!form.controls['email'].valid"> (Le remier caractere doit etre une lettres majuscule ) </p> 
-                               
+                                    <p style="color: brown;" *ngIf="!form.controls['email'].valid"> (Le remier caractere doit etre une lettres majuscule ) </p>
+
                                     </div><Br/>
                                    <div class="form-group card mt-3" *ngIf="editing" >
-                                        <button type="submit" 
+                                        <button type="submit"
                                              class="btn btn-secondary px-4">Enregistrer</button>
                                    </div>
-                                   
+
                                </div>
 
                                <div class="col-md-8" *ngIf="!editing">
                                 <div class="form-group">
-                                 
+
                                  <label>Username : </label> <br>
                                  <label>{{donnee.username}}</label> <br>
-                                  
+
                                  <label>Email : </label> <br>
                                  <label>{{donnee.email}}</label> <br>
 
@@ -61,8 +57,8 @@
                                     <label *ngIf="donnee.roles==''" >Aucun Role</label>
                                  <label *ngFor="let r of donnee.roles">{{r.name}}</label>
                                 </div>
-                            
-                            
+
+
                                  </div><Br/>
                                 <div class="form-group card mt-3" *ngIf="!editing" >
                                  <button type="submit" (click)="onEdit()"

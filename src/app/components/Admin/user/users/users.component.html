@@ -14,11 +14,7 @@
                                 <div class="col-auto">
 
                                     <input style="height: 35px; width: 250px;" type="text"
-                                    [(ngModel)]="keyword"   placeholder="Entrez votre mot-clé">
-
-                                    <button class="btn btn-secondary rounded ms-2" (click)="search()"><i
-                                            class="bi bi-search"></i></button>
-                                    <!-- Bouton que vous voulez aligner à droite -->
+                                    [(ngModel)]="keyword" (input)="search()"  placeholder="Entrez votre mot-clé">
 
 
                                 </div>
@@ -35,24 +31,24 @@
                                 <th>Username</th>
                                 <th>Email</th>
                                 <th>Roles</th>
-                            
-                                
+
+
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let p of donnees">
-                                <td>{{p.username}}</td>  
+                                <td>{{p.username}}</td>
                                 <td>{{p.email}}</td>
                                 <td>
                                     <h6  *ngIf="p.roles==''">AUCUN</h6>
                                     <h6 *ngFor="let r of p.roles">
                                     {{r.name}}</h6>
-                                </td>                              
+                                </td>
                                 <td>
                                     <button [routerLink]="['/editUser',p.id]"
                                         class="btn btn-light"><i class="bi bi-pencil"></i></button>
                                     <button (click)="onDelete(p.id)" class="btn btn-light"><i class="bi bi-trash"></i></button>
-                                
+
                             </tr>
                         </tbody>
                     </table>

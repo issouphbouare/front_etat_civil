@@ -14,11 +14,8 @@
                                 <div class="col-auto">
 
                                     <input style="height: 35px; width: 250px;" type="text"
-                                    [(ngModel)]="keyword"   placeholder="Entrez votre mot-clé">
+                                    [(ngModel)]="keyword" (input)="search()"   placeholder="Entrez votre mot-clé">
 
-                                    <button class="btn btn-secondary rounded ms-2" (click)="search()"><i
-                                            class="bi bi-search"></i></button>
-                                    <!-- Bouton que vous voulez aligner à droite -->
 
 
                                 </div>
@@ -41,30 +38,30 @@
                                 <th>Date Condam</th>
                                 <th>Date Delit/Crime</th>
                                 <th>Detention</th>
-                                
-                            
-                                
+
+
+
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let p of donnees">
-                                <td>{{p.citoyen.niciv}}</td>  
-                                <td>{{p.citoyen.telephone}}</td> 
+                                <td>{{p.citoyen.niciv}}</td>
+                                <td>{{p.citoyen.telephone}}</td>
                                 <td>{{p.natureDelitCrime}}</td>
                                 <td>{{p.juridiction}}</td>
                                 <td>{{p.dateCondamnation | date:'yyyy-MM-dd' }}</td>
                                 <td>{{p.dateDelitCrime | date:'yyyy-MM-dd' }}</td>
                                 <td>{{p.dateDetention | date:'yyyy-MM-dd' }}</td>
-                                                            
-                                
-                                
+
+
+
                                 <td>
                                     <button [routerLink]="['/citoyen',p.citoyen.id]"
                                     class="btn btn-light"><i class="bi bi-listt">Details citoyen</i></button>
                                     <button [routerLink]="['/editCondamnation',p.id]"
                                     class="btn btn-light"><i class="bi bi-pencil"></i></button>
                                      <button (click)="onDelete(p.id)" class="btn btn-light"><i class="bi bi-trash"></i></button>
-                                
+
                             </tr>
                         </tbody>
                     </table>

@@ -11,6 +11,6 @@ export class VariableGService {
 
   constructor(private http: HttpClient) { }
   getApi(){
-    return this.apiDist;
+    return this.api;
   }
 }

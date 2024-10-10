@@ -47,6 +47,11 @@ export class CitoyenService {
     return this.http.put<Apiresponse>(this.baseUrl + "/" + url, m, { headers });
   }
 
+  Deceder(url: any, m: any): Observable<Apiresponse> {
+    const headers = this.tokenStorageService.getHeaders();
+    return this.http.put<Apiresponse>(this.baseUrl + "/declarerDeces/" + url, m, { headers });
+  }
+
   delete(url: any) {
     const headers = this.tokenStorageService.getHeaders();
     return this.http.delete<Apiresponse>(this.baseUrl + "/" + url, { headers });
@@ -67,9 +72,9 @@ export class CitoyenService {
           const headers = new HttpHeaders({
             'Authorization': 'Bearer ' + this.tokenStorageService.getToken()
           });
-  
+
           formData.append('file', imageBlob, 'portrait.png');
-  
+
           this.http.put(this.baseUrl + '/uploadPortrait/' + id, formData, { headers })
             .subscribe(response => {
               observer.next(response);
@@ -82,11 +87,11 @@ export class CitoyenService {
         });
       });
     }
-  
+
     private convertImageUrlToBlob(imageUrl: string): Promise<Blob> {
       return fetch(imageUrl)
         .then(response => response.blob());
     }
-  
+
 }
 

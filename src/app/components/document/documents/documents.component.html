@@ -14,12 +14,7 @@
                                 <div class="col-auto">
 
                                     <input style="height: 35px; width: 250px;" type="text"
-                                    [(ngModel)]="keyword"   placeholder="Entrez votre mot-clé">
-
-                                    <button class="btn btn-secondary rounded ms-2" (click)="search()"><i
-                                            class="bi bi-search"></i></button>
-                                    <!-- Bouton que vous voulez aligner à droite -->
-
+                                    [(ngModel)]="keyword" (input)="search()"   placeholder="Entrez votre mot-clé">
 
                                 </div>
                             </div>
@@ -40,26 +35,26 @@
                                 <th>date délivrance</th>
                                 <th>Tel Citoyen</th>
                                 <th>Niciv Citoyen</th>
-                                
-                            
-                                
+
+
+
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let p of donnees">
-                                <td>{{p.id}}</td>  
-                                <td>{{p.nom}}</td> 
-                                <td>{{p.type}}</td>  
+                                <td>{{p.id}}</td>
+                                <td>{{p.nom}}</td>
+                                <td>{{p.type}}</td>
                                 <td>{{p.date}}</td>
                                 <td>{{p.citoyen.telephone}}</td>
-                                <td>{{p.citoyen.niciv}}</td>                             
-                                
-                                
+                                <td>{{p.citoyen.niciv}}</td>
+
+
                                 <td>
                                     <button [routerLink]="['/citoyen',p.citoyen.id]"
                                     class="btn btn-light"><i class="bi bi-listt">Details citoyen</i></button>
                                      <button (click)="onDelete(p.id)" class="btn btn-light"><i class="bi bi-trash"></i></button>
-                                
+
                             </tr>
                         </tbody>
                     </table>

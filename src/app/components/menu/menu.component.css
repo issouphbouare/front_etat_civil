@@ -3,3 +3,12 @@
     width: 70%;
     margin: auto;
   }
+
+  .collapse {
+    transition: height 0.3s ease;
+  }
+
+  .nav-item.active a {
+    color:rgb(11, 8, 15); /* Par exemple, couleur blanche pour les éléments actifs */
+    font-weight: bold;
+  }

@@ -12,16 +12,13 @@
                         </div>
                         <div class="col-md-4">
                             <div class="row justify-content-end">
-                                
+
                                 <div class="col-auto">
                                     <button *ngIf="keyword!=''" class="btn btn-light" (click)="clean()"><i
                                         class="bi bi-x"></i></button>
                                     <input style="height: 35px; width: 200px;" type="text"
-                                    [(ngModel)]="keyword"   placeholder="Entrez votre mot-clé">
-
-                                    <button class="btn btn-secondary rounded ms-2" (click)="search()"><i
-                                            class="bi bi-search"></i></button>
-                                    <!-- Bouton que vous voulez aligner à droite -->
+                                    [(ngModel)]="keyword"
+                                    (input)="search()"   placeholder="Entrez votre mot-clé">
 
 
                                 </div>
@@ -31,7 +28,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    
+
                     <app-loader [isLoading]="isLoading"></app-loader>
                     <div *ngIf="!isLoading">
                     <table class="table table-striped" *ngIf="donnees">
@@ -46,26 +43,26 @@
                                 <th>Lieu Nais</th>
                                 <th>Profession</th>
                                 <th>Genre</th>
-                                
+
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let p of donnees">
-                                <td>{{p.niciv}}</td>  
-                                <td>{{p.telephone}}</td>                              
+                                <td>{{p.niciv}}</td>
+                                <td>{{p.telephone}}</td>
                                 <td>{{p.prenom}}</td>
                                 <td>{{p.nom}}</td>
                                 <td>{{p.dateNaissance | date:'yyyy-MM-dd' }}</td>
                                 <td>{{p.lieuNaissance.commune.cercle.nom}}</td>
                                 <td>{{p.profession.libelle}}</td>
                                 <td>{{p.genre}}</td>
-                                
+
                                 <td>
                                     <button [routerLink]="['/citoyen',p.id]"
                                     class="btn btn-light"><i class="bi bi-listt">Voir en details</i></button>
 
-                                    
-                                
+
+
                             </tr>
                         </tbody>
                     </table>

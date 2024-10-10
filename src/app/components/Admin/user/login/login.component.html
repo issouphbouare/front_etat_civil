@@ -1,77 +1,97 @@
 <div class="container">
-    <div class="card">
-        <div class="container mt-3">
-            <div class="row justify-content-md-center">
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="row">
-                                <div class="col-md-2">
-                                    <!-- <button [routerLink]="['/']" class="btn btn-light"><i class="bi bi-arrow-left"></i></button> -->
-                                </div>
-                                <div class="col-md-7">
-                                    <h4>Page de Connexion </h4>
-                                </div>
-                                <div class="col-md-3">
-                                    <!-- <a routerLink="/addUser" class="btn btn-secondary">S'inscrire</a> -->
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="card-body">
-                            <form [formGroup]="login" (ngSubmit)="onSubmit()">
-                                <div class="form-group">
-                                    <label>Nom Utilisateur :</label>
-                                    <div class="row">
-                                        <div class="col-md-11">
-                                            <input type="text" formControlName="username" class="form-control">
-                                        </div>
-                                        <div class="col-md-1"></div>
-                                    </div>
-                                    <p style="color: brown;" *ngIf="!login.controls['username'].valid">
-                                        (Champ obligatoire * ) </p>
-
-                                </div>
-                                <div class="form-group">
-                                    <label>Mot de passe :</label>
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="input-group">
-                                                <input [type]="visible" formControlName="password" class="form-control">
-                                                <div class="input-group-append">
-                                                    <button *ngIf="visible == 'password'" type="button"
-                                                        (click)="onVisible()" class="btn btn-light">
-                                                        <i class="bi bi-eye"></i>
-                                                    </button>
-                                                    <button *ngIf="visible == 'text'" type="button"
-                                                        (click)="onNotVisible()" class="btn btn-light">
-                                                        <i class="bi bi-eye-slash"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <p style="color: brown;" *ngIf="!login.controls['password'].valid">
-                                        (Champ obligatoire *) </p>
-
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-11">
-                                        <div class="form-group card mt-2">
-                                            <button [disabled]="!login.valid" type="submit"
-                                                class="btn btn-secondary ">Se
-                                                connecter</button>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-1"></div>
-                                </div>
-
-                            </form>
-                        </div>
-                    </div>
+  <div class="card">
+    <div class="container mt-3">
+      <div class="row justify-content-md-center">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header">
+              <div class="row">
+                <div class="col-md-1">
                 </div>
+                <div class="col-md-10 text-center">
+                  <h4>CONNEXION</h4>
+                </div>
+                <div class="col-md-1">
+                  <!-- <a routerLink="/addUser" class="btn btn-secondary">S'inscrire</a> -->
+                </div>
+              </div>
             </div>
+            <div class="card-body">
+              <form [formGroup]="login" (ngSubmit)="onSubmit()">
+                <!-- Username Field -->
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="input-group">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i class="bi bi-person"></i>
+                          </span>
+                        </div>
+                        <input
+                          type="text"
+                          placeholder="Nom D'utilisateur"
+                          formControlName="username"
+                          class="form-control"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <br />
+
+                <!-- Password Field -->
+                <div class="form-group">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <div class="input-group">
+                        <!-- Icon like person icon -->
+                        <div class="input-group-prepend">
+                          <span class="input-group-text">
+                            <i
+                              class="bi"
+                              [ngClass]="
+                                visible === 'password'
+                                  ? 'bi-eye'
+                                  : 'bi-eye-slash'
+                              "
+                              (click)="toggleVisibility()"
+                            ></i>
+                          </span>
+                        </div>
+                        <!-- Password input -->
+                        <input
+                          [type]="visible"
+                          formControlName="password"
+                          class="form-control"
+                          placeholder="Mot de passe"
+                        />
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+                <!-- Submit Button -->
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group card mt-3">
+                      <button
+                        [disabled]="!login.valid"
+                        type="submit"
+                        class="btn btn-secondary"
+                      >
+                        Se connecter
+                      </button>
+                    </div>
+                  </div>
+                  <div class="col-md-1"></div>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 </div>

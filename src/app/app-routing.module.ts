@@ -37,6 +37,7 @@ import { AddDocumentComponent } from './components/document/add-document/add-doc
 import { CondamnationsComponent } from './components/condamnation/condamnations/condamnations.component';
 import { AddCondamnationComponent } from './components/condamnation/add-condamnation/add-condamnation.component';
 import { EditCondamnationComponent } from './components/condamnation/edit-condamnation/edit-condamnation.component';
+import { DeclarationDecesComponent } from './components/citoyen/declaration-deces/declaration-deces.component';
 
 const routes: Routes = [
   {path : "" , component : LoginComponent },
@@ -76,6 +77,7 @@ const routes: Routes = [
  {path :"citoyens" , component : CitoyensComponent},
  {path : "citoyen/:id" , component : CitoyenComponent },
  {path : "editCitoyen/:id" , component : EditCitoyenComponent },
+ {path : "declarationDeces/:id" , component : DeclarationDecesComponent },
  {path : "editWebcam/:id" , component : EditWebcamComponent },
 
 
@@ -89,7 +91,7 @@ const routes: Routes = [
  {path : "condamnations" , component : CondamnationsComponent },
  {path :"addCondamnation" , component : AddCondamnationComponent},
  {path : "editCondamnation/:id" , component : EditCondamnationComponent },
- 
+
  // Ajoutez vos autres routes ici
  { path: '', redirectTo: '/citoyens', pathMatch: 'full' }, // Redirection par défaut
  { path: '**', redirectTo: '/citoyens' }, // Redirection pour les routes inconnues

@@ -14,11 +14,8 @@
                                 <div class="col-auto">
 
                                     <input style="height: 35px; width: 250px;" type="text"
-                                    [(ngModel)]="keyword"   placeholder="Entrez votre mot-clé">
+                                    [(ngModel)]="keyword" (input)="search()"  placeholder="Entrez votre mot-clé">
 
-                                    <button class="btn btn-secondary rounded ms-2" (click)="search()"><i
-                                            class="bi bi-search"></i></button>
-                                    <!-- Bouton que vous voulez aligner à droite -->
 
 
                                 </div>
@@ -34,21 +31,21 @@
                             <tr *ngIf="totalSearch!=0">
                                 <th>Code</th>
                                 <th>Libelle</th>
-                            
-                                
+
+
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let p of donnees">
-                                <td>{{p.id}}</td>  
-                                <td>{{p.libelle}}</td>                              
-                                
-                                
+                                <td>{{p.id}}</td>
+                                <td>{{p.libelle}}</td>
+
+
                                 <td>
                                     <button [routerLink]="['/editProfession',p.id]"
                                         class="btn btn-light"><i class="bi bi-pencil"></i></button>
                                     <button (click)="onDelete(p.id)" class="btn btn-light"><i class="bi bi-trash"></i></button>
-                                
+
                             </tr>
                         </tbody>
                     </table>

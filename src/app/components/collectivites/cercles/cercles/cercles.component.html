@@ -5,9 +5,9 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-md-2">
-                            <a routerLink="/addCercle" class="btn btn-secondary float-right"><i class="bi bi-plus"></i></a> 
+                            <a routerLink="/addCercle" class="btn btn-secondary float-right"><i class="bi bi-plus"></i></a>
                             <button *ngIf="!import" (click)="onImport()" class="btn btn-primary" style="margin-left:10px ;"><i class="bi bi-upload"></i></button>
-                                                    
+
                         </div>
                         <div class="col-md-6" *ngIf="import">
                             <button *ngIf="import" (click)="onNotImport()" class="btn btn-light"><i class="bi bi-x"></i></button>
@@ -22,11 +22,7 @@
                                 <div class="col-auto">
 
                                     <input style="height: 35px; width: 250px;" type="text"
-                                    [(ngModel)]="keyword"   placeholder="Entrez votre mot-clé">
-
-                                    <button class="btn btn-secondary rounded ms-2" (click)="search()"><i
-                                            class="bi bi-search"></i></button>
-                                    <!-- Bouton que vous voulez aligner à droite -->
+                                    [(ngModel)]="keyword" (input)="search()"   placeholder="Entrez votre mot-clé">
 
 
                                 </div>
@@ -43,22 +39,22 @@
                                 <th>Code</th>
                                 <th>Nom</th>
                                 <th>Region</th>
-                            
-                                
+
+
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let p of donnees">
-                                <td>{{p.code}}</td>  
-                                <td>{{p.nom}}</td> 
-                                <td>{{p.region.nom}}</td>                             
-                                
-                                
+                                <td>{{p.code}}</td>
+                                <td>{{p.nom}}</td>
+                                <td>{{p.region.nom}}</td>
+
+
                                 <td>
                                     <button [routerLink]="['/editCercle',p.id]"
                                         class="btn btn-light"><i class="bi bi-pencil"></i></button>
                                     <button (click)="onDelete(p.id)" class="btn btn-light"><i class="bi bi-trash"></i></button>
-                                
+
                             </tr>
                         </tbody>
                     </table>

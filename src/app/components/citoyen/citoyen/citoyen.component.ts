@@ -48,7 +48,7 @@ export class CitoyenComponent implements OnInit {
   ngOnInit(): void {
     this.url=this.route.snapshot.params['id']
     this.onGetCitoyen();
-    
+
     this.isLoggedIn = !!this.tokenStorageService.getToken();
     if (this.isLoggedIn) {
       const user = this.tokenStorageService.getUser();
@@ -56,11 +56,11 @@ export class CitoyenComponent implements OnInit {
       this.isUser=this.tokenStorageService.getIsUser(user.roles)
 
     }
-    
+
     this.form=this.formBuilder.group({
       type : ['',[Validators.required]],
       citoyen : ['',[Validators.required]],
-      
+
     });
      this.isOk=false
   }
@@ -69,7 +69,7 @@ export class CitoyenComponent implements OnInit {
     this.isLoading = true;
     this.apiService.getById(this.url)
     .subscribe((data: any)=>{
-    
+
     this.citoyen=data;
        this.onGetLieuNaissance(this.citoyen.lieuNaissance)
        this.onGetAdresse(this.citoyen.adresse)
@@ -192,7 +192,7 @@ onGetProfessionM(id:any){
     );
     this.isOk=true;
   }
-  
+
   genererCarte(): void {
     this.form.value.type="Carte_Biometrique"
     this.form.value.citoyen=this.citoyen.id
@@ -204,7 +204,7 @@ onGetProfessionM(id:any){
       error => {
         console.error('Erreur lors du téléchargement du recu : ', error);
       }
-    ); 
+    );
   }
 
   genererFiche(): void {
@@ -218,7 +218,7 @@ onGetProfessionM(id:any){
       error => {
         console.error('Erreur lors du téléchargement du recu : ', error);
       }
-    ); 
+    );
   }
 
   genererRecu(): void {
@@ -232,14 +232,14 @@ onGetProfessionM(id:any){
       error => {
         console.error('Erreur lors du téléchargement du recu : ', error);
       }
-    ); 
+    );
   }
 
   genererNationalite(): void {
     this.form.value.type="Certificat_Nationalité"
     this.form.value.citoyen=this.citoyen.id
     this.documentService.Create(this.form.value).
-    subscribe( data => {this.doc=data; 
+    subscribe( data => {this.doc=data;
       this.jasperService.generateNationalite(this.citoyen.id, this.doc.id).subscribe(
         (response: Blob) => {
           this.jasperService.downloadFile(response,"Nationalité_"+this.citoyen.id.toString());
@@ -247,16 +247,16 @@ onGetProfessionM(id:any){
         error => {
           console.error('Erreur lors du téléchargement du certificat : ', error);
         }
-      ); 
+      );
     },
       err=>{});
   }
-    
+
   genererCasier(): void {
     this.form.value.type="Casier_judiciaire"
     this.form.value.citoyen=this.citoyen.id
     this.documentService.Create(this.form.value).
-    subscribe( data => {this.doc=data; 
+    subscribe( data => {this.doc=data;
       this.jasperService.generateCasier(this.citoyen.id, this.doc.id).subscribe(
         (response: Blob) => {
           this.jasperService.downloadFile(response,"Casier_"+this.citoyen.id.toString());
@@ -264,25 +264,25 @@ onGetProfessionM(id:any){
         error => {
           console.error('Erreur lors du téléchargement du casier : ', error);
         }
-      ); 
+      );
     },
       err=>{});
-  } 
+  }
 
 
-  
+
 
   onDelete(a: any){
     if(confirm("Voulez-vous vraiment supprimer ce citoyen ?")){
       console.log();
       this.apiService.delete(a)
       .subscribe( data=>{
-        this.router.navigate(['citoyens']);    
+        this.router.navigate(['citoyens']);
         }, err=>{
           console.log(err);
         }
       );
-  
+
     alert("Citoyen  supprimé avec succès");
   }
   }
